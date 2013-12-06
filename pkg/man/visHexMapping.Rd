@@ -1,0 +1,89 @@
+\name{visHexMapping}
+\alias{visHexMapping}
+\title{Function to visualise various mapping items within a supra-hexagonal grid}
+\usage{
+  visHexMapping(sObj,
+    mappingType = c("indexes", "hits", "dist", "antidist", "bases", "customized"),
+    labels = NULL, height = 7, margin = rep(0.1, 4),
+    area.size = 1,
+    gp = grid::gpar(cex = 0.7, font = 1, col.label = "black"),
+    border.color = "black", fill.color = "transparent",
+    clip = c("on", "inherit", "off"), newpage = T)
+}
+\arguments{
+  \item{sObj}{an object of class "sMap" or "sInit" or
+  "sTopol"}
+
+  \item{mappingType}{the mapping type, can be "indexes",
+  "hits", "dist", "antidist", "bases", and "customized"}
+
+  \item{labels}{NULL or a vector with the length of nHex}
+
+  \item{height}{a numeric value specifying the height of
+  device}
+
+  \item{margin}{margins as units of length 4 or 1}
+
+  \item{area.size}{an inteter or a vector specifying the
+  area size of each hexagon}
+
+  \item{gp}{an object of class "gpar". It is the output
+  from a call to the function "gpar" (i.e., a list of
+  graphical parameter settings)}
+
+  \item{border.color}{the border color for each hexagon}
+
+  \item{fill.color}{the filled color for each hexagon}
+
+  \item{clip}{either "on" for clipping to the extent of
+  this viewport, "inherit" for inheriting the clipping
+  region from the parent viewport, or "off" to turn
+  clipping off altogether}
+
+  \item{newpage}{logical to indicate whether to open a new
+  page. By default, it sets to true for opening a new page}
+}
+\value{
+  invisible
+}
+\description{
+  \code{visHexMapping} is supposed to visualise various
+  mapping items within a supra-hexagonal grid
+}
+\note{
+  The mappingType includes: \itemize{ \item{"indexes": the
+  index of hexagons in a supra-hexagonal grid}
+  \item{"hits": the number of input data vectors hitting
+  the hexagons} \item{"dist": distance (in high-dimensional
+  input space) to neighbors (defined in 2D output space)}
+  \item{"antidist": the oppose version of "dist"}
+  \item{"bases": clusters partitioned from the sMap}
+  \item{"customized": displaying input "labels"} }
+}
+\examples{
+# 1) generate data with three different distributions, each with an iid normal random matrix of 1000 x 3
+data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3),
+matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3),
+matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
+colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
+
+# 2) sMap resulted from using by default setup
+sMap <- sPipeline(data=data)
+
+# 3) visualise supported mapping items within a supra-hexagonal grid
+# 3a) for indexes of hexagons
+visHexMapping(sMap,mappingType="indexes")
+# 3b) for the number of input data vectors hitting the hexagons
+visHexMapping(sMap,mappingType="hits")
+# 3c) for distance (in high-dimensional input space) to neighbors (defined in 2D output space)
+visHexMapping(sMap,mappingType="dist")
+# 3d) for anti-distance (in high-dimensional input space) to neighbors (defined in 2D output space)
+visHexMapping(sMap,mappingType="antidist")
+# 3e) for clusters/bases partitioned from the sMap
+visHexMapping(sMap,mappingType="bases")
+}
+\seealso{
+  \code{\link{sDmat}}, \code{\link{sDmatCluster}},
+  \code{\link{visHexGrid}}
+}
+

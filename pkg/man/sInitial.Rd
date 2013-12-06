@@ -1,0 +1,69 @@
+\name{sInitial}
+\alias{sInitial}
+\title{Function to initialise a sInit object given a topology and input data}
+\usage{
+  sInitial(data, sTopol,
+    init = c("linear", "uniform", "sample"))
+}
+\arguments{
+  \item{data}{a data frame or matrix of input data}
+
+  \item{sTopol}{an object of class "sTopol" (see
+  \code{sTopology})}
+
+  \item{init}{an initialisation method. It can be one of
+  "uniform", "sample" and "linear" initialisation methods}
+}
+\value{
+  an object of class "sInit", a list with following
+  components: \item{nHex}{the total number of
+  hexagons/rectanges in the grid} \item{xdim}{x-dimension
+  of the grid} \item{ydim}{y-dimension of the grid}
+  \item{lattice}{the grid lattice} \item{shape}{the grid
+  shape} \item{coord}{a matrix of nHex x 2, with each row
+  corresponding to the coordinates of a hexagon/rectangle
+  in the 2D map grid} \item{init}{an initialisation method}
+  \item{codebook}{a codebook matrix of nHex x ncol(data),
+  with each row corresponding to a prototype vector in
+  input high-dimensional space} \item{call}{the call that
+  produced this result}
+}
+\description{
+  \code{sInitial} is supposed to initialise an object of
+  class "sInit" given a topology and input data. As a
+  matter of fact, it initialises the codebook matrix (in
+  input high-dimensional space). The return object inherits
+  the topology information (i.e., a "sTopol" object from
+  \code{sTopology}), along with initialised codebook matrix
+  and method used.
+}
+\note{
+  The initialisation methods include: \itemize{
+  \item{"uniform": the codebook matrix is uniformly
+  initialised via randomly taking any values within the
+  interval [min, max] of each column of input data}
+  \item{"sample": the codebook matrix is initialised via
+  randomly sampling/selecting input data} \item{"linear":
+  the codebook matrix is linearly initialised along the
+  first two greatest eigenvectors of input data} }
+}
+\examples{
+# 1) generate an iid normal random matrix of 100x10
+data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
+
+# 2) from this input matrix, determine nHex=5*sqrt(nrow(data))=50,
+# but it returns nHex=61, via "sHexGrid(nHex=50)", to make sure a supra-hexagonal grid
+sTopol <- sTopology(data=data, lattice="hexa", shape="suprahex")
+
+# 3) initialise the codebook matrix using different mehtods
+# 3a) using "uniform" method
+sI_uniform <- sInitial(data=data, sTopol=sTopol, init="uniform")
+# 3b) using "sample" method
+# sI_sample <- sInitial(data=data, sTopol=sTopol, init="sample")
+# 3c) using "linear" method
+# sI_linear <- sInitial(data=data, sTopol=sTopol, init="linear")
+}
+\seealso{
+  \code{\link{sTopology}}
+}
+

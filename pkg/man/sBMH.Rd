@@ -1,0 +1,66 @@
+\name{sBMH}
+\alias{sBMH}
+\title{Function to identify the best-matching hexagons/rectangles for the input data}
+\usage{
+  sBMH(sMap, data, which_bmh = c("best", "worst", "all"))
+}
+\arguments{
+  \item{sMap}{an object of class "sMap" or a codebook
+  matrix}
+
+  \item{data}{a data frame or matrix of input data}
+
+  \item{which_bmh}{which BMH is requested. It can be a
+  vector consisting of any integer values from [1, nHex].
+  Alternatively, it can also be one of "best", "worst" and
+  "all" choices. Here, "best" is equivalent to \eqn{1},
+  "worst" for \eqn{nHex}, and "all" for \eqn{seq(1,nHex)}}
+}
+\value{
+  a list with following components: \item{bmh}{the
+  requested BMH matrix of dlen x length(which_bmh), where
+  dlen is the total number of rows of the input data}
+  \item{qerr}{the corresponding matrix of quantization
+  errors (i.e., the distance between the input data and
+  their BMH), with the same dimensions as "bmh" above}
+  \item{mqe}{the mean quantization error for the "best"
+  BMH} \item{call}{the call that produced this result}
+}
+\description{
+  \code{sBMH} is supposed to identify the best-matching
+  hexagons/rectangles (BMH) for the input data.
+}
+\note{
+  "which_bmh" upon request can be a vector consisting of
+  any integer values from [1, nHex]
+}
+\examples{
+# 1) generate an iid normal random matrix of 100x10
+data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
+
+# 2) from this input matrix, determine nHex=5*sqrt(nrow(data))=50,
+# but it returns nHex=61, via "sHexGrid(nHex=50)", to make sure a supra-hexagonal grid
+sTopol <- sTopology(data=data, lattice="hexa", shape="suprahex")
+
+# 3) initialise the codebook matrix using "uniform" method
+sI <- sInitial(data=data, sTopol=sTopol, init="uniform")
+
+# 4) define trainology at "rough" stage
+sT_rough <- sTrainology(sMap=sI, data=data, stage="rough")
+
+# 5) training at "rough" stage
+sM_rough <- sTrainSeq(sMap=sI, data=data, sTrain=sT_rough)
+
+# 6) define trainology at "finetune" stage
+sT_finetune <- sTrainology(sMap=sI, data=data, stage="finetune")
+
+# 7) training at "finetune" stage
+sM_finetune <- sTrainSeq(sMap=sM_rough, data=data, sTrain=sT_rough)
+
+# 8) find the best-matching hexagons/rectangles for the input data
+response <- sBMH(sMap=sM_finetune, data=data, which_bmh="best")
+}
+\seealso{
+  \code{\link{sPipeline}}
+}
+

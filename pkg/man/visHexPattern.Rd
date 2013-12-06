@@ -1,0 +1,121 @@
+\name{visHexPattern}
+\alias{visHexPattern}
+\title{Function to visualise codebook matrix or input patterns within a supra-hexagonal grid}
+\usage{
+  visHexPattern(sObj,
+    plotType = c("lines", "bars", "radars"),
+    pattern = NULL, height = 7, margin = rep(0.1, 4),
+    colormap = c("customized", "bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"),
+    customized.color = "red", zeropattern.color = "gray",
+    legend.cex = 0.8, newpage = T)
+}
+\arguments{
+  \item{sObj}{an object of class "sMap" or "sTopol" or
+  "sInit"}
+
+  \item{plotType}{the plot type, can be "lines" for
+  line/point graph, "bars" for bar graph, "radars" for
+  radar graph}
+
+  \item{pattern}{By default, it sets to "NULL" for the
+  codebook matrix. It is intended for the user-input
+  patterns, i.e., a matrix with the dimension of nHex x
+  nPattern, where nHex is the number of hexagons and
+  nPattern is the number of elements for each pattern}
+
+  \item{height}{a numeric value specifying the height of
+  device}
+
+  \item{margin}{margins as units of length 4 or 1}
+
+  \item{colormap}{short name for the predifined colormap,
+  and "customized" for custom input (see the next
+  'customized.color'). The predifined colormap can be one
+  of "jet" (jet colormap), "bwr" (blue-white-red colormap),
+  "gbr" (green-black-red colormap), "wyr" (white-yellow-red
+  colormap), "br" (black-red colormap), "yr" (yellow-red
+  colormap), "wb" (white-black colormap), and "rainbow"
+  (rainbow colormap, that is,
+  red-yellow-green-cyan-blue-magenta). Alternatively, any
+  hyphen-separated HTML color names, e.g.
+  "blue-black-yellow", "royalblue-white-sandybrown",
+  "darkgreen-white-darkviolet". A list of standard color
+  names can be found in
+  \url{http://html-color-codes.info/color-names}}
+
+  \item{customized.color}{the customized color for pattern
+  visualisation}
+
+  \item{zeropattern.color}{the color for zero horizental
+  line}
+
+  \item{legend.cex}{a numerical value giving the amount by
+  which legend text should be magnified relative to the
+  default (i.e., 1)}
+
+  \item{newpage}{logical to indicate whether to open a new
+  page. By default, it sets to true for opening a new page}
+}
+\value{
+  invisible
+}
+\description{
+  \code{visHexPattern} is supposed to codebook matrix or
+  input patterns within a supra-hexagonal grid.
+}
+\note{
+  The "plotType" includes: \itemize{ \item{"lines": line
+  plot. If multple colors are given, the points are also
+  plotted. When the pattern involves both positive and
+  negative values, zero horizental line is also shown}
+  \item{"bars": bar plot. When the pattern involves both
+  positive and negative values, the zero horizental line is
+  in the middle of the hexagon; otherwise at the top of the
+  hexagon for all negative values, and at the bottom for
+  all positive values} \item{"radars": radar plot. Each
+  radar diagram represents one pattern, wherein each
+  element value is proportional to the distance from the
+  center. Note, it starts on the right and wind
+  counterclockwise around the circle} }
+}
+\examples{
+# 1) generate data with three different distributions, each with an iid normal random matrix of 1000 x 3
+data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3),
+matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3),
+matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
+colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
+
+# 2) sMap resulted from using by default setup
+sMap <- sPipeline(data=data)
+
+# 3) plot codebook patterns using different types
+# 3a) line plot
+visHexPattern(sMap, plotType="lines", customized.color="red", zeropattern.color="gray")
+# visHexPattern(sMap, plotType="lines", customized.color=rep(c("red","green","blue"),each=3))
+# 3b) bar plot
+visHexPattern(sMap, plotType="bars")
+# visHexPattern(sMap, plotType="bars", colormap="jet", legend.cex=0.8)
+# visHexPattern(sMap, plotType="bars", customized.color=rep(c("red","green","blue"),each=3))
+# 3c) radar plot
+visHexPattern(sMap, plotType="radars")
+# visHexPattern(sMap, plotType="radars", colormap="jet", legend.cex=0.8)
+# visHexPattern(sMap, plotType="radars", customized.color=rep(c("red","green","blue"),each=3))
+
+# 4) plot user-input patterns using different types
+# 4a) generate pattern data with two different groups "S" and "T"
+nHex <- sMap$nHex
+pattern <- cbind(matrix(runif(nHex*3,min=0,max=1), nrow=nHex, ncol=3),
+matrix(runif(nHex*3,min=1,max=2), nrow=nHex, ncol=3))
+colnames(pattern) <- c("S1","S2","S3","T1","T2","T3")
+# 4b) for line plot
+visHexPattern(sMap, plotType="lines", pattern=pattern, customized.color="red", zeropattern.color="gray")
+# visHexPattern(sMap, plotType="lines", pattern=pattern, customized.color=rep(c("red","green"),each=3))
+# 4c) for bar plot
+visHexPattern(sMap, plotType="bars", pattern=pattern, customized.color=rep(c("red","green"),each=3))
+# 4d) for radar plot
+visHexPattern(sMap, plotType="radars", pattern=pattern, customized.color=rep(c("red","green"),each=3))
+}
+\seealso{
+  \code{\link{sPipeline}}, \code{\link{visColormap}}
+}
+

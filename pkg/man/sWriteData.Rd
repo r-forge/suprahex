@@ -1,0 +1,66 @@
+\name{sWriteData}
+\alias{sWriteData}
+\title{Function to write out the best-matching hexagons and/or cluster bases in terms of data}
+\usage{
+  sWriteData(sMap, data, sBase = NULL, filename = NULL,
+    keep.data = F)
+}
+\arguments{
+  \item{sMap}{an object of class "sMap" or a codebook
+  matrix}
+
+  \item{data}{a data frame or matrix of input data}
+
+  \item{sBase}{an object of class "sBase"}
+
+  \item{filename}{a character string naming a filename}
+
+  \item{keep.data}{logical to indicate whether or not to
+  also write out the input data. By default, it sets to
+  false for not keeping it. It is highly expensive to keep
+  the large data sets}
+}
+\value{
+  a data frame with following components: \item{ID}{ID for
+  data. It inherits the rownames of data (if exists).
+  Otherwise, it is sequential integer values starting with
+  1 and ending with dlen, the total number of rows of the
+  input data} \item{Hexagon_index}{the index for
+  best-matching hexagons} \item{Cluster_base}{optional, it
+  is only appended when sBase is given. It stores the
+  cluster memberships/bases} \item{data}{optional, it is
+  only appended when keep.data is true}
+}
+\description{
+  \code{sWriteData} is supposed to write out the
+  best-matching hexagons and/or cluster bases in terms of
+  data.
+}
+\note{
+  If "filename" is not NULL, a tab-delimited text file will
+  be also written out. If "sBase" is not NULL and comes
+  from the "sMap" partition, then cluster bases are also
+  appended. if "keep.data" is true, the data will be part
+  of output.
+}
+\examples{
+# 1) generate an iid normal random matrix of 100x10
+data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
+
+# 2) get trained using by default setup
+sMap <- sPipeline(data=data)
+
+# 3) write data's BMH hitting the trained map
+output <- sWriteData(sMap=sMap, data=data, filename="sData_output.txt")
+
+# 4) partition the grid map into cluster bases
+sBase <- sDmatCluster(sMap=sMap, which_neigh=1,
+distMeasure="median", clusterLinkage="average")
+
+# 5) write data's BMH and cluster bases
+output <- sWriteData(sMap=sMap, data=data, sBase=sBase, filename="sData_base_output.txt")
+}
+\seealso{
+  \code{\link{sBMH}}
+}
+

@@ -1,0 +1,50 @@
+\name{sNeighDirect}
+\alias{sNeighDirect}
+\title{Function to calculate direct neighbors for each hexagon/rectangle in a grid}
+\usage{
+  sNeighDirect(sObj)
+}
+\arguments{
+  \item{sObj}{an object of class "sTopol" or "sInit" or
+  "sMap"}
+}
+\value{
+  \item{dNeigh}{a matrix of nHex x nHex, containing
+  presence/absence info in terms of direct neighbors, where
+  nHex is the total number of hexagons/rectanges in the
+  grid}
+}
+\description{
+  \code{sNeighDirect} is supposed to calculate direct
+  neighbors for each hexagon/rectangle in a regular 2D
+  grid. It returns a matrix with rows for the self, and
+  columns for its direct neighbors.
+}
+\note{
+  The return matrix has rows for the self, and columns for
+  its direct neighbors. The "1" means the presence of
+  direct neighbors, "0" for the absence. It has
+  rows/columns ordered in the same order as the "coord"
+  matrix of the input object does.
+}
+\examples{
+# 1) generate an iid normal random matrix of 100x10
+data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
+
+# 2) from this input matrix, determine nHex=5*sqrt(nrow(data))=50,
+# but it returns nHex=61, via "sHexGrid(nHex=50)", to make sure a supra-hexagonal grid
+sTopol <- sTopology(data=data, lattice="hexa", shape="suprahex")
+
+# 3) initialise the codebook matrix using "uniform" method
+sI <- sInitial(data=data, sTopol=sTopol, init="uniform")
+
+# 4) calculate direct neighbors based on different objects
+# 4a) based on an object of class "sTopol"
+dNeigh <- sNeighDirect(sObj=sTopol)
+# 4b) based on an object of class "sMap"
+# dNeigh <- sNeighDirect(sObj=sI)
+}
+\seealso{
+  \code{\link{sHexDist}}
+}
+
