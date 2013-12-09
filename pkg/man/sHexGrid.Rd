@@ -65,16 +65,6 @@ res <- sHexGrid(r=3, nHex=100)
 # By default, r=3 if no parameters are specified
 res <- sHexGrid()
 }
-\author{
-  Hai Fang \email{hfang@cs.bris.ac.uk}
-}
-\references{
-  Hai Fang and Julian Gough. (2013). supraHex: an
-  R/Bioconductor package for tabular omics data analysis
-  using a supra-hexagonal map. \emph{Biochemical and
-  Biophysical Research Communications},
-  \url{http://dx.doi.org/10.1016/j.bbrc.2013.11.103}.
-}
 \seealso{
   \code{\link{sTopology}}
 }

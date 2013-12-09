@@ -123,23 +123,19 @@ As a result of training, similar input data are mapped onto neighboring regions 
 \label{sec:inst}
 %------------------------------------------------------------
 
-\Rpackage{supraHex} is a package for the R computing environment and it is assumed that you have already installed the latest version of R. You can install the package following step-by-step guidelines in \url{http://supfam.org/supraHex}. Briefly, you can install it from Bioconductor:
+\Rpackage{supraHex} is a package for the R computing environment and it is assumed that you have already installed the latest version of R (>=3.0.2). You can install the package following step-by-step guidelines in \url{http://supfam.org/supraHex}. Briefly, you can install it from Bioconductor (or R-Forge):
 
-Using the release version\footnote{\url{http://www.bioconductor.org/packages/2.13/bioc/html/supraHex.html}} (officially released on 15-10-2013):
+Using the release version\footnote{\url{http://bioconductor.org/packages/release/bioc/html/supraHex.html}} (officially released on 15-10-2013):
 <<eval=F, echo=T>>=
 source("http://bioconductor.org/biocLite.R")
 biocLite("supraHex")
 library(supraHex) # load the package
 @
 
-Using the development version\footnote{\url{http://bioconductor.org/packages/devel/bioc/html/supraHex.html}} (\underline{prefer it for the benefit of latest improvements}):
+Using the latest development version\footnote{\url{http://bioconductor.org/packages/devel/bioc/html/supraHex.html}} (\underline{prefer it for the benefit of latest improvements}):
 <<eval=F, echo=T>>=
-source("http://bioconductor.org/biocLite.R")
-biocLite("BiocInstaller")
-library(BiocInstaller)
-useDevel(devel=T) # enable installation of the development version
-biocLite("supraHex")
-useDevel(devel=F) # back to installation settings for the release version
+install.packages("hexbin",repos="http://www.stats.bris.ac.uk/R")
+install.packages("supraHex",repos="http://R-Forge.R-project.org", type="source")
 library(supraHex) # load the package
 @
 

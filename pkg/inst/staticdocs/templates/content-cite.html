@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="span8">
+    
+    <h1>Citation</h1><p>
+    
+    {{{citation}}}
+
+  </div>
+
+  <div class="span4">
+
+    {{#vignettes}}
+    <h2>Vignette</h2>
+    <ul>
+    {{#vignette}}
+      <li><a href="vignettes/{{filename}}">{{title}}</a></li>
+    {{/vignette}}
+    </ul>
+    {{/vignettes}}
+    
+    {{#urls}}
+    <h2>URL</h2>
+    <ul>
+    {{#url}}
+      <li><a href="{{url}}">{{url}}</a></li>
+    {{/url}}
+    </ul>
+    {{/urls}}
+    
+    {{#author}}
+    <h2>Author</h2>
+    {{author}}
+    {{/author}}
+    
+  </div>
+
+</div>

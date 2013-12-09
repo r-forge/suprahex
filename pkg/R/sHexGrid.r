@@ -22,9 +22,6 @@
 #' @export
 #' @seealso \code{\link{sTopology}}
 #' @include sHexGrid.r
-#' @references
-#' Hai Fang and Julian Gough. (2013). supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. \emph{Biochemical and Biophysical Research Communications}, \url{http://dx.doi.org/10.1016/j.bbrc.2013.11.103}.
-#' @author Hai Fang \email{hfang@@cs.bris.ac.uk}
 #' @examples
 #' # The supra-hexagonal grid is exactly determined by specifying the radius.
 #' res <- sHexGrid(r=2)

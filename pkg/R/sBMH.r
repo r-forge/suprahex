@@ -30,13 +30,13 @@
 #' sT_rough <- sTrainology(sMap=sI, data=data, stage="rough") 
 #'
 #' # 5) training at "rough" stage
-#' sM_rough <- sTrainSeq(sMap=sI, data=data, sTrain=sT_rough)
+#' sM_rough <- sTrainBatch(sMap=sI, data=data, sTrain=sT_rough)
 #' 
 #' # 6) define trainology at "finetune" stage
 #' sT_finetune <- sTrainology(sMap=sI, data=data, stage="finetune")
 #'
 #' # 7) training at "finetune" stage
-#' sM_finetune <- sTrainSeq(sMap=sM_rough, data=data, sTrain=sT_rough)
+#' sM_finetune <- sTrainBatch(sMap=sM_rough, data=data, sTrain=sT_rough)
 #'
 #' # 8) find the best-matching hexagons/rectangles for the input data
 #' response <- sBMH(sMap=sM_finetune, data=data, which_bmh="best")

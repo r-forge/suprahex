@@ -112,6 +112,16 @@ sMap <- sPipeline(data=data, neighKernel="gaussian")
 # 3) visualise multiple component planes of a supra-hexagonal grid
 visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=0.8))
 }
+\author{
+  Hai Fang \email{hfang@cs.bris.ac.uk}
+}
+\references{
+  Hai Fang and Julian Gough. (2013). supraHex: an
+  R/Bioconductor package for tabular omics data analysis
+  using a supra-hexagonal map. \emph{Biochemical and
+  Biophysical Research Communications},
+  \url{http://dx.doi.org/10.1016/j.bbrc.2013.11.103}.
+}
 \seealso{
   \code{\link{sTopology}}, \code{\link{sInitial}},
   \code{\link{sTrainology}}, \code{\link{sTrainSeq}},

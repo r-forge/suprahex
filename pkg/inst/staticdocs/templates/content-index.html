@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="span8">
+    {{{readme}}}
+
+  </div>
+  
+  <div class="span3 offset1">
+    {{#vignettes}}
+    <h2>Vignette</h2>
+    <ul>
+    {{#vignette}}
+      <li><a href="vignettes/{{filename}}">{{title}}</a></li>
+    {{/vignette}}
+    </ul>
+    {{/vignettes}}
+
+    {{#urls}}
+    <h2>URL</h2>
+    <ul>
+    {{#url}}
+      <li><a href="{{url}}">{{url}}</a></li>
+    {{/url}}
+    </ul>
+    {{/urls}}
+
+    <!--
+    
+    {{#demos}}
+    <h2>Demo</h2>
+    <ul>
+    {{#demo}}
+      <li><a href="{{filename}}">{{title}}</a></li>
+    {{/demo}}
+    </ul>
+    {{/demos}}
+    
+    -->
+
+    {{#dependencies}}
+    <h2>Dependency</h2>
+    <ul>
+      <li><strong>Depends</strong>: {{depends}}</li>
+      <li><strong>Imports</strong>: {{imports}}</li>
+      <li><strong>Suggests</strong>: {{suggests}}</li>
+      <li><strong>Extends</strong>: {{extends}}</li>
+    </ul>
+    {{/dependencies}}
+    
+    {{#license}}
+    <h2>License</h2>
+    {{license}}
+    {{/license}}
+    
+    {{#author}}
+    <h2>Author</h2>
+    {{author}}
+    {{/author}}
+    
+    <!--
+    
+    {{#maintainer}}
+    <h2>Maintainer</h2>
+    {{maintainer}}
+    {{/maintainer}}    
+    
+    -->
+    
+  </div>
+</div>
