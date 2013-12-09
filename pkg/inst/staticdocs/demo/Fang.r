@@ -1,4 +1,4 @@
-# This is a demo file for human embryo dataset from Fang et al
+# This is a demo for human embryo dataset from Fang et al
 # 
 # This human embryo expression dataset (available from http://www.ncbi.nlm.nih.gov/pubmed/20643359) involves six successive developmental stages (S9-S14) with three replicates (R1-R3) for each stage, including:
 ## Fang: an expression matrix of 5,441 genes X 18 samples;

@@ -1,4 +1,4 @@
-# This is a demo file for arabidopsis embryo dataset from Xiang et al
+# This is a demo for arabidopsis embryo dataset from Xiang et al
 # 
 # This arabidopsis embryo expression dataset (available from http://www.ncbi.nlm.nih.gov/pubmed/21402797) contains gene expression levels (3,625 genes and 7 embryo stages). Only genes with at least 2-fold changes (in any stage) as compared to the average over embryo stages are considered. These embryos are at: early embryonic stage (i.e. Zygote and Quadrant), mid-embryonic stage (i.e. Globular, Heart and Torpedo), and late stages from Bent to Mature.
 ###############################################################################
