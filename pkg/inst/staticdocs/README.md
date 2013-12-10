@@ -6,7 +6,7 @@
 
 `supraHex` first uses a supra-hexagonal map to self-organise the input omics data, and then post-analyses the trained map for integrated tasks: simultaneous analysis of genes and samples, and multilayer omics data comparisons.
 
-`supraHex` aims to deliver an eye-intuitive tool and an dedicate website with extensive online documentation and easy-to-follow demos.
+`supraHex` aims to deliver an eye-intuitive tool and a dedicated website with extensive online documentation and easy-to-follow demos.
 
 ## Features
 
