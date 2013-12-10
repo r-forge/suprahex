@@ -88,13 +88,13 @@ sTopol <- sTopology(data=data, lattice="hexa", shape="suprahex")
 sI <- sInitial(data=data, sTopol=sTopol, init="uniform")
 
 # 4) define trainology at "rough" stage
-sT_rough <- sTrainology(sMap=sI, data=data, stage="rough")
+sT_rough <- sTrainology(sMap=sI, data=data, algorithm="sequential", stage="rough")
 
 # 5) training at "rough" stage
 sM_rough <- sTrainSeq(sMap=sI, data=data, sTrain=sT_rough)
 
 # 6) define trainology at "finetune" stage
-sT_finetune <- sTrainology(sMap=sI, data=data, stage="finetune")
+sT_finetune <- sTrainology(sMap=sI, data=data, algorithm="sequential", stage="finetune")
 
 # 7) training at "finetune" stage
 sM_finetune <- sTrainSeq(sMap=sM_rough, data=data, sTrain=sT_rough)

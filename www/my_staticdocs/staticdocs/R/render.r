@@ -29,21 +29,25 @@ render_template <- function(package, type, name, data) {
 # defaulting to type.html
 find_template <- function(package, type, name) {
 
-    tmp_local_file <- file.path(pkg_sd_path(package), "templates")
-    tmp_default_file <- file.path(inst_path(), "templates")
+    names <- c(
+        str_c(type, "-", name, ".html"),
+        str_c(type, ".html")
+    )
     
-    if(file.exists(tmp_local_file)){
-        paths <- tmp_local_file
+    tmp_local_path <- file.path(pkg_sd_path(package), "templates")
+    tmp_default_path <- file.path(inst_path(), "templates")
+    
+    tmp_local_file <- as.vector(t(outer(tmp_local_path, names, FUN = "file.path")))
+    tmp_default_file <- as.vector(t(outer(tmp_default_path, names, FUN = "file.path")))
+    
+    
+    if(sum(file.exists(tmp_local_file))){
+        locations <- tmp_local_file[file.exists(tmp_local_file)]
+    }else if(sum(file.exists(tmp_default_file))){
+        locations <- tmp_default_file[file.exists(tmp_default_file)]
     }else{
-        paths <- tmp_default_file
+        stop("Can't find template for ", type, "-", name, ".", call. = FALSE)
     }
-  
-  names <- c(
-    str_c(type, "-", name, ".html"),
-    str_c(type, ".html")
-  )
-  
-  locations <- as.vector(t(outer(paths, names, FUN = "file.path")))
-  Find(file.exists, locations, nomatch = 
-    stop("Can't find template for ", type, "-", name, ".", call. = FALSE))
 }
+
+

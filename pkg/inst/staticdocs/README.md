@@ -1,4 +1,4 @@
-# supraHex
+<a href="index.html"><IMG src="supraHex_logo.png" height="150px" id="logo"></a>
 
 ## Introduction
 

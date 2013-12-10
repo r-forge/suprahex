@@ -26,6 +26,12 @@ build_package <- function(package, base_path = NULL, examples=T, flag_demos=T) {
   package <- package_info(package, base_path, examples=examples)
   if (!file.exists(package$base_path)) dir.create(package$base_path)
   copy_bootstrap(base_path)
+    
+    # if there is a directory 'images', copy to the destinaton
+    images_local_path <- file.path(pkg_sd_path(package), "images")
+    if(file.exists(images_local_path)){
+        file.copy(dir(images_local_path, full.names = TRUE), base_path, recursive = TRUE)
+    }
 
   package$vignettes <- build_vignettes(package)
   package$demos <- build_demos(package, flag_demos=flag_demos)
@@ -235,14 +241,15 @@ build_demos <- function(package, flag_demos) {
   title <- pieces[, 2]
   
   if(flag_demos){
-  for(i in seq_along(title)) {
-    demo_code <- readLines(file.path(demo_dir, in_path[i]))
-    demo_expr <- evaluate(demo_code, new.env(parent = globalenv()))
+      for(i in seq_along(title)) {
+        demo_code <- readLines(file.path(demo_dir, in_path[i]))
+        demo_expr <- evaluate(demo_code, new.env(parent = globalenv()))
 
-    package$demo <- replay_html(demo_expr, package = package, name = str_c(pieces[i], "-"))
-    package$pagetitle <- title[i]
-    render_page(package, "demo", package, file.path(package$base_path, filename[i]))
-  }
+        package$demo <- replay_html(demo_expr, package = package, name = str_c(pieces[i], "-"))
+        package$pagetitle <- title[i]
+        render_page(package, "demo", package, file.path(package$base_path, filename[i]))
+        graphics.off()
+      }
   }
   
   list(demo = unname(apply(cbind(filename, title), 1, as.list)))
