@@ -4,7 +4,7 @@
 #'
 #' \itemize{
 #'   \item Rd files.  Files
-#'   \item Demos. Must be listed in \file{demos/00index}.
+#'   \item Demos. Must be listed in \file{demo/List_demos.txt}.
 #'   \item Vignettes.
 #' }
 #'
@@ -34,13 +34,12 @@ build_package <- function(package, base_path = NULL, examples=T, flag_demos=T) {
     }
 
   package$vignettes <- build_vignettes(package)
-  package$demos <- build_demos(package, flag_demos=flag_demos)
   package$readme <- readme(package)
   
   package$installation <- installation(package)
   package$citation <- citation(package)
-  package$demostations <- citation(package)
   
+  package$demos <- build_demos(package, flag_demos=flag_demos)
   package$topics <- build_topics(package)
   
   package <- build_index(package)
@@ -242,10 +241,64 @@ build_demos <- function(package, flag_demos) {
   
   if(flag_demos){
       for(i in seq_along(title)) {
+      
+        message("\t", title[i])
+        
         demo_code <- readLines(file.path(demo_dir, in_path[i]))
         demo_expr <- evaluate(demo_code, new.env(parent = globalenv()))
 
         package$demo <- replay_html(demo_expr, package = package, name = str_c(pieces[i], "-"))
+        
+        
+        ########################################################
+        # Functions used are hyperlinked to the relevant documentation
+
+        tmp_demo <- package$demo
+        
+        #all_fun <- package$rd_index[,1]
+        all_fun <- str_replace_all(package$collate, '.r$', '')
+        
+        # add hypelink
+        
+        ## all functions found within demo
+        functions_found_within_demo <- vector()
+        
+        tmp_demo_lines <- unlist(str_split(tmp_demo, '\n'))
+        for(k in 1:length(tmp_demo_lines)){
+            
+            source <- tmp_demo_lines[k]
+            
+            ## find all (e.g. "sCompReorder"   "visCompReorder")
+            list_find <- vector()
+            for(t in 1:length(all_fun)){
+                target <- all_fun[t]
+                
+                if(!is.na(str_match(source, target))){
+                    list_find <- c(list_find,target)
+                }
+            }
+            
+            ## remain the longest string
+            if(length(list_find)){
+                target_final <- list_find[which.max(nchar(list_find))]
+                tmp_replace <- str_c("<a href='", target_final, ".html' target=", target_final, ">",target_final,"</a>")
+                tmp_demo_lines[k] <- str_replace_all(source, target_final, tmp_replace)
+                
+                functions_found_within_demo <- c(functions_found_within_demo, target_final)
+            }
+            
+        }
+        replace_demo <- str_c(tmp_demo_lines, collapse='\n')
+        package$demo <- replace_demo
+        
+        
+        name <- unique(functions_found_within_demo)
+        if(length(name)){
+            hypername <- str_c(name, collpase='.html')
+            package$demo_funcs <- list(demo_func = unname(apply(cbind(name, hypername), 1, as.list)))
+        }
+        ########################################################
+        
         package$pagetitle <- title[i]
         render_page(package, "demo", package, file.path(package$base_path, filename[i]))
         graphics.off()

@@ -6,15 +6,17 @@
 
 `supraHex` first uses a supra-hexagonal map to self-organise the input omics data, and then post-analyses the trained map for integrated tasks: simultaneous analysis of genes and samples, and multilayer omics data comparisons.
 
+`supraHex` aims to deliver an eye-intuitive tool and an dedicate website with extensive online documentation and easy-to-follow demos.
+
 ## Features
 
 * An integrated framework for the ultrafast understanding of any tabular omics data, both scientifically and artistically
 * The supra-hexagonal map trained via a self-organising learning algorithm
 * Visualisations at and across nodes of the map
 * Partitioning of the map into gene meta-clusters
-* Sample correlation
+* Sample correlation on 2D sample landscape
 * Overlaying additional data onto the trained map for exploring relationships between input and additional data
-* This package can run on Windows, Mac and Linux
+* This package can run on `Windows`, `Mac` and `Linux`
 
 ## See also
 

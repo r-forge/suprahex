@@ -18,7 +18,7 @@ Assuming you have a ROOT (sudo) privilege:
     make install
     R # start R
 
-Assuming you do not a ROOT privilege and want R installation under your home directory (below `/home/hfang` should be replaced with yours):
+Assuming you do not have a ROOT privilege and want R installation under your home directory (below `/home/hfang` should be replaced with yours):
 
     wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.0.2.tar.gz
     tar xvfz R-3.0.2.tar.gz

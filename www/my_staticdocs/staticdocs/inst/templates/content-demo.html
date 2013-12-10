@@ -3,6 +3,7 @@
 Notes:
 <li> All results are based on {{#package}}{{package}} (version {{version}}{{/package}}). </li>
 <li> Images displayed below may be distorted, and they should be normal in your screen. </li>
+<li> Functions contained in {{#package}}{{package}} {{version}}{{/package}} are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -13,7 +14,14 @@ Notes:
 
   <div class="span4">
     
-    <!--
+    {{#demo_funcs}}
+    <h2>Functions used in this demo</h2>
+    <ul>
+    {{#demo_func}}
+      <li><a href="{{hypername}}">{{name}}</a></li>
+    {{/demo_func}}
+    </ul>
+    {{/demo_funcs}}
     
     {{#vignettes}}
     <h2>Vignette</h2>
@@ -24,6 +32,13 @@ Notes:
     </ul>
     {{/vignettes}}
     
+    {{#citation}}
+    <h2>Citation</h2>
+    {{{citation}}}
+    {{/citation}}
+    
+    <!--
+    
     {{#urls}}
     <h2>URL</h2>
     <ul>
@@ -32,11 +47,6 @@ Notes:
     {{/url}}
     </ul>
     {{/urls}}
-
-    {{#citation}}
-    <h2>Citation</h2>
-    {{{citation}}}
-    {{/citation}}
     
     {{#author}}
     <h2>Author</h2>

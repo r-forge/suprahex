@@ -42,7 +42,19 @@ package_info <- function(package, base_path = NULL, examples = NULL) {
   
   out$rd <- package_rd(package)
   out$rd_index <- topic_index(out$rd)
-
+    
+    ##########################################
+    ## collate and collates
+    tmp <- unlist(str_split(out$collate, '\n'))
+    out$collate <- tmp[tmp!='']
+    
+    
+    title <- str_replace_all(out$collate, '.r$', '')
+    filename <- str_replace_all(out$collate, '.r$', '.html')
+    
+    out$collates <- list(collate = unname(apply(cbind(filename, title), 1, as.list)))
+    ##########################################
+    
   structure(out, class = "package_info")
 }
 
