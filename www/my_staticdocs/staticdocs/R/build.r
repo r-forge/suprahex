@@ -34,6 +34,7 @@ build_package <- function(package, base_path = NULL, examples=T, flag_demos=T) {
     }
 
   package$vignettes <- build_vignettes(package)
+  package$manuals <- build_manual(package)
   package$readme <- readme(package)
   
   package$installation <- installation(package)
@@ -208,13 +209,15 @@ build_vignettes <- function(package) {
   message("Building vignettes")
   buildVignettes(dir = package$path)
   
-  message("Copying vignettes")
+  message("Copying vignettes (.pdf and .Rnw)")
   src <- str_replace(path, "\\.Rnw$", ".pdf")
-  filename <- basename(src)
+  filename_pdf <- basename(src)
+  filename_Rnw <- basename(path)
   dest <- file.path(package$base_path, "vignettes")
 
   if (!file.exists(dest)) dir.create(dest)
-  file.copy(src, file.path(dest, filename))  
+  file.rename(src, file.path(dest, filename_pdf))  
+  file.copy(path, file.path(dest, filename_Rnw))  
 
   # Extract titles
   title <- vapply(path, FUN.VALUE = character(1), function(x) {
@@ -222,7 +225,31 @@ build_vignettes <- function(package) {
     str_match(contents, "\\\\VignetteIndexEntry\\{(.*?)\\}")[2]
   })  
   
-  list(vignette = unname(apply(cbind(filename, title), 1, as.list)))
+  list(vignette = unname(apply(cbind(filename_pdf,filename_Rnw,title), 1, as.list)))
+}
+
+
+build_manual <- function(package) {
+
+    message("Building reference manual")
+    path <- package$path
+    if (length(path) == 0) return()
+    
+    src <- file.path(path, str_c(package$package, ".pdf"))
+    filename_pdf <- basename(src)
+    
+    system(paste(shQuote(file.path(R.home("bin"), "R")),"CMD", "Rd2pdf", "--no-preview --force -o", src, shQuote(path))) 
+
+    message("Moving reference manual")
+    
+    dest <- file.path(package$base_path, "vignettes")
+    if (!file.exists(dest)) dir.create(dest)
+    file.rename(src, file.path(dest, filename_pdf))
+
+    # Extract titles
+    title <- paste(package$package, "Reference Manual")
+  
+    list(manual=unname(apply(cbind(filename_pdf,title), 1, as.list)))
 }
 
 

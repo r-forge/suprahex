@@ -5,14 +5,22 @@
   </div>
   
   <div class="span3 offset1">
-    {{#vignettes}}
-    <h2>Vignette</h2>
+  
+
+    <h2>Manual</h2>
     <ul>
+    {{#vignettes}}
     {{#vignette}}
-      <li><a href="vignettes/{{filename}}">{{title}}</a></li>
+        <li>{{title}} (<a href="vignettes/{{filename_pdf}}">PDF</a>, <a href="vignettes/{{filename_Rnw}}">Rnw</a>)</li>
     {{/vignette}}
-    </ul>
     {{/vignettes}}
+    
+    {{#manuals}}
+    {{#manual}}
+        <li>{{title}} (<a href="vignettes/{{filename_pdf}}">PDF</a>, <a href="docs.html">HTML</a>)</li>
+    {{/manual}}
+    {{/manuals}}
+    </ul>
 
     {{#demos}}
     <h2>Demos</h2>
@@ -53,6 +61,24 @@
     {{/author}}
     
     <!--
+    
+    {{#vignettes}}
+    <h2>Vignette</h2>
+    <ul>
+    {{#vignette}}
+        <li>{{title}} (<a href="vignettes/{{filename_pdf}}">PDF</a>, <a href="vignettes/{{filename_Rnw}}">Rnw</a>)</li>
+    {{/vignette}}
+    </ul>
+    {{/vignettes}}
+
+    {{#manuals}}
+    <h2>Manual</h2>
+    <ul>
+    {{#manual}}
+        <li><a href="vignettes/{{filename_pdf}}">{{title}}</a></li>
+    {{/manual}}
+    </ul>
+    {{/manuals}}
     
     {{#maintainer}}
     <h2>Maintainer</h2>

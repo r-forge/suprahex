@@ -45,6 +45,8 @@ package_info <- function(package, base_path = NULL, examples = NULL) {
     
     ##########################################
     ## collate and collates
+    out$collate <- str_replace_all(out$collate, '\'', '')
+    out$collate <- str_replace_all(out$collate, '\"', '')
     tmp <- unlist(str_split(out$collate, '\n'))
     out$collate <- tmp[tmp!='']
     
