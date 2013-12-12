@@ -158,9 +158,8 @@ citation("supraHex") # cite the package
 Please cite this package as:\\ 
 \begingroup
 \fontsize{8pt}{10pt}\selectfont
-Fang H, Gough J. (2013) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. \textit{Biochemical and Biophysical Research Communications}, doi: \url{http://dx.doi.org/10.1016/j.bbrc.2013.11.103}
+Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. \textit{Biochemical and Biophysical Research Communications}, 443(1), 285-289. DOI: \url{http://dx.doi.org/10.1016/j.bbrc.2013.11.103}, PMID: \url{http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102}
 \endgroup
-
 
 
 \newpage

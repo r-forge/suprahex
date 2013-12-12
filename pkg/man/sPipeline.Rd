@@ -116,11 +116,13 @@ visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=
   Hai Fang \email{hfang@cs.bris.ac.uk}
 }
 \references{
-  Hai Fang and Julian Gough. (2013). supraHex: an
+  Hai Fang and Julian Gough. (2014) supraHex: an
   R/Bioconductor package for tabular omics data analysis
   using a supra-hexagonal map. \emph{Biochemical and
-  Biophysical Research Communications},
-  \url{http://dx.doi.org/10.1016/j.bbrc.2013.11.103}.
+  Biophysical Research Communications}, 443(1), 285-289.
+  DOI: \url{http://dx.doi.org/10.1016/j.bbrc.2013.11.103},
+  PMID:
+  \url{http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102}
 }
 \seealso{
   \code{\link{sTopology}}, \code{\link{sInitial}},

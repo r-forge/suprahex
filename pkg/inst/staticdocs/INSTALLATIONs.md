@@ -4,9 +4,9 @@ R (http://www.r-project.org) is a language and environment for statistical compu
 
 * Quick link for `Windows` and `Mac`: [Download R for Windows](http://www.stats.bris.ac.uk/R/bin/windows/base/R-3.0.2-win.exe) and [Download R for Mac](http://www.stats.bris.ac.uk/R/bin/macosx/R-latest.pkg).
 
-* Shell command lines for R installation in Terminal (for both `Linux` and `Mac`):
+* Below are shell command lines for R installation in Terminal (for both `Linux` and `Mac`):
 
-Assuming you have a ROOT (sudo) privilege:
+Assume you have a `ROOT (sudo)` privilege:
     
     sudo su
     wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.0.2.tar.gz
@@ -18,7 +18,7 @@ Assuming you have a ROOT (sudo) privilege:
     make install
     R # start R
 
-Assuming you do not have a ROOT privilege and want R installation under your home directory (below `/home/hfang` should be replaced with yours):
+Assume you do not have a ROOT privilege and want R installation under your home directory (below `/home/hfang` should be replaced with yours):
 
     wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.0.2.tar.gz
     tar xvfz R-3.0.2.tar.gz

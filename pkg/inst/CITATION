@@ -2,12 +2,13 @@ citEntry(entry="Article",
     author = "Hai Fang and Julian Gough",
     title = "supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map",
     journal = "Biochemical and Biophysical Research Communications",
-    volume = "",
-    year = "2013", 
-    pages = "",
+    volume = "443",
+    number = "1",
+    year = "2014", 
+    pages = "285-289",
     url = "http://dx.doi.org/10.1016/j.bbrc.2013.11.103",
     textVersion = paste(
-                "supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map.",
                 "Fang H, Gough J.",
-                "Biochemical and Biophysical Research Communications, 2013, doi: http://dx.doi.org/10.1016/j.bbrc.2013.11.103")
+                "supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map.",
+                "Biochemical and Biophysical Research Communications, 443(1):285-289, 2014. http://dx.doi.org/10.1016/j.bbrc.2013.11.103")
 )

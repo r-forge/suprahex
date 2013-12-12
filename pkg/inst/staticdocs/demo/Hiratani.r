@@ -1,10 +1,10 @@
 # This is a demo for multilayer omics dataset from Hiratani et al
 # 
-# This multilay omics dataset (available from http://www.ncbi.nlm.nih.gov/pubmed/19952138) involves genome-wide replication-timing profiles of 22 cell lines from early mouse embryogenesis. These cell lines can be categorised into: 1) pluripotent cells, including ESCs (ESC_46C, ESC_D3 and ESC_TT2) and iPSCs (iPSC, iPSC_1D4 and iPSC_2D4); 2) partially-reprogrammed iPSCs (piPSC_1A2, piPSC_1B3 and piPSC_V3); 3) early epiblast (EPL and EMB3_D3); 4) late epiblast (EpiSC5 and EpiSC7); 5) Ectoderm (EBM6_D3, EBM9_D3, NPC_46C and NPC_TT2); 6) Mesoderm and Endoderm; and 7) late Mesoderm (Myoblast, MEF_female and MEF_male).
+# This multilay omics dataset (available from <a href="http://www.ncbi.nlm.nih.gov/pubmed/19952138" target="19952138">http://www.ncbi.nlm.nih.gov/pubmed/19952138</a>) involves genome-wide replication-timing profiles of 22 cell lines from early mouse embryogenesis. These cell lines can be categorised into: 1) pluripotent cells, including ESCs (ESC_46C, ESC_D3 and ESC_TT2) and iPSCs (iPSC, iPSC_1D4 and iPSC_2D4); 2) partially-reprogrammed iPSCs (piPSC_1A2, piPSC_1B3 and piPSC_V3); 3) early epiblast (EPL and EMB3_D3); 4) late epiblast (EpiSC5 and EpiSC7); 5) Ectoderm (EBM6_D3, EBM9_D3, NPC_46C and NPC_TT2); 6) Mesoderm and Endoderm; and 7) late Mesoderm (Myoblast, MEF_female and MEF_male).
 #
 # The dataset is extracted for RefSeq gene TSS locations, including:
 ## RT: a replication timing matrix of 17,292 genes X 22 samples;
-## CpG: a matrix of 17,292 genes X 1 containing gene additional information on promoter CpG classification (see http://www.ncbi.nlm.nih.gov/pubmed/17603471), with '1' for HCP (high CpG density promoters), '-1' for LCP (low CpG density promoters), '0' for ICP (intermediate CpG density promoters), and 'NA' for unclassified;
+## CpG: a matrix of 17,292 genes X 1 containing gene additional information on promoter CpG classification (see <a href="http://www.ncbi.nlm.nih.gov/pubmed/17603471" target="17603471">http://www.ncbi.nlm.nih.gov/pubmed/17603471</a>), with '1' for HCP (high CpG density promoters), '-1' for LCP (low CpG density promoters), '0' for ICP (intermediate CpG density promoters), and 'NA' for unclassified;
 ## a expression matrix of 17,292 genes X 8 samples, and samples include pluripotent cells (ESC_D3); early epiblast (EMB3_D3); late epiblast (EpiSC7); Ectoderm (EBM6_D3 and EBM9_D3); Mesoderm and Endoderm.
 ###############################################################################
 

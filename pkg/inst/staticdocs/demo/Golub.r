@@ -1,6 +1,6 @@
 # This is a demo for leukemia patient dataset from Golub et al
 # 
-# This leukemia patient expression dataset (the learning set, available from http://www.ncbi.nlm.nih.gov/pubmed/10521349) contains an expression matrix of 3,051 genes X 38 samples, involving two types of leukemia: 11 acute myeloid leukemia (AML) and 27 acute lymphoblastic leukemia (ALL). These 27 ALL are further subtyped into 19 B-cell ALL (ALL_B) and 8 T-cell ALL (ALL_T).
+# This leukemia patient expression dataset (the learning set, available from <a href="http://www.ncbi.nlm.nih.gov/pubmed/10521349" target="10521349">http://www.ncbi.nlm.nih.gov/pubmed/10521349</a>) contains an expression matrix of 3,051 genes X 38 samples, involving two types of leukemia: 11 acute myeloid leukemia (AML) and 27 acute lymphoblastic leukemia (ALL). These 27 ALL are further subtyped into 19 B-cell ALL (ALL_B) and 8 T-cell ALL (ALL_T).
 ###############################################################################
 
 # (I) Load the package and import data
