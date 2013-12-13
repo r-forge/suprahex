@@ -9,9 +9,9 @@
   "sMap"}
 }
 \value{
-  \item{dist}{a symmetric matrix of nHex x nHex, containing
-  pairwise distances, where nHex is the total number of
-  hexagons/rectanges in the grid}
+  \itemize{ \item{\code{dist}: a symmetric matrix of nHex x
+  nHex, containing pairwise distances, where nHex is the
+  total number of hexagons/rectanges in the grid} }
 }
 \description{
   \code{sHexDist} is supposed to calculate euclidian

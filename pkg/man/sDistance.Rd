@@ -12,8 +12,9 @@
   See 'Note' below for options available}
 }
 \value{
-  \item{dist}{a symmetric distance matrix of nRow x nRow,
-  where nRow is the number of rows of input data matrix}
+  \itemize{ \item{\code{dist}: a symmetric distance matrix
+  of nRow x nRow, where nRow is the number of rows of input
+  data matrix} }
 }
 \description{
   \code{sDistance} is supposed to compute and return the

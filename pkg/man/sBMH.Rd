@@ -17,14 +17,15 @@
   "worst" for \eqn{nHex}, and "all" for \eqn{seq(1,nHex)}}
 }
 \value{
-  a list with following components: \item{bmh}{the
-  requested BMH matrix of dlen x length(which_bmh), where
-  dlen is the total number of rows of the input data}
-  \item{qerr}{the corresponding matrix of quantization
-  errors (i.e., the distance between the input data and
-  their BMH), with the same dimensions as "bmh" above}
-  \item{mqe}{the mean quantization error for the "best"
-  BMH} \item{call}{the call that produced this result}
+  a list with following components: \itemize{
+  \item{\code{bmh}: the requested BMH matrix of dlen x
+  length(which_bmh), where dlen is the total number of rows
+  of the input data} \item{\code{qerr}: the corresponding
+  matrix of quantization errors (i.e., the distance between
+  the input data and their BMH), with the same dimensions
+  as "bmh" above} \item{\code{mqe}: the mean quantization
+  error for the "best" BMH} \item{\code{call}: the call
+  that produced this result} }
 }
 \description{
   \code{sBMH} is supposed to identify the best-matching

@@ -21,15 +21,16 @@
   the large data sets}
 }
 \value{
-  a data frame with following components: \item{ID}{ID for
-  data. It inherits the rownames of data (if exists).
-  Otherwise, it is sequential integer values starting with
-  1 and ending with dlen, the total number of rows of the
-  input data} \item{Hexagon_index}{the index for
-  best-matching hexagons} \item{Cluster_base}{optional, it
-  is only appended when sBase is given. It stores the
-  cluster memberships/bases} \item{data}{optional, it is
-  only appended when keep.data is true}
+  a data frame with following components: \itemize{
+  \item{\code{ID}: ID for data. It inherits the rownames of
+  data (if exists). Otherwise, it is sequential integer
+  values starting with 1 and ending with dlen, the total
+  number of rows of the input data}
+  \item{\code{Hexagon_index}: the index for best-matching
+  hexagons} \item{\code{Cluster_base}: optional, it is only
+  appended when sBase is given. It stores the cluster
+  memberships/bases} \item{\code{data}: optional, it is
+  only appended when keep.data is true} }
 }
 \description{
   \code{sWriteData} is supposed to write out the

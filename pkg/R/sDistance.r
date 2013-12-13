@@ -5,7 +5,9 @@
 #' @param data a data frame or matrix of input data
 #' @param metric distance metric used to distance metric. See 'Note' below for options available
 #' @return 
-#'  \item{dist}{a symmetric distance matrix of nRow x nRow, where nRow is the number of rows of input data matrix}
+#' \itemize{
+#'  \item{\code{dist}: a symmetric distance matrix of nRow x nRow, where nRow is the number of rows of input data matrix}
+#' }
 #' @note The distance metrics are supported:
 #' \itemize{
 #' \item{"pearson": Pearson correlation. Note that two curves that have identical shape, but different magnitude will still have a correlation of 1}

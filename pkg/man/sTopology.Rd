@@ -27,15 +27,16 @@
 }
 \value{
   an object of class "sTopol", a list with following
-  components: \item{nHex}{the total number of
-  hexagons/rectanges in the grid. It is not always the same
-  as the input nHex (if any); see "Note" below for the
-  explaination} \item{xdim}{x-dimension of the grid}
-  \item{ydim}{y-dimension of the grid} \item{lattice}{the
-  grid lattice} \item{shape}{the grid shape} \item{coord}{a
+  components: \itemize{ \item{\code{nHex}: the total number
+  of hexagons/rectanges in the grid. It is not always the
+  same as the input nHex (if any); see "Note" below for the
+  explaination} \item{\code{xdim}: x-dimension of the grid}
+  \item{\code{ydim}: y-dimension of the grid}
+  \item{\code{lattice}: the grid lattice}
+  \item{\code{shape}: the grid shape} \item{\code{coord}: a
   matrix of nHex x 2, with each row corresponding to the
   coordinates of a hexagon/rectangle in the 2D map grid}
-  \item{call}{the call that produced this result}
+  \item{\code{call}: the call that produced this result} }
 }
 \description{
   \code{sTopology} is supposed to define the topology of a

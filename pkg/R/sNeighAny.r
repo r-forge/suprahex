@@ -4,7 +4,9 @@
 #'
 #' @param sObj an object of class "sTopol" or "sInit" or "sMap"
 #' @return 
-#'  \item{aNeigh}{a matrix of nHex x nHex, containing distance info in terms of any neighbors, where nHex is the total number of hexagons/rectanges in the grid}
+#' \itemize{
+#'  \item{\code{aNeigh}: a matrix of nHex x nHex, containing distance info in terms of any neighbors, where nHex is the total number of hexagons/rectanges in the grid}
+#' }
 #' @note The return matrix has rows for the self, and columns for its neighbors. The non-zeros mean the distance away from its neighbors, and the zeros for the self-self. It has rows/columns ordered in the same order as the "coord" matrix of the input object does.
 #' @export
 #' @seealso \code{\link{sNeighDirect}}

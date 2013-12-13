@@ -13,12 +13,14 @@
 #' @param neighKernel the training neighbor kernel. It can be one of "gaussian", "bubble", "cutgaussian", "ep" and "gamma" kernels
 #' @return 
 #' an object of class "sReorder", a list with following components:
-#'  \item{nHex}{the total number of rectanges in the grid}
-#'  \item{xdim}{x-dimension of the grid}
-#'  \item{ydim}{y-dimension of the grid}
-#'  \item{uOrder}{the unique order/placement for each component plane that is reordered to the "sheet"-shape grid with rectangular lattice}
-#'  \item{coord}{a matrix of nHex x 2, with each row corresponding to the coordinates of each "uOrder" rectangle in the 2D map grid}
-#'  \item{call}{the call that produced this result}
+#' \itemize{
+#'  \item{\code{nHex}: the total number of rectanges in the grid}
+#'  \item{\code{xdim}: x-dimension of the grid}
+#'  \item{\code{ydim}: y-dimension of the grid}
+#'  \item{\code{uOrder}: the unique order/placement for each component plane that is reordered to the "sheet"-shape grid with rectangular lattice}
+#'  \item{\code{coord}: a matrix of nHex x 2, with each row corresponding to the coordinates of each "uOrder" rectangle in the 2D map grid}
+#'  \item{\code{call}: the call that produced this result}
+#' }
 #' @note To ensure the unique placement, each component plane mapped to the "sheet"-shape grid with rectangular lattice is determinied iteratively in an order from the best matched to the next compromised one. If multiple compoments are hit in the same rectangular lattice, the worse one is always sacrificed by moving to the next best one till all components are placed somewhere exclusively on their own.
 #' @export
 #' @seealso \code{\link{sTopology}}, \code{\link{sPipeline}}, \code{\link{sBMH}}, \code{\link{sDistance}}, \code{\link{visCompReorder}}

@@ -7,7 +7,9 @@
 #' @param distMeasure distance measure used to calculate distances in high-dimensional input space. It can be one of "median", "mean", "min" and "max" measures
 #' 
 #' @return 
-#'  \item{minima}{a vector to store a list of local minima (represented by the indexes of hexogans/rectangles}
+#' \itemize{
+#'  \item{\code{minima}: a vector to store a list of local minima (represented by the indexes of hexogans/rectangles}
+#' }
 #' @note Do not get confused by "which_neigh" and the criteria of being local minima. Both of them deal with 2D output space. However, "which_neigh" is used to assist in the calculation of distance matrix (so can be 1-neighborhood or more); instead, the criterion of being local minima is only 1-neighborhood in the strictest sense
 #' @export
 #' @seealso \code{\link{sDmat}}, \code{\link{sNeighAny}}

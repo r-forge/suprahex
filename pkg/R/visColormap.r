@@ -4,7 +4,9 @@
 #'
 #' @param colormap short name for the colormap
 #' @return 
-#'  \item{palette.name}{a function that takes an integer argument for generating that number of colors interpolating the given sequence}
+#' \itemize{
+#'  \item{\code{palette.name}: a function that takes an integer argument for generating that number of colors interpolating the given sequence}
+#' }
 #' @note The input colormap includes: 
 #' \itemize{
 #' \item{"jet": jet colormap}

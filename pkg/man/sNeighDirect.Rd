@@ -9,10 +9,10 @@
   "sMap"}
 }
 \value{
-  \item{dNeigh}{a matrix of nHex x nHex, containing
-  presence/absence info in terms of direct neighbors, where
-  nHex is the total number of hexagons/rectanges in the
-  grid}
+  \itemize{ \item{\code{dNeigh}: a matrix of nHex x nHex,
+  containing presence/absence info in terms of direct
+  neighbors, where nHex is the total number of
+  hexagons/rectanges in the grid} }
 }
 \description{
   \code{sNeighDirect} is supposed to calculate direct

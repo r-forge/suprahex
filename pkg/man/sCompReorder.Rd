@@ -54,15 +54,16 @@
 }
 \value{
   an object of class "sReorder", a list with following
-  components: \item{nHex}{the total number of rectanges in
-  the grid} \item{xdim}{x-dimension of the grid}
-  \item{ydim}{y-dimension of the grid} \item{uOrder}{the
-  unique order/placement for each component plane that is
-  reordered to the "sheet"-shape grid with rectangular
-  lattice} \item{coord}{a matrix of nHex x 2, with each row
-  corresponding to the coordinates of each "uOrder"
-  rectangle in the 2D map grid} \item{call}{the call that
-  produced this result}
+  components: \itemize{ \item{\code{nHex}: the total number
+  of rectanges in the grid} \item{\code{xdim}: x-dimension
+  of the grid} \item{\code{ydim}: y-dimension of the grid}
+  \item{\code{uOrder}: the unique order/placement for each
+  component plane that is reordered to the "sheet"-shape
+  grid with rectangular lattice} \item{\code{coord}: a
+  matrix of nHex x 2, with each row corresponding to the
+  coordinates of each "uOrder" rectangle in the 2D map
+  grid} \item{\code{call}: the call that produced this
+  result} }
 }
 \description{
   \code{sCompReorder} is supposed to reorder component

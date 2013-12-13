@@ -14,9 +14,11 @@ Human embryo dataset contains gene expression levels (5441 genes and 18 embryo s
 }
 
 \value{
-    \item{Fang}{a gene expression matrix of 5441 genes x 18 samples, involving six successive stages, each with three replicates.}
-    \item{Fang.sampleinfo}{a matrix containing the information of the 18 samples for the expression matrix \code{Fang}. The three columns correspond to the sample \code{Name}, \code{Stage}, and \code{Replicate}, respectively.}
-    \item{Fang.geneinfo}{a matrix containing the information of the 5441 genes for the expression matrix \code{Fang}. The four columns correspond to the gene \code{AffyID}, \code{EntrezGene}, and \code{Symbol}, respectively.}
+    \itemize{
+        \item{\code{Fang}: a gene expression matrix of 5441 genes x 18 samples, involving six successive stages, each with three replicates.}
+        \item{\code{Fang.sampleinfo}: a matrix containing the information of the 18 samples for the expression matrix \emph{Fang}. The three columns correspond to the sample information: "Name", "Stage" and "Replicate".}
+        \item{\code{Fang.geneinfo}: a matrix containing the information of the 5441 genes for the expression matrix \emph{Fang}. The three columns correspond to the gene information: "AffyID", "EntrezGene" and "Symbol".}
+    }
 }
 
 \references{

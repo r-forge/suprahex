@@ -12,7 +12,9 @@ Arabidopsis embryo dataset contains gene expression levels (3625 genes and 7 emb
 This dataset has been pre-processed: capping into floor of intensity 777.6; 2-base logarithmic transformation; row/gene centering; and keeping genes with at least 2-fold changes (in any stage) as compared to the average over embryo stages.}
 
 \value{
-  \item{Xiang}{a gene expression matrix of 3625 genes x 7 stage samples. These embryo stages are: zygote, quadrant, globular, heart, torpedo, bent, and mature.}
+    \itemize{
+        \item{\code{Xiang}: a gene expression matrix of 3625 genes x 7 stage samples. These embryo stages are: zygote, quadrant, globular, heart, torpedo, bent, and mature.}
+    }
 }
 
 \references{

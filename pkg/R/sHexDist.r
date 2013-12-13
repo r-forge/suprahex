@@ -4,7 +4,9 @@
 #'
 #' @param sObj an object of class "sTopol" or "sInit" or "sMap"
 #' @return 
-#'  \item{dist}{a symmetric matrix of nHex x nHex, containing pairwise distances, where nHex is the total number of hexagons/rectanges in the grid}
+#' \itemize{
+#'  \item{\code{dist}: a symmetric matrix of nHex x nHex, containing pairwise distances, where nHex is the total number of hexagons/rectanges in the grid}
+#' }
 #' @note The return matrix has rows/columns ordered in the same order as the "coord" matrix of the input object does.
 #' @export
 #' @seealso \code{\link{sTopology}}, \code{\link{sInitial}}

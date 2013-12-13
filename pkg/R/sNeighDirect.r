@@ -4,7 +4,9 @@
 #'
 #' @param sObj an object of class "sTopol" or "sInit" or "sMap"
 #' @return 
-#'  \item{dNeigh}{a matrix of nHex x nHex, containing presence/absence info in terms of direct neighbors, where nHex is the total number of hexagons/rectanges in the grid}
+#' \itemize{
+#'  \item{\code{dNeigh}: a matrix of nHex x nHex, containing presence/absence info in terms of direct neighbors, where nHex is the total number of hexagons/rectanges in the grid}
+#' }
 #' @note The return matrix has rows for the self, and columns for its direct neighbors. The "1" means the presence of direct neighbors, "0" for the absence. It has rows/columns ordered in the same order as the "coord" matrix of the input object does.
 #' @export
 #' @seealso \code{\link{sHexDist}}

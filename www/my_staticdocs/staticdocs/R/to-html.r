@@ -46,9 +46,14 @@ to_html.Rd_doc <- function(x, ...) {
   out$seealso <- to_html(get_tag("seealso"), ...)
   out$examples <- to_html(get_tag("examples"), ...)
   
+  ####
+  #out$value <- to_html(get_tag("value"), ...)
+  out$description <- to_html(get_tag("description"), ...)
+  
   # Everything else stays in original order, and becomes a list of sections.
-  sections <- x[!(tags %in% c("name", "title", "alias", "keyword",
-    "usage", "author", "seealso", "arguments", "examples"))]
+  #sections <- x[!(tags %in% c("name", "title", "alias", "keyword", "usage", "author", "seealso", "arguments", "examples"))]
+  #sections <- x[!(tags %in% c("name", "title", "alias", "keyword", "usage", "author", "seealso", "arguments", "examples","value","description"))]
+  sections <- x[!(tags %in% c("name", "title", "alias", "keyword", "usage", "author", "seealso", "arguments", "examples","description"))]
   out$sections <- compact(to_html(sections, topic = out$name, ...))
   
   out
@@ -387,8 +392,7 @@ to_html.enumerate <- function(x, ...) {
 }
 
 parse_items <- function(rd, ...) {
-  separator <- vapply(rd, function(x) tag(x) == "item", 
-    FUN.VALUE = logical(1))
+  separator <- vapply(rd, function(x) tag(x) == "item", FUN.VALUE = logical(1))
   group <- cumsum(separator)
 
   # remove empty first group, if present

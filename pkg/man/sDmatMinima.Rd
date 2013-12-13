@@ -18,8 +18,9 @@
   of "median", "mean", "min" and "max" measures}
 }
 \value{
-  \item{minima}{a vector to store a list of local minima
-  (represented by the indexes of hexogans/rectangles}
+  \itemize{ \item{\code{minima}: a vector to store a list
+  of local minima (represented by the indexes of
+  hexogans/rectangles} }
 }
 \description{
   \code{sDmatMinima} is supposed to identify local minima

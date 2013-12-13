@@ -29,13 +29,14 @@
 }
 \value{
   an object of class "sTrain", a list with following
-  components: \item{algorithm}{the training algorithm}
-  \item{stage}{the training stage} \item{alphaType}{the
-  alpha type} \item{alphaInitial}{the initial alpha}
-  \item{radiusInitial}{the initial radius}
-  \item{radiusFinal}{the final radius}
-  \item{neighKernel}{the neighbor kernel} \item{call}{the
-  call that produced this result}
+  components: \itemize{ \item{\code{algorithm}: the
+  training algorithm} \item{\code{stage}: the training
+  stage} \item{\code{alphaType}: the alpha type}
+  \item{\code{alphaInitial}: the initial alpha}
+  \item{\code{radiusInitial}: the initial radius}
+  \item{\code{radiusFinal}: the final radius}
+  \item{\code{neighKernel}: the neighbor kernel}
+  \item{\code{call}: the call that produced this result} }
 }
 \description{
   \code{sTrainology} is supposed to define the train-ology

@@ -7,18 +7,20 @@
 #' @param additional a numeric vector or numeric matrix used to overlay onto the trained map. It must have the length (if being vector) or row number (if matrix) being equal to the number of rows in input data
 #' @return 
 #' an object of class "sMap", a list with following components:
-#'  \item{nHex}{the total number of hexagons/rectanges in the grid}
-#'  \item{xdim}{x-dimension of the grid}
-#'  \item{ydim}{y-dimension of the grid}
-#'  \item{lattice}{the grid lattice}
-#'  \item{shape}{the grid shape}
-#'  \item{coord}{a matrix of nHex x 2, with rows corresponding to the coordinates of all hexagons/rectangles in the 2D map grid}
-#'  \item{init}{an initialisation method}
-#'  \item{neighKernel}{the training neighborhood kernel}
-#'  \item{codebook}{a codebook matrix of nHex x ncol(additional), with rows corresponding to overlaid vectors}
-#'  \item{hits}{a vector of nHex, each element meaning that a hexagon/rectangle contains the number of input data vectors being hit wherein}
-#'  \item{mqe}{the mean quantization error for the "best" BMH}
-#'  \item{call}{the call that produced this result}
+#' \itemize{
+#'  \item{\code{nHex}: the total number of hexagons/rectanges in the grid}
+#'  \item{\code{xdim}: x-dimension of the grid}
+#'  \item{\code{ydim}: y-dimension of the grid}
+#'  \item{\code{lattice}: the grid lattice}
+#'  \item{\code{shape}: the grid shape}
+#'  \item{\code{coord}: a matrix of nHex x 2, with rows corresponding to the coordinates of all hexagons/rectangles in the 2D map grid}
+#'  \item{\code{init}: an initialisation method}
+#'  \item{\code{neighKernel}: the training neighborhood kernel}
+#'  \item{\code{codebook}: a codebook matrix of nHex x ncol(additional), with rows corresponding to overlaid vectors}
+#'  \item{\code{hits}: a vector of nHex, each element meaning that a hexagon/rectangle contains the number of input data vectors being hit wherein}
+#'  \item{\code{mqe}: the mean quantization error for the "best" BMH}
+#'  \item{\code{call}: the call that produced this result}
+#' }
 #' @note Weighting by neighbor kernel is to avoid rigid overlaying by only focusing on the best-matching map nodes as there may exist several closest best-matching nodes for an input data vector.
 #' @export
 #' @seealso \code{\link{sPipeline}}, \code{\link{sBMH}}, \code{\link{sHexDist}}, \code{\link{visHexMulComp}}

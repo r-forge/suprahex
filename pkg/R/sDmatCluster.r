@@ -9,9 +9,11 @@
 #' 
 #' @return 
 #' an object of class "sBase", a list with following components:
-#'  \item{seeds}{the vector to store cluster seeds, i.e., a list of local minima (in 2D output space) of distance matrix (in input space). They are represented by the indexes of hexagons/rectangles}
-#'  \item{bases}{the vector with the length of nHex to store the cluster memberships/bases, where nHex is the total number of hexagons/rectanges in the grid}
-#'  \item{call}{the call that produced this result}
+#' \itemize{
+#'  \item{\code{seeds}: the vector to store cluster seeds, i.e., a list of local minima (in 2D output space) of distance matrix (in input space). They are represented by the indexes of hexagons/rectangles}
+#'  \item{\code{bases}: the vector with the length of nHex to store the cluster memberships/bases, where nHex is the total number of hexagons/rectanges in the grid}
+#'  \item{\code{call}: the call that produced this result}
+#' }
 #' @note The first item in the return "seeds" is the first cluster, whose memberships are those in the return "bases" that equals 1. The same relationship is held for the second item, and so on
 #' @export
 #' @seealso \code{\link{sPipeline}}, \code{\link{sDmatMinima}}, \code{\link{sBMH}}, \code{\link{sNeighDirect}}, \code{\link{sDistance}}, \code{\link{visDmatCluster}}

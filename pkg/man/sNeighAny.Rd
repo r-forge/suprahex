@@ -9,9 +9,10 @@
   "sMap"}
 }
 \value{
-  \item{aNeigh}{a matrix of nHex x nHex, containing
-  distance info in terms of any neighbors, where nHex is
-  the total number of hexagons/rectanges in the grid}
+  \itemize{ \item{\code{aNeigh}: a matrix of nHex x nHex,
+  containing distance info in terms of any neighbors, where
+  nHex is the total number of hexagons/rectanges in the
+  grid} }
 }
 \description{
   \code{sNeighAny} is supposed to calculate any neighbors

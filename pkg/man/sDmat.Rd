@@ -17,10 +17,10 @@
   distances in high-dimensional input space}
 }
 \value{
-  \item{dMat}{a vector with the length of nHex. It stores
-  the distance a hexaon/rectangle is away from its
-  output-space-defined neighbors in high-dimensional input
-  space}
+  \itemize{ \item{\code{dMat}: a vector with the length of
+  nHex. It stores the distance a hexaon/rectangle is away
+  from its output-space-defined neighbors in
+  high-dimensional input space} }
 }
 \description{
   \code{sDmat} is supposed to calculate distance (measured

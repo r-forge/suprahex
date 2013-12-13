@@ -7,7 +7,9 @@
 #' @param distMeasure distance measure used to calculate distances in high-dimensional input space
 #' 
 #' @return 
-#'  \item{dMat}{a vector with the length of nHex. It stores the distance a hexaon/rectangle is away from its output-space-defined neighbors in high-dimensional input space}
+#' \itemize{
+#'  \item{\code{dMat}: a vector with the length of nHex. It stores the distance a hexaon/rectangle is away from its output-space-defined neighbors in high-dimensional input space}
+#' }
 #' @note "which_neigh" is defined in output 2D space, but "distMeasure" is defined in high-dimensional input space
 #' @export
 #' @seealso \code{\link{sNeighAny}}

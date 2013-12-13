@@ -9,10 +9,12 @@
 #' @param keep.data logical to indicate whether or not to also write out the input data. By default, it sets to false for not keeping it. It is highly expensive to keep the large data sets
 #' @return 
 #' a data frame with following components:
-#'  \item{ID}{ID for data. It inherits the rownames of data (if exists). Otherwise, it is sequential integer values starting with 1 and ending with dlen, the total number of rows of the input data}
-#'  \item{Hexagon_index}{the index for best-matching hexagons}
-#'  \item{Cluster_base}{optional, it is only appended when sBase is given. It stores the cluster memberships/bases}
-#'  \item{data}{optional, it is only appended when keep.data is true}
+#' \itemize{
+#'  \item{\code{ID}: ID for data. It inherits the rownames of data (if exists). Otherwise, it is sequential integer values starting with 1 and ending with dlen, the total number of rows of the input data}
+#'  \item{\code{Hexagon_index}: the index for best-matching hexagons}
+#'  \item{\code{Cluster_base}: optional, it is only appended when sBase is given. It stores the cluster memberships/bases}
+#'  \item{\code{data}: optional, it is only appended when keep.data is true}
+#' }
 #' @note If "filename" is not NULL, a tab-delimited text file will be also written out. If "sBase" is not NULL and comes from the "sMap" partition, then cluster bases are also appended. if "keep.data" is true, the data will be part of output.
 #' @export
 #' @seealso \code{\link{sBMH}}

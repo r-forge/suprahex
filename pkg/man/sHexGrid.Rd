@@ -11,21 +11,22 @@
   \item{nHex}{the number of input hexagons in the grid}
 }
 \value{
-  a list with following components: \item{r}{the grid
-  radius} \item{nHex}{the total number of hexagons in the
-  grid. It may differ from the input value; actually it is
-  always no less than the input one to ensure a
-  supra-hexagonal grid exactly formed} \item{centroid}{the
-  2D coordinates of the grid centroid}
-  \item{stepCentroid}{a vector with the length of nHex. It
-  stores how many steps a hexagon is awawy from the grid
-  centroid ('1' for the centroid itself). Starting with the
-  centroid, it orders outward. Also, for those hexagons of
-  the same step, it orders from the rightmost in an
-  anti-clock wise} \item{coord}{a matrix of nHex x 2 with
-  each row specifying the 2D coordinates of a hexagon in
-  the grid. The order of rows is the same as 'centroid'
-  above} \item{call}{the call that produced this result}
+  a list with following components: \itemize{
+  \item{\code{r}: the grid radius} \item{\code{nHex}: the
+  total number of hexagons in the grid. It may differ from
+  the input value; actually it is always no less than the
+  input one to ensure a supra-hexagonal grid exactly
+  formed} \item{\code{centroid}: the 2D coordinates of the
+  grid centroid} \item{\code{stepCentroid}: a vector with
+  the length of nHex. It stores how many steps a hexagon is
+  awawy from the grid centroid ('1' for the centroid
+  itself). Starting with the centroid, it orders outward.
+  Also, for those hexagons of the same step, it orders from
+  the rightmost in an anti-clock wise} \item{\code{coord}:
+  a matrix of nHex x 2 with each row specifying the 2D
+  coordinates of a hexagon in the grid. The order of rows
+  is the same as 'centroid' above} \item{\code{call}: the
+  call that produced this result} }
 }
 \description{
   \code{sHexGrid} is supposed to define a supra-hexagonal

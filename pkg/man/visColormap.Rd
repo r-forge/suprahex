@@ -8,9 +8,9 @@
   \item{colormap}{short name for the colormap}
 }
 \value{
-  \item{palette.name}{a function that takes an integer
-  argument for generating that number of colors
-  interpolating the given sequence}
+  \itemize{ \item{\code{palette.name}: a function that
+  takes an integer argument for generating that number of
+  colors interpolating the given sequence} }
 }
 \description{
   \code{visColormap} is supposed to define a colormap. It
