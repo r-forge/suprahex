@@ -35,6 +35,7 @@ list(
                 "visHexMapping", 
                 "visHexComp",
                 "visColormap",
+                "visColoralpha",
                 "visColorbar",
                 "visVp",
                 "visHexMulComp",
