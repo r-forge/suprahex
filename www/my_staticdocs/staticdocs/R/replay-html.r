@@ -71,16 +71,20 @@ replay_html.recordedplot <- function(x, package, name_prefix, obj_id, ...) {
   path <- file.path(package$base_path, name)
   
   ### always generate new png
-  if (!file.exists(path)) { 
+  #if (!file.exists(path)) { 
     wh <- dev.size(units="px")
-    wth <- 400
+    wth <- 1200
     hgt <- wth*wh[2]/wh[1]
     res <- min(c(wth,hgt))*72/480
     png(path, width=wth, height=hgt, res=res)
     on.exit(dev.off())
     print(x)
-  }
+  #}
 
   #str_c("<p><img src='", name, "' alt='' width='400' height='400' /></p>")
-  str_c("<p><img src='", name, "' alt='' width='400' /></p>")
+  #str_c("<p><img src='", name, "' alt='' width='400' /></p>")
+  #str_c("<p><a href='", name,"' target='", name, "'><IMG src='", name, "' alt='' width='400' /></a></p>")
+  
+  str_c("<a href=\"javascript:newWin('", name,"', '", name,"', '",wth,"', '",hgt,"')\" title=\"Click to enlarge\"><img style=\"max-width:95%;border:3px solid #FFFFFF;\" src='", name,"', width=\"400\" /></a>")
 }
+
