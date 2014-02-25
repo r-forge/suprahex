@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Demo for multilayer omics dataset from Hiratani et al @ supraHex 1.1.10</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.1.10</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Demo for multilayer omics dataset from Hiratani et al</h2>
+
+Notes:
+<li> All results are based on supraHex (version 1.1.10). </li>
+<li> Images displayed below may be distorted, and they should be normal in your screen. </li>
+<li> Functions contained in supraHex 1.1.10 are hyperlinked in-place and also listed on the right side. </li>
+
+<div class="row">
+    <div class="span8">
+      <pre>
+      <div class='input'># This is a demo for multilayer omics dataset from Hiratani et al
+# 
+# This multilay omics dataset (available from <a href="http://www.ncbi.nlm.nih.gov/pubmed/19952138" target="19952138">http://www.ncbi.nlm.nih.gov/pubmed/19952138</a>) involves genome-wide replication-timing profiles of 22 cell lines from early mouse embryogenesis. These cell lines can be categorised into: 1) pluripotent cells, including ESCs (ESC_46C, ESC_D3 and ESC_TT2) and iPSCs (iPSC, iPSC_1D4 and iPSC_2D4); 2) partially-reprogrammed iPSCs (piPSC_1A2, piPSC_1B3 and piPSC_V3); 3) early epiblast (EPL and EMB3_D3); 4) late epiblast (EpiSC5 and EpiSC7); 5) Ectoderm (EBM6_D3, EBM9_D3, NPC_46C and NPC_TT2); 6) Mesoderm and Endoderm; and 7) late Mesoderm (Myoblast, MEF_female and MEF_male).
+#
+# The dataset is extracted for RefSeq gene TSS locations, including:
+## RT: a replication timing matrix of 17,292 genes X 22 samples;
+## CpG: a matrix of 17,292 genes X 1 containing gene additional information on promoter CpG classification (see <a href="http://www.ncbi.nlm.nih.gov/pubmed/17603471" target="17603471">http://www.ncbi.nlm.nih.gov/pubmed/17603471</a>), with '1' for HCP (high CpG density promoters), '-1' for LCP (low CpG density promoters), '0' for ICP (intermediate CpG density promoters), and 'NA' for unclassified;
+## EX: an expression matrix of 17,292 genes X 8 samples, and samples include pluripotent cells (ESC_D3); early epiblast (EMB3_D3); late epiblast (EpiSC7); Ectoderm (EBM6_D3 and EBM9_D3); Mesoderm and Endoderm.
+###############################################################################
+
+# (I) Load the package and import data
+library(supraHex)
+URL <- url("http://supfam.org/SUPERFAMILY/dcGO/supraHex/realcases/Hiratani_TableS1.Rda")
+load(URL)
+close(URL)
+ls() # you should see three variables: 'RT', 'CpG' and 'EX'
+</div>
+<div class='output'>[1] "CpG" "EX"  "RT"  "URL"
+</div>
+<div class='input'>data <- RT # a replication timing matrix of 17,292 genes X 22 samples
+
+# (II) Train the supra-hexagonal map with input data only
+sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
+</div>
+<strong class='message'>Start at 2014-02-25 12:22:13</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 17292x22
+   xy-dimension of map grid: xdim=31, ydim=31
+   grid lattice: hexa
+   grid shape: suprahex
+   dimension of grid coord: 721x2
+   initialisation method: linear
+   dimension of codebook matrix: 721x22
+   mean quantization error: 1.73538282648893
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: batch
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 2 at rough stage; 2 at finetune stage
+   radius (at rough stage): from 8 to 2
+   radius (at finetune stage): from 2 to 1
+</strong>
+<strong class='message'>End at 2014-02-25 12:22:24</strong>
+<strong class='message'>Runtime in total is: 11 secs
+</strong>
+<div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap, title.rotate=5, gp=grid::gpar(cex=0.8), zlim=c(-2,2), colormap="darkblue-white-darkorange")
+</div>
+<a href="javascript:newWin('Hiratani-20.png', 'Hiratani-20.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-20.png', width="400" /></a>
+<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="Output_Hiratani_TableS1.txt")
+## As you have seen, a figure displays the multiple components of trained map in a sample-specific manner. You also see that a .txt file has been saved in your disk. The output file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters). You can also force the input data to be output; type ?<a href='sWriteData.html' target=sWriteData>sWriteData</a> for details.
+
+# (III) Visualise the map, including built-in indexes, data hits/distributions, distance between map nodes, and codebook matrix
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="indexes", gp=grid::gpar(cex=0.5))
+</div>
+<a href="javascript:newWin('Hiratani-22.png', 'Hiratani-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-22.png', width="400" /></a>
+<div class='input'>## As you have seen, the smaller hexagons in the supra-hexagonal map are indexed as follows: start from the center, and then expand circularly outwards, and for each circle increase in an anti-clock order.
+
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="hits", gp=grid::gpar(cex=0.5))
+</div>
+<a href="javascript:newWin('Hiratani-24.png', 'Hiratani-24.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-24.png', width="400" /></a>
+<div class='input'>## As you have seen, the number represents how many input data vectors are hitting each hexagon, the size of which is proportional to the number of hits.
+
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="dist")
+</div>
+<a href="javascript:newWin('Hiratani-26.png', 'Hiratani-26.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-26.png', width="400" /></a>
+<div class='input'>## As you have seen, map distance tells how far each hexagon is away from its neighbors, and the size of each hexagon is proportional to this distance.
+
+<a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="lines")
+</div>
+<a href="javascript:newWin('Hiratani-28.png', 'Hiratani-28.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-28.png', width="400" /></a>
+<div class='input'>## As you have seen, line plot displays the patterns associated with the codebook matrix. If multple colors are given, the points are also plotted. When the pattern involves both positive and negative values, zero horizental line is also shown.
+
+<a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="bars")
+</div>
+<a href="javascript:newWin('Hiratani-30.png', 'Hiratani-30.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-30.png', width="400" /></a>
+<div class='input'>## As you have seen, bar plot displays the patterns associated with the codebook matrix. When the pattern involves both positive and negative values, the zero horizental line is in the middle of the hexagon; otherwise at the top of the hexagon for all negative values, and at the bottom for all positive values.
+
+# (IV) Perform partitioning operation on the map to obtain continuous clusters (i.e. gene meta-clusters) as they are different from gene clusters in an individual map node
+sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
+<a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase)
+</div>
+<a href="javascript:newWin('Hiratani-32.png', 'Hiratani-32.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-32.png', width="400" /></a>
+<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="Output_base_Hiratani_TableS1.txt")
+## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output .txt file has been saved in your disk. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). You can also force the input data to be output; type ?sWriteData for details.
+
+# (V) Reorder the sample-specific components of the map to delineate relationships between samples
+sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap, metric="mi")
+</div>
+<strong class='message'>Start at 2014-02-25 12:23:58</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 22x22
+   xy-dimension of map grid: xdim=9, ydim=7
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 63x2
+   initialisation method: linear
+   dimension of codebook matrix: 63x22
+   mean quantization error: 0.111129369887425
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 29 at rough stage; 115 at finetune stage
+   radius (at rough stage): from 2 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2014-02-25 12:24:00</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap, sReorder, title.rotate=10, gp=grid::gpar(cex=0.6,font=2),zlim=c(-2,2), colormap="darkblue-white-darkorange")
+</div>
+<a href="javascript:newWin('Hiratani-50.png', 'Hiratani-50.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-50.png', width="400" /></a>
+<div class='input'>## As you have seen, reordered components of trained map is displayed. Each component illustrates a sample-specific map and is placed within a two-dimensional rectangular lattice. Across components/samples, genes with similar expression patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/samples, that is, samples with the similar expression profiles are placed closer to each other.
+
+# (VI) Overlay the CpG additional data to the trained map to view the distribution of CpG data
+additional_HCP <- as.numeric(CpG==1 & !is.na(CpG))
+additional_LCP <- as.numeric(CpG==-1 & !is.na(CpG))
+additional <- cbind(additional_HCP, additional_LCP)
+colnames(additional) <- c("HCP","LCP")
+sOverlay <- <a href='sMapOverlay.html' target=sMapOverlay>sMapOverlay</a>(sMap=sMap, data=data, additional=additional) 
+<a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sOverlay, colormap="lightyellow-darkred", zlim=c(0, signif(max(sOverlay$codebook),1)))
+</div>
+<a href="javascript:newWin('Hiratani-52.png', 'Hiratani-52.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-52.png', width="400" /></a>
+<div class='input'>
+# (VII) Overlay the expression additional data to the trained map to view the distribution of expression data, which is further used to explore relationships between samples
+sOverlay <- <a href='sMapOverlay.html' target=sMapOverlay>sMapOverlay</a>(sMap=sMap, data=data, additional=EX)
+sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sOverlay, metric="none") # here reorder samples based on overlaid distribution data rather than expression data
+</div>
+<strong class='message'>Start at 2014-02-25 12:24:07</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 8x721
+   xy-dimension of map grid: xdim=5, ydim=5
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 25x2
+   initialisation method: linear
+   dimension of codebook matrix: 25x721
+   mean quantization error: 2.33049081662466
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 32 at rough stage; 125 at finetune stage
+   radius (at rough stage): from 1 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2014-02-25 12:24:10</strong>
+<strong class='message'>Runtime in total is: 3 secs
+</strong>
+<div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sOverlay, sReorder, title.rotate=10, colormap="darkgreen-lightgreen-lightpink-darkred")
+</div>
+<a href="javascript:newWin('Hiratani-70.png', 'Hiratani-70.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Hiratani-70.png', width="400" /></a>
+      </pre>
+    </div>
+
+  <div class="span4">
+    
+    <h2>Functions used in this demo</h2>
+    <ul>
+      <li><a href="sPipeline.html">sPipeline</a></li>
+      <li><a href="visHexMulComp.html">visHexMulComp</a></li>
+      <li><a href="sWriteData.html">sWriteData</a></li>
+      <li><a href="visHexMapping.html">visHexMapping</a></li>
+      <li><a href="visHexPattern.html">visHexPattern</a></li>
+      <li><a href="sDmatCluster.html">sDmatCluster</a></li>
+      <li><a href="visDmatCluster.html">visDmatCluster</a></li>
+      <li><a href="sCompReorder.html">sCompReorder</a></li>
+      <li><a href="visCompReorder.html">visCompReorder</a></li>
+      <li><a href="sMapOverlay.html">sMapOverlay</a></li>
+    </ul>
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/supraHex">http://supfam.org/supraHex</a></li>
+    </ul>
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    -->
+    
+  </div>
+
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

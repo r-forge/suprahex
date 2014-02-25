@@ -1,0 +1,574 @@
+% File src/library/supraHex/vignettes/supraHex_vignettes.Rnw
+% Part of the R package, http://www.R-project.org
+% Copyright 2002-13 Hai Fang and the R Core Team
+% Distributed under GPL 2 or later
+
+%\VignetteIndexEntry{supraHex User Manual}
+%\VignettePackage{supraHex}
+%\VignetteKeywords{Data Mining}
+%\VignetteDepends{supraHex}
+
+
+\documentclass[a4paper]{article}
+
+\usepackage[authoryear,round]{natbib}
+\usepackage{amsmath}
+
+\usepackage{color}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.75}
+\definecolor{darkred}{rgb}{0.75,0.0,0.0}
+\definecolor{lightyellow}{rgb}{1,1,0.85}
+\usepackage[%
+baseurl={http://www.bioconductor.org},%
+pdftitle={supraHex Manual},%
+pdfauthor={Hai Fang},%
+pdfkeywords={Data Mining},%
+pagebackref,bookmarks,%
+colorlinks,%
+linkcolor=darkred,%
+citecolor=darkblue,%
+raiselinks,plainpages,pdftex]{hyperref}
+
+\SweaveOpts{keep.source=TRUE,eps=FALSE,include=FALSE} 
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{\textit{#1}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+\newcommand{\Rfile}[1]{{\texttt{#1}}}
+
+\newcommand{\Rtitle}[1]{{\texttt{#1}}}
+
+\newcommand{\test}[1]{%
+    \textcolor{red}{#1}
+    \textit{#1}
+}
+
+\newcommand{\myincfig}[4]{%
+  \begin{figure}[!ht]
+    \begin{center}
+      \includegraphics[width=#2]{#1}
+      \caption[#3]{\texttt{\label{#1}#3}. \label{#1}#4}
+    \end{center}
+  \end{figure}
+}
+
+%------------------------------------------------------------
+\pagecolor{white}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+
+\title{\Rpackage{supraHex}: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map}
+\author{Hai Fang\footnote{\href{mailto:hfang@cs.bris.ac.uk}{hfang@cs.bris.ac.uk}} , Julian Gough \\ Department of Computer Science \\ University of Bristol, UK}
+\date{}
+\maketitle
+%------------------------------------------------------------
+
+%\setlength{\parskip}{0pt}
+\vspace{12pt}
+\begin{abstract}
+\noindent We introduce an R/Bioconductor package called \Rpackage{supraHex}\footnote{\url{http://supfam.org/supraHex}}. It names after a supra-hexagon that is a giant hexagon on a 2-dimensional (2D) map grid seamlessly consisting of smaller hexagons. This 2D giant hexagon is intended to train, analyse and visualise a high-dimensional omics data, which usually involves a large number of genomic coordinates (e.g. genes) but a much smaller number of samples. The resulting supra-hexagon ensembles the structure of the input data in a topology-preserving fashion. With the supraHex, users are able to easily and intuitively carry out integrated tasks such as: simultaneous analysis of gene clustering and sample correlation, and the overlaying of additional data (if any) onto the map for multilayer omics data comparisons. In this vignette/guide, we give a tutorial-style introduction into how the functions contained in the package \Rpackage{supraHex} can be used to better understand the input omics data. This vignette assumes some basic familiarity with the \texttt{R} language and environment. It only provides a task-oriented description of the package functionality, and compliments the accompanying manual 'supraHex-manual.pdf' that gives a full description of all functions.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\listoftables
+\listoffigures
+\newpage
+
+
+%------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+%------------------------------------------------------------
+
+%-------------------------------
+\subsection{What is \Rpackage{supraHex}?}\label{subsec:what}
+%-------------------------------
+
+The \Rpackage{supraHex} package \citep{fang:2013} devises a supra-hexagonal map. This map consists of smaller hexagonal lattices on a regular 2-dimensional (2D) grid; these smaller hexagons collectively form a giant hexagon (see Figure~\ref{supraHex_vignettes-suprahex}). As seen, it has symmetric beauty around the center, from which individual hexagons radiate outwards. To ensure that a supra-hexagon is forme dexactly, inherent relationships must be met between the total number $nHex$ of hexagons in the grid, the grid radius $r$, and the xy-dimensions $xdim$ and $ydim$: 
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item $nHex=1+6*r*(r-1)/2$;
+\item $xdim=ydim=2*r-1$.
+\end{itemize}
+
+The codes used to produce this example are (assumedly the package has been successfully installed; see Section \ref{sec:inst}):
+
+<<results=hide, echo=T>>=
+library("supraHex")
+pdf("supraHex_vignettes-suprahex.pdf", width=6, height=6)
+sTopol <- sTopology(xdim=15, ydim=15, lattice="hexa", shape="suprahex")
+visHexMapping(sTopol,mappingType="indexes",newpage=F)
+dev.off()
+@
+\myincfig{supraHex_vignettes-suprahex}{0.6\textwidth}{A supra-hexagonal map}{It consists of $nHex=169$ smaller hexagons. For easy reference, these hexagons are indexed according to: firstly, how many steps a hexagon is away from the grid centroid ('1' for the centroid itself); secondly, for those hexagons of the same step, an anti-clock order starting from the rightmost. This map can also be easily described by the grid radius (i.e., the maximum steps away from the centroid; $r=8$ in this case), or by the xy-dimensions of the map grid (i.e., the maximum number of hexagons horizontally/vertically; $xdim=ydim=15$ in this case).}
+
+%-------------------------------
+\subsection{Why to use \Rpackage{supraHex}?}\label{subsec:why}
+%-------------------------------
+
+Biologists are far often confronted with ever-increasing amounts of omics data that are tabulated in the form of matrix, measuring levels/activities of genomic coordinates (e.g. genes) against experimental samples. The matrix usually involves tens of thousands of genes but a much smaller number of samples (at most hundreds), known as 'small-sample-but-large-gene'. The atypical structure requires easy-to-interpret models. Unsupervised learning algorithm/model such as self-organising map is popular for its unique way in capturing input data patterns, this is, simultaneously performing vector quantisation but regularised by vector projection. The \Rpackage{supraHex} borrows this learning algorithm to produce a supra-hexagonal map (two-dimensional output space) from input omics data ( high-dimensional input space). In this map, geographically close locations are indicative of patterns that are similar in terms of the input space. Thanks to the prevalence in nature and symmetric beauty, this supra-hexagonal map is probably suited for analysing such input data with approximately perfect symmetry. We argue that omics data tend to be symmetric due to unbiased measurements of gene levels/activities on a global scale. Even when priori knowledge of the data symmetry is unknown, we also argue that at least the supra-hexagonal map can provide the ease with visualisation.
+
+%-------------------------------
+\subsection{How to interpret \Rpackage{supraHex}?}\label{subsec:how}
+%-------------------------------
+
+As a result of training, similar input data are mapped onto neighboring regions of the supra-hexagonal map. More formally, the map ensembles the structure (the shape and density) of the input data in a topology-preserving fashion. Each map node is associated with two coordinates: one in two-dimensional output space just as you have seen; the other in high-dimensional input space as you can imagine. The coordinate in input space is represented as a prototype/weight vector (with the same dimension as input data vector). Prototype vectors in all map nodes collectively form the codebook matrix. In essence, the supra-hexagonal map converts the input data into the codebook matrix. In terms of gene activity matrix as input, \Rpackage{supraHex} produces a map, wherein (i) genes with the same or similar activity patterns are spatially located/clustered to the same or nearby map nodes, (ii) the density of genes mapped onto this map (i.e. what we can see) is an equivalent to the data density in  high-dimensional input space (i.e. what we can only imagine), and (iii) when all map nodes are color-coded according to values in a specific component for all prototype vectors (i.e. a specific column of codebook matrix), a color-coded component map can be used to illustrate sample-specific gene activities, and thus multiple components illustrate changes across all samples in subject. Owing to  these unique features, the supra-hexagonal map can be used for gene clustering and sample representation. 
+
+\newpage
+%------------------------------------------------------------
+\section{Installation and Citation}
+\label{sec:inst}
+%------------------------------------------------------------
+
+\Rpackage{supraHex} is a package for the R computing environment and it is assumed that you have already installed the latest version of R (>=3.0.2). You can install the package following step-by-step guidelines in \url{http://supfam.org/supraHex}. Briefly, you can install it from Bioconductor (or R-Forge):
+
+Using the release version\footnote{\url{http://bioconductor.org/packages/release/bioc/html/supraHex.html}} (officially released on 15-10-2013):
+<<eval=F, echo=T>>=
+source("http://bioconductor.org/biocLite.R")
+biocLite("supraHex")
+library(supraHex) # load the package
+@
+
+Using the latest development version\footnote{\url{http://bioconductor.org/packages/devel/bioc/html/supraHex.html}} (\underline{prefer it for the benefit of latest improvements}):
+<<eval=F, echo=T>>=
+install.packages("hexbin",repos="http://www.stats.bris.ac.uk/R")
+install.packages("supraHex",repos="http://R-Forge.R-project.org", type="source")
+library(supraHex) # load the package
+@
+
+To get help information for the package, please type one of two commands:
+<<eval=F, echo=T>>=
+library(help="supraHex") # real-time help
+help.start() # html help (follow the links to supraHex)
+@
+
+To view this vignette source and R code whereof, please type:
+<<eval=F, echo=T>>=
+browseVignettes("supraHex")
+@
+
+\Rpackage{supraHex} is free to use under GPL 2. You can get citation information from: 
+<<eval=F, echo=T>>=
+citation("supraHex") # cite the package
+@
+
+Please cite this package as:\\ 
+\begingroup
+\fontsize{8pt}{10pt}\selectfont
+Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. \textit{Biochemical and Biophysical Research Communications}, 443(1), 285-289. DOI: \url{http://dx.doi.org/10.1016/j.bbrc.2013.11.103}, PMID: \url{http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102}
+\endgroup
+
+
+\newpage
+%------------------------------------------------------------
+\section{Quick Overview}\label{sec:overview}
+%------------------------------------------------------------
+
+The functions in the package \Rpackage{supraHex} are divided into two categories: one for training and analysis (see Table~\ref{tab:train}), the other for visualisation (see Table~\ref{tab:visual}). 
+
+
+\begin{table}[!Hb]
+\begin{center}
+\caption{\texttt{A summary of functions used for training and analysis}}\label{tab:train}
+\vspace*{8pt}
+\begin{tabular}{p{0.8in} p{4in}}
+\hline
+Function & Description \\
+\hline
+\Rfunction{sHexGrid} & Define a supra-hexagonal grid; return a list. \\
+\Rfunction{sTopology} & Define the topology of a map grid; return a  \Robject{sTopol} object. \\
+\Rfunction{sHexGrid} & Define a supra-hexagonal grid; return a list. \\
+\Rfunction{sInitial} & Initialise a sMap object given a topology and input data; return a \Robject{sMap} object. \\
+\Rfunction{sTrainology} & Define trainology (training environment); return a \Robject{sTrain} object. \\
+\Rfunction{sTrainSeq} & Implement training via sequential algorithm; return a \Robject{sMap} object. \\
+\Rfunction{sTrainBatch} & Implement training via batch algorithm; return a \Robject{sMap} object. \\
+\Rfunction{sBMH} & Identify the best-matching hexagons for the input data; return a list. \\
+\Rfunction{sPipeline} & Setup the pipeline for completing ab initio training given the input data; return a \Robject{sMap} object. \\
+\Rfunction{sNeighDirect} & Calculate direct neighbors for each hexagon in a grid; return a matrix. \\
+\Rfunction{sNeighAny} & Calculate any neighbors for each hexagon in a grid; return a matrix. \\
+\Rfunction{sHexDist} & Calculate distances between hexagons in a 2D grid; return a matrix. \\
+\Rfunction{sDistance} & Compute the pairwise distance for a given data matrix; return a matrix. \\
+\Rfunction{sDmat} & Calculate distance matrix in high-dimensional input space but according to neighborhood relationships in 2D output space; return a vector. \\
+\Rfunction{sDmatMinima} & Identify local minima (in 2D output space) of distance matrix (in high-dimensional input space); return a vector. \\
+\Rfunction{sDmatCluster} & Partition a grid map into clusters; return a list. \\
+\Rfunction{sCompReorder} & Reorder component planes; return a \Robject{sReorder} object. \\
+\Rfunction{sWriteData} & Write out the best-matching hexagons and/or cluster bases in terms of data; return a data frame. \\
+\Rfunction{sMapOverlay} & Overlay additional data onto the trained map; return a \Robject{sMap} object. \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\pagebreak
+
+\begin{table}[!Ht]
+\begin{center}
+\caption{\texttt{A summary of functions used for visualisation}}\label{tab:visual}
+\vspace*{8pt}
+\begin{tabular}{p{0.9in} p{3.9in}}
+\hline
+Function & Description \\
+\hline
+\Rfunction{visHexGrid} & Visualise a supra-hexagonal grid. \\
+\Rfunction{visHexMapping} & Visualise various mapping items within a supra-hexagonal grid. \\
+\Rfunction{visHexComp} & Visualise a component plane of a supra-hexagonal grid. \\
+\Rfunction{visColormap} & Define a colormap. \\
+\Rfunction{visColorbar} & Define a colorbar. \\
+\Rfunction{visVp} & Create viewports for multiple supra-hexagonal grids. \\
+\Rfunction{visHexMulComp} & Visualise multiple component planes of a supra-hexagonal grid. \\
+\Rfunction{visCompReorder} & Visualise multiple component planes reorded within a sheet-shape rectangle grid. \\
+\Rfunction{visHexPattern} & Visualise codebook matrix or input patterns within a supra-hexagonal grid. \\
+\Rfunction{visDmatCluster} & Visualise clusters/bases partitioned from a supra-hexagonal grid. \\
+\Rfunction{visKernels} & Visualize neighborhood kernels. \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\newpage
+
+%------------------------------------------------------------
+\section{Main Functionality}\label{sec:func}
+%------------------------------------------------------------
+
+This vignette aims to demonstrate the functionality of the package
+\texttt{supraHex} in utilising the supra-hexagonal map to train, analyse and visualise a high-dimensional omics data. To simplify the descriptions, it deals with the gene expression data. But it can also be applied in any other omics data, a tabular matrix usually containing thousands of genes but with at most hundreds of samples. Assumedly, we have a gene expression matrix of $1000 \times 6$, measuring the expression levels of $1000$ genes across $6$ samples. These samples come from two different normal distributions (S1 and S2), and each (i.e., a matrix of $1000 \times 3$) is randomly generated from the same normal distribution. All examples below are based on the latest development version\footnote{\url{http://bioconductor.org/packages/devel/bioc/html/supraHex.html}}. 
+
+<<startup,results=hide>>=
+data <- cbind(
+matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3), 
+matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3)
+)
+colnames(data) <- c("S1","S1","S1","S2","S2","S2")
+@
+
+The first 5 rows of this data:
+<<>>=
+data[1:5,]
+@
+
+You can prepare your own data (a tab-delimited text file). Similarly as shown above, this file should contain the first row intended for sample names, the first column for gene names, and the top-left entry being left empty. You can import it using the R built-in function \Rfunction{read.table}:
+
+<<eval=F, echo=T>>=
+data <- read.table(file="you_input_data_file", header=T, row.names=1, sep="\t")
+@
+
+%-------------------------------
+\subsection{Get trained using \texttt{sPipeline}}\label{subsec:train}
+%-------------------------------
+
+The function \Rfunction{sPipeline} setups the pipeline for completing \textit{ab initio} training given the input data only. It sequentially consists of: 
+\begin{enumerate}
+\item \Rfunction{sTopology} used to define the topology of a grid (with "suprahex" shape by default ) according to the input data;
+
+\item \Rfunction{sInitial} used to initialise the codebook matrix given the pre-defined topology and the input data (by default using "uniform" initialisation method);
+
+\item \Rfunction{sTrainology} and \Rfunction{sTrainSeq} used to get the grid map trained at both "rough" and "finetune" stages. If instructed, sustain the "finetune" training until the mean quantization error does get worse;
+
+\item \Rfunction{sBMH} used to identify the best-matching hexagons/rectangles (BMH) for the input data, and these response data are appended to the resulting object of "sMap" class.
+
+\end{enumerate}
+
+
+Below is its common usage of \Rfunction{sPipeline} with default setup (using gaussian kernel and printing out messages in the screen):
+
+<<eval=T, echo=T>>=
+sMap <- sPipeline(data=data)
+@
+
+Use \Rfunction{sWriteData} to write out the best-matching hexagons in terms of data (\underline{equivalent to gene clustering}):
+
+<<>>=
+# it will also write out a file ('Output.txt') into your disk
+output <- sWriteData(sMap=sMap, data=data, filename="Output.txt") 
+output[1:5,]
+@
+
+You will see: the first column for your input data ID (an integer; otherwise the row names of input data matrix), and the second column for the corresponding index of best-matching hexagons (i.e. gene clusters). On the way how hexagons get indexed, please refer to Figure~\ref{supraHex_vignettes-suprahex}.
+
+%-------------------------------
+\subsection{Get visualised using \texttt{visHexMapping} and \texttt{visHexPattern}}\label{subsec:exam}
+%-------------------------------
+
+The function \texttt{visHexMapping} is used to visualise the single-value properties that are associated with the map:
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+
+\item map indexes as shown previously in Figure~\ref{supraHex_vignettes-suprahex}. 
+<<eval=F, echo=T>>=
+visHexMapping(sMap,mappingType="indexes",newpage=F)
+@
+
+\item map hit distribution, which tells how many input data vectors are hitting each hexagon (see Figure~\ref{supraHex_vignettes-hit}). 
+<<results=hide, echo=T>>=
+pdf("supraHex_vignettes-hit.pdf", width=6, height=6)
+visHexMapping(sMap,mappingType="hits",newpage=F)
+dev.off()
+@
+\myincfig{supraHex_vignettes-hit}{0.7\textwidth}{Map hit distribution}{The number represents how many input data vectors are hitting each hexagon. The size of each hexagon is proportional to the number of hits.}
+
+\item map distance visualisation, which tells how far each hexagon is away from its neighbors (see Figure~\ref{supraHex_vignettes-distance}). 
+<<results=hide, echo=T>>=
+pdf("supraHex_vignettes-distance.pdf", width=6, height=6)
+visHexMapping(sMap,mappingType="dist",newpage=F)
+dev.off()
+@
+\myincfig{supraHex_vignettes-distance}{0.7\textwidth}{Map distance visualisation}{For each hexagon, its median distances in high-dimensional input space to its neighbors (defined in 2D output space) is calculated. The size of each hexagon is proportional to this distance.}
+
+\end{itemize}
+
+
+The function \texttt{visHexPattern} is used to visualise the vector-based patterns that are associated with the map:
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+
+\item using line plots (see Figure~\ref{supraHex_vignettes-line}). 
+<<results=hide, echo=T>>=
+pdf("supraHex_vignettes-line.pdf", width=6, height=6)
+visHexPattern(sMap, plotType="lines", 
+customized.color=rep(c("red","green"),each=3),newpage=F)
+dev.off()
+@
+\myincfig{supraHex_vignettes-line}{0.9\textwidth}{Line plot of codebook patterns}{If multple colors are given, the points are also plotted. When the pattern involves both positive and negative values, zero horizental line is also shown.}
+
+\item using bar plots (see Figure~\ref{supraHex_vignettes-bar}). 
+<<results=hide, echo=T>>=
+pdf("supraHex_vignettes-bar.pdf", width=6, height=6)
+visHexPattern(sMap, plotType="bars", 
+customized.color=rep(c("red","green"),each=3),newpage=F)
+dev.off()
+@
+\myincfig{supraHex_vignettes-bar}{0.9\textwidth}{Bar plot of codebook patterns}{When the pattern involves both positive and negative values, the zero horizental line is in the middle of the hexagon; otherwise at the top of the hexagon for all negative values, and at the bottom for all positive values.}
+
+\end{itemize}
+
+Both functions also support the visualisation of user-customised data. On this advanced usage, please refer to specifications of functions by:
+<<eval=F, echo=T>>=
+?visHexMapping
+?visHexPattern
+@
+
+%-------------------------------
+\subsection{Get clustered using \texttt{sDmatCluster} and \texttt{visDmatCluster}}\label{subsec:cluster}
+%-------------------------------
+
+Partition the trained map into clusters using region-growing algorithm to ensure each cluster is continuous (see Figure~\ref{supraHex_vignettes-cluster}). 
+
+<<results=hide, echo=T>>=
+sBase <- sDmatCluster(sMap=sMap, which_neigh=1, 
+distMeasure="median", clusterLinkage="average")
+pdf("supraHex_vignettes-cluster.pdf", width=6, height=6)
+visDmatCluster(sMap, sBase, newpage=F)
+dev.off()
+@
+\myincfig{supraHex_vignettes-cluster}{1\textwidth}{Clusters of the trained map}{Each cluster is filled with the same continuous color. The cluster index is marked in the seed node.}
+
+\underline{It is equivalent to gene meta-clustering}. Write out results into a tab-delimited text file using \Rfunction{sWriteData}:
+
+<<>>=
+# it will also write out a file ('Output_base.txt') into your disk
+output <- sWriteData(sMap, data, sBase, filename="Output_base.txt")
+output[1:5,]
+@
+
+You will see: the first column for your input data ID (an integer; otherwise the row names of input data matrix), the second column for the corresponding index of best-matching hexagons (i.e. gene clusters), and the third column for the cluster bases (i.e. gene meta-clusters).
+
+%-------------------------------
+\subsection{Get reordered using \texttt{sCompReorder} and \texttt{visCompReorder}}\label{subsec:reorder}
+%-------------------------------
+
+Reordering components for trained map can be realised by using a new map grid (with sheet shape consisting of a rectangular lattice) to train component plane vectors (either column-wise vectors of codebook/data matrix or the covariance matrix thereof). As a result, similar component planes are placed closer to each other. The functions \Rfunction{sCompReorder} and \Rfunction{visCompReorder} are respectively to implement this reordering algorithm and to visualise the reordered compments (see Figure~\ref{supraHex_vignettes-sReorder})\footnote{In order to display colors properly, it is important to reset the argument 'zlim' by respecting the range of input data matrix (more precisely, codebook matrix).}. 
+
+<<eval=F, results=hide, echo=T>>=
+sReorder <- sCompReorder(sMap=sMap)
+visCompReorder(sMap=sMap, sReorder=sReorder)
+@
+\myincfig{supraHex_vignettes-sReorder}{1.2\textwidth}{Reordered components of trained map}{Each component illustrates the sample-specific map and is placed within a two-dimensional rectangular lattice (framed in black). Within each component, genes with the same or similar expression patterns are mapped to the same or nearby map nodes. When zooming out to look at between-components/samples relationships, samples with the similar expression profiles are placed closer to each other.}
+
+\underline{It is equivalent to sample projection}. Reordered components are rich in the information: both of genes and samples can be visualised but in a single display.
+
+
+%------------------------------------------------------------
+\section{Comparing Neighborhood Kernels}\label{sec:kernel}
+%------------------------------------------------------------
+
+Among various parameters associated with the training by \Rfunction{sPipeline}, the neighborhood kernel is the most important one because it dictates the final topology of the trained map. For visualising neighborhood kernels, the function \Rfunction{visKernels} helps to understand their forms (see Figure~\ref{supraHex_vignettes-kernels}). Each kernel is a non-increasing functions of: i) the distance between the hexagon/rectangle and the winner, and ii) the radius.
+
+<<results=hide, echo=T>>=
+pdf("supraHex_vignettes-kernels.pdf", width=12, height=6)
+visKernels(newpage=F)
+dev.off()
+@
+\myincfig{supraHex_vignettes-kernels}{1\textwidth}{Neighborhood kernels}{There are five kernels that are currently supported in the package \Rpackage{supraHex}. These kernels are displayed within a plot for each fixed radius; two different radii (i.e. 1 and 2) are illustrated only.}
+
+From the mathematical definitions and curve forms above, it is clear that the "gamma" and "gaussian" kernels exert more global influence, the "ep" kernel puts more emphasis on local topological relationships, and the other two "cutgaussian" and "bubble" keep the relative balance. It becomes much clearer when using the function \Rfunction{visHexMulComp} to visualise trained maps using the same data input and the same trainology but choosing different kernels (see Figure~\ref{supraHex_vignettes-sMap_ga}, Figure~\ref{supraHex_vignettes-sMap_bu}, Figure~\ref{supraHex_vignettes-sMap_cu}, Figure~\ref{supraHex_vignettes-sMap_ep} and Figure~\ref{supraHex_vignettes-sMap_gm})\footnote{In order to display colors properly, it is important to reset the argument 'zlim' by respecting the range of input data matrix (more precisely, codebook matrix).}. 
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+
+\item with "gaussian" kernel (see Figure~\ref{supraHex_vignettes-sMap_ga})
+<<eval=F, echo=T>>=
+sMap_ga <- sPipeline(data=data, neighKernel="gaussian", init="uniform")
+visHexMulComp(sMap_ga)
+@
+\myincfig{supraHex_vignettes-sMap_ga}{0.8\textwidth}{Components of trained map with the gaussian kernel}{}
+
+\item with "bubble" kernel (see Figure~\ref{supraHex_vignettes-sMap_bu})
+<<eval=F, results=hide, echo=T>>=
+sMap_bu <- sPipeline(data=data, neighKernel="bubble", init="uniform")
+visHexMulComp(sMap_bu)
+@
+\myincfig{supraHex_vignettes-sMap_bu}{0.8\textwidth}{Components of trained map with the bubble kernel}{}
+
+\item with "cutgaussian" kernel (see Figure~\ref{supraHex_vignettes-sMap_cu})
+<<eval=F, results=hide, echo=T>>=
+sMap_cu <- sPipeline(data=data, neighKernel="cutgaussian", init="uniform")
+visHexMulComp(sMap_cu)
+@
+\myincfig{supraHex_vignettes-sMap_cu}{0.8\textwidth}{Components of trained map with the cutgaussian kernel}{}
+
+\item with "ep" kernel (see Figure~\ref{supraHex_vignettes-sMap_ep})
+<<eval=F, results=hide, echo=T>>=
+sMap_ep <- sPipeline(data=data, neighKernel="ep", init="uniform")
+visHexMulComp(sMap_ep)
+@
+\myincfig{supraHex_vignettes-sMap_ep}{0.8\textwidth}{Components of trained map with the ep kernel}{}
+
+\item with "gamma" kernel (see Figure~\ref{supraHex_vignettes-sMap_gm})
+<<eval=F, results=hide, echo=T>>=
+sMap_gm <- sPipeline(data=data, neighKernel="gamma", init="uniform")
+visHexMulComp(sMap_gm)
+@
+\myincfig{supraHex_vignettes-sMap_gm}{0.8\textwidth}{Components of trained map with the gamma kernel}{}
+
+\end{itemize}
+
+\newpage
+
+%------------------------------------------------------------
+\section{Applications to Real Cases}\label{sec:case}
+%------------------------------------------------------------
+
+The most common real cases are applications in studies involving gene expression profilings of: i) clinical patients; ii) time-course processes. In this section, we aim to showcase the applications by providing several datasets published previously and a collection of functions (together with optimised arguments) to analyse them. The end users are encouraged to adapt them to fit your dataset: run them first, then get down to details. We do not repeat the explanations for all used commands and output files and figures. On the meanings and interpretations, please refer to Section \ref{sec:func}). On purpose of easy copying, all commands are provided without the '>' prefix:
+
+%-------------------------------
+\subsection{Leukemia patient dataset from Golub et al}\label{subsec:leukemia}
+%-------------------------------
+
+This dataset (the learning set\footnote{\url{http://www.ncbi.nlm.nih.gov/pubmed/10521349}}) contains a $3051 \times 38 $ matrix of expression levels, involving 3051 genes and two types of leukemia: 11 acute myeloid leukemia (AML) and 27 acute lymphoblastic leukemia (ALL). These 27 ALL are further subtyped into 19 B-cell ALL (ALL\_B) and 8 T-cell ALL (ALL\_T) (see Figure~\ref{supraHex_vignettes-leukemia}).
+
+\myincfig{supraHex_vignettes-leukemia}{1.2\textwidth}{Reordered components of map for leukemia classification}{Each component illustrates a sample-specific transcriptome map. Geometric locations of components display the relationships between 38 leukemia samples. AML: acute myeloid leukemia; ALL: acute lymphoblastic leukemia; ALL\_B: B-cell ALL; ALL\_T: T-cell ALL.}
+
+\begingroup
+\fontsize{8pt}{10pt}\selectfont
+\begin{verbatim}
+# import data
+data(Golub)
+data <- Golub
+# get trained
+sMap <- sPipeline(data)
+visHexMulComp(sMap,title.rotate=10,
+colormap="darkgreen-lightgreen-lightpink-darkred")
+sWriteData(sMap, data, filename="Output_Golub.txt")
+# get visualised
+visHexMapping(sMap, mappingType="indexes")
+visHexMapping(sMap, mappingType="hits")
+visHexMapping(sMap, mappingType="dist")
+# get reordered
+sReorder <- sCompReorder(data,metric="pearson")
+visCompReorder(sMap,sReorder,title.rotate=15,
+colormap="darkgreen-lightgreen-lightpink-darkred")
+\end{verbatim}
+\endgroup
+
+%-------------------------------
+\subsection{Human embryo dataset from Fang et al}\label{subsec:embryo}
+%-------------------------------
+
+This dataset\footnote{\url{http://www.ncbi.nlm.nih.gov/pubmed/20643359}} involves six successive developmental stages with three replicates for each stage (see Figure~\ref{supraHex_vignettes-embryo}), including:
+
+\begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
+\item Fang: a $5441 \times 18$ matrix of expression levels;
+\item Fang.geneinfo: a $5441 \times 3$ matrix of gene information;
+\item Fang.sampleinfo: a $5441 \times 3$ matrix of sample information.
+\end{itemize}
+
+\myincfig{supraHex_vignettes-embryo}{1.2\textwidth}{Reordered components of map during early human organogenesis}{Each component illustrates a sample-specific transcriptome map. Geometric locations of components display the relationships between the six developmental stages (S9-S14), each with three replicates (R1-R3).}
+
+\begingroup
+\fontsize{8pt}{10pt}\selectfont
+\begin{verbatim}
+# import data
+data(Fang)
+# transform data by row/gene centering
+data <- Fang - matrix(rep(apply(Fang,1,mean),ncol(Fang)),ncol=ncol(Fang))
+# get trained
+sMap <- sPipeline(data)
+visHexMulComp(sMap,title.rotate=10)
+sWriteData(sMap, data, filename="Output_Fang.txt")
+# get visualised
+visHexMapping(sMap, mappingType="indexes")
+visHexMapping(sMap, mappingType="hits")
+visHexMapping(sMap, mappingType="dist")
+visHexPattern(sMap, plotType="lines")
+visHexPattern(sMap, plotType="bars")
+# get clustered
+sBase <- sDmatCluster(sMap)
+visDmatCluster(sMap, sBase)
+sWriteData(sMap, data, sBase, filename="Output_base_Fang.txt")
+# get reordered
+sReorder <- sCompReorder(data, metric="euclidean")
+visCompReorder(sMap, sReorder,title.rotate=15)
+\end{verbatim}
+\endgroup
+
+%-------------------------------
+\subsection{Arabidopsis embryo dataset from Xiang et al}\label{subsec:plant}
+%-------------------------------
+
+This dataset\footnote{\url{http://www.ncbi.nlm.nih.gov/pubmed/21402797}} contains gene expression levels (3625 genes and 7 embryo stages) (see Figure~\ref{supraHex_vignettes-plant}).
+
+\myincfig{supraHex_vignettes-plant}{1.2\textwidth}{Reordered components of map during embryo development in Arabidopsis}{Geometric locations of sample-specific transcriptome map characterise the relationships between the seven developmental stages: zygote, quadrant, globular, heart, torpedo, bent and mature.}
+
+\begingroup
+\fontsize{8pt}{10pt}\selectfont
+\begin{verbatim}
+# import data
+data(Xiang)
+data <- Xiang
+# get trained
+sMap <- sPipeline(data)
+visHexMulComp(sMap,title.rotate=10,colormap="darkblue-white-darkorange")
+sWriteData(sMap, data, filename="Output_Xiang.txt")
+# get visualised
+visHexMapping(sMap, mappingType="indexes")
+visHexMapping(sMap, mappingType="hits")
+visHexMapping(sMap, mappingType="dist")
+visHexPattern(sMap, plotType="lines")
+visHexPattern(sMap, plotType="bars")
+# get clustered
+sBase <- sDmatCluster(sMap)
+visDmatCluster(sMap, sBase)
+sWriteData(sMap, data, sBase, filename="Output_base_Xiang.txt")
+# get reordered
+sReorder <- sCompReorder(sMap, metric="pearson")
+visCompReorder(sMap,sReorder,title.rotate=10,colormap="darkblue-white-darkorange")
+\end{verbatim}
+\endgroup
+
+%------------------------------------------------------------
+\section{Session Information}
+\label{sec:ses}
+%------------------------------------------------------------
+All of the output in this vignette was produced under the following conditions:
+
+<<sessinfo>>=
+sessionInfo()
+@
+
+\bibliographystyle{plainnat}
+\bibliography{supraHex_vignettes}
+
+\end{document}

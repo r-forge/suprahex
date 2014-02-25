@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Docs @ supraHex 1.1.10</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.1.10</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <div class="row">
+  <div class="span8">
+
+    <h1>Documentations</h1><p>
+
+    <h3>Training and Analysis functions</h3>
+    <p>These functions are used for training and analysis</p>
+
+    
+    <ul class="index">
+    
+      <li class = "icon">
+        <a href="sPipeline.html"><img src="icons/sPipeline.png" width = "40" height = "40" /></a><code><a href="sPipeline.html">sPipeline</a></code><br /> 
+        Function to setup the pipeline for completing ab initio training given the input data</li>
+                
+      <li>
+        <code><a href="sHexGrid.html">sHexGrid</a></code><br />Function to define a supra-hexagonal grid</li>
+            
+      <li>
+        <code><a href="sTopology.html">sTopology</a></code><br />Function to define the topology of a map grid</li>
+            
+      <li>
+        <code><a href="sInitial.html">sInitial</a></code><br />Function to initialise a sInit object given a topology and input data</li>
+            
+      <li>
+        <code><a href="sTrainology.html">sTrainology</a></code><br />Function to define trainology (training environment)</li>
+            
+      <li>
+        <code><a href="sTrainSeq.html">sTrainSeq</a></code><br />Function to implement training via sequential algorithm</li>
+            
+      <li>
+        <code><a href="sTrainBatch.html">sTrainBatch</a></code><br />Function to implement training via batch algorithm</li>
+            
+      <li>
+        <code><a href="sBMH.html">sBMH</a></code><br />Function to identify the best-matching hexagons/rectangles for the input data</li>
+            
+      <li>
+        <code><a href="sNeighDirect.html">sNeighDirect</a></code><br />Function to calculate direct neighbors for each hexagon/rectangle in a grid</li>
+            
+      <li>
+        <code><a href="sNeighAny.html">sNeighAny</a></code><br />Function to calculate any neighbors for each hexagon/rectangle in a grid</li>
+            
+      <li>
+        <code><a href="sHexDist.html">sHexDist</a></code><br />Function to calculate distances between hexagons/rectangles in a 2D grid</li>
+            
+      <li>
+        <code><a href="sDistance.html">sDistance</a></code><br />Function to compute the pairwise distance for a given data matrix</li>
+            
+      <li>
+        <code><a href="sDmat.html">sDmat</a></code><br />Function to calculate distance matrix in high-dimensional input space but according to neighborhood relationships in 2D output space</li>
+            
+      <li>
+        <code><a href="sDmatMinima.html">sDmatMinima</a></code><br />Function to identify local minima (in 2D output space) of distance matrix (in high-dimensional input space)</li>
+        
+      <li class = "icon">
+        <a href="sDmatCluster.html"><img src="icons/sPipeline.png" width = "40" height = "40" /></a><code><a href="sDmatCluster.html">sDmatCluster</a></code><br /> 
+        Function to partition a grid map into clusters</li>
+            
+      <li class = "icon">
+        <a href="sCompReorder.html"><img src="icons/sPipeline.png" width = "40" height = "40" /></a><code><a href="sCompReorder.html">sCompReorder</a></code><br /> 
+        Function to reorder component planes</li>
+            
+      <li class = "icon">
+        <a href="sWriteData.html"><img src="icons/sPipeline.png" width = "40" height = "40" /></a><code><a href="sWriteData.html">sWriteData</a></code><br /> 
+        Function to write out the best-matching hexagons and/or cluster bases in terms of data</li>
+            
+      <li class = "icon">
+        <a href="sMapOverlay.html"><img src="icons/sPipeline.png" width = "40" height = "40" /></a><code><a href="sMapOverlay.html">sMapOverlay</a></code><br /> 
+        Function to overlay additional data onto the trained map for viewing the distribution of that additional data</li>
+        
+    </ul>
+    <h3>Visualisation functions</h3>
+    <p>These functions are used for visualisation</p>
+
+    
+    <ul class="index">
+    
+      <li class = "icon">
+        <a href="visHexPattern.html"><img src="icons/visHexPattern.png" width = "40" height = "40" /></a><code><a href="visHexPattern.html">visHexPattern</a></code><br /> 
+        Function to visualise codebook matrix or input patterns within a supra-hexagonal grid</li>
+                
+      <li>
+        <code><a href="visHexGrid.html">visHexGrid</a></code><br />Function to visualise a supra-hexagonal grid</li>
+            
+      <li>
+        <code><a href="visHexMapping.html">visHexMapping</a></code><br />Function to visualise various mapping items within a supra-hexagonal grid</li>
+            
+      <li>
+        <code><a href="visHexComp.html">visHexComp</a></code><br />Function to visualise a component plane of a supra-hexagonal grid</li>
+            
+      <li>
+        <code><a href="visColormap.html">visColormap</a></code><br />Function to define a colormap</li>
+            
+      <li>
+        <code><a href="visColoralpha.html">visColoralpha</a></code><br />Function to add transparent (alpha) into colors</li>
+            
+      <li>
+        <code><a href="visColorbar.html">visColorbar</a></code><br />Function to define a colorbar</li>
+            
+      <li>
+        <code><a href="visVp.html">visVp</a></code><br />Function to create viewports for multiple supra-hexagonal grids</li>
+        
+      <li class = "icon">
+        <a href="visHexMulComp.html"><img src="icons/visHexPattern.png" width = "40" height = "40" /></a><code><a href="visHexMulComp.html">visHexMulComp</a></code><br /> 
+        Function to visualise multiple component planes of a supra-hexagonal grid</li>
+            
+      <li class = "icon">
+        <a href="visCompReorder.html"><img src="icons/visHexPattern.png" width = "40" height = "40" /></a><code><a href="visCompReorder.html">visCompReorder</a></code><br /> 
+        Function to visualise multiple component planes reorded within a sheet-shape rectangle grid</li>
+            
+      <li class = "icon">
+        <a href="visDmatCluster.html"><img src="icons/visHexPattern.png" width = "40" height = "40" /></a><code><a href="visDmatCluster.html">visDmatCluster</a></code><br /> 
+        Function to visualise clusters/bases partitioned from a supra-hexagonal grid</li>
+                
+      <li>
+        <code><a href="visKernels.html">visKernels</a></code><br />Function to visualize neighborhood kernels</li>
+    
+    </ul>
+    <h3>Built-in datasets</h3>
+    
+    
+    <ul class="index">
+        
+      <li>
+        <code><a href="Fang.html">Fang</a></code>(Fang.sampleinfo, Fang.geneinfo)<br />Human embryo gene expression dataset from Fang et al. (2010)</li>
+            
+      <li>
+        <code><a href="Golub.html">Golub</a></code><br />Leukemia gene expression dataset from Golub et al. (1999)</li>
+            
+      <li>
+        <code><a href="Xiang.html">Xiang</a></code><br />Arabidopsis embryo gene expression dataset from Xiang et al. (2011)</li>
+    
+    </ul>
+  </div>
+  
+  
+  <div class="span4">
+    
+    <!--
+    
+    <h2>Vignette</h2>
+    <ul>
+      <li><a href="vignettes/">supraHex User Manual</a></li>
+    </ul>
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/supraHex">http://supfam.org/supraHex</a></li>
+    </ul>
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    -->
+    
+  </div>
+  
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

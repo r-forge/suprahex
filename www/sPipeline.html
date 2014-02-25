@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>sPipeline @ supraHex 1.1.10</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="
+  Hai Fang &lt;a href='mailto:hfang@cs.bris.ac.uk'&gt;hfang@cs.bris.ac.uk&lt;/a&gt;
+">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.1.10</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to setup the pipeline for completing ab initio training given the input data</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>sPipeline</code> is supposed to finish ab inito training
+  for the input data. It returns an object of class "sMap".</p>
+  
+    <h3>Usage</h3>
+    <pre>sPipeline(data = NULL, xdim = NULL, ydim = NULL, nHex = NULL, lattice = c("hexa", 
+  "rect"), shape = c("suprahex", "sheet"), init = c("linear", "uniform", "sample"), 
+      algorithm = c("batch", "sequential"), alphaType = c("invert", "linear", "power"), 
+      neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma"), finetuneSustain = F, 
+      verbose = T)</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>data</dt>
+      <dd>a data frame or matrix of input data</dd>
+      <dt>xdim</dt>
+      <dd>an integer specifying x-dimension of the
+  grid</dd>
+      <dt>ydim</dt>
+      <dd>an integer specifying y-dimension of the
+  grid</dd>
+      <dt>nHex</dt>
+      <dd>the number of hexagons/rectangles in the
+  grid</dd>
+      <dt>lattice</dt>
+      <dd>the grid lattice, either "hexa" for a
+  hexagon or "rect" for a rectangle</dd>
+      <dt>shape</dt>
+      <dd>the grid shape, either "suprahex" for a
+  supra-hexagonal grid or "sheet" for a hexagonal/rectangle
+  sheet</dd>
+      <dt>init</dt>
+      <dd>an initialisation method. It can be one of
+  "uniform", "sample" and "linear" initialisation methods</dd>
+      <dt>algorithm</dt>
+      <dd>the training algorithm. It can be one of
+  "sequential" and "batch" algorithm</dd>
+      <dt>alphaType</dt>
+      <dd>the alpha type. It can be one of
+  "invert", "linear" and "power" alpha types</dd>
+      <dt>neighKernel</dt>
+      <dd>the training neighborhood kernel. It
+  can be one of "gaussian", "bubble", "cutgaussian", "ep"
+  and "gamma" kernels</dd>
+      <dt>finetuneSustain</dt>
+      <dd>logical to indicate whether
+  sustain the "finetune" training. If true, it will repeat
+  the "finetune" stage until the mean quantization error
+  does get worse. By default, it sets to true</dd>
+      <dt>verbose</dt>
+      <dd>logical to indicate whether the messages
+  will be displayed in the screen. By default, it sets to
+  false for no display</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <div class="Value">
+      <h3>Value</h3>
+      
+      <p>an object of class "sMap", a list with following
+  components: <ul>
+<li><code>nHex</code>: the total number
+  of hexagons/rectanges in the grid </li>
+<li><code>xdim</code>:
+  x-dimension of the grid </li>
+<li><code>ydim</code>: y-dimension
+  of the grid </li>
+<li><code>lattice</code>: the grid lattice
+  </li>
+<li><code>shape</code>: the grid shape </li>
+<li><code>coord</code>: a
+  matrix of nHex x 2, with rows corresponding to the
+  coordinates of all hexagons/rectangles in the 2D map
+  grid </li>
+<li><code>init</code>: an initialisation method
+  </li>
+<li><code>neighKernel</code>: the training neighborhood
+  kernel </li>
+<li><code>codebook</code>: a codebook matrix of nHex
+  x ncol(data), with rows corresponding to prototype
+  vectors in input high-dimensional space
+  </li>
+<li><code>hits</code>: a vector of nHex, each element meaning
+  that a hexagon/rectangle contains the number of input
+  data vectors being hit wherein </li>
+<li><code>mqe</code>: the
+  mean quantization error for the "best" BMH
+  </li>
+<li><code>call</code>: the call that produced this result </li>
+</ul></p>
+      <p></p>
+    </div>
+    <div class="Note">
+      <h3>Note</h3>
+      
+      <p>The pipeline sequentially consists of: <ul>
+<li>i)
+  <code><a href='sTopology.html'>sTopology</a></code> used to define the topology of a
+  grid (with "suprahex" shape by default ) according to the
+  input data; </li>
+<li>ii) <code><a href='sInitial.html'>sInitial</a></code> used to
+  initialise the codebook matrix given the pre-defined
+  topology and the input data (by default using "uniform"
+  initialisation method); </li>
+<li>iii)
+  <code><a href='sTrainology.html'>sTrainology</a></code> and <code><a href='sTrainSeq.html'>sTrainSeq</a></code>
+  used to get the grid map trained at both "rough" and
+  "finetune" stages. If instructed, sustain the "finetune"
+  training until the mean quantization error does get
+  worse; </li>
+<li>iv) <code><a href='sBMH.html'>sBMH</a></code> used to identify the
+  best-matching hexagons/rectangles (BMH) for the input
+  data, and these response data are appended to the
+  resulting object of "sMap" class. </li>
+</ul></p>
+      <p></p>
+    </div>
+    <div class="References">
+      <h3>References</h3>
+      
+      <p>Hai Fang and Julian Gough. (2014) supraHex: an
+  R/Bioconductor package for tabular omics data analysis
+  using a supra-hexagonal map. <em>Biochemical and
+  Biophysical Research Communications</em>, 443(1), 285-289.
+  DOI: <a href = 'http://dx.doi.org/10.1016/j.bbrc.2013.11.103'>http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>,
+  PMID:
+  <a href = 'http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102'>http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102</a></p>
+    </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
+data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
+colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
+
+# 2) get trained using by default setup but with different neighborhood kernels
+# 2a) with "gaussian" kernel
+sMap <- sPipeline(data=data, neighKernel="gaussian")
+</div>
+<strong class='message'>Start at 2014-02-25 12:24:59</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 100x10
+   xy-dimension of map grid: xdim=9, ydim=9
+   grid lattice: hexa
+   grid shape: suprahex
+   dimension of grid coord: 61x2
+   initialisation method: linear
+   dimension of codebook matrix: 61x10
+   mean quantization error: 4.92761300512866
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: batch
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 7 at rough stage; 25 at finetune stage
+   radius (at rough stage): from 3 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2014-02-25 12:24:59</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'># 2b) with "bubble" kernel
+# sMap <- sPipeline(data=data, neighKernel="bubble")
+# 2c) with "cutgaussian" kernel
+# sMap <- sPipeline(data=data, neighKernel="cutgaussian")
+# 2d) with "ep" kernel
+# sMap <- sPipeline(data=data, neighKernel="ep")
+# 2e) with "gamma" kernel
+# sMap <- sPipeline(data=data, neighKernel="gamma")
+
+# 3) visualise multiple component planes of a supra-hexagonal grid
+visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=0.8))
+</div>
+<a href="javascript:newWin('sPipeline-18.png', 'sPipeline-18.png', '1200', '960')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='sPipeline-18.png', width="400" /></a></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>sPipeline</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='sTopology.html'>sTopology</a></code>, <code><a href='sInitial.html'>sInitial</a></code>,
+  <code><a href='sTrainology.html'>sTrainology</a></code>, <code><a href='sTrainSeq.html'>sTrainSeq</a></code>,
+  <code><a href='sTrainBatch.html'>sTrainBatch</a></code>, <code><a href='sBMH.html'>sBMH</a></code>,
+  <code><a href='visHexMulComp.html'>visHexMulComp</a></code>
+
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/supraHex">http://supfam.org/supraHex</a></li>
+    </ul>
+    
+    <h3>Author</h3>
+    
+  Hai Fang <a href='mailto:hfang@cs.bris.ac.uk'>hfang@cs.bris.ac.uk</a>
+
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

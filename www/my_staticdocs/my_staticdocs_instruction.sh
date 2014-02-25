@@ -24,4 +24,3 @@ build_package(package="~/Sites/SVN/supraHex", base_path="~/Sites/SUPERFAMILY/sup
 build_package(package="~/Sites/SVN/supraHex", base_path="~/Sites/SUPERFAMILY/supraHex", examples=F, flag_demos=T)
 build_package(package="~/Sites/SVN/supraHex", base_path="~/Sites/SUPERFAMILY/supraHex", examples=T, flag_demos=F)
 build_package(package="~/Sites/SVN/supraHex", base_path="~/Sites/SUPERFAMILY/supraHex", examples=F, flag_demos=F)
-

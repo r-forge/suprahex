@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Demo for arabidopsis embryo dataset from Xiang et al @ supraHex 1.1.10</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.1.10</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Demo for arabidopsis embryo dataset from Xiang et al</h2>
+
+Notes:
+<li> All results are based on supraHex (version 1.1.10). </li>
+<li> Images displayed below may be distorted, and they should be normal in your screen. </li>
+<li> Functions contained in supraHex 1.1.10 are hyperlinked in-place and also listed on the right side. </li>
+
+<div class="row">
+    <div class="span8">
+      <pre>
+      <div class='input'># This is a demo for arabidopsis embryo dataset from Xiang et al
+# 
+# This arabidopsis embryo expression dataset (available from <a href="http://www.ncbi.nlm.nih.gov/pubmed/21402797" target="21402797">http://www.ncbi.nlm.nih.gov/pubmed/21402797</a>) contains gene expression levels (3,625 genes and 7 embryo stages). Only genes with at least 2-fold changes (in any stage) as compared to the average over embryo stages are considered. These embryos are at: early embryonic stage (i.e. Zygote and Quadrant), mid-embryonic stage (i.e. Globular, Heart and Torpedo), and late stages from Bent to Mature.
+###############################################################################
+
+# (I) Load the package and import data
+library(supraHex)
+data(Xiang)
+data <- Xiang # a matrix of 3,625 genes expressed in 7 samples
+
+# (II) Train the supra-hexagonal map with input data only
+sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
+</div>
+<strong class='message'>Start at 2014-02-25 12:24:17</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 3625x7
+   xy-dimension of map grid: xdim=21, ydim=21
+   grid lattice: hexa
+   grid shape: suprahex
+   dimension of grid coord: 331x2
+   initialisation method: linear
+   dimension of codebook matrix: 331x7
+   mean quantization error: 0.608378171168446
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: batch
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 2 at rough stage; 4 at finetune stage
+   radius (at rough stage): from 6 to 1.5
+   radius (at finetune stage): from 1.5 to 1
+</strong>
+<strong class='message'>End at 2014-02-25 12:24:18</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong>
+<div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap,title.rotate=10,colormap="darkblue-white-darkorange")
+</div>
+<a href="javascript:newWin('Xiang-18.png', 'Xiang-18.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-18.png', width="400" /></a>
+<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="Output_Xiang.txt") 
+## As you have seen, a figure displays the multiple components of trained map in a sample-specific manner. You also see that a .txt file has been saved in your disk. The output file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters). You can also force the input data to be output; type ?<a href='sWriteData.html' target=sWriteData>sWriteData</a> for details.
+
+# (III) Visualise the map, including built-in indexes, data hits/distributions, distance between map nodes, and codebook matrix
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="indexes")
+</div>
+<a href="javascript:newWin('Xiang-20.png', 'Xiang-20.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-20.png', width="400" /></a>
+<div class='input'>## As you have seen, the smaller hexagons in the supra-hexagonal map are indexed as follows: start from the center, and then expand circularly outwards, and for each circle increase in an anti-clock order.
+
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="hits")
+</div>
+<a href="javascript:newWin('Xiang-22.png', 'Xiang-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-22.png', width="400" /></a>
+<div class='input'>## As you have seen, the number represents how many input data vectors are hitting each hexagon, the size of which is proportional to the number of hits.
+
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="dist")
+</div>
+<a href="javascript:newWin('Xiang-24.png', 'Xiang-24.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-24.png', width="400" /></a>
+<div class='input'>## As you have seen, map distance tells how far each hexagon is away from its neighbors, and the size of each hexagon is proportional to this distance.
+
+<a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="lines")
+</div>
+<a href="javascript:newWin('Xiang-26.png', 'Xiang-26.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-26.png', width="400" /></a>
+<div class='input'>## As you have seen, line plot displays the patterns associated with the codebook matrix. If multple colors are given, the points are also plotted. When the pattern involves both positive and negative values, zero horizental line is also shown.
+
+<a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="bars",colormap="rainbow",legend.cex=0.5)
+</div>
+<a href="javascript:newWin('Xiang-28.png', 'Xiang-28.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-28.png', width="400" /></a>
+<div class='input'>## As you have seen, bar plot displays the patterns associated with the codebook matrix. When the pattern involves both positive and negative values, the zero horizental line is in the middle of the hexagon; otherwise at the top of the hexagon for all negative values, and at the bottom for all positive values.
+
+# (IV) Perform partitioning operation on the map to obtain continuous clusters (i.e. gene meta-clusters) as they are different from gene clusters in an individual map node
+sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
+<a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase)
+</div>
+<a href="javascript:newWin('Xiang-30.png', 'Xiang-30.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-30.png', width="400" /></a>
+<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="Output_base_Xiang.txt")
+## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output .txt file has been saved in your disk. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). You can also force the input data to be output; type ?sWriteData for details.
+
+# (V) Reorder the sample-specific components of the map to delineate relationships between samples
+sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap, metric="pearson")
+</div>
+<strong class='message'>Start at 2014-02-25 12:24:46</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 7x7
+   xy-dimension of map grid: xdim=5, ydim=4
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 20x2
+   initialisation method: linear
+   dimension of codebook matrix: 20x7
+   mean quantization error: 0.143266022604116
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 29 at rough stage; 115 at finetune stage
+   radius (at rough stage): from 1 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2014-02-25 12:24:46</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap,sReorder,title.rotate=10,colormap="darkblue-white-darkorange")
+</div>
+<a href="javascript:newWin('Xiang-48.png', 'Xiang-48.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-48.png', width="400" /></a>
+<div class='input'>## As you have seen, reordered components of trained map is displayed. Each component illustrates a sample-specific map and is placed within a two-dimensional rectangular lattice. Across components/samples, genes with similar expression patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/samples, that is, samples with the similar expression profiles are placed closer to each other.
+</div>
+      </pre>
+    </div>
+
+  <div class="span4">
+    
+    <h2>Functions used in this demo</h2>
+    <ul>
+      <li><a href="sPipeline.html">sPipeline</a></li>
+      <li><a href="visHexMulComp.html">visHexMulComp</a></li>
+      <li><a href="sWriteData.html">sWriteData</a></li>
+      <li><a href="visHexMapping.html">visHexMapping</a></li>
+      <li><a href="visHexPattern.html">visHexPattern</a></li>
+      <li><a href="sDmatCluster.html">sDmatCluster</a></li>
+      <li><a href="visDmatCluster.html">visDmatCluster</a></li>
+      <li><a href="sCompReorder.html">sCompReorder</a></li>
+      <li><a href="visCompReorder.html">visCompReorder</a></li>
+    </ul>
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/supraHex">http://supfam.org/supraHex</a></li>
+    </ul>
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    -->
+    
+  </div>
+
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

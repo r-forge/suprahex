@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Install @ supraHex 1.1.10</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.1.10</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <div class="row">
+  <div class="span8">
+  
+    <h1>Installation</h1><p>
+  
+    <h2>1. R requirement</h2>
+
+<p>R (<a href="http://www.r-project.org">http://www.r-project.org</a>) is a language and environment for statistical computing and graphics. We assume R (version 3.0.2) has been installed in your local machine. The current version 3.0.2 can be installed following quick instructions below for different platforms (Windows, Mac, and Linux).</p>
+
+<ul>
+<li><p>Quick link for <code>Windows</code> and <code>Mac</code>: <a href="http://www.stats.bris.ac.uk/R/bin/windows/base/R-3.0.2-win.exe">Download R for Windows</a> and <a href="http://www.stats.bris.ac.uk/R/bin/macosx/R-latest.pkg">Download R for Mac</a>.</p></li>
+<li><p>Below are shell command lines for R installation in Terminal (for both <code>Linux</code> and <code>Mac</code>):</p></li>
+</ul>
+
+<p>Assume you have a <code>ROOT (sudo)</code> privilege:</p>
+
+<pre><code>sudo su
+wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.0.2.tar.gz
+tar xvfz R-3.0.2.tar.gz
+cd R-3.0.2
+./configure
+make
+make check
+make install
+R # start R
+</code></pre>
+
+<p>Assume you do not have a ROOT privilege and want R installation under your home directory (below <code>/home/hfang</code> should be replaced with yours):</p>
+
+<pre><code>wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.0.2.tar.gz
+tar xvfz R-3.0.2.tar.gz
+cd R-3.0.2
+./configure --prefix=/home/hfang/R-3.0.2
+make
+make check
+make install
+/home/hfang/R-3.0.2/bin/R # start R
+</code></pre>
+
+<h2>2. Install the package from Bioconductor and R-Forge</h2>
+
+<p>Notes: below are R command lines (NOT shell command lines).</p>
+
+<p>To install <a href="http://bioconductor.org/packages/release/bioc/html/supraHex.html">stable release version</a>, run:</p>
+
+<pre><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
+biocLite(&quot;supraHex&quot;)
+</code></pre>
+
+<p>To install <a href="http://bioconductor.org/packages/devel/bioc/html/supraHex.html">latest development version</a> (<code>highly recommended</code> for benefits of latest improvements), run:</p>
+
+<pre><code>install.packages(&quot;hexbin&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
+install.packages(&quot;supraHex&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
+</code></pre>
+
+
+  </div>
+
+  <div class="span4">
+    
+    <!--
+    
+    <h2>Vignette</h2>
+    <ul>
+      <li><a href="vignettes/">supraHex User Manual</a></li>
+    </ul>
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/supraHex">http://supfam.org/supraHex</a></li>
+    </ul>
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>
