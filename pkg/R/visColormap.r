@@ -38,8 +38,9 @@ visColormap <- function(colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","
     if(length(grep("-", colormap)) >= 1){
         palette.name <- colorRampPalette(unlist(strsplit(colormap,"-")))
     }else{
-        colormap <- match.arg(colormap, several.ok=T)
-    
+        #colormap <- match.arg(colormap, several.ok=T)
+        colormap <- match.arg(colormap)
+        
         jet.colors <-colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
         bwr.colors<-colorRampPalette(c("blue", "white", "red"))
         gbr.colors<-colorRampPalette(c("green", "black", "red"))
