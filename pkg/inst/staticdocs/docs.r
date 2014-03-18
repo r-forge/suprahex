@@ -41,7 +41,9 @@ list(
                 "visHexMulComp",
                 "visCompReorder", 
                 "visDmatCluster",
-                "visKernels"
+                "visKernels",
+                "visHeatmap",
+                "visHeatmapAdv"
             )
         ),
         sd_section("Built-in datasets",
