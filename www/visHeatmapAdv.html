@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>visHeatmapAdv @ supraHex 1.1.11</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.1.11</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to visualise input data matrix using advanced heatmap</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>visHeatmapAdv</code> is supposed to visualise input data
+  matrix using advanced heatmap. It allows for adding
+  multiple sidecolors in both columns and rows. Besides,
+  the sidecolor can be automatically added via cutting
+  histogram into groups.</p>
+  
+    <h3>Usage</h3>
+    <pre>visHeatmapAdv(data, scale = c("none", "row", "column"), Rowv = T, Colv = T, dendrogram = c("both", 
+  "row", "column", "none"), dist.metric = c("euclidean", "pearson", "spearman", 
+      "kendall", "manhattan", "cos", "mi"), linkage.method = c("complete", "ward", 
+      "single", "average", "mcquitty", "median", "centroid"), colormap = c("bwr", "jet", 
+      "gbr", "wyr", "br", "yr", "rainbow", "wb"), ncolors = 64, zlim = NULL, RowSideColors = NULL, 
+      row.cutree = NULL, row.colormap = c("jet"), ColSideColors = NULL, column.cutree = NULL, 
+      column.colormap = c("jet"), ...)</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>data</dt>
+      <dd>an input gene-sample data matrix used for
+  heatmap</dd>
+      <dt>scale</dt>
+      <dd>a character indicating when the input matrix
+  should be centered and scaled. It can be one of "none"
+  (no scaling), "row" (being scaled in the row direction),
+  "column" (being scaled in the column direction)</dd>
+      <dt>Rowv</dt>
+      <dd>determines if and how the row dendrogram
+  should be reordered. By default, it is TRUE, which
+  implies dendrogram is computed and reordered based on row
+  means. If NULL or FALSE, then no dendrogram is computed
+  and no reordering is done. If a dendrogram, then it is
+  used "as-is", ie without any reordering. If a vector of
+  integers, then dendrogram is computed and reordered based
+  on the order of the vector</dd>
+      <dt>Colv</dt>
+      <dd>determines if and how the column dendrogram
+  should be reordered. Has the options as the Rowv argument
+  above and additionally when x is a square matrix, Colv =
+  "Rowv" means that columns should be treated identically
+  to the rows</dd>
+      <dt>dendrogram</dt>
+      <dd>character string indicating whether to
+  draw 'none', 'row', 'column' or 'both' dendrograms.
+  Defaults to 'both'. However, if Rowv (or Colv) is FALSE
+  or NULL and dendrogram is 'both', then a warning is
+  issued and Rowv (or Colv) arguments are honoured</dd>
+      <dt>dist.metric</dt>
+      <dd>distance metric used to calculate the
+  distance metric between columns (or rows). It can be one
+  of "none" (i.e. no dendrogram between rows), "pearson",
+  "spearman", "kendall", "euclidean", "manhattan", "cos"
+  and "mi". See details at
+  <a href = 'http://suprahex.r-forge.r-project.org/sDistance.html'>http://suprahex.r-forge.r-project.org/sDistance.html</a></dd>
+      <dt>linkage.method</dt>
+      <dd>the agglomeration method used to
+  cluster/linkages columns (or rows). This should be one of
+  "ward", "single", "complete", "average", "mcquitty",
+  "median" or "centroid". See 'Note' below for details</dd>
+      <dt>colormap</dt>
+      <dd>short name for the colormap. It can be
+  one of "jet" (jet colormap), "bwr" (blue-white-red
+  colormap), "gbr" (green-black-red colormap), "wyr"
+  (white-yellow-red colormap), "br" (black-red colormap),
+  "yr" (yellow-red colormap), "wb" (white-black colormap),
+  and "rainbow" (rainbow colormap, that is,
+  red-yellow-green-cyan-blue-magenta). Alternatively, any
+  hyphen-separated HTML color names, e.g.
+  "blue-black-yellow", "royalblue-white-sandybrown",
+  "darkgreen-white-darkviolet". A list of standard color
+  names can be found in
+  <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
+      <dt>ncolors</dt>
+      <dd>the number of colors specified over the
+  colormap</dd>
+      <dt>zlim</dt>
+      <dd>the minimum and maximum z/patttern values for
+  which colors should be plotted, defaulting to the range
+  of the finite values of z. Each of the given colors will
+  be used to color an equispaced interval of this range.
+  The midpoints of the intervals cover the range, so that
+  values just outside the range will be plotted</dd>
+      <dt>RowSideColors</dt>
+      <dd>NULL or a matrix of "numRowsidebars"
+  X nrow(x), where "numRowsidebars" stands for the number
+  of sidebars annotating rows of x. This matrix contains
+  the color names for vertical sidebars. By default, it
+  sets to NULL. In this case, sidebars in rows can still be
+  enabled by cutting the row dendrogram into several
+  clusters (see the next two parameters)</dd>
+      <dt>row.cutree</dt>
+      <dd>an integer scalar specifying the
+  desired number of groups being cut from the row
+  dendrogram. Note, this optional is only enabled when the
+  ColSideColors is NULL</dd>
+      <dt>row.colormap</dt>
+      <dd>short name for the colormap to
+  color-code the row groups (i.e. sidebar colors used to
+  annotate the rows)</dd>
+      <dt>ColSideColors</dt>
+      <dd>NULL or a matrix of ncol(x) X
+  "numColsidebars", where "numColsidebars" stands for the
+  number of sidebars annotating the columns of x. This
+  matrix contains the color names for horizontal sidebars.
+  By default, it sets to NULL. In this case, sidebars in
+  columns can still be enabled by cutting the column
+  dendrogram into several clusters (see the next two
+  parameters)</dd>
+      <dt>column.cutree</dt>
+      <dd>an integer scalar specifying the
+  desired number of groups being cut from the column
+  dendrogram. Note, this optional is only enabled when the
+  column dengrogram is built</dd>
+      <dt>column.colormap</dt>
+      <dd>short name for the colormap to
+  color-code the column groups (i.e. sidebar colors used to
+  annotate the columns)</dd>
+      <dt>...</dt>
+      <dd>additional graphic parameters. For the
+  complete list of parameters, please refer to
+  <a href = 'http://hosho.ees.hokudai.ac.jp/~kubo/Rdoc/library/gplots/html/heatmap.2.html'>http://hosho.ees.hokudai.ac.jp/~kubo/Rdoc/library/gplots/html/heatmap.2.html</a>.</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <div class="Value">
+      <h3>Value</h3>
+      
+      <p>invisible</p>
+    </div>
+    <div class="Note">
+      <h3>Note</h3>
+      
+      <p>The clustering/linkage methods are provided: <ul>
+<li>"ward": Ward's minimum variance method aims at
+  finding compact, spherical clusters </li>
+<li>"single": The
+  single linkage method (which is closely related to the
+  minimal spanning tree) adopts a 'friends of friends'
+  clustering strategy </li>
+<li>"complete": The complete
+  linkage method finds similar clusters
+  </li>
+<li>"average","mcquitty","median","centroid": These
+  methods can be regarded as aiming for clusters with
+  characteristics somewhere between the single and complete
+  link methods. Two methods "median" and "centroid" are not
+  leading to a monotone distance measure, or equivalently
+  the resulting dendrograms can have so called inversions
+  (which are hard to interpret) </li>
+</ul></p>
+      <p></p>
+    </div>
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate data with three different distributions, each with an iid normal random matrix of 100 x 3
+data <- cbind(matrix(rnorm(100*3,mean=0,sd=1), nrow=100, ncol=3),
+matrix(rnorm(100*3,mean=0.5,sd=1), nrow=100, ncol=3),
+matrix(rnorm(100*3,mean=-0.5,sd=1), nrow=100, ncol=3))
+colnames(data) <- c("S1_R1","S1_R2","S1_R3","S2_R1","S2_R2","S2_R3","S3_R1","S3_R2","S3_R3")
+
+# 2) heatmap after clustering both rows and columns
+# 2a) shown with row and column dendrograms
+visHeatmapAdv(data, dendrogram="both", colormap="gbr", zlim=c(-2,2), add.expr=abline(v=(1:(ncol(data)+1))-0.5,col="white"), KeyValueName="log2(Ratio)", lmat=rbind(c(4,3), c(2,1)), lhei=c(1,5), lwid=c(1,3))
+</div>
+<a href="javascript:newWin('visHeatmapAdv-2.png', 'visHeatmapAdv-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHeatmapAdv-2.png', width="400" /></a>
+<div class='input'># 2b) shown with row dendrogram only
+visHeatmapAdv(data, dendrogram="row", colormap="gbr", zlim=c(-2,2))
+</div>
+<a href="javascript:newWin('visHeatmapAdv-4.png', 'visHeatmapAdv-4.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHeatmapAdv-4.png', width="400" /></a>
+<div class='input'># 2c) shown with column dendrogram only
+visHeatmapAdv(data, dendrogram="column", colormap="gbr", zlim=c(-2,2))
+</div>
+<a href="javascript:newWin('visHeatmapAdv-6.png', 'visHeatmapAdv-6.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHeatmapAdv-6.png', width="400" /></a>
+<div class='input'>
+# 3) heatmap after only clustering rows (with 2 color-coded groups)
+visHeatmapAdv(data, Colv=FALSE, colormap="gbr", zlim=c(-2,2), row.cutree=2, row.colormap="jet", labRow=NA)
+</div>
+<a href="javascript:newWin('visHeatmapAdv-8.png', 'visHeatmapAdv-8.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHeatmapAdv-8.png', width="400" /></a>
+<div class='input'>
+# 4) prepare colors for the column sidebar
+# color for stages (S1-S3)
+stages <- sub("_.*","",colnames(data))
+lvs <- unique(stages)
+lvs_color <- visColormap(colormap="rainbow")(length(lvs))
+col_stages <- sapply(stages, function(x) lvs_color[x==lvs])
+# color for replicates (R1-R3)
+replicates <- sub(".*_","",colnames(data))
+lvs <- unique(replicates)
+lvs_color <- visColormap(colormap="rainbow")(length(lvs))
+col_replicates <- sapply(replicates, function(x) lvs_color[x==lvs])
+# combine both color vectors
+ColSideColors <- cbind(col_stages,col_replicates)
+colnames(ColSideColors) <- c("Stages","Replicates")
+
+# 5) heatmap without clustering on rows and columns but with the two sidebars in columns
+visHeatmapAdv(data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-2,2), density.info="density", tracecol="yellow", ColSideColors=ColSideColors)
+</div>
+<a href="javascript:newWin('visHeatmapAdv-10.png', 'visHeatmapAdv-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHeatmapAdv-10.png', width="400" /></a></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>visHeatmapAdv</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+      
+    <h2>See also</h2>
+    
+  <code><a href='visHeatmapAdv.html'>visHeatmapAdv</a></code>
+
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/supraHex">http://supfam.org/supraHex</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>
