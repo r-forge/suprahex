@@ -93,8 +93,6 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
     rownames(data) <- paste(rownames(data), 1:nrow(data), sep=".")
     
     ## build the tree
-    algorithm <- "nj"
-    metric <- "euclidean"
     d <- as.dist(sDistance(data, metric=metric))
     tr <- do.call(algorithm, list(d))
     
