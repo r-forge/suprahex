@@ -115,7 +115,7 @@
 
   \item{...}{additional graphic parameters. For the
   complete list of parameters, please refer to
-  \url{http://hosho.ees.hokudai.ac.jp/~kubo/Rdoc/library/gplots/html/heatmap.2.html}.}
+  \url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}.}
 }
 \value{
   invisible

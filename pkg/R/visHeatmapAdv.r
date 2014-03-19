@@ -18,7 +18,7 @@
 #' @param ColSideColors NULL or a matrix of ncol(x) X "numColsidebars", where "numColsidebars" stands for the number of sidebars annotating the columns of x. This matrix contains the color names for horizontal sidebars. By default, it sets to NULL. In this case, sidebars in columns can still be enabled by cutting the column dendrogram into several clusters (see the next two parameters)
 #' @param column.cutree an integer scalar specifying the desired number of groups being cut from the column dendrogram. Note, this optional is only enabled when the column dengrogram is built
 #' @param column.colormap short name for the colormap to color-code the column groups (i.e. sidebar colors used to annotate the columns)
-#' @param ... additional graphic parameters. For the complete list of parameters, please refer to \url{http://hosho.ees.hokudai.ac.jp/~kubo/Rdoc/library/gplots/html/heatmap.2.html}.
+#' @param ... additional graphic parameters. For the complete list of parameters, please refer to \url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}.
 #' @return 
 #' invisible
 #' @note The clustering/linkage methods are provided:

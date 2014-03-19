@@ -41,4 +41,5 @@ To install [stable release version](http://bioconductor.org/packages/release/bio
 To install [latest development version](http://bioconductor.org/packages/devel/bioc/html/supraHex.html) (`highly recommended` for benefits of latest improvements), run:
 
     install.packages("hexbin",repos="http://www.stats.bris.ac.uk/R")
+    install.packages("ape",repos="http://www.stats.bris.ac.uk/R")
     install.packages("supraHex",repos="http://R-Forge.R-project.org", type="source")

@@ -8,8 +8,9 @@
 \arguments{
   \item{data}{a data frame or matrix of input data}
 
-  \item{metric}{distance metric used to distance metric.
-  See 'Note' below for options available}
+  \item{metric}{distance metric used to calculate a
+  symmetric distance matrix. See 'Note' below for options
+  available}
 }
 \value{
   \itemize{ \item{\code{dist}: a symmetric distance matrix

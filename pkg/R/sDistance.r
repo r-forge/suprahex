@@ -3,7 +3,7 @@
 #' \code{sDistance} is supposed to compute and return the distance matrix between the rows of a data matrix using a specified distance metric
 #'
 #' @param data a data frame or matrix of input data
-#' @param metric distance metric used to distance metric. See 'Note' below for options available
+#' @param metric distance metric used to calculate a symmetric distance matrix. See 'Note' below for options available
 #' @return 
 #' \itemize{
 #'  \item{\code{dist}: a symmetric distance matrix of nRow x nRow, where nRow is the number of rows of input data matrix}
@@ -130,5 +130,11 @@ sDistance <- function(data, metric=c("pearson","spearman","kendall","euclidean",
     }
     
     dist<- as.matrix(res)
+    
+    if(!is.null(rownames(data))){
+        rownames(dist) <- rownames(data)
+        colnames(dist) <- rownames(data)
+    }
+    
     invisible(dist)
 }
