@@ -42,6 +42,6 @@ palette.name <- visColormap(colormap="bwr")
 palette.name(10)
 }
 \seealso{
-  \code{\link{visHexComp}}
+  \code{\link{visColoralpha}}
 }
 

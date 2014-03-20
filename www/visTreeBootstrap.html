@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visTreeBootstrap @ supraHex 1.1.13</title>
+<title>visTreeBootstrap @ supraHex 1.1.14</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.1.13</a>
+      <a class="brand" href="index.html">supraHex 1.1.14</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -102,7 +102,7 @@
         
       </header>
       
-      <h2>Function to build the tree, perform bootstrap analysis and visualise the bootstrapped tree</h2>
+      <h2>Function to build and visualise the bootstrapped tree</h2>
 
 <div class="row">
   <div class="span8">
@@ -117,10 +117,10 @@
   node.</p>
   
     <h3>Usage</h3>
-    <pre>visTreeBootstrap(data, algorithm = c("nj", "fastme.ols", "fastme.bal"), metric = c("pearson", 
-  "spearman", "kendall", "euclidean", "manhattan", "cos", "mi"), num.bootstrap = 100, 
+    <pre>visTreeBootstrap(data, algorithm = c("nj", "fastme.ols", "fastme.bal"), metric = c("euclidean", 
+  "pearson", "spearman", "cos", "manhattan", "kendall", "mi"), num.bootstrap = 100, 
       consensus = FALSE, consensus.majority = 0.5, reroot = "min.bootstrap", plot.phylo.arg = NULL, 
-      nodelabels.arg = NULL, ...)</pre>
+      nodelabels.arg = NULL, visTree = T, verbose = T, ...)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -174,6 +174,15 @@
   the function "ape::nodelabels"
   <a href = 'http://www.inside-r.org/packages/cran/ape/docs/nodelabels'>http://www.inside-r.org/packages/cran/ape/docs/nodelabels</a>.
   See 'Note' below for details on the parameters</dd>
+      <dt>visTree</dt>
+      <dd>logical to indicate whether the bootstrap
+  tree will be visualised. By default, it sets to true for
+  display. Note, the consensus tree can not be enabled for
+  visualisation</dd>
+      <dt>verbose</dt>
+      <dd>logical to indicate whether the messages
+  will be displayed in the screen. By default, it sets to
+  true for display</dd>
       <dt>...</dt>
       <dd>additional "ape::plot.phylo" parameters</dd>
     </dl>
@@ -183,7 +192,10 @@
     <div class="Value">
       <h3>Value</h3>
       
-      <p>an object of class "phylo", a list with following
+      <p>an object of class "phylo". It can return a bootstrapped
+  tree or a consensus tree (if enabled): When a
+  bootstrapped tree is returned (also visualised by
+  default), the "phylo" object has a list with following
   components: <ul>
 <li><code>Nnode</code>: the number of
   internal nodes </li>
@@ -201,10 +213,24 @@
 <li><code>edge.length</code>: a vector indicating the
   edge length in the 'edge' </li>
 <li>Note: the tree structure
-  is indexed with 1:ntips for tip nodes, and
-  (<code class = 'eq'>ntips</code>+1):(<code class = 'eq'>ntips</code>+<code class = 'eq'>Nnode</code>) for internal
-  nodes, where <code class = 'eq'>ntips</code> is the number of tip nodes and
-  <code class = 'eq'>Nnode</code> for the number of internal nodes </li>
+  is indexed with 1:Ntip for tip nodes, and
+  (<code class = 'eq'>Ntip</code>+1):(<code class = 'eq'>Ntip</code>+<code class = 'eq'>Nnode</code>) for internal
+  nodes, where <code class = 'eq'>Ntip</code> is the number of tip nodes and
+  <code class = 'eq'>Nnode</code> for the number of internal nodes. Moreover,
+  <code class = 'eq'>nrow(data)=Ntip=Nnode-2</code>. </li>
+</ul>
+ When a consensus tree
+  is returned (no visualisation), the "phylo" object has a
+  list with following components: <ul>
+<li><code>Nnode</code>: the number of internal nodes
+  </li>
+<li><code>tip.label</code>: the lables for tip nodes. Tip
+  labels come from the row names of the input matrix, but
+  are not necessarily the same order as they appear in the
+  input matrix </li>
+<li><code>edge</code>: a two-column matrix
+  describing the links between tree nodes (including
+  internal and tip nodes) </li>
 </ul></p>
       <p></p>
     </div>
@@ -279,6 +305,17 @@
  A list of main
   parameters used in the function "ape::nodelabels":
   <ul>
+<li>"text": a vector of mode character giving
+  the text to be printed. By default, the labels for
+  internal nodes (see "node.label"), that is, the bootstrap
+  values associated with internal nodes </li>
+<li>"node": a
+  vector of mode numeric giving the numbers of the nodes
+  where the text or the symbols are to be printed. By
+  default, indexes for internal nodes, that is,
+  (<code class = 'eq'>Ntip</code>+1):(<code class = 'eq'>Ntip</code>+<code class = 'eq'>Nnode</code>), where <code class = 'eq'>Ntip</code>
+  is the number of tip nodes and <code class = 'eq'>Nnode</code> for the number
+  of internal nodes </li>
 <li>"adj": one or two numeric values
   specifying the horizontal and vertical, respectively,
   justification of the text or symbols. By default, the
@@ -326,40 +363,94 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 data <- t(data)
 
 # 2) build neighbor-joining tree with bootstrap values and visualise it by default
-# 2a) visualisation by default
-visTreeBootstrap(data)
+visTreeBootstrap(data, metric="mi")
 </div>
-<div class='output'>  |                                                                              |                                                                      |   0%  |                                                                              |=                                                                     |   1%  |                                                                              |=                                                                     |   2%  |                                                                              |==                                                                    |   3%  |                                                                              |===                                                                   |   4%  |                                                                              |====                                                                  |   5%  |                                                                              |====                                                                  |   6%  |                                                                              |=====                                                                 |   7%  |                                                                              |======                                                                |   8%  |                                                                              |======                                                                |   9%  |                                                                              |=======                                                               |  10%  |                                                                              |========                                                              |  11%  |                                                                              |========                                                              |  12%  |                                                                              |=========                                                             |  13%  |                                                                              |==========                                                            |  14%  |                                                                              |==========                                                            |  15%  |                                                                              |===========                                                           |  16%  |                                                                              |============                                                          |  17%  |                                                                              |=============                                                         |  18%  |                                                                              |=============                                                         |  19%  |                                                                              |==============                                                        |  20%  |                                                                              |===============                                                       |  21%  |                                                                              |===============                                                       |  22%  |                                                                              |================                                                      |  23%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  25%  |                                                                              |==================                                                    |  26%  |                                                                              |===================                                                   |  27%  |                                                                              |====================                                                  |  28%  |                                                                              |====================                                                  |  29%  |                                                                              |=====================                                                 |  30%  |                                                                              |======================                                                |  31%  |                                                                              |======================                                                |  32%  |                                                                              |=======================                                               |  33%  |                                                                              |========================                                              |  34%  |                                                                              |========================                                              |  35%  |                                                                              |=========================                                             |  36%  |                                                                              |==========================                                            |  37%  |                                                                              |===========================                                           |  38%  |                                                                              |===========================                                           |  39%  |                                                                              |============================                                          |  40%  |                                                                              |=============================                                         |  41%  |                                                                              |=============================                                         |  42%  |                                                                              |==============================                                        |  43%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  45%  |                                                                              |================================                                      |  46%  |                                                                              |=================================                                     |  47%  |                                                                              |==================================                                    |  48%  |                                                                              |==================================                                    |  49%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================                                  |  51%  |                                                                              |====================================                                  |  52%  |                                                                              |=====================================                                 |  53%  |                                                                              |======================================                                |  54%  |                                                                              |======================================                                |  55%  |                                                                              |=======================================                               |  56%  |                                                                              |========================================                              |  57%  |                                                                              |=========================================                             |  58%  |                                                                              |=========================================                             |  59%  |                                                                              |==========================================                            |  60%  |                                                                              |===========================================                           |  61%  |                                                                              |===========================================                           |  62%  |                                                                              |============================================                          |  63%  |                                                                              |=============================================                         |  64%  |                                                                              |==============================================                        |  65%  |                                                                              |==============================================                        |  66%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  68%  |                                                                              |================================================                      |  69%  |                                                                              |=================================================                     |  70%  |                                                                              |==================================================                    |  71%  |                                                                              |==================================================                    |  72%  |                                                                              |===================================================                   |  73%  |                                                                              |====================================================                  |  74%  |                                                                              |====================================================                  |  75%  |                                                                              |=====================================================                 |  76%  |                                                                              |======================================================                |  77%  |                                                                              |=======================================================               |  78%  |                                                                              |=======================================================               |  79%  |                                                                              |========================================================              |  80%  |                                                                              |=========================================================             |  81%  |                                                                              |=========================================================             |  82%  |                                                                              |==========================================================            |  83%  |                                                                              |===========================================================           |  84%  |                                                                              |============================================================          |  85%  |                                                                              |============================================================          |  86%  |                                                                              |=============================================================         |  87%  |                                                                              |==============================================================        |  88%  |                                                                              |==============================================================        |  89%  |                                                                              |===============================================================       |  90%  |                                                                              |================================================================      |  91%  |                                                                              |================================================================      |  92%  |                                                                              |=================================================================     |  93%  |                                                                              |==================================================================    |  94%  |                                                                              |==================================================================    |  95%  |                                                                              |===================================================================   |  96%  |                                                                              |====================================================================  |  97%  |                                                                              |===================================================================== |  98%  |                                                                              |===================================================================== |  99%  |                                                                              |======================================================================| 100%
-</div>
-<a href="javascript:newWin('visTreeBootstrap-3.png', 'visTreeBootstrap-3.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visTreeBootstrap-3.png', width="400" /></a>
+<strong class='message'>Start at 2014-03-20 18:26:26</strong>
+<strong class='message'></strong>
+<strong class='message'>First, build the tree (using nj algorithm and mi distance) from input matrix (10 by 100)...</strong>
+<strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
+<strong class='message'>Finally, visualise the bootstrapped tree...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2014-03-20 18:26:44</strong>
+<strong class='message'>Runtime in total is: 18 secs
+</strong>
+<a href="javascript:newWin('visTreeBootstrap-10.png', 'visTreeBootstrap-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visTreeBootstrap-10.png', width="400" /></a>
 <div class='output'>
 Phylogenetic tree with 10 tips and 8 internal nodes.
 
 Tip labels:
-	S2, S6, S5, S7, S9, S3, ...
+	S4, S5, S7, S10, S2, S9, ...
 Node labels:
-	7, 100, 12, 17, 8, 14, ...
+	0, 1, 2, 100, 15, 7, ...
 
 Unrooted; includes branch lengths.
 </div>
-<div class='input'># 2b) visualisation using customised parameters
-tree_bt <- visTreeBootstrap(data, plot.phylo.arg=list(type="radial",direction="downwards",lab4ut="axial"), nodelabels.arg=list(frame="rect",cex=0.8,bg="yr"))
-</div>
-<div class='output'>  |                                                                              |                                                                      |   0%  |                                                                              |=                                                                     |   1%  |                                                                              |=                                                                     |   2%  |                                                                              |==                                                                    |   3%  |                                                                              |===                                                                   |   4%  |                                                                              |====                                                                  |   5%  |                                                                              |====                                                                  |   6%  |                                                                              |=====                                                                 |   7%  |                                                                              |======                                                                |   8%  |                                                                              |======                                                                |   9%  |                                                                              |=======                                                               |  10%  |                                                                              |========                                                              |  11%  |                                                                              |========                                                              |  12%  |                                                                              |=========                                                             |  13%  |                                                                              |==========                                                            |  14%  |                                                                              |==========                                                            |  15%  |                                                                              |===========                                                           |  16%  |                                                                              |============                                                          |  17%  |                                                                              |=============                                                         |  18%  |                                                                              |=============                                                         |  19%  |                                                                              |==============                                                        |  20%  |                                                                              |===============                                                       |  21%  |                                                                              |===============                                                       |  22%  |                                                                              |================                                                      |  23%  |                                                                              |=================                                                     |  24%  |                                                                              |==================                                                    |  25%  |                                                                              |==================                                                    |  26%  |                                                                              |===================                                                   |  27%  |                                                                              |====================                                                  |  28%  |                                                                              |====================                                                  |  29%  |                                                                              |=====================                                                 |  30%  |                                                                              |======================                                                |  31%  |                                                                              |======================                                                |  32%  |                                                                              |=======================                                               |  33%  |                                                                              |========================                                              |  34%  |                                                                              |========================                                              |  35%  |                                                                              |=========================                                             |  36%  |                                                                              |==========================                                            |  37%  |                                                                              |===========================                                           |  38%  |                                                                              |===========================                                           |  39%  |                                                                              |============================                                          |  40%  |                                                                              |=============================                                         |  41%  |                                                                              |=============================                                         |  42%  |                                                                              |==============================                                        |  43%  |                                                                              |===============================                                       |  44%  |                                                                              |================================                                      |  45%  |                                                                              |================================                                      |  46%  |                                                                              |=================================                                     |  47%  |                                                                              |==================================                                    |  48%  |                                                                              |==================================                                    |  49%  |                                                                              |===================================                                   |  50%  |                                                                              |====================================                                  |  51%  |                                                                              |====================================                                  |  52%  |                                                                              |=====================================                                 |  53%  |                                                                              |======================================                                |  54%  |                                                                              |======================================                                |  55%  |                                                                              |=======================================                               |  56%  |                                                                              |========================================                              |  57%  |                                                                              |=========================================                             |  58%  |                                                                              |=========================================                             |  59%  |                                                                              |==========================================                            |  60%  |                                                                              |===========================================                           |  61%  |                                                                              |===========================================                           |  62%  |                                                                              |============================================                          |  63%  |                                                                              |=============================================                         |  64%  |                                                                              |==============================================                        |  65%  |                                                                              |==============================================                        |  66%  |                                                                              |===============================================                       |  67%  |                                                                              |================================================                      |  68%  |                                                                              |================================================                      |  69%  |                                                                              |=================================================                     |  70%  |                                                                              |==================================================                    |  71%  |                                                                              |==================================================                    |  72%  |                                                                              |===================================================                   |  73%  |                                                                              |====================================================                  |  74%  |                                                                              |====================================================                  |  75%  |                                                                              |=====================================================                 |  76%  |                                                                              |======================================================                |  77%  |                                                                              |=======================================================               |  78%  |                                                                              |=======================================================               |  79%  |                                                                              |========================================================              |  80%  |                                                                              |=========================================================             |  81%  |                                                                              |=========================================================             |  82%  |                                                                              |==========================================================            |  83%  |                                                                              |===========================================================           |  84%  |                                                                              |============================================================          |  85%  |                                                                              |============================================================          |  86%  |                                                                              |=============================================================         |  87%  |                                                                              |==============================================================        |  88%  |                                                                              |==============================================================        |  89%  |                                                                              |===============================================================       |  90%  |                                                                              |================================================================      |  91%  |                                                                              |================================================================      |  92%  |                                                                              |=================================================================     |  93%  |                                                                              |==================================================================    |  94%  |                                                                              |==================================================================    |  95%  |                                                                              |===================================================================   |  96%  |                                                                              |====================================================================  |  97%  |                                                                              |===================================================================== |  98%  |                                                                              |===================================================================== |  99%  |                                                                              |======================================================================| 100%
-</div>
-<a href="javascript:newWin('visTreeBootstrap-7.png', 'visTreeBootstrap-7.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visTreeBootstrap-7.png', width="400" /></a>
 <div class='input'>
-# 3) look at the bootstrap values and ordered row names of input matrix
+# 3) only display those internal nodes with bootstrap values > 30
+# 3a) generate the bootstrapped tree (without visualisation)
+tree_bs <- visTreeBootstrap(data, visTree=FALSE)
+</div>
+<strong class='message'>Start at 2014-03-20 18:26:44</strong>
+<strong class='message'></strong>
+<strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
+<strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
+<strong class='message'>Finally, visualise the bootstrapped tree...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2014-03-20 18:26:44</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'># 3b) look at the bootstrap values and ordered row names of input matrix
 # the bootstrap values
-tree_bt$node.label
+tree_bs$node.label
 </div>
 <div class='output'>[1] "7"   "100" "14"  "15"  "17"  "31"  "18"  "31" 
 </div>
 <div class='input'># ordered row names of input matrix
-tree_bt$tip.label
+tree_bs$tip.label
 </div>
 <div class='output'> [1] "S2"  "S6"  "S5"  "S4"  "S8"  "S10" "S7"  "S9"  "S3"  "S1" 
-</div></pre>
+</div>
+<div class='input'># 3c) determine internal nodes that should be displayed
+Ntip <- length(tree_bs$tip.label) # number of tip nodes
+Nnode <- length(tree_bs$node.label) # number of internal nodes
+flag <- as.numeric(tree_bs$node.label) > 30
+text <- tree_bs$node.label[flag]
+node <- Ntip + (1:Nnode)[flag]
+visTreeBootstrap(data, nodelabels.arg=list(text=text,node=node))
+</div>
+<strong class='message'>Start at 2014-03-20 18:26:44</strong>
+<strong class='message'></strong>
+<strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
+<strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
+<strong class='message'>Finally, visualise the bootstrapped tree...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2014-03-20 18:26:44</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<a href="javascript:newWin('visTreeBootstrap-34.png', 'visTreeBootstrap-34.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visTreeBootstrap-34.png', width="400" /></a>
+<div class='output'>
+Phylogenetic tree with 10 tips and 8 internal nodes.
+
+Tip labels:
+	S2, S6, S5, S4, S8, S10, ...
+Node labels:
+	7, 100, 13, 18, 12, 30, ...
+
+Unrooted; includes branch lengths.
+</div>
+<div class='input'>
+# 4) obtain the consensus tree
+tree_cons <- visTreeBootstrap(data, consensus=TRUE, consensus.majority=0.5)
+</div>
+<strong class='message'>Start at 2014-03-20 18:26:44</strong>
+<strong class='message'></strong>
+<strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
+<strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
+<strong class='message'>Finally, obtain consensus tree based on 0.50 majority...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2014-03-20 18:26:45</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong></pre>
   </div>
   
   <div class="span4">

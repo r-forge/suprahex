@@ -1,6 +1,6 @@
 #' Function to visualise input data matrix using advanced heatmap
 #'
-#' \code{visHeatmapAdv} is supposed to visualise input data matrix using advanced heatmap. It allows for adding multiple sidecolors in both columns and rows. Besides, the sidecolor can be automatically added via cutting histogram into groups.
+#' \code{visHeatmapAdv} is supposed to visualise input data matrix using advanced heatmap. It allows for adding multiple sidecolors in both columns and rows. Besides, the sidecolor can be automatically added via cutting histogram into groups. Note: this heatmap displays matrix in a top-to-bottom direction
 #'
 #' @param data an input gene-sample data matrix used for heatmap
 #' @param scale a character indicating when the input matrix should be centered and scaled. It can be one of "none" (no scaling), "row" (being scaled in the row direction), "column" (being scaled in the column direction)
@@ -40,7 +40,9 @@
 #'
 #' # 2) heatmap after clustering both rows and columns
 #' # 2a) shown with row and column dendrograms
-#' visHeatmapAdv(data, dendrogram="both", colormap="gbr", zlim=c(-2,2), add.expr=abline(v=(1:(ncol(data)+1))-0.5,col="white"), KeyValueName="log2(Ratio)", lmat=rbind(c(4,3), c(2,1)), lhei=c(1,5), lwid=c(1,3))
+#' visHeatmapAdv(data, dendrogram="both", colormap="gbr", zlim=c(-2,2), KeyValueName="log2(Ratio)",
+#' add.expr=abline(v=(1:(ncol(data)+1))-0.5,col="white"), 
+#' lmat=rbind(c(4,3), c(2,1)), lhei=c(1,5), lwid=c(1,3))
 #' # 2b) shown with row dendrogram only
 #' visHeatmapAdv(data, dendrogram="row", colormap="gbr", zlim=c(-2,2))
 #' # 2c) shown with column dendrogram only
@@ -65,7 +67,8 @@
 #' colnames(ColSideColors) <- c("Stages","Replicates")
 #'
 #' # 5) heatmap without clustering on rows and columns but with the two sidebars in columns
-#' visHeatmapAdv(data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-2,2), density.info="density", tracecol="yellow", ColSideColors=ColSideColors)
+#' visHeatmapAdv(data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-2,2), 
+#' density.info="density", tracecol="yellow", ColSideColors=ColSideColors)
 
 visHeatmapAdv <- function (data, scale=c("none","row","column"), Rowv=T, Colv=T, dendrogram=c("both","row","column","none"), dist.metric=c("euclidean","pearson","spearman","kendall","manhattan","cos","mi"), linkage.method=c("complete","ward","single","average","mcquitty","median","centroid"), 
 colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=64, zlim=NULL, RowSideColors=NULL, row.cutree=NULL, row.colormap=c("jet"), ColSideColors=NULL, column.cutree=NULL, column.colormap=c("jet"), ...)
@@ -134,7 +137,7 @@ colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=64, zlim=N
 
 ################################################################################################
 ################################################################################################
-heatmap.3 <- function(x,
+heatmap.2 <- function(x,
                       
                       # dendrogram control
                       Rowv = TRUE, Colv = if (symm) "Rowv" else TRUE,
@@ -430,7 +433,8 @@ heatmap.3 <- function(x,
     layout(lmat, widths = lwid, heights = lhei, respect = FALSE)
  
     if (!missing(RowSideColors)) {
-        if (!is.matrix(RowSideColors)){
+        #if (!is.matrix(RowSideColors)){
+        if (nrow(RowSideColors)==1){
                 par(mar = c(margins[1], 0, 0, 0.5))
                 image(rbind(1:nr), col = RowSideColors[rowInd], axes = FALSE)
         } else {
@@ -629,13 +633,13 @@ heatmap.3 <- function(x,
     }
     
     if(!is.null(RowSideColors) & !is.null(ColSideColors)){
-        heatmap.3(as.matrix(data), scale=scale, Rowv=Rowv, Colv=Colv, dendrogram=dendrogram, distfun=function(x) as.dist(sDistance(x, metric=dist.metric)), hclustfun=function(x) hclust(x, method=linkage.method), col=visColormap(colormap=colormap)(ncolors), breaks=myBreaks, zlim=zlim,RowSideColors=RowSideColors,ColSideColors=ColSideColors,...)
+        heatmap.2(as.matrix(data), scale=scale, Rowv=Rowv, Colv=Colv, dendrogram=dendrogram, distfun=function(x) as.dist(sDistance(x, metric=dist.metric)), hclustfun=function(x) hclust(x, method=linkage.method), col=visColormap(colormap=colormap)(ncolors), breaks=myBreaks, zlim=zlim,RowSideColors=RowSideColors,ColSideColors=ColSideColors,...)
     }else if(!is.null(RowSideColors) & is.null(ColSideColors)){
-        heatmap.3(as.matrix(data), scale=scale, Rowv=Rowv, Colv=Colv, dendrogram=dendrogram, distfun=function(x) as.dist(sDistance(x, metric=dist.metric)), hclustfun=function(x) hclust(x, method=linkage.method), col=visColormap(colormap=colormap)(ncolors), breaks=myBreaks, zlim=zlim,RowSideColors=RowSideColors,...)
+        heatmap.2(as.matrix(data), scale=scale, Rowv=Rowv, Colv=Colv, dendrogram=dendrogram, distfun=function(x) as.dist(sDistance(x, metric=dist.metric)), hclustfun=function(x) hclust(x, method=linkage.method), col=visColormap(colormap=colormap)(ncolors), breaks=myBreaks, zlim=zlim,RowSideColors=RowSideColors,...)
     }else if(is.null(RowSideColors) & !is.null(ColSideColors)){
-        heatmap.3(as.matrix(data), scale=scale, Rowv=Rowv, Colv=Colv, dendrogram=dendrogram, distfun=function(x) as.dist(sDistance(x, metric=dist.metric)), hclustfun=function(x) hclust(x, method=linkage.method), col=visColormap(colormap=colormap)(ncolors), breaks=myBreaks, zlim=zlim,ColSideColors=ColSideColors,...)
+        heatmap.2(as.matrix(data), scale=scale, Rowv=Rowv, Colv=Colv, dendrogram=dendrogram, distfun=function(x) as.dist(sDistance(x, metric=dist.metric)), hclustfun=function(x) hclust(x, method=linkage.method), col=visColormap(colormap=colormap)(ncolors), breaks=myBreaks, zlim=zlim,ColSideColors=ColSideColors,...)
     }else{
-        heatmap.3(as.matrix(data), scale=scale, Rowv=Rowv, Colv=Colv, dendrogram=dendrogram, distfun=function(x) as.dist(sDistance(x, metric=dist.metric)), hclustfun=function(x) hclust(x, method=linkage.method), col=visColormap(colormap=colormap)(ncolors), breaks=myBreaks, zlim=zlim,...)
+        heatmap.2(as.matrix(data), scale=scale, Rowv=Rowv, Colv=Colv, dendrogram=dendrogram, distfun=function(x) as.dist(sDistance(x, metric=dist.metric)), hclustfun=function(x) hclust(x, method=linkage.method), col=visColormap(colormap=colormap)(ncolors), breaks=myBreaks, zlim=zlim,...)
     }
     
     invisible()

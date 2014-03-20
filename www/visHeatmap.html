@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visHeatmap @ supraHex 1.1.13</title>
+<title>visHeatmap @ supraHex 1.1.14</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.1.13</a>
+      <a class="brand" href="index.html">supraHex 1.1.14</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -109,7 +109,8 @@
   
     <h3>Description</h3>
     <p><code>visHeatmap</code> is supposed to visualise input data
-  matrix using heatmap</p>
+  matrix using heatmap. Note: this heatmap displays matrix
+  in a bottom-to-top direction</p>
   
     <h3>Usage</h3>
     <pre>visHeatmap(data, scale = c("none", "row", "column"), row.metric = c("none", "pearson", 
@@ -245,7 +246,8 @@ lvs_color <- visColormap(colormap="rainbow")(length(lvs))
 my_ColSideColors <- sapply(colnames(data), function(x) lvs_color[x==lvs])
 
 # 3) heatmap with row dendrogram (with 10 color-coded groups)
-visHeatmap(data, row.metric="euclidean", row.method="average", colormap="gbr", zlim=c(-2,2), ColSideColors=my_ColSideColors, row.cutree=10, row.colormap="jet", labRow=NA)
+visHeatmap(data, row.metric="euclidean", row.method="average", colormap="gbr", zlim=c(-2,2),
+ColSideColors=my_ColSideColors, row.cutree=10, row.colormap="jet", labRow=NA)
 </div>
 <a href="javascript:newWin('visHeatmap-2.png', 'visHeatmap-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHeatmap-2.png', width="400" /></a></pre>
   </div>

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for arabidopsis embryo dataset from Xiang et al @ supraHex 1.1.13</title>
+<title>Demo for arabidopsis embryo dataset from Xiang et al @ supraHex 1.1.14</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.1.13</a>
+      <a class="brand" href="index.html">supraHex 1.1.14</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -105,9 +105,9 @@
       <h2>Demo for arabidopsis embryo dataset from Xiang et al</h2>
 
 Notes:
-<li> All results are based on supraHex (version 1.1.13). </li>
+<li> All results are based on supraHex (version 1.1.14). </li>
 <li> Images displayed below may be distorted, and they should be normal in your screen. </li>
-<li> Functions contained in supraHex 1.1.13 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in supraHex 1.1.14 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -125,7 +125,7 @@ data <- Xiang # a matrix of 3,625 genes expressed in 7 samples
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2014-03-19 17:59:09</strong>
+<strong class='message'>Start at 2014-03-20 18:25:00</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -152,8 +152,8 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 6 to 1.5
    radius (at finetune stage): from 1.5 to 1
 </strong>
-<strong class='message'>End at 2014-03-19 17:59:10</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-03-20 18:25:02</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap,title.rotate=10,colormap="darkblue-white-darkorange")
 </div>
@@ -192,13 +192,13 @@ sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
 <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase)
 </div>
 <a href="javascript:newWin('Xiang-30.png', 'Xiang-30.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-30.png', width="400" /></a>
-<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="Output_base_Xiang.txt")
+<div class='input'>output <- <a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="Output_base_Xiang.txt", keep.data=T)
 ## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output .txt file has been saved in your disk. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). You can also force the input data to be output; type ?sWriteData for details.
 
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap, metric="pearson")
 </div>
-<strong class='message'>Start at 2014-03-19 17:59:38</strong>
+<strong class='message'>Start at 2014-03-20 18:25:30</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -225,14 +225,58 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-19 17:59:39</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-03-20 18:25:30</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap,sReorder,title.rotate=10,colormap="darkblue-white-darkorange")
 </div>
 <a href="javascript:newWin('Xiang-48.png', 'Xiang-48.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-48.png', width="400" /></a>
 <div class='input'>## As you have seen, reordered components of trained map is displayed. Each component illustrates a sample-specific map and is placed within a two-dimensional rectangular lattice. Across components/samples, genes with similar expression patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/samples, that is, samples with the similar expression profiles are placed closer to each other.
+
+# (VI) Get understanding gene bases/clusters
+output[1:5,]
 </div>
+<div class='output'>                 ID Hexagon_index Cluster_base data.Zygote data.Quadrant
+At3g57450 At3g57450           138            5   1.1871294     0.7917241
+At2g06005 At2g06005           176            1   1.7167625    -0.5305049
+At4g11310 At4g11310             8            1  -0.1910232    -0.1910232
+At1g65930 At1g65930           311           11  -0.5570747    -0.3839494
+At2g06010 At2g06010           269           14  -0.1403925    -0.6520918
+          data.Globular data.Heart data.Torpedo   data.Bent data.Mature
+At3g57450    -0.3820804 -0.3613931   -0.6041326  0.13632427  -0.7675716
+At2g06005    -0.8359733 -0.7406242   -0.5765449 -0.14998331   1.1168680
+At4g11310    -0.1910232 -0.1910232   -0.1910232 -0.19102320   1.1461392
+At1g65930     0.2909328  0.3819920    0.9512120  0.96650695  -1.6496197
+At2g06010    -0.8610210 -0.4861593   -0.3528408 -0.01987453   2.5123800
+</div>
+<div class='input'># contruct data frame including 1st column for temporary index, 2nd for hexagon index, 3rd for base/cluster ID and the rest for their correspoinding data matrix 
+hexagon <- output[,2]
+base <- output[,3]
+tmp <- data.frame(ind=1:nrow(output), hexagon, base, data)
+# order by: first base, then hexagon
+ordering <- tmp[order(base,hexagon),]$ind
+
+# (VII) Visualise the matrix using heatmap
+# The genes are ordered according to the base/cluster memberships
+D <- data[ordering, ]
+bases <- base[ordering]
+# prepare colors for the row sidebar of heatmap
+# color for bases/clusters
+lvs <- unique(bases)
+lvs_color <- <a href='visColormap.html' target=visColormap>visColormap</a>(colormap="jet")(length(lvs))
+lvs_color <- <a href='visColoralpha.html' target=visColoralpha>visColoralpha</a>(lvs_color, alpha=0.8) # add transparent (alpha) into colors
+col_bases <- sapply(bases, function(x) lvs_color[x==lvs])
+RowSideColors <- matrix(col_bases, nrow=1)
+rownames(RowSideColors) <- c("Clusters")
+# heatmap embeded with sidebars annotating gene cluster memberships
+<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>((D), Rowv=F, Colv=F, dendrogram="none", KeyValueName="Log2(Ratio)", colormap="darkgreen-lightgreen-lightpink-darkred", side.height.fraction=0.2, RowSideColors=RowSideColors, labRow=NA)
+</div>
+<a href="javascript:newWin('Xiang-52.png', 'Xiang-52.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-52.png', width="400" /></a>
+<div class='input'># add legend
+legend_txt <- paste(rep("Base",length(lvs)), lvs, sep=" ")
+legend("left", legend=legend_txt, col=lvs_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=F)
+</div>
+<a href="javascript:newWin('Xiang-54.png', 'Xiang-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-54.png', width="400" /></a>
       </pre>
     </div>
 
@@ -249,6 +293,9 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
       <li><a href="visDmatCluster.html">visDmatCluster</a></li>
       <li><a href="sCompReorder.html">sCompReorder</a></li>
       <li><a href="visCompReorder.html">visCompReorder</a></li>
+      <li><a href="visColormap.html">visColormap</a></li>
+      <li><a href="visColoralpha.html">visColoralpha</a></li>
+      <li><a href="visHeatmapAdv.html">visHeatmapAdv</a></li>
     </ul>
     
     <h2>Citation</h2>

@@ -20,7 +20,7 @@
 #' \item{Alternatively, any hyphen-separated HTML color names, e.g. "blue-black-yellow", "royalblue-white-sandybrown", "darkblue-lightblue-lightyellow-darkorange", "darkgreen-white-darkviolet", "darkgreen-lightgreen-lightpink-darkred". A list of standard color names can be found in \url{http://html-color-codes.info/color-names}}
 #' }
 #' @export
-#' @seealso \code{\link{visHexComp}}
+#' @seealso \code{\link{visColoralpha}}
 #' @include visColormap.r
 #' @examples
 #' # 1) define "blue-white-red" colormap

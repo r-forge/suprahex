@@ -94,7 +94,8 @@
 }
 \description{
   \code{visHeatmap} is supposed to visualise input data
-  matrix using heatmap
+  matrix using heatmap. Note: this heatmap displays matrix
+  in a bottom-to-top direction
 }
 \note{
   The clustering methods are provided: \itemize{
@@ -125,7 +126,8 @@ lvs_color <- visColormap(colormap="rainbow")(length(lvs))
 my_ColSideColors <- sapply(colnames(data), function(x) lvs_color[x==lvs])
 
 # 3) heatmap with row dendrogram (with 10 color-coded groups)
-visHeatmap(data, row.metric="euclidean", row.method="average", colormap="gbr", zlim=c(-2,2), ColSideColors=my_ColSideColors, row.cutree=10, row.colormap="jet", labRow=NA)
+visHeatmap(data, row.metric="euclidean", row.method="average", colormap="gbr", zlim=c(-2,2),
+ColSideColors=my_ColSideColors, row.cutree=10, row.colormap="jet", labRow=NA)
 }
 \seealso{
   \code{\link{visHeatmap}}

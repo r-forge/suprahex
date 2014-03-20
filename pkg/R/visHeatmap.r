@@ -1,6 +1,6 @@
 #' Function to visualise input data matrix using heatmap
 #'
-#' \code{visHeatmap} is supposed to visualise input data matrix using heatmap
+#' \code{visHeatmap} is supposed to visualise input data matrix using heatmap. Note: this heatmap displays matrix in a bottom-to-top direction
 #'
 #' @param data an input gene-sample data matrix used for heatmap
 #' @param scale a character indicating when the input matrix should be centered and scaled. It can be one of "none" (no scaling), "row" (being scaled in the row direction), "column" (being scaled in the column direction)
@@ -41,7 +41,8 @@
 #' my_ColSideColors <- sapply(colnames(data), function(x) lvs_color[x==lvs])
 #'
 #' # 3) heatmap with row dendrogram (with 10 color-coded groups)
-#' visHeatmap(data, row.metric="euclidean", row.method="average", colormap="gbr", zlim=c(-2,2), ColSideColors=my_ColSideColors, row.cutree=10, row.colormap="jet", labRow=NA)
+#' visHeatmap(data, row.metric="euclidean", row.method="average", colormap="gbr", zlim=c(-2,2), 
+#' ColSideColors=my_ColSideColors, row.cutree=10, row.colormap="jet", labRow=NA)
 
 visHeatmap <- function (data, scale=c("none","row","column"), row.metric=c("none","pearson","spearman","kendall","euclidean","manhattan","cos","mi"), row.method=c("ward","single","complete","average","mcquitty","median","centroid"), column.metric=c("none","pearson","spearman","kendall","euclidean","manhattan","cos","mi"), column.method=c("ward","single","complete","average","mcquitty","median","centroid"),
 colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=64, zlim=NULL, row.cutree=NULL, row.colormap=c("rainbow"), column.cutree=NULL, column.colormap=c("rainbow"), ...)

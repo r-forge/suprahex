@@ -1,13 +1,14 @@
 \name{visTreeBootstrap}
 \alias{visTreeBootstrap}
-\title{Function to build the tree, perform bootstrap analysis and visualise the bootstrapped tree}
+\title{Function to build and visualise the bootstrapped tree}
 \usage{
   visTreeBootstrap(data,
     algorithm = c("nj", "fastme.ols", "fastme.bal"),
-    metric = c("pearson", "spearman", "kendall", "euclidean", "manhattan", "cos", "mi"),
+    metric = c("euclidean", "pearson", "spearman", "cos", "manhattan", "kendall", "mi"),
     num.bootstrap = 100, consensus = FALSE,
     consensus.majority = 0.5, reroot = "min.bootstrap",
-    plot.phylo.arg = NULL, nodelabels.arg = NULL, ...)
+    plot.phylo.arg = NULL, nodelabels.arg = NULL,
+    visTree = T, verbose = T, ...)
 }
 \arguments{
   \item{data}{an input data matrix used to build the tree.
@@ -60,10 +61,22 @@
   \url{http://www.inside-r.org/packages/cran/ape/docs/nodelabels}.
   See 'Note' below for details on the parameters}
 
+  \item{visTree}{logical to indicate whether the bootstrap
+  tree will be visualised. By default, it sets to true for
+  display. Note, the consensus tree can not be enabled for
+  visualisation}
+
+  \item{verbose}{logical to indicate whether the messages
+  will be displayed in the screen. By default, it sets to
+  true for display}
+
   \item{...}{additional "ape::plot.phylo" parameters}
 }
 \value{
-  an object of class "phylo", a list with following
+  an object of class "phylo". It can return a bootstrapped
+  tree or a consensus tree (if enabled): When a
+  bootstrapped tree is returned (also visualised by
+  default), the "phylo" object has a list with following
   components: \itemize{ \item{\code{Nnode}: the number of
   internal nodes} \item{\code{node.label}: the labels for
   internal nodes. Here, each internal node is associated
@@ -75,10 +88,20 @@
   links between tree nodes (including internal and tip
   nodes)} \item{\code{edge.length}: a vector indicating the
   edge length in the 'edge'} \item{Note: the tree structure
-  is indexed with 1:ntips for tip nodes, and
-  (\eqn{ntips}+1):(\eqn{ntips}+\eqn{Nnode}) for internal
-  nodes, where \eqn{ntips} is the number of tip nodes and
-  \eqn{Nnode} for the number of internal nodes} }
+  is indexed with 1:Ntip for tip nodes, and
+  (\eqn{Ntip}+1):(\eqn{Ntip}+\eqn{Nnode}) for internal
+  nodes, where \eqn{Ntip} is the number of tip nodes and
+  \eqn{Nnode} for the number of internal nodes. Moreover,
+  \eqn{nrow(data)=Ntip=Nnode-2}.} } When a consensus tree
+  is returned (no visualisation), the "phylo" object has a
+  list with following components: \itemize{
+  \item{\code{Nnode}: the number of internal nodes}
+  \item{\code{tip.label}: the lables for tip nodes. Tip
+  labels come from the row names of the input matrix, but
+  are not necessarily the same order as they appear in the
+  input matrix} \item{\code{edge}: a two-column matrix
+  describing the links between tree nodes (including
+  internal and tip nodes)} }
 }
 \description{
   \code{visTreeBootstrap} is supposed to build the tree,
@@ -142,7 +165,16 @@
   trees: the rotation of the whole tree in degrees
   (negative values are accepted} } A list of main
   parameters used in the function "ape::nodelabels":
-  \itemize{ \item{"adj": one or two numeric values
+  \itemize{ \item{"text": a vector of mode character giving
+  the text to be printed. By default, the labels for
+  internal nodes (see "node.label"), that is, the bootstrap
+  values associated with internal nodes} \item{"node": a
+  vector of mode numeric giving the numbers of the nodes
+  where the text or the symbols are to be printed. By
+  default, indexes for internal nodes, that is,
+  (\eqn{Ntip}+1):(\eqn{Ntip}+\eqn{Nnode}), where \eqn{Ntip}
+  is the number of tip nodes and \eqn{Nnode} for the number
+  of internal nodes} \item{"adj": one or two numeric values
   specifying the horizontal and vertical, respectively,
   justification of the text or symbols. By default, the
   text is centered horizontally and vertically. If a single
@@ -181,16 +213,26 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 data <- t(data)
 
 # 2) build neighbor-joining tree with bootstrap values and visualise it by default
-# 2a) visualisation by default
-visTreeBootstrap(data)
-# 2b) visualisation using customised parameters
-tree_bt <- visTreeBootstrap(data, plot.phylo.arg=list(type="radial",direction="downwards",lab4ut="axial"), nodelabels.arg=list(frame="rect",cex=0.8,bg="yr"))
+visTreeBootstrap(data, metric="mi")
 
-# 3) look at the bootstrap values and ordered row names of input matrix
+# 3) only display those internal nodes with bootstrap values > 30
+# 3a) generate the bootstrapped tree (without visualisation)
+tree_bs <- visTreeBootstrap(data, visTree=FALSE)
+# 3b) look at the bootstrap values and ordered row names of input matrix
 # the bootstrap values
-tree_bt$node.label
+tree_bs$node.label
 # ordered row names of input matrix
-tree_bt$tip.label
+tree_bs$tip.label
+# 3c) determine internal nodes that should be displayed
+Ntip <- length(tree_bs$tip.label) # number of tip nodes
+Nnode <- length(tree_bs$node.label) # number of internal nodes
+flag <- as.numeric(tree_bs$node.label) > 30
+text <- tree_bs$node.label[flag]
+node <- Ntip + (1:Nnode)[flag]
+visTreeBootstrap(data, nodelabels.arg=list(text=text,node=node))
+
+# 4) obtain the consensus tree
+tree_cons <- visTreeBootstrap(data, consensus=TRUE, consensus.majority=0.5)
 }
 \seealso{
   \code{\link{sDistance}}

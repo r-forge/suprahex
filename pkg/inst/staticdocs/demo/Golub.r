@@ -41,3 +41,30 @@ sReorder <- sCompReorder(data,metric="pearson") # see Figure 8
 visCompReorder(sMap,sReorder,title.rotate=15,colormap="darkgreen-lightgreen-lightpink-darkred")
 ## As you have seen, reordered components of trained map is displayed. Each component illustrates a sample-specific map and is placed within a two-dimensional rectangular lattice. Across components/samples, genes with similar expression patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/samples, that is, samples with the similar expression profiles are placed closer to each other.
 
+# (VI) Build and visualise the bootstrapped tree
+D <- t(data)
+rownames(D) <- paste(rownames(D), 1:nrow(D), sep=".") # temporally make sure the row names are unique
+tree_bs <- visTreeBootstrap(D, nodelabels.arg=list(cex=0.7))
+## As you have seen, neighbour-joining tree is constructed based on pairwise euclidean distance matrices between samples. The robustness of tree branching is evaluated using bootstraping. In internal nodes (also color-coded), the number represents the proportion of bootstrapped trees that support the observed internal branching. The higher the number, the more robust the tree branching. 100 means that the internal branching is always observed by resampling characters/genes. 
+
+# (VII) Visualise the matrix using heatmap
+# The samples are ordered according to the neighbour-joining tree
+flag <- match(tree_bs$tip.label, rownames(D))
+rownames(D) <- sub("\\.\\d+$", "", rownames(D)) # restore the original names
+D <- D[flag,]
+# prepare colors for the column sidebar of heatmap
+# color for AML/ALL types
+types <- sub("_.*","",rownames(D))
+lvs <- unique(types)
+lvs_color <- visColormap(colormap="darkblue-darkorange")(length(lvs))
+col_types <- sapply(types, function(x) lvs_color[x==lvs])
+# color for ALL subtypes
+subtypes <- sub(".*_","",rownames(D))
+lvs <- unique(subtypes)
+lvs_color <- visColormap(colormap="gray-black")(length(lvs))
+col_subtypes <- sapply(subtypes, function(x) lvs_color[x==lvs])
+# combine both color vectors
+ColSideColors <- cbind(col_subtypes,col_types)
+colnames(ColSideColors) <- c("ALL subtypes", "AML/ALL types")
+# heatmap embeded with sidebars annotating samples
+visHeatmapAdv(t(D), Rowv=T, Colv=F, dendrogram="none", colormap="darkgreen-lightgreen-lightpink-darkred", side.height.fraction=0.5, ColSideColors=ColSideColors, labRow=NA)

@@ -125,7 +125,8 @@
   matrix using advanced heatmap. It allows for adding
   multiple sidecolors in both columns and rows. Besides,
   the sidecolor can be automatically added via cutting
-  histogram into groups.
+  histogram into groups. Note: this heatmap displays matrix
+  in a top-to-bottom direction
 }
 \note{
   The clustering/linkage methods are provided: \itemize{
@@ -152,7 +153,9 @@ colnames(data) <- c("S1_R1","S1_R2","S1_R3","S2_R1","S2_R2","S2_R3","S3_R1","S3_
 
 # 2) heatmap after clustering both rows and columns
 # 2a) shown with row and column dendrograms
-visHeatmapAdv(data, dendrogram="both", colormap="gbr", zlim=c(-2,2), add.expr=abline(v=(1:(ncol(data)+1))-0.5,col="white"), KeyValueName="log2(Ratio)", lmat=rbind(c(4,3), c(2,1)), lhei=c(1,5), lwid=c(1,3))
+visHeatmapAdv(data, dendrogram="both", colormap="gbr", zlim=c(-2,2), KeyValueName="log2(Ratio)",
+add.expr=abline(v=(1:(ncol(data)+1))-0.5,col="white"),
+lmat=rbind(c(4,3), c(2,1)), lhei=c(1,5), lwid=c(1,3))
 # 2b) shown with row dendrogram only
 visHeatmapAdv(data, dendrogram="row", colormap="gbr", zlim=c(-2,2))
 # 2c) shown with column dendrogram only
@@ -177,7 +180,8 @@ ColSideColors <- cbind(col_stages,col_replicates)
 colnames(ColSideColors) <- c("Stages","Replicates")
 
 # 5) heatmap without clustering on rows and columns but with the two sidebars in columns
-visHeatmapAdv(data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-2,2), density.info="density", tracecol="yellow", ColSideColors=ColSideColors)
+visHeatmapAdv(data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-2,2),
+density.info="density", tracecol="yellow", ColSideColors=ColSideColors)
 }
 \seealso{
   \code{\link{visHeatmapAdv}}
