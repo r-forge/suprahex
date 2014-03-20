@@ -235,6 +235,6 @@ visTreeBootstrap(data, nodelabels.arg=list(text=text,node=node))
 tree_cons <- visTreeBootstrap(data, consensus=TRUE, consensus.majority=0.5)
 }
 \seealso{
-  \code{\link{sDistance}}
+  \code{\link{visTreeBootstrap}}
 }
 

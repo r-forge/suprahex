@@ -60,7 +60,7 @@
 #' \item{"bg": a character string giving the color to be used for the background of the text frames or of the plotting symbols if it applies; this is eventually recycled. It can be one of "jet" (jet colormap), "bwr" (blue-white-red colormap), "gbr" (green-black-red colormap), "wyr" (white-yellow-red colormap), "br" (black-red colormap), "yr" (yellow-red colormap), "wb" (white-black colormap), and "rainbow" (rainbow colormap, that is, red-yellow-green-cyan-blue-magenta). Alternatively, any hyphen-separated HTML color names, e.g. "blue-black-yellow", "royalblue-white-sandybrown", "darkgreen-white-darkviolet". A list of standard color names can be found in \url{http://html-color-codes.info/color-names}}
 #' }
 #' @export
-#' @seealso \code{\link{sDistance}}
+#' @seealso \code{\link{visTreeBootstrap}}
 #' @include visTreeBootstrap.r
 #' @examples
 #' # 1) generate an iid normal random matrix of 100x10 
