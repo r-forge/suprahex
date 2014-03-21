@@ -6,6 +6,7 @@
 #' @param which_neigh which neighbors in 2D output space are used for the calculation. By default, it sets to "1" for direct neighbors, and "2" for neighbors within neighbors no more than 2, and so on
 #' @param distMeasure distance measure used to calculate distances in high-dimensional input space. It can be one of "median", "mean", "min" and "max" measures
 #' @param clusterLinkage cluster linkage used to derive clusters. It can be "bmh", which accumulates a cluster just based on best-matching hexagons/rectanges but can not ensure each cluster is continuous. Instead, each cluster is continuous when using region-growing algorithm with one of "average", "complete" and "single" linkages
+#' @param reindexSeed the way to index seed. It can be "hclust" for reindexing seeds according to hierarchical clustering of patterns seen in seeds, "svd" for reindexing seeds according to svd of patterns seen in seeds, or "none" for seeds being simply increased by the hexagon indexes (i.e. always in an increasing order as hexagons radiate outwards)
 #' 
 #' @return 
 #' an object of class "sBase", a list with following components:
@@ -34,11 +35,12 @@
 #' # 4) visualise clusters/bases partitioned from the sMap
 #' visDmatCluster(sMap,sBase)
 
-sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min","max"), clusterLinkage=c("average","complete","single","bmh"))
+sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min","max"), clusterLinkage=c("average","complete","single","bmh"), reindexSeed=c("hclust","svd","none"))
 {
     
     distMeasure <- match.arg(distMeasure)
     clusterLinkage <- match.arg(clusterLinkage)
+    reindexSeed <- match.arg(reindexSeed)
     
     if (class(sMap) != "sMap"){
         stop("The funciton must apply to 'sMap' object.\n")
@@ -164,7 +166,39 @@ sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min
         }
         
     }
+    
+    ###########################################################
+    ## whether reindexing seed
+    if(reindexSeed=="hclust"){
+        ## reordering via hierarchical clustering
+        distance <- as.dist(sDistance(M[seed,], metric="euclidean"))
+        cluster <- hclust(distance, method="complete")
+        ordering <- cluster$order
+    
+        ## reorder seed
+        seed <- seed[ordering]
+        ## reorder base
+        old_index <- (1:length(seed))
+        new_index <- old_index[ordering]
+        base <- sapply(base, function(x) which(new_index==x))
+        
+    }else if(reindexSeed=="svd"){
+        ## reordering via SVD
+        D <- M[seed,]
+        sorted <- sort.int(D %*% svd(D)$v[,1], decreasing=T, index.return=T)
+        ordering <- sorted$ix
+        
+        ## reorder seed
+        seed <- seed[ordering]
+        ## reorder base
+        old_index <- (1:length(seed))
+        new_index <- old_index[ordering]
+        base <- sapply(base, function(x) which(new_index==x))
+    }
 
+    
+    ###########################################################
+        
     sBase <- list(seeds = seed, 
                 bases = base, 
                 call = match.call(),

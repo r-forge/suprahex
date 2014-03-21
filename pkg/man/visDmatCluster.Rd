@@ -72,6 +72,10 @@ distMeasure="median", clusterLinkage="average")
 
 # 4) visualise clusters/bases partitioned from the sMap
 visDmatCluster(sMap,sBase)
+# 4a) also, the area size is proportional to the hits
+visDmatCluster(sMap,sBase, area.size=log2(sMap$hits+1))
+# 4b) also, the area size is proportional to the index of bases
+visDmatCluster(sMap,sBase, area.size=sBase$bases)
 }
 \seealso{
   \code{\link{sDmatCluster}}, \code{\link{visColormap}},

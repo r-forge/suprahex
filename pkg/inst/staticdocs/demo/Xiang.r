@@ -31,7 +31,7 @@ visHexPattern(sMap, plotType="bars",colormap="rainbow",legend.cex=0.5)
 ## As you have seen, bar plot displays the patterns associated with the codebook matrix. When the pattern involves both positive and negative values, the zero horizental line is in the middle of the hexagon; otherwise at the top of the hexagon for all negative values, and at the bottom for all positive values.
 
 # (IV) Perform partitioning operation on the map to obtain continuous clusters (i.e. gene meta-clusters) as they are different from gene clusters in an individual map node
-sBase <- sDmatCluster(sMap)
+sBase <- sDmatCluster(sMap, reindexSeed="svd")
 visDmatCluster(sMap, sBase)
 output <- sWriteData(sMap, data, sBase, filename="Output_base_Xiang.txt", keep.data=T)
 ## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command visDmatCluster(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output .txt file has been saved in your disk. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). You can also force the input data to be output; type ?sWriteData for details.
@@ -63,8 +63,11 @@ col_bases <- sapply(bases, function(x) lvs_color[x==lvs])
 RowSideColors <- matrix(col_bases, nrow=1)
 rownames(RowSideColors) <- c("Clusters")
 # heatmap embeded with sidebars annotating gene cluster memberships
-visHeatmapAdv((D), Rowv=F, Colv=F, dendrogram="none", KeyValueName="Log2(Ratio)", colormap="darkgreen-lightgreen-lightpink-darkred", side.height.fraction=0.2, RowSideColors=RowSideColors, labRow=NA)
+visHeatmapAdv((D), Rowv=F, Colv=F, dendrogram="none", KeyValueName="Log2(Ratio)", colormap="darkblue-white-darkorange", RowSideColors=RowSideColors, labRow=NA)
+# add separated lines between bases
+sep_index <- sapply(unique(bases), function(x) which(bases[length(bases):1]==x)[1])
+visHeatmapAdv((D), Rowv=F, Colv=F, dendrogram="none", KeyValueName="Log2(Ratio)", colormap="darkblue-white-darkorange", RowSideColors=RowSideColors, labRow=NA, add.expr=abline(h=c(length(bases)+1,sep_index)-0.5,col="black",lwd=1,lty=5))
 # add legend
 legend_txt <- paste(rep("Base",length(lvs)), lvs, sep=" ")
-legend("left", legend=legend_txt, col=lvs_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=F)
+legend("bottomleft", legend=legend_txt, col=lvs_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=F)
 

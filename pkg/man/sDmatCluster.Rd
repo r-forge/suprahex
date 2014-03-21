@@ -4,7 +4,8 @@
 \usage{
   sDmatCluster(sMap, which_neigh = 1,
     distMeasure = c("median", "mean", "min", "max"),
-    clusterLinkage = c("average", "complete", "single", "bmh"))
+    clusterLinkage = c("average", "complete", "single", "bmh"),
+    reindexSeed = c("hclust", "svd", "none"))
 }
 \arguments{
   \item{sMap}{an object of class "sMap"}
@@ -24,6 +25,14 @@
   not ensure each cluster is continuous. Instead, each
   cluster is continuous when using region-growing algorithm
   with one of "average", "complete" and "single" linkages}
+
+  \item{reindexSeed}{the way to index seed. It can be
+  "hclust" for reindexing seeds according to hierarchical
+  clustering of patterns seen in seeds, "svd" for
+  reindexing seeds according to svd of patterns seen in
+  seeds, or "none" for seeds being simply increased by the
+  hexagon indexes (i.e. always in an increasing order as
+  hexagons radiate outwards)}
 }
 \value{
   an object of class "sBase", a list with following

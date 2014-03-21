@@ -113,7 +113,8 @@
   
     <h3>Usage</h3>
     <pre>sDmatCluster(sMap, which_neigh = 1, distMeasure = c("median", "mean", "min", "max"), 
-  clusterLinkage = c("average", "complete", "single", "bmh"))</pre>
+  clusterLinkage = c("average", "complete", "single", "bmh"), reindexSeed = c("hclust", 
+          "svd", "none"))</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -135,6 +136,14 @@
   not ensure each cluster is continuous. Instead, each
   cluster is continuous when using region-growing algorithm
   with one of "average", "complete" and "single" linkages</dd>
+      <dt>reindexSeed</dt>
+      <dd>the way to index seed. It can be
+  "hclust" for reindexing seeds according to hierarchical
+  clustering of patterns seen in seeds, "svd" for
+  reindexing seeds according to svd of patterns seen in
+  seeds, or "none" for seeds being simply increased by the
+  hexagon indexes (i.e. always in an increasing order as
+  hexagons radiate outwards)</dd>
     </dl>
     <!-- 
     -->
@@ -173,7 +182,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-20 18:25:41</strong>
+<strong class='message'>Start at 2014-03-21 17:53:15</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -200,7 +209,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-20 18:25:41</strong>
+<strong class='message'>End at 2014-03-21 17:53:15</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>

@@ -125,7 +125,7 @@ data <- Xiang # a matrix of 3,625 genes expressed in 7 samples
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2014-03-20 18:25:00</strong>
+<strong class='message'>Start at 2014-03-21 17:52:34</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -152,8 +152,8 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 6 to 1.5
    radius (at finetune stage): from 1.5 to 1
 </strong>
-<strong class='message'>End at 2014-03-20 18:25:02</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>End at 2014-03-21 17:52:35</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap,title.rotate=10,colormap="darkblue-white-darkorange")
 </div>
@@ -188,7 +188,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 <div class='input'>## As you have seen, bar plot displays the patterns associated with the codebook matrix. When the pattern involves both positive and negative values, the zero horizental line is in the middle of the hexagon; otherwise at the top of the hexagon for all negative values, and at the bottom for all positive values.
 
 # (IV) Perform partitioning operation on the map to obtain continuous clusters (i.e. gene meta-clusters) as they are different from gene clusters in an individual map node
-sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
+sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap, reindexSeed="svd")
 <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase)
 </div>
 <a href="javascript:newWin('Xiang-30.png', 'Xiang-30.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-30.png', width="400" /></a>
@@ -198,7 +198,7 @@ sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap, metric="pearson")
 </div>
-<strong class='message'>Start at 2014-03-20 18:25:30</strong>
+<strong class='message'>Start at 2014-03-21 17:53:03</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -225,7 +225,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-20 18:25:30</strong>
+<strong class='message'>End at 2014-03-21 17:53:03</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap,sReorder,title.rotate=10,colormap="darkblue-white-darkorange")
@@ -237,11 +237,11 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
 output[1:5,]
 </div>
 <div class='output'>                 ID Hexagon_index Cluster_base data.Zygote data.Quadrant
-At3g57450 At3g57450           138            5   1.1871294     0.7917241
-At2g06005 At2g06005           176            1   1.7167625    -0.5305049
-At4g11310 At4g11310             8            1  -0.1910232    -0.1910232
-At1g65930 At1g65930           311           11  -0.5570747    -0.3839494
-At2g06010 At2g06010           269           14  -0.1403925    -0.6520918
+At3g57450 At3g57450           138            7   1.1871294     0.7917241
+At2g06005 At2g06005           176           11   1.7167625    -0.5305049
+At4g11310 At4g11310             8           11  -0.1910232    -0.1910232
+At1g65930 At1g65930           311            5  -0.5570747    -0.3839494
+At2g06010 At2g06010           269           12  -0.1403925    -0.6520918
           data.Globular data.Heart data.Torpedo   data.Bent data.Mature
 At3g57450    -0.3820804 -0.3613931   -0.6041326  0.13632427  -0.7675716
 At2g06005    -0.8359733 -0.7406242   -0.5765449 -0.14998331   1.1168680
@@ -269,14 +269,20 @@ col_bases <- sapply(bases, function(x) lvs_color[x==lvs])
 RowSideColors <- matrix(col_bases, nrow=1)
 rownames(RowSideColors) <- c("Clusters")
 # heatmap embeded with sidebars annotating gene cluster memberships
-<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>((D), Rowv=F, Colv=F, dendrogram="none", KeyValueName="Log2(Ratio)", colormap="darkgreen-lightgreen-lightpink-darkred", side.height.fraction=0.2, RowSideColors=RowSideColors, labRow=NA)
+<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>((D), Rowv=F, Colv=F, dendrogram="none", KeyValueName="Log2(Ratio)", colormap="darkblue-white-darkorange", RowSideColors=RowSideColors, labRow=NA)
 </div>
 <a href="javascript:newWin('Xiang-52.png', 'Xiang-52.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-52.png', width="400" /></a>
+<div class='input'># add separated lines between bases
+sep_index <- sapply(unique(bases), function(x) which(bases[length(bases):1]==x)[1])
+<a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>((D), Rowv=F, Colv=F, dendrogram="none", KeyValueName="Log2(Ratio)", colormap="darkblue-white-darkorange", RowSideColors=RowSideColors, labRow=NA, add.expr=abline(h=c(length(bases)+1,sep_index)-0.5,col="black",lwd=1,lty=5))
+</div>
+<strong class='error'>Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...): object 'bases' not found</strong>
+<a href="javascript:newWin('Xiang-55.png', 'Xiang-55.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-55.png', width="400" /></a>
 <div class='input'># add legend
 legend_txt <- paste(rep("Base",length(lvs)), lvs, sep=" ")
-legend("left", legend=legend_txt, col=lvs_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=F)
+legend("bottomleft", legend=legend_txt, col=lvs_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=F)
 </div>
-<a href="javascript:newWin('Xiang-54.png', 'Xiang-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-54.png', width="400" /></a>
+<a href="javascript:newWin('Xiang-57.png', 'Xiang-57.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Xiang-57.png', width="400" /></a>
       </pre>
     </div>
 

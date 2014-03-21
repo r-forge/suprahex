@@ -21,4 +21,4 @@
 
 ## Workflow
 
-<a href="supraHex_workflow.png"><IMG src="supraHex_workflow.png" height="275px" id="logo"></a>
+<a href="javascript:newWin('supraHex_workflow.png', 'supraHex_workflow.png', '1200', '600')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='supraHex_workflow.png', height="275px" /></a>

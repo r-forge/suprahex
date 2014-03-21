@@ -113,9 +113,25 @@
   color-code the column groups (i.e. sidebar colors used to
   annotate the columns)}
 
-  \item{...}{additional graphic parameters. For the
-  complete list of parameters, please refer to
-  \url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}.}
+  \item{...}{additional graphic parameters. For most
+  parameters, please refer to
+  \url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}.
+  For example, the parameters "srtRow" and "srtCol" to
+  control the angle of row/column labels (in degrees from
+  horizontal: 45 degrees for the column, 0 degrees for the
+  row, by default), i.e. string rotation. The parameters
+  "offsetRow" and "offsetCol" to indicate the number of
+  character-width spaces to place between row/column labels
+  and the edge of the plotting region. Unique to this
+  function, there are two parameters "RowSideWidth" and
+  RowSideLabelLocation, to respectively indicate the
+  fraction of the row side width and the location (either
+  bottom or top) of the row side labelling; the other two
+  parameters "ColSideHeight" and "ColSideLabelLocation" for
+  the column side height and the location (either left or
+  right) of the column side labelling; and two parameters
+  "RowSideBox" and "ColSideBox" to indicate whether there
+  are boxes outside.}
 }
 \value{
   invisible
@@ -180,8 +196,7 @@ ColSideColors <- cbind(col_stages,col_replicates)
 colnames(ColSideColors) <- c("Stages","Replicates")
 
 # 5) heatmap without clustering on rows and columns but with the two sidebars in columns
-visHeatmapAdv(data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-2,2),
-density.info="density", tracecol="yellow", ColSideColors=ColSideColors)
+visHeatmapAdv(data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-2,2), density.info="density", tracecol="yellow", ColSideColors=ColSideColors, ColSideHeight=0.5, ColSideLabelLocation="right")
 }
 \seealso{
   \code{\link{visHeatmapAdv}}

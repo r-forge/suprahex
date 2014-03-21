@@ -67,4 +67,4 @@ col_subtypes <- sapply(subtypes, function(x) lvs_color[x==lvs])
 ColSideColors <- cbind(col_subtypes,col_types)
 colnames(ColSideColors) <- c("ALL subtypes", "AML/ALL types")
 # heatmap embeded with sidebars annotating samples
-visHeatmapAdv(t(D), Rowv=T, Colv=F, dendrogram="none", colormap="darkgreen-lightgreen-lightpink-darkred", side.height.fraction=0.5, ColSideColors=ColSideColors, labRow=NA)
+visHeatmapAdv(t(D), Rowv=T, Colv=F, dendrogram="none", colormap="darkgreen-lightgreen-lightpink-darkred", ColSideColors=ColSideColors, ColSideHeight=0.4, ColSideLabelLocation="left", labRow=NA)

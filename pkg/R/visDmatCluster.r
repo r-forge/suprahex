@@ -31,6 +31,10 @@
 #' 
 #' # 4) visualise clusters/bases partitioned from the sMap
 #' visDmatCluster(sMap,sBase)
+#' # 4a) also, the area size is proportional to the hits
+#' visDmatCluster(sMap,sBase, area.size=log2(sMap$hits+1))
+#' # 4b) also, the area size is proportional to the index of bases
+#' visDmatCluster(sMap,sBase, area.size=sBase$bases)
 
 visDmatCluster <- function (sMap, sBase, height=7, margin=rep(0.1,4), area.size=1, gp=grid::gpar(cex=0.8, font=2, col.label="black"),  border.color="transparent", colormap=c("rainbow","jet","bwr","gbr","wyr","br","yr","wb"), clip=c("on","inherit","off"), newpage=T)
 {

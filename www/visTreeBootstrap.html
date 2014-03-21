@@ -365,13 +365,13 @@ data <- t(data)
 # 2) build neighbor-joining tree with bootstrap values and visualise it by default
 visTreeBootstrap(data, metric="mi")
 </div>
-<strong class='message'>Start at 2014-03-20 18:26:26</strong>
+<strong class='message'>Start at 2014-03-21 17:54:01</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and mi distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-20 18:26:44</strong>
+<strong class='message'>Finish at 2014-03-21 17:54:19</strong>
 <strong class='message'>Runtime in total is: 18 secs
 </strong>
 <a href="javascript:newWin('visTreeBootstrap-10.png', 'visTreeBootstrap-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visTreeBootstrap-10.png', width="400" /></a>
@@ -390,13 +390,13 @@ Unrooted; includes branch lengths.
 # 3a) generate the bootstrapped tree (without visualisation)
 tree_bs <- visTreeBootstrap(data, visTree=FALSE)
 </div>
-<strong class='message'>Start at 2014-03-20 18:26:44</strong>
+<strong class='message'>Start at 2014-03-21 17:54:19</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-20 18:26:44</strong>
+<strong class='message'>Finish at 2014-03-21 17:54:19</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># 3b) look at the bootstrap values and ordered row names of input matrix
@@ -418,13 +418,13 @@ text <- tree_bs$node.label[flag]
 node <- Ntip + (1:Nnode)[flag]
 visTreeBootstrap(data, nodelabels.arg=list(text=text,node=node))
 </div>
-<strong class='message'>Start at 2014-03-20 18:26:44</strong>
+<strong class='message'>Start at 2014-03-21 17:54:19</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-20 18:26:44</strong>
+<strong class='message'>Finish at 2014-03-21 17:54:19</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <a href="javascript:newWin('visTreeBootstrap-34.png', 'visTreeBootstrap-34.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visTreeBootstrap-34.png', width="400" /></a>
@@ -442,14 +442,14 @@ Unrooted; includes branch lengths.
 # 4) obtain the consensus tree
 tree_cons <- visTreeBootstrap(data, consensus=TRUE, consensus.majority=0.5)
 </div>
-<strong class='message'>Start at 2014-03-20 18:26:44</strong>
+<strong class='message'>Start at 2014-03-21 17:54:19</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, obtain consensus tree based on 0.50 majority...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-20 18:26:45</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>Finish at 2014-03-21 17:54:19</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong></pre>
   </div>
   
@@ -466,7 +466,7 @@ tree_cons <- visTreeBootstrap(data, consensus=TRUE, consensus.majority=0.5)
       
     <h2>See also</h2>
     
-  <code><a href='sDistance.html'>sDistance</a></code>
+  <code><a href='visTreeBootstrap.html'>visTreeBootstrap</a></code>
 
     
     <h2>Citation</h2>

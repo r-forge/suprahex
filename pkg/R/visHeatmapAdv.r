@@ -18,7 +18,7 @@
 #' @param ColSideColors NULL or a matrix of ncol(x) X "numColsidebars", where "numColsidebars" stands for the number of sidebars annotating the columns of x. This matrix contains the color names for horizontal sidebars. By default, it sets to NULL. In this case, sidebars in columns can still be enabled by cutting the column dendrogram into several clusters (see the next two parameters)
 #' @param column.cutree an integer scalar specifying the desired number of groups being cut from the column dendrogram. Note, this optional is only enabled when the column dengrogram is built
 #' @param column.colormap short name for the colormap to color-code the column groups (i.e. sidebar colors used to annotate the columns)
-#' @param ... additional graphic parameters. For the complete list of parameters, please refer to \url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}.
+#' @param ... additional graphic parameters. For most parameters, please refer to \url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}. For example, the parameters "srtRow" and "srtCol" to control the angle of row/column labels (in degrees from horizontal: 45 degrees for the column, 0 degrees for the row, by default), i.e. string rotation. The parameters "offsetRow" and "offsetCol" to indicate the number of character-width spaces to place between row/column labels and the edge of the plotting region. Unique to this function, there are two parameters "RowSideWidth" and RowSideLabelLocation, to respectively indicate the fraction of the row side width and the location (either bottom or top) of the row side labelling; the other two parameters "ColSideHeight" and "ColSideLabelLocation" for the column side height and the location (either left or right) of the column side labelling; and two parameters "RowSideBox" and "ColSideBox" to indicate whether there are boxes outside. 
 #' @return 
 #' invisible
 #' @note The clustering/linkage methods are provided:
@@ -67,8 +67,7 @@
 #' colnames(ColSideColors) <- c("Stages","Replicates")
 #'
 #' # 5) heatmap without clustering on rows and columns but with the two sidebars in columns
-#' visHeatmapAdv(data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-2,2), 
-#' density.info="density", tracecol="yellow", ColSideColors=ColSideColors)
+#' visHeatmapAdv(data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-2,2), density.info="density", tracecol="yellow", ColSideColors=ColSideColors, ColSideHeight=0.5, ColSideLabelLocation="right")
 
 visHeatmapAdv <- function (data, scale=c("none","row","column"), Rowv=T, Colv=T, dendrogram=c("both","row","column","none"), dist.metric=c("euclidean","pearson","spearman","kendall","manhattan","cos","mi"), linkage.method=c("complete","ward","single","average","mcquitty","median","centroid"), 
 colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=64, zlim=NULL, RowSideColors=NULL, row.cutree=NULL, row.colormap=c("jet"), ColSideColors=NULL, column.cutree=NULL, column.colormap=c("jet"), ...)
@@ -179,16 +178,27 @@ heatmap.2 <- function(x,
                       hline = median(breaks),
                       vline = median(breaks),
                       linecol = tracecol,
-                      margins = c(5,5),
+                      margins = c(7,5), # controling the margins (1st for the bottom and 2nd for the right)
                       
                       # Row/Column Labeling/annotating
-                      ColSideColors,
                       RowSideColors,
-                      side.height.fraction=0.25,
+                      ColSideColors,
+                      RowSideBox = TRUE, # whether adding box for row sides
+                      ColSideBox = TRUE, # whether adding box for column sides
+                      RowSideWidth = 0.25, # fraction of the width of row sides
+                      ColSideHeight = 0.25, # fraction of the height of column sides
+                      RowSideLabelLocation = c("bottom","top"), # location of column side labelling (either at bottom or top)
+                      ColSideLabelLocation = c("left","right"), # location of row side labelling (either at left or right)
                       cexRow = 0.2 + 1/log10(nr),
                       cexCol = 0.2 + 1/log10(nc),
                       labRow = NULL,
                       labCol = NULL,
+                      srtRow = 0, # angle of row labels, in degrees from horizontal
+                      srtCol = 45, # angle of column labels, in degrees from horizontal
+                      offsetRow = 0, # Number of character-width spaces to place between row labels and the edge of the plotting region
+                      offsetCol = 0, # Number of character-width spaces to place between column labels and the edge of the plotting region
+                      adjRow = c(0,NA), # 2-element vector giving the (left-right, top-bottom) justification of row/column labels (relative to the text orientation)
+                      adjCol = c(NA,0), # 2-element vector giving the (left-right, top-bottom) justification of row/column labels (relative to the text orientation)
                       
                       # color key + density info
                       ## logical indicating whether a color-key should be shown
@@ -219,7 +229,11 @@ heatmap.2 <- function(x,
                       KeyValueName = "Value",
                       ...)
 {
- 
+    ########## Add RowSideLabelLocation and ColSideLabelLocation for the location of labelling
+    RowSideLabelLocation <- match.arg(RowSideLabelLocation)
+    ColSideLabelLocation <- match.arg(ColSideLabelLocation)
+    ##########
+     
     invalid <- function (x) {
       if (missing(x) || is.null(x) || length(x) == 0)
           return(TRUE)
@@ -408,7 +422,7 @@ heatmap.2 <- function(x,
                 stop("'ColSideColors' must be a matrix of nrow(x) rows")
             lmat <- rbind(lmat[1, ] + 1, c(NA, 1), lmat[2, ] + 1)
             #lhei <- c(lhei[1], 0.2, lhei[2])
-             lhei=c(lhei[1], side.height.fraction*NumColSideColors, lhei[2])
+             lhei=c(lhei[1], ColSideHeight*NumColSideColors, lhei[2])
         }
  
         if (!missing(RowSideColors)) {
@@ -418,7 +432,7 @@ heatmap.2 <- function(x,
                 stop("'RowSideColors' must be a matrix of ncol(x) columns")
             lmat <- cbind(lmat[, 1] + 1, c(rep(NA, nrow(lmat) - 1), 1), lmat[,2] + 1)
             #lwid <- c(lwid[1], 0.2, lwid[2])
-            lwid <- c(lwid[1], side.height.fraction*NumRowSideColors, lwid[2])
+            lwid <- c(lwid[1], RowSideWidth*NumRowSideColors, lwid[2])
         }
         lmat[is.na(lmat)] <- 0
     }
@@ -437,6 +451,8 @@ heatmap.2 <- function(x,
         if (nrow(RowSideColors)==1){
                 par(mar = c(margins[1], 0, 0, 0.5))
                 image(rbind(1:nr), col = RowSideColors[rowInd], axes = FALSE)
+                ## add box
+                if(RowSideBox==TRUE) box(lwd=1,col="black")
         } else {
             par(mar = c(margins[1], 0, 0, 0.5))
             rsc = t(RowSideColors[,rowInd, drop=F])
@@ -450,8 +466,14 @@ heatmap.2 <- function(x,
             }
             rsc = matrix(as.numeric(rsc), nrow = dim(rsc)[1])
             image(t(rsc), col = as.vector(rsc.colors), axes = FALSE)
+            ## add box
+            if(RowSideBox==TRUE) box(lwd=1,col="black")
             if (length(rownames(RowSideColors)) > 0) {
-                axis(1, 0:(dim(rsc)[2] - 1)/(dim(rsc)[2] - 1), rownames(RowSideColors), las = 2, tick = FALSE)
+                if(RowSideLabelLocation=="bottom"){
+                    axis(1, 0:(dim(rsc)[2] - 1)/(dim(rsc)[2] - 1), rownames(RowSideColors), las = 2, tick = FALSE)
+                }else if(RowSideLabelLocation=="top"){
+                    axis(3, 0:(dim(rsc)[2] - 1)/(dim(rsc)[2] - 1), rownames(RowSideColors), las = 2, tick = FALSE)
+                }
             }
         }
     }
@@ -461,6 +483,8 @@ heatmap.2 <- function(x,
         if (!is.matrix(ColSideColors)){
             par(mar = c(0.5, 0, 0, margins[2]))
             image(cbind(1:nc), col = ColSideColors[colInd], axes = FALSE)
+            ## add box
+            if(ColSideBox==TRUE) box(lwd=1,col="black")
         } else {
             par(mar = c(0.5, 0, 0, margins[2]))
             csc = ColSideColors[colInd, , drop=F]
@@ -474,8 +498,14 @@ heatmap.2 <- function(x,
             }
             csc = matrix(as.numeric(csc), nrow = dim(csc)[1])
             image(csc, col = as.vector(csc.colors), axes = FALSE)
+            ## add box
+            if(ColSideBox==TRUE) box(lwd=1,col="black")
             if (length(colnames(ColSideColors)) > 0) {
-                axis(2, 0:(dim(csc)[2] - 1)/max(1,(dim(csc)[2] - 1)), colnames(ColSideColors), las = 2, tick = FALSE)
+                if(ColSideLabelLocation=="left"){
+                    axis(2, 0:(dim(csc)[2] - 1)/max(1,(dim(csc)[2] - 1)), colnames(ColSideColors), las = 2, tick = FALSE)
+                }else if(ColSideLabelLocation=="right"){
+                    axis(4, 0:(dim(csc)[2] - 1)/max(1,(dim(csc)[2] - 1)), colnames(ColSideColors), las = 2, tick = FALSE)
+                }
             }
         }
     }
@@ -504,14 +534,54 @@ heatmap.2 <- function(x,
         image(1:nc, 1:nr, mmat, axes = FALSE, xlab = "", ylab = "",
             col = na.color, add = TRUE)
     }
-    axis(1, 1:nc, labels = labCol, las = 2, line = -0.5, tick = 0,
-        cex.axis = cexCol)
-    if (!is.null(xlab))
-        mtext(xlab, side = 1, line = margins[1] - 1.25)
-    axis(4, iy, labels = labRow, las = 2, line = -0.5, tick = 0,
-        cex.axis = cexRow)
-    if (!is.null(ylab))
-        mtext(ylab, side = 4, line = margins[2] - 1.25)
+    
+    ############ Add srtCol, offsetCol and adjCol according to heatmap.2 from gplots
+    if (is.null(srtCol)) 
+        axis(1, 1:nc, labels = labCol, las = 2, line = -0.5 + 
+            offsetCol, tick = 0, cex.axis = cexCol, hadj = adjCol[1], 
+            padj = adjCol[2])
+    else {
+        if (is.numeric(srtCol)) {
+            if (missing(adjCol) || is.null(adjCol)) 
+                adjCol = c(1, NA)
+            xpd.orig <- par("xpd")
+            par(xpd = NA)
+            xpos <- axis(1, 1:nc, labels = rep("", nc), las = 2, 
+                tick = 0)
+            text(x = xpos, y = par("usr")[3] - (1 + offsetCol) * 
+                strheight("M"), labels = labCol, adj = adjCol, 
+                cex = cexCol, srt = srtCol)
+            par(xpd = xpd.orig)
+        }
+        else warning("Invalid value for srtCol ignored.")
+    }
+    ############
+    ##axis(1, 1:nc, labels = labCol, las = 2, line = -0.5, tick = 0, cex.axis = cexCol)
+    if (!is.null(xlab)) mtext(xlab, side = 1, line = margins[1] - 1.25)
+    
+    ############ Add srtRow, offsetRow and adjRow according to heatmap.2 from gplots
+    if (is.null(srtRow)) {
+        axis(4, iy, labels = labRow, las = 2, line = -0.5 + offsetRow, 
+            tick = 0, cex.axis = cexRow, hadj = adjRow[1], padj = adjRow[2])
+    }
+    else {
+        if (is.numeric(srtRow)) {
+            xpd.orig <- par("xpd")
+            par(xpd = NA)
+            ypos <- axis(4, iy, labels = rep("", nr), las = 2, 
+                line = -0.5, tick = 0)
+            text(x = par("usr")[2] + (1 + offsetRow) * strwidth("M"), 
+                y = ypos, labels = labRow, adj = adjRow, cex = cexRow, 
+                srt = srtRow)
+            par(xpd = xpd.orig)
+        }
+        else warning("Invalid value for srtRow ignored.")
+    }
+    ############
+    ##axis(4, iy, labels = labRow, las = 2, line = -0.5, tick = 0, cex.axis = cexRow)
+    if (!is.null(ylab)) mtext(ylab, side = 4, line = margins[2] - 1.25)
+    
+    
     if (!missing(add.expr))
         eval(substitute(add.expr))
     if (!missing(colsep))
