@@ -467,7 +467,11 @@ heatmap.2 <- function(x,
             rsc = matrix(as.numeric(rsc), nrow = dim(rsc)[1])
             image(t(rsc), col = as.vector(rsc.colors), axes = FALSE)
             ## add box
-            if(RowSideBox==TRUE) box(lwd=1,col="black")
+            if(RowSideBox==TRUE){
+                tmp <- dim(rsc)[2]-1
+                abline(v=(((0:(tmp+1))-0.5)/max(1,tmp)), lwd=1, col="black")
+                box(lwd=1, col="black")
+            }
             if (length(rownames(RowSideColors)) > 0) {
                 if(RowSideLabelLocation=="bottom"){
                     axis(1, 0:(dim(rsc)[2] - 1)/(dim(rsc)[2] - 1), rownames(RowSideColors), las = 2, tick = FALSE)
@@ -498,8 +502,13 @@ heatmap.2 <- function(x,
             }
             csc = matrix(as.numeric(csc), nrow = dim(csc)[1])
             image(csc, col = as.vector(csc.colors), axes = FALSE)
-            ## add box
-            if(ColSideBox==TRUE) box(lwd=1,col="black")
+            ##### add box
+            if(ColSideBox==TRUE){
+                tmp <- dim(csc)[2]-1
+                abline(h=(((0:(tmp+1))-0.5)/max(1,tmp)), lwd=1, col="black")
+                box(lwd=1, col="black")
+            }
+            #####
             if (length(colnames(ColSideColors)) > 0) {
                 if(ColSideLabelLocation=="left"){
                     axis(2, 0:(dim(csc)[2] - 1)/max(1,(dim(csc)[2] - 1)), colnames(ColSideColors), las = 2, tick = FALSE)

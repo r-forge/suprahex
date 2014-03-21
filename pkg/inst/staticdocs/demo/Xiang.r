@@ -71,3 +71,6 @@ visHeatmapAdv((D), Rowv=F, Colv=F, dendrogram="none", KeyValueName="Log2(Ratio)"
 legend_txt <- paste(rep("Base",length(lvs)), lvs, sep=" ")
 legend("bottomleft", legend=legend_txt, col=lvs_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=F)
 
+
+image(y=1:ncol(data), x=1:nrow(data), z=as.matrix(data),axes = T)
+abline(h=(1:(ncol(data)+1))-0.5,col="white")
