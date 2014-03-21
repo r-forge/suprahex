@@ -125,7 +125,7 @@ data <- Golub # a matrix of 3,051 genes expressed in 38 samples
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2014-03-21 17:48:50</strong>
+<strong class='message'>Start at 2014-03-21 20:22:16</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -152,7 +152,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 6 to 1.5
    radius (at finetune stage): from 1.5 to 1
 </strong>
-<strong class='message'>End at 2014-03-21 17:48:52</strong>
+<strong class='message'>End at 2014-03-21 20:22:18</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap,title.rotate=10,colormap="darkgreen-lightgreen-lightpink-darkred")
@@ -198,7 +198,7 @@ sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(data,metric="pearson") # see Figure 8
 </div>
-<strong class='message'>Start at 2014-03-21 17:49:16</strong>
+<strong class='message'>Start at 2014-03-21 20:22:42</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -225,8 +225,8 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(dat
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-21 17:49:26</strong>
-<strong class='message'>Runtime in total is: 10 secs
+<strong class='message'>End at 2014-03-21 20:22:53</strong>
+<strong class='message'>Runtime in total is: 11 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap,sReorder,title.rotate=15,colormap="darkgreen-lightgreen-lightpink-darkred")
 </div>
@@ -238,14 +238,14 @@ D <- t(data)
 rownames(D) <- paste(rownames(D), 1:nrow(D), sep=".") # temporally make sure the row names are unique
 tree_bs <- <a href='visTreeBootstrap.html' target=visTreeBootstrap>visTreeBootstrap</a>(D, nodelabels.arg=list(cex=0.7))
 </div>
-<strong class='message'>Start at 2014-03-21 17:49:29</strong>
+<strong class='message'>Start at 2014-03-21 20:22:55</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (38 by 3051)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-21 17:49:30</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>Finish at 2014-03-21 20:22:57</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <a href="javascript:newWin('Golub-58.png', 'Golub-58.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Golub-58.png', width="400" /></a>
 <div class='input'>## As you have seen, neighbour-joining tree is constructed based on pairwise euclidean distance matrices between samples. The robustness of tree branching is evaluated using bootstraping. In internal nodes (also color-coded), the number represents the proportion of bootstrapped trees that support the observed internal branching. The higher the number, the more robust the tree branching. 100 means that the internal branching is always observed by resampling characters/genes. 

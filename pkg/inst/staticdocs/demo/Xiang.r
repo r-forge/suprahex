@@ -63,14 +63,12 @@ col_bases <- sapply(bases, function(x) lvs_color[x==lvs])
 RowSideColors <- matrix(col_bases, nrow=1)
 rownames(RowSideColors) <- c("Clusters")
 # heatmap embeded with sidebars annotating gene cluster memberships
-visHeatmapAdv((D), Rowv=F, Colv=F, dendrogram="none", KeyValueName="Log2(Ratio)", colormap="darkblue-white-darkorange", RowSideColors=RowSideColors, labRow=NA)
-# add separated lines between bases
-sep_index <- sapply(unique(bases), function(x) which(bases[length(bases):1]==x)[1])
-visHeatmapAdv((D), Rowv=F, Colv=F, dendrogram="none", KeyValueName="Log2(Ratio)", colormap="darkblue-white-darkorange", RowSideColors=RowSideColors, labRow=NA, add.expr=abline(h=c(length(bases)+1,sep_index)-0.5,col="black",lwd=1,lty=5))
+colormap <- "darkblue-white-darkorange"
+visHeatmapAdv((D), Rowv=F, Colv=F, KeyValueName="Log2(Ratio)", colormap=colormap, RowSideColors=RowSideColors, labRow=NA)
 # add legend
 legend_txt <- paste(rep("Base",length(lvs)), lvs, sep=" ")
 legend("bottomleft", legend=legend_txt, col=lvs_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=F)
-
-
-image(y=1:ncol(data), x=1:nrow(data), z=as.matrix(data),axes = T)
-abline(h=(1:(ncol(data)+1))-0.5,col="white")
+# add separated lines between bases
+sep_index <- sapply(unique(bases), function(x) which(bases[length(bases):1]==x)[1])
+sep_index <- sep_index[1:length(sep_index)-1]
+visHeatmapAdv((D), Rowv=F, Colv=F, KeyValueName="Log2(Ratio)", colormap=colormap, RowSideColors=RowSideColors, add.expr=graphics::abline(h=sep_index-0.5,lty=5), labRow=NA)
