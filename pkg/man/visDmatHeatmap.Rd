@@ -5,7 +5,8 @@
   visDmatHeatmap(sMap, data, sBase, base.color = "rainbow",
     base.separated.arg = NULL,
     base.legend.location = c("none", "bottomleft", "bottomright", "bottom", "left", "topleft", "top", "topright", "right", "center"),
-    keep.data = F, ...)
+    reorderRow = c("none", "hclust", "svd"), keep.data = F,
+    ...)
 }
 \arguments{
   \item{sMap}{an object of class "sMap" or a codebook
@@ -36,6 +37,13 @@
   \item{base.legend.location}{location of legend to
   describe bases. If "none", this legend will not be
   displayed}
+
+  \item{reorderRow}{the way to reorder the rows within a
+  base. It can be "none" for rows within a base being
+  reorded by the hexagon indexes, "hclust" for rows within
+  a base being reorded according to hierarchical clustering
+  of patterns seen, "svd" for rows within a base being
+  reorded according to svd of patterns seen}
 
   \item{keep.data}{logical to indicate whether or not to
   also write out the input data. By default, it sets to
@@ -88,8 +96,7 @@ sBase <- sDmatCluster(sMap=sMap, which_neigh=1,
 distMeasure="median", clusterLinkage="average")
 
 # 4) heatmap visualisation
-output <- visDmatHeatmap(sMap=sMap, data=data, sBase=sBase,
-base.separated.arg=list(col="white"),base.legend.location="bottomleft", labRow=NA)
+output <- visDmatHeatmap(sMap=sMap, data=data, sBase=sBase, base.legend.location="bottomleft", labRow=NA)
 }
 \seealso{
   \code{\link{sDmatCluster}}, \code{\link{visHeatmapAdv}}

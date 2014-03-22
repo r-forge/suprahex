@@ -195,7 +195,6 @@ sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min
         new_index <- old_index[ordering]
         base <- sapply(base, function(x) which(new_index==x))
     }
-
     
     ###########################################################
         

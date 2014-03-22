@@ -55,7 +55,7 @@ col_replicates <- sapply(replicates, function(x) lvs_color[x==lvs])
 # combine both color vectors
 ColSideColors <- cbind(col_stages,col_replicates)
 colnames(ColSideColors) <- c("Stages","Replicates")
-output <- visDmatHeatmap(sMap, data, sBase, base.legend.location="bottomleft", ColSideColors=ColSideColors, KeyValueName="log2(Ratio)", ColSideLabelLocation="right", labRow=NA)
+output <- visDmatHeatmap(sMap, data, sBase, base.legend.location="bottomleft", reorderRow="hclust", ColSideColors=ColSideColors, KeyValueName="log2(Ratio)", ColSideLabelLocation="right", labRow=NA)
 ## As you have seen, heatmap is used to visualise patterns seen in genes within each meta-cluster/base. Row side bar indicates the meta-clusters/bases. Column side bar annotates samples. The returned variable "output" (NOT a txt file) has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). Note: it has rows in the same order as visualised in the heatmap
 
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples

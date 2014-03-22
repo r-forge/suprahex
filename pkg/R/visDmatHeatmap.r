@@ -8,6 +8,7 @@
 #' @param base.color short name for the colormap used to encode bases (in row side bar). It can be one of "jet" (jet colormap), "bwr" (blue-white-red colormap), "gbr" (green-black-red colormap), "wyr" (white-yellow-red colormap), "br" (black-red colormap), "yr" (yellow-red colormap), "wb" (white-black colormap), and "rainbow" (rainbow colormap, that is, red-yellow-green-cyan-blue-magenta). Alternatively, any hyphen-separated HTML color names, e.g. "blue-black-yellow", "royalblue-white-sandybrown", "darkgreen-white-darkviolet". A list of standard color names can be found in \url{http://html-color-codes.info/color-names}
 #' @param base.separated.arg a list of main parameters used for styling bar separated lines. See 'Note' below for details on the parameters
 #' @param base.legend.location location of legend to describe bases. If "none", this legend will not be displayed
+#' @param reorderRow the way to reorder the rows within a base. It can be "none" for rows within a base being reorded by the hexagon indexes, "hclust" for rows within a base being reorded according to hierarchical clustering of patterns seen, "svd" for rows within a base being reorded according to svd of patterns seen 
 #' @param keep.data logical to indicate whether or not to also write out the input data. By default, it sets to false for not keeping it. It is highly expensive to keep the large data sets
 #' @param ... additional graphic parameters used in "visHeatmapAdv". For most parameters, please refer to \url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}
 #' @return 
@@ -40,22 +41,44 @@
 #' distMeasure="median", clusterLinkage="average")
 #' 
 #' # 4) heatmap visualisation
-#' output <- visDmatHeatmap(sMap=sMap, data=data, sBase=sBase, 
-#' base.separated.arg=list(col="white"),base.legend.location="bottomleft", labRow=NA)
+#' output <- visDmatHeatmap(sMap=sMap, data=data, sBase=sBase, base.legend.location="bottomleft", labRow=NA)
 
-visDmatHeatmap <- function (sMap, data, sBase, base.color="rainbow", base.separated.arg=NULL, base.legend.location=c("none","bottomleft","bottomright","bottom","left","topleft","top","topright","right","center"), keep.data=F, ...)
+visDmatHeatmap <- function (sMap, data, sBase, base.color="rainbow", base.separated.arg=NULL, base.legend.location=c("none","bottomleft","bottomright","bottom","left","topleft","top","topright","right","center"), reorderRow=c("none","hclust","svd"), keep.data=F, ...)
 {
     
     base.legend.location <- match.arg(base.legend.location)
+    reorderRow <- match.arg(reorderRow)
     
     output <- sWriteData(sMap, data, sBase, filename=NULL, keep.data=keep.data)
-    
-    ## contruct data frame including 1st column for temporary index, 2nd for hexagon index, 3rd for base/cluster ID and the rest for their correspoinding data matrix 
     hexagon <- output[,2]
     base <- output[,3]
-    df <- data.frame(ind=1:nrow(output), hexagon, base, data)
-    # order by: first base, then hexagon
-    ordering <- df[order(base,hexagon),]$ind
+    
+    ###########################################################
+    ## contruct data frame for ordering
+    if(reorderRow=="none"){
+        ## contruct data frame including 1st column for temporary index, 2nd for hexagon index, 3rd for base/cluster ID
+        df <- data.frame(ind=1:nrow(output), hexagon, base)
+        # order by: first base, then hexagon
+        ordering <- df[order(base,hexagon),]$ind
+    }else if(reorderRow=="hclust"){
+        ## reordering via hierarchical clustering
+        distance <- as.dist(sDistance(data, metric="euclidean"))
+        cluster <- hclust(distance, method="complete")
+        cluster_order <- cluster$order
+        ## contruct data frame including 1st column for temporary index, 2nd for cluster order, 3rd for base/cluster ID
+        df <- data.frame(ind=1:nrow(output), cluster_order, base)
+        # order by: first base, then hexagon
+        ordering <- df[order(base,cluster_order),]$ind
+    }else if(reorderRow=="svd"){
+        ## reordering via SVD
+        data <- as.matrix(data)
+        sorted <- sort.int(data %*% svd(data)$v[,1], decreasing=T, index.return=T)
+        svd_order <- sorted$ix
+        ## contruct data frame including 1st column for temporary index, 2nd for svd order, 3rd for base/cluster ID
+        df <- data.frame(ind=1:nrow(output), svd_order, base)
+        # order by: first base, then hexagon
+        ordering <- df[order(base,svd_order),]$ind
+    }
     
     ######################################################################################
     ## The genes are ordered according to the base/cluster memberships
@@ -68,7 +91,7 @@ visDmatHeatmap <- function (sMap, data, sBase, base.color="rainbow", base.separa
     lvs_color <- visColoralpha(lvs_color, alpha=0.8) # add transparent (alpha) into colors
     col_bases <- sapply(bases, function(x) lvs_color[x==lvs])
     RowSideColors <- matrix(col_bases, nrow=1)
-    rownames(RowSideColors) <- c("Bases")
+    rownames(RowSideColors) <- paste("Bases ",1,"-",length(unique(bases)), sep="") 
     
     ################################################
     ## add separated lines between bases

@@ -85,6 +85,18 @@ colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=64, zlim=N
     dist.metric <- match.arg(dist.metric)
     linkage.method <- match.arg(linkage.method)
     
+    ## make sure RowSideColors and ColSideColors are always matrix
+    if (is.vector(RowSideColors)){
+        RowSideColors <- matrix(RowSideColors, nrow=1)
+    }else if(is.matrix(RowSideColors) | is.data.frame(RowSideColors)){
+        RowSideColors <- as.matrix(RowSideColors)
+    }
+    if (is.vector(ColSideColors)){
+        ColSideColors <- matrix(ColSideColors, ncol=1)
+    }else if(is.matrix(ColSideColors) | is.data.frame(ColSideColors)){
+        ColSideColors <- as.matrix(ColSideColors)
+    }
+    
     ## for rows
     if(Rowv==TRUE){
         if(!is.null(row.cutree)){
@@ -104,7 +116,7 @@ colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=64, zlim=N
         if(!is.null(column.cutree)){
             if(is.null(ColSideColors)){
                 if(column.cutree==as.integer(column.cutree) & column.cutree>=2 & column.cutree<=ncol(data)){
-                    distance <- as.dist(sDistance(data, metric=dist.metric))
+                    distance <- as.dist(sDistance(t(data), metric=dist.metric))
                     cluster <- hclust(distance, method=linkage.method)
                     column_cutree <- cutree(cluster, k=column.cutree)
                     column_color <- visColormap(colormap=column.colormap)(length(unique(column_cutree)))
@@ -187,8 +199,8 @@ heatmap.2 <- function(x,
                       ColSideBox = TRUE, # whether adding box for column sides
                       RowSideWidth = 0.25, # fraction of the width of row sides
                       ColSideHeight = 0.25, # fraction of the height of column sides
-                      RowSideLabelLocation = c("bottom","top"), # location of column side labelling (either at bottom or top)
-                      ColSideLabelLocation = c("left","right"), # location of row side labelling (either at left or right)
+                      RowSideLabelLocation = c("top","bottom"), # location of column side labelling (either at bottom or top)
+                      ColSideLabelLocation = c("right","left"), # location of row side labelling (either at left or right)
                       cexRow = 0.2 + 1/log10(nr),
                       cexCol = 0.2 + 1/log10(nc),
                       labRow = NULL,
@@ -448,7 +460,7 @@ heatmap.2 <- function(x,
  
     if (!missing(RowSideColors)) {
         #if (!is.matrix(RowSideColors)){
-        if (nrow(RowSideColors)==1){
+        if (nrow(RowSideColors)==0){
                 par(mar = c(margins[1], 0, 0, 0.5))
                 image(rbind(1:nr), col = RowSideColors[rowInd], axes = FALSE)
                 ## add box
@@ -468,15 +480,17 @@ heatmap.2 <- function(x,
             image(t(rsc), col = as.vector(rsc.colors), axes = FALSE)
             ## add box
             if(RowSideBox==TRUE){
-                tmp <- dim(rsc)[2]-1
-                abline(v=(((0:(tmp+1))-0.5)/max(1,tmp)), lwd=1, col="black")
+                if(nrow(RowSideColors) >= 2){
+                    tmp <- dim(rsc)[2]-1
+                    abline(v=(((0:(tmp+1))-0.5)/max(1,tmp)), lwd=1, col="black")
+                }
                 box(lwd=1, col="black")
             }
             if (length(rownames(RowSideColors)) > 0) {
                 if(RowSideLabelLocation=="bottom"){
-                    axis(1, 0:(dim(rsc)[2] - 1)/(dim(rsc)[2] - 1), rownames(RowSideColors), las = 2, tick = FALSE)
+                    axis(1, 0:(dim(rsc)[2] - 1)/(max(1,dim(rsc)[2] - 1)), rownames(RowSideColors), las = 2, tick = FALSE, line=-0.8)
                 }else if(RowSideLabelLocation=="top"){
-                    axis(3, 0:(dim(rsc)[2] - 1)/(dim(rsc)[2] - 1), rownames(RowSideColors), las = 2, tick = FALSE)
+                    axis(3, 0:(dim(rsc)[2] - 1)/(max(1,dim(rsc)[2] - 1)), rownames(RowSideColors), las = 2, tick = FALSE, line=-0.8)
                 }
             }
         }
@@ -484,7 +498,7 @@ heatmap.2 <- function(x,
  
     if (!missing(ColSideColors)) {
  
-        if (!is.matrix(ColSideColors)){
+        if (ncol(ColSideColors)==0){
             par(mar = c(0.5, 0, 0, margins[2]))
             image(cbind(1:nc), col = ColSideColors[colInd], axes = FALSE)
             ## add box
@@ -504,16 +518,18 @@ heatmap.2 <- function(x,
             image(csc, col = as.vector(csc.colors), axes = FALSE)
             ##### add box
             if(ColSideBox==TRUE){
-                tmp <- dim(csc)[2]-1
-                abline(h=(((0:(tmp+1))-0.5)/max(1,tmp)), lwd=1, col="black")
+                if(ncol(ColSideColors) >= 1){
+                    tmp <- dim(csc)[2]-1
+                    abline(h=(((0:(tmp+1))-0.5)/max(1,tmp)), lwd=1, col="black")
+                }
                 box(lwd=1, col="black")
             }
             #####
             if (length(colnames(ColSideColors)) > 0) {
                 if(ColSideLabelLocation=="left"){
-                    axis(2, 0:(dim(csc)[2] - 1)/max(1,(dim(csc)[2] - 1)), colnames(ColSideColors), las = 2, tick = FALSE)
+                    axis(2, 0:(dim(csc)[2] - 1)/max(1,(dim(csc)[2] - 1)), colnames(ColSideColors), las = 2, tick = FALSE, line=-0.8)
                 }else if(ColSideLabelLocation=="right"){
-                    axis(4, 0:(dim(csc)[2] - 1)/max(1,(dim(csc)[2] - 1)), colnames(ColSideColors), las = 2, tick = FALSE)
+                    axis(4, 0:(dim(csc)[2] - 1)/max(1,(dim(csc)[2] - 1)), colnames(ColSideColors), las = 2, tick = FALSE, line=-0.8)
                 }
             }
         }
