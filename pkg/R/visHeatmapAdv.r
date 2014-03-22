@@ -518,7 +518,7 @@ heatmap.2 <- function(x,
             image(csc, col = as.vector(csc.colors), axes = FALSE)
             ##### add box
             if(ColSideBox==TRUE){
-                if(ncol(ColSideColors) >= 1){
+                if(ncol(ColSideColors) >= 2){
                     tmp <- dim(csc)[2]-1
                     abline(h=(((0:(tmp+1))-0.5)/max(1,tmp)), lwd=1, col="black")
                 }
