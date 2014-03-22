@@ -130,7 +130,7 @@ data <- Fang - matrix(rep(apply(Fang,1,mean),ncol(Fang)),ncol=ncol(Fang))
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2014-03-22 07:22:20</strong>
+<strong class='message'>Start at 2014-03-22 12:30:35</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -157,7 +157,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 6 to 1.5
    radius (at finetune stage): from 1.5 to 1
 </strong>
-<strong class='message'>End at 2014-03-22 07:22:22</strong>
+<strong class='message'>End at 2014-03-22 12:30:37</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap, title.rotate=10)
@@ -200,10 +200,29 @@ sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
 <div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="Output_base_Fang.txt")
 ## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output .txt file has been saved in your disk. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). You can also force the input data to be output; type ?sWriteData for details.
 
+# prepare colors for the column sidebar
+# color for stages (S9-S14)
+stages <- sub("_.*","",colnames(data))
+lvs <- unique(stages)
+lvs_color <- <a href='visColormap.html' target=visColormap>visColormap</a>(colormap="jet")(length(lvs))
+col_stages <- sapply(stages, function(x) lvs_color[x==lvs])
+# color for replicates (R1-R3)
+replicates <- sub(".*_","",colnames(data))
+lvs <- unique(replicates)
+lvs_color <- <a href='visColormap.html' target=visColormap>visColormap</a>(colormap="gray-black")(length(lvs))
+col_replicates <- sapply(replicates, function(x) lvs_color[x==lvs])
+# combine both color vectors
+ColSideColors <- cbind(col_stages,col_replicates)
+colnames(ColSideColors) <- c("Stages","Replicates")
+output <- <a href='visDmatHeatmap.html' target=visDmatHeatmap>visDmatHeatmap</a>(sMap, data, sBase, base.legend.location="bottomleft", ColSideColors=ColSideColors, KeyValueName="log2(Ratio)", ColSideLabelLocation="right", labRow=NA)
+</div>
+<a href="javascript:newWin('Fang-32.png', 'Fang-32.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-32.png', width="400" /></a>
+<div class='input'>## As you have seen, heatmap is used to visualise patterns seen in genes within each meta-cluster/base. Row side bar indicates the meta-clusters/bases. Column side bar annotates samples. The returned variable "output" (NOT a txt file) has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). Note: it has rows in the same order as visualised in the heatmap
+
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(data, metric="euclidean")
 </div>
-<strong class='message'>Start at 2014-03-22 07:22:57</strong>
+<strong class='message'>Start at 2014-03-22 12:31:43</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -230,12 +249,12 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(dat
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-22 07:22:59</strong>
+<strong class='message'>End at 2014-03-22 12:31:45</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap, sReorder, title.rotate=15)
 </div>
-<a href="javascript:newWin('Fang-48.png', 'Fang-48.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-48.png', width="400" /></a>
+<a href="javascript:newWin('Fang-50.png', 'Fang-50.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-50.png', width="400" /></a>
 <div class='input'>## As you have seen, reordered components of trained map is displayed. Each component illustrates a sample-specific map and is placed within a two-dimensional rectangular lattice. Across components/samples, genes with similar expression patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/samples, that is, samples with the similar expression profiles are placed closer to each other.
 </div>
       </pre>
@@ -252,6 +271,8 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(dat
       <li><a href="visHexPattern.html">visHexPattern</a></li>
       <li><a href="sDmatCluster.html">sDmatCluster</a></li>
       <li><a href="visDmatCluster.html">visDmatCluster</a></li>
+      <li><a href="visColormap.html">visColormap</a></li>
+      <li><a href="visDmatHeatmap.html">visDmatHeatmap</a></li>
       <li><a href="sCompReorder.html">sCompReorder</a></li>
       <li><a href="visCompReorder.html">visCompReorder</a></li>
     </ul>

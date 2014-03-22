@@ -590,9 +590,10 @@ heatmap.2 <- function(x,
     ##axis(4, iy, labels = labRow, las = 2, line = -0.5, tick = 0, cex.axis = cexRow)
     if (!is.null(ylab)) mtext(ylab, side = 4, line = margins[2] - 1.25)
     
-    
     if (!missing(add.expr))
-        eval(substitute(add.expr))
+        #eval(substitute(add.expr))
+        #eval(parse(text=add.expr))
+        eval(add.expr)
     if (!missing(colsep))
         for (csep in colsep) rect(xleft = csep + 0.5, ybottom = rep(0, length(csep)), xright = csep + 0.5 + sepwidth[1], ytop = rep(ncol(x) + 1, csep), lty = 1, lwd = 1, col = sepcolor, border = sepcolor)
     if (!missing(rowsep))

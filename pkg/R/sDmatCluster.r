@@ -185,7 +185,7 @@ sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min
     }else if(reindexSeed=="svd"){
         ## reordering via SVD
         D <- M[seed,]
-        sorted <- sort.int(D %*% svd(D)$v[,1], decreasing=T, index.return=T)
+        sorted <- sort.int(D %*% svd(M)$v[,1], decreasing=T, index.return=T)
         ordering <- sorted$ix
         
         ## reorder seed
