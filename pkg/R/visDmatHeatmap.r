@@ -62,9 +62,15 @@ visDmatHeatmap <- function (sMap, data, sBase, base.color="rainbow", base.separa
         ordering <- df[order(base,hexagon),]$ind
     }else if(reorderRow=="hclust"){
         ## reordering via hierarchical clustering
-        distance <- as.dist(sDistance(data, metric="euclidean"))
-        cluster <- hclust(distance, method="complete")
-        cluster_order <- cluster$order
+        cluster_order <- matrix(1, nrow=length(base))
+        for(i in 1:length(unique(base))){
+            tmpD <- data[base==i,]
+            if(sum(base==i) != 1){
+                distance <- as.dist(sDistance(tmpD, metric="euclidean"))
+                cluster <- hclust(distance, method="complete")
+                cluster_order[base==i] <- cluster$order
+            }
+        }
         ## contruct data frame including 1st column for temporary index, 2nd for cluster order, 3rd for base/cluster ID
         df <- data.frame(ind=1:nrow(output), cluster_order, base)
         # order by: first base, then hexagon
@@ -72,8 +78,14 @@ visDmatHeatmap <- function (sMap, data, sBase, base.color="rainbow", base.separa
     }else if(reorderRow=="svd"){
         ## reordering via SVD
         data <- as.matrix(data)
-        sorted <- sort.int(data %*% svd(data)$v[,1], decreasing=T, index.return=T)
-        svd_order <- sorted$ix
+        svd_order <- matrix(1, nrow=length(base))
+        for(i in 1:length(unique(base))){
+            tmpD <- data[base==i,]
+            if(sum(base==i) != 1){
+                sorted <- sort.int(tmpD %*% svd(data)$v[,1], decreasing=T, index.return=T)
+                svd_order[base==i] <- sorted$ix
+            }
+        }
         ## contruct data frame including 1st column for temporary index, 2nd for svd order, 3rd for base/cluster ID
         df <- data.frame(ind=1:nrow(output), svd_order, base)
         # order by: first base, then hexagon

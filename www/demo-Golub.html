@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for leukemia patient dataset from Golub et al @ supraHex 1.1.15</title>
+<title>Demo for leukemia patient dataset from Golub et al @ supraHex 1.1.16</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.1.15</a>
+      <a class="brand" href="index.html">supraHex 1.1.16</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -105,9 +105,9 @@
       <h2>Demo for leukemia patient dataset from Golub et al</h2>
 
 Notes:
-<li> All results are based on supraHex (version 1.1.15). </li>
+<li> All results are based on supraHex (version 1.1.16). </li>
 <li> Images displayed below may be distorted, and they should be normal in your screen. </li>
-<li> Functions contained in supraHex 1.1.15 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in supraHex 1.1.16 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -125,7 +125,7 @@ data <- Golub # a matrix of 3,051 genes expressed in 38 samples
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2014-03-22 19:10:26</strong>
+<strong class='message'>Start at 2014-03-24 12:51:15</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -152,7 +152,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 6 to 1.5
    radius (at finetune stage): from 1.5 to 1
 </strong>
-<strong class='message'>End at 2014-03-22 19:10:28</strong>
+<strong class='message'>End at 2014-03-24 12:51:17</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap,title.rotate=10,colormap="darkgreen-lightgreen-lightpink-darkred")
@@ -198,7 +198,7 @@ sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(data,metric="pearson") # see Figure 8
 </div>
-<strong class='message'>Start at 2014-03-22 19:10:52</strong>
+<strong class='message'>Start at 2014-03-24 12:51:41</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -225,7 +225,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(dat
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-22 19:11:02</strong>
+<strong class='message'>End at 2014-03-24 12:51:51</strong>
 <strong class='message'>Runtime in total is: 10 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap,sReorder,title.rotate=15,colormap="darkgreen-lightgreen-lightpink-darkred")
@@ -238,13 +238,13 @@ D <- t(data)
 rownames(D) <- paste(rownames(D), 1:nrow(D), sep=".") # temporally make sure the row names are unique
 tree_bs <- <a href='visTreeBootstrap.html' target=visTreeBootstrap>visTreeBootstrap</a>(D, nodelabels.arg=list(cex=0.7))
 </div>
-<strong class='message'>Start at 2014-03-22 19:11:04</strong>
+<strong class='message'>Start at 2014-03-24 12:51:53</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (38 by 3051)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-03-22 19:11:06</strong>
+<strong class='message'>Finish at 2014-03-24 12:51:55</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <a href="javascript:newWin('Golub-58.png', 'Golub-58.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Golub-58.png', width="400" /></a>

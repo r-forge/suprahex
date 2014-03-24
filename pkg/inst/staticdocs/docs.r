@@ -41,11 +41,11 @@ list(
                 "visHexMulComp",
                 "visCompReorder", 
                 "visDmatCluster",
+                "visDmatHeatmap",
                 "visKernels",
                 "visHeatmap",
                 "visHeatmapAdv",
-                "visTreeBootstrap",
-                "visDmatHeatmap"
+                "visTreeBootstrap"
             )
         ),
         sd_section("Built-in datasets",
