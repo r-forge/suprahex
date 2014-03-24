@@ -547,6 +547,9 @@ heatmap.2 <- function(x,
     }
     else iy <- 1:nr
     image(1:nc, 1:nr, x, xlim = 0.5 + c(0, nc), ylim = 0.5 + c(0, nr), axes = FALSE, xlab = "", ylab = "", col = col, breaks = breaks, ...)
+    ###########
+    box(lwd=1, col="black")
+    ###########
     retval$carpet <- x
     if (exists("ddr"))
         retval$rowDendrogram <- ddr
@@ -556,8 +559,10 @@ heatmap.2 <- function(x,
     retval$col <- col
     if (!invalid(na.color) & any(is.na(x))) { # load library(gplots)
         mmat <- ifelse(is.na(x), 1, NA)
-        image(1:nc, 1:nr, mmat, axes = FALSE, xlab = "", ylab = "",
-            col = na.color, add = TRUE)
+        image(1:nc, 1:nr, mmat, axes = FALSE, xlab = "", ylab = "",col = na.color, add = TRUE)
+        ###########
+        box(lwd=1, col="black")
+        ###########
     }
     
     ############ Add srtCol, offsetCol and adjCol according to heatmap.2 from gplots
