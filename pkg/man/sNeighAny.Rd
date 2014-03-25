@@ -1,31 +1,32 @@
 \name{sNeighAny}
 \alias{sNeighAny}
-\title{Function to calculate any neighbors for each hexagon/rectangle in a grid}
+\title{Function to calculate any neighbors for each hexagon/rectangle
+in a grid}
 \usage{
-  sNeighAny(sObj)
+sNeighAny(sObj)
 }
 \arguments{
-  \item{sObj}{an object of class "sTopol" or "sInit" or
-  "sMap"}
+\item{sObj}{an object of class "sTopol" or "sInit" or
+"sMap"}
 }
 \value{
-  \itemize{ \item{\code{aNeigh}: a matrix of nHex x nHex,
-  containing distance info in terms of any neighbors, where
-  nHex is the total number of hexagons/rectanges in the
-  grid} }
+\itemize{ \item{\code{aNeigh}: a matrix of nHex x nHex,
+containing distance info in terms of any neighbors, where
+nHex is the total number of hexagons/rectanges in the
+grid} }
 }
 \description{
-  \code{sNeighAny} is supposed to calculate any neighbors
-  for each hexagon/rectangle in a regular 2D grid. It
-  returns a matrix with rows for the self, and columns for
-  its any neighbors.
+\code{sNeighAny} is supposed to calculate any neighbors
+for each hexagon/rectangle in a regular 2D grid. It
+returns a matrix with rows for the self, and columns for
+its any neighbors.
 }
 \note{
-  The return matrix has rows for the self, and columns for
-  its neighbors. The non-zeros mean the distance away from
-  its neighbors, and the zeros for the self-self. It has
-  rows/columns ordered in the same order as the "coord"
-  matrix of the input object does.
+The return matrix has rows for the self, and columns for
+its neighbors. The non-zeros mean the distance away from
+its neighbors, and the zeros for the self-self. It has
+rows/columns ordered in the same order as the "coord"
+matrix of the input object does.
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10
@@ -45,6 +46,6 @@ aNeigh <- sNeighAny(sObj=sTopol)
 # aNeigh <- sNeighAny(sObj=sI)
 }
 \seealso{
-  \code{\link{sNeighDirect}}
+\code{\link{sNeighDirect}}
 }
 

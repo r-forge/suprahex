@@ -2,39 +2,39 @@
 \alias{visVp}
 \title{Function to create viewports for multiple supra-hexagonal grids}
 \usage{
-  visVp(height = 7, xdim = 1, ydim = 1, colNum = 1,
-    rowNum = 1, gp = grid::gpar())
+visVp(height = 7, xdim = 1, ydim = 1, colNum = 1,
+rowNum = 1, gp = grid::gpar())
 }
 \arguments{
-  \item{height}{a numeric value specifying the height of
-  device}
+\item{height}{a numeric value specifying the height of
+device}
 
-  \item{xdim}{an integer specifying x-dimension of the
-  grid}
+\item{xdim}{an integer specifying x-dimension of the
+grid}
 
-  \item{ydim}{an integer specifying y-dimension of the
-  grid}
+\item{ydim}{an integer specifying y-dimension of the
+grid}
 
-  \item{colNum}{an integer specifying the number of
-  columns}
+\item{colNum}{an integer specifying the number of
+columns}
 
-  \item{rowNum}{an integer specifying the number of rows}
+\item{rowNum}{an integer specifying the number of rows}
 
-  \item{gp}{an object of class gpar, typically the output
-  from a call to the function gpar (i.e., a list of
-  graphical parameter settings)}
+\item{gp}{an object of class gpar, typically the output
+from a call to the function gpar (i.e., a list of
+graphical parameter settings)}
 }
 \value{
-  \item{vpnames}{an R object of "viewport" class}
+\item{vpnames}{an R object of "viewport" class}
 }
 \description{
-  \code{visVp} is supposed to create viewports, which
-  describe rectangular regions on a graphics device and
-  define a number of coordinate systems for each of
-  supra-hexagonal grids.
+\code{visVp} is supposed to create viewports, which
+describe rectangular regions on a graphics device and
+define a number of coordinate systems for each of
+supra-hexagonal grids.
 }
 \note{
-  none
+none
 }
 \examples{
 # 1) create 5x5 viewports
@@ -44,6 +44,6 @@ vpnames <- visVp(colNum=5, rowNum=5)
 vpnames
 }
 \seealso{
-  \code{\link{visHexMulComp}}, \code{\link{visCompReorder}}
+\code{\link{visHexMulComp}}, \code{\link{visCompReorder}}
 }
 

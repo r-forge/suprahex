@@ -2,58 +2,58 @@
 \alias{sDmatCluster}
 \title{Function to partition a grid map into clusters}
 \usage{
-  sDmatCluster(sMap, which_neigh = 1,
-    distMeasure = c("median", "mean", "min", "max"),
-    clusterLinkage = c("average", "complete", "single", "bmh"),
-    reindexSeed = c("hclust", "svd", "none"))
+sDmatCluster(sMap, which_neigh = 1,
+distMeasure = c("median", "mean", "min", "max"),
+clusterLinkage = c("average", "complete", "single", "bmh"),
+reindexSeed = c("hclust", "svd", "none"))
 }
 \arguments{
-  \item{sMap}{an object of class "sMap"}
+\item{sMap}{an object of class "sMap"}
 
-  \item{which_neigh}{which neighbors in 2D output space are
-  used for the calculation. By default, it sets to "1" for
-  direct neighbors, and "2" for neighbors within neighbors
-  no more than 2, and so on}
+\item{which_neigh}{which neighbors in 2D output space are
+used for the calculation. By default, it sets to "1" for
+direct neighbors, and "2" for neighbors within neighbors
+no more than 2, and so on}
 
-  \item{distMeasure}{distance measure used to calculate
-  distances in high-dimensional input space. It can be one
-  of "median", "mean", "min" and "max" measures}
+\item{distMeasure}{distance measure used to calculate
+distances in high-dimensional input space. It can be one
+of "median", "mean", "min" and "max" measures}
 
-  \item{clusterLinkage}{cluster linkage used to derive
-  clusters. It can be "bmh", which accumulates a cluster
-  just based on best-matching hexagons/rectanges but can
-  not ensure each cluster is continuous. Instead, each
-  cluster is continuous when using region-growing algorithm
-  with one of "average", "complete" and "single" linkages}
+\item{clusterLinkage}{cluster linkage used to derive
+clusters. It can be "bmh", which accumulates a cluster
+just based on best-matching hexagons/rectanges but can
+not ensure each cluster is continuous. Instead, each
+cluster is continuous when using region-growing algorithm
+with one of "average", "complete" and "single" linkages}
 
-  \item{reindexSeed}{the way to index seed. It can be
-  "hclust" for reindexing seeds according to hierarchical
-  clustering of patterns seen in seeds, "svd" for
-  reindexing seeds according to svd of patterns seen in
-  seeds, or "none" for seeds being simply increased by the
-  hexagon indexes (i.e. always in an increasing order as
-  hexagons radiate outwards)}
+\item{reindexSeed}{the way to index seed. It can be
+"hclust" for reindexing seeds according to hierarchical
+clustering of patterns seen in seeds, "svd" for
+reindexing seeds according to svd of patterns seen in
+seeds, or "none" for seeds being simply increased by the
+hexagon indexes (i.e. always in an increasing order as
+hexagons radiate outwards)}
 }
 \value{
-  an object of class "sBase", a list with following
-  components: \itemize{ \item{\code{seeds}: the vector to
-  store cluster seeds, i.e., a list of local minima (in 2D
-  output space) of distance matrix (in input space). They
-  are represented by the indexes of hexagons/rectangles}
-  \item{\code{bases}: the vector with the length of nHex to
-  store the cluster memberships/bases, where nHex is the
-  total number of hexagons/rectanges in the grid}
-  \item{\code{call}: the call that produced this result} }
+an object of class "sBase", a list with following
+components: \itemize{ \item{\code{seeds}: the vector to
+store cluster seeds, i.e., a list of local minima (in 2D
+output space) of distance matrix (in input space). They
+are represented by the indexes of hexagons/rectangles}
+\item{\code{bases}: the vector with the length of nHex to
+store the cluster memberships/bases, where nHex is the
+total number of hexagons/rectanges in the grid}
+\item{\code{call}: the call that produced this result} }
 }
 \description{
-  \code{sDmatCluster} is supposed to obtain clusters from a
-  grid map. It returns an object of class "sBase".
+\code{sDmatCluster} is supposed to obtain clusters from a
+grid map. It returns an object of class "sBase".
 }
 \note{
-  The first item in the return "seeds" is the first
-  cluster, whose memberships are those in the return
-  "bases" that equals 1. The same relationship is held for
-  the second item, and so on
+The first item in the return "seeds" is the first
+cluster, whose memberships are those in the return
+"bases" that equals 1. The same relationship is held for
+the second item, and so on
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10
@@ -66,14 +66,15 @@ sMap <- sPipeline(data=data)
 # 3a) based on "bmh" criterion
 # sBase <- sDmatCluster(sMap=sMap, which_neigh=1, distMeasure="median", clusterLinkage="bmh")
 # 3b) using region-growing algorithm with linkage "average"
-sBase <- sDmatCluster(sMap=sMap, which_neigh=1, distMeasure="median", clusterLinkage="average")
+sBase <- sDmatCluster(sMap=sMap, which_neigh=1, distMeasure="median",
+clusterLinkage="average")
 
 # 4) visualise clusters/bases partitioned from the sMap
 visDmatCluster(sMap,sBase)
 }
 \seealso{
-  \code{\link{sPipeline}}, \code{\link{sDmatMinima}},
-  \code{\link{sBMH}}, \code{\link{sNeighDirect}},
-  \code{\link{sDistance}}, \code{\link{visDmatCluster}}
+\code{\link{sPipeline}}, \code{\link{sDmatMinima}},
+\code{\link{sBMH}}, \code{\link{sNeighDirect}},
+\code{\link{sDistance}}, \code{\link{visDmatCluster}}
 }
 

@@ -1,27 +1,28 @@
 \name{sHexDist}
 \alias{sHexDist}
-\title{Function to calculate distances between hexagons/rectangles in a 2D grid}
+\title{Function to calculate distances between hexagons/rectangles in a
+2D grid}
 \usage{
-  sHexDist(sObj)
+sHexDist(sObj)
 }
 \arguments{
-  \item{sObj}{an object of class "sTopol" or "sInit" or
-  "sMap"}
+\item{sObj}{an object of class "sTopol" or "sInit" or
+"sMap"}
 }
 \value{
-  \itemize{ \item{\code{dist}: a symmetric matrix of nHex x
-  nHex, containing pairwise distances, where nHex is the
-  total number of hexagons/rectanges in the grid} }
+\itemize{ \item{\code{dist}: a symmetric matrix of nHex x
+nHex, containing pairwise distances, where nHex is the
+total number of hexagons/rectanges in the grid} }
 }
 \description{
-  \code{sHexDist} is supposed to calculate euclidian
-  distances between each pair of hexagons/rectangles in a
-  2D grid of input "sTopol" or "sMap" object. It returns a
-  symmetric matrix containing pairwise distances.
+\code{sHexDist} is supposed to calculate euclidian
+distances between each pair of hexagons/rectangles in a
+2D grid of input "sTopol" or "sMap" object. It returns a
+symmetric matrix containing pairwise distances.
 }
 \note{
-  The return matrix has rows/columns ordered in the same
-  order as the "coord" matrix of the input object does.
+The return matrix has rows/columns ordered in the same
+order as the "coord" matrix of the input object does.
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10
@@ -41,6 +42,6 @@ dist <- sHexDist(sObj=sTopol)
 dist <- sHexDist(sObj=sI)
 }
 \seealso{
-  \code{\link{sTopology}}, \code{\link{sInitial}}
+\code{\link{sTopology}}, \code{\link{sInitial}}
 }
 

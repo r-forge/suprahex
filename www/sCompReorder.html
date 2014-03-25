@@ -109,15 +109,15 @@
   
     <h3>Description</h3>
     <p><code>sCompReorder</code> is supposed to reorder component
-  planes for the input map/data. It returns an object of
-  class "sReorder". It is realized by using a new map grid
-  (with sheet shape consisting of a rectangular lattice) to
-  train component plane vectors (either column-wise vectors
-  of codebook/data matrix or the covariance matrix
-  thereof). As a result, similar component planes are
-  placed closer to each other. It is highly recommend to
-  use trained map (i.e. codebook matrix) as input if data
-  matrix is hugely big to save computational costs.</p>
+planes for the input map/data. It returns an object of
+class "sReorder". It is realized by using a new map grid
+(with sheet shape consisting of a rectangular lattice) to
+train component plane vectors (either column-wise vectors
+of codebook/data matrix or the covariance matrix
+thereof). As a result, similar component planes are
+placed closer to each other. It is highly recommend to
+use trained map (i.e. codebook matrix) as input if data
+matrix is hugely big to save computational costs.</p>
   
     <h3>Usage</h3>
     <pre>sCompReorder(sMap, xdim = NULL, ydim = NULL, amplifier = NULL, metric = c("none", 
@@ -130,45 +130,45 @@
     <dl>
       <dt>sMap</dt>
       <dd>an object of class "sMap" or input data
-  frame/matrix</dd>
+frame/matrix</dd>
       <dt>xdim</dt>
       <dd>an integer specifying x-dimension of the
-  grid</dd>
+grid</dd>
       <dt>ydim</dt>
       <dd>an integer specifying y-dimension of the
-  grid</dd>
+grid</dd>
       <dt>amplifier</dt>
       <dd>an integer specifying the amplifier (3
-  by default) of the number of component planes. The
-  product of the component number and the amplifier
-  constitutes the number of rectangles in the sheet grid</dd>
+by default) of the number of component planes. The
+product of the component number and the amplifier
+constitutes the number of rectangles in the sheet grid</dd>
       <dt>metric</dt>
       <dd>distance metric used to difine the
-  similarity between component planes. It can be "none",
-  which means directly using column-wise vectors of
-  codebook/data matrix. Otherwise, first calculate the
-  covariance matrix from the codebook/data matrix. The
-  distance metric used for calculating the covariance
-  matrix between component planes can be: "pearson" for
-  pearson correlation, "spearman" for spearman rank
-  correlation, "kendall" for kendall tau rank correlation,
-  "euclidean" for euclidean distance, "manhattan" for
-  cityblock distance, "cos" for cosine similarity, "mi" for
-  mutual information. See <code><a href='sDistance.html'>sDistance</a></code> for
-  details</dd>
+similarity between component planes. It can be "none",
+which means directly using column-wise vectors of
+codebook/data matrix. Otherwise, first calculate the
+covariance matrix from the codebook/data matrix. The
+distance metric used for calculating the covariance
+matrix between component planes can be: "pearson" for
+pearson correlation, "spearman" for spearman rank
+correlation, "kendall" for kendall tau rank correlation,
+"euclidean" for euclidean distance, "manhattan" for
+cityblock distance, "cos" for cosine similarity, "mi" for
+mutual information. See <code><a href='sDistance.html'>sDistance</a></code> for
+details</dd>
       <dt>init</dt>
       <dd>an initialisation method. It can be one of
-  "uniform", "sample" and "linear" initialisation methods</dd>
+"uniform", "sample" and "linear" initialisation methods</dd>
       <dt>algorithm</dt>
       <dd>the training algorithm. Currently, only
-  "sequential" algorithm has been implemented</dd>
+"sequential" algorithm has been implemented</dd>
       <dt>alphaType</dt>
       <dd>the alpha type. It can be one of
-  "invert", "linear" and "power" alpha types</dd>
+"invert", "linear" and "power" alpha types</dd>
       <dt>neighKernel</dt>
       <dd>the training neighbor kernel. It can
-  be one of "gaussian", "bubble", "cutgaussian", "ep" and
-  "gamma" kernels</dd>
+be one of "gaussian", "bubble", "cutgaussian", "ep" and
+"gamma" kernels</dd>
     </dl>
     <!-- 
     -->
@@ -177,22 +177,22 @@
       <h3>Value</h3>
       
       <p>an object of class "sReorder", a list with following
-  components: <ul>
+components: <ul>
 <li><code>nHex</code>: the total number
-  of rectanges in the grid </li>
+of rectanges in the grid </li>
 <li><code>xdim</code>: x-dimension
-  of the grid </li>
+of the grid </li>
 <li><code>ydim</code>: y-dimension of the grid
-  </li>
+</li>
 <li><code>uOrder</code>: the unique order/placement for each
-  component plane that is reordered to the "sheet"-shape
-  grid with rectangular lattice </li>
+component plane that is reordered to the "sheet"-shape
+grid with rectangular lattice </li>
 <li><code>coord</code>: a
-  matrix of nHex x 2, with each row corresponding to the
-  coordinates of each "uOrder" rectangle in the 2D map
-  grid </li>
+matrix of nHex x 2, with each row corresponding to the
+coordinates of each "uOrder" rectangle in the 2D map
+grid </li>
 <li><code>call</code>: the call that produced this
-  result </li>
+result </li>
 </ul></p>
       <p></p>
     </div>
@@ -200,13 +200,13 @@
       <h3>Note</h3>
       
       <p>To ensure the unique placement, each component plane
-  mapped to the "sheet"-shape grid with rectangular lattice
-  is determinied iteratively in an order from the best
-  matched to the next compromised one. If multiple
-  compoments are hit in the same rectangular lattice, the
-  worse one is always sacrificed by moving to the next best
-  one till all components are placed somewhere exclusively
-  on their own.</p>
+mapped to the "sheet"-shape grid with rectangular lattice
+is determinied iteratively in an order from the best
+matched to the next compromised one. If multiple
+compoments are hit in the same rectangular lattice, the
+worse one is always sacrificed by moving to the next best
+one till all components are placed somewhere exclusively
+on their own.</p>
     </div>
     
     <h3 id="examples">Examples</h3>
@@ -217,7 +217,7 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-25 12:24:55</strong>
+<strong class='message'>Start at 2014-03-25 16:40:31</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -244,15 +244,15 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:24:56</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-03-25 16:40:31</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
 # 3) reorder component planes in different ways
 # 3a) directly using column-wise vectors of codebook matrix
 sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-03-25 12:24:56</strong>
+<strong class='message'>Start at 2014-03-25 16:40:31</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -279,13 +279,13 @@ sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:24:56</strong>
+<strong class='message'>End at 2014-03-25 16:40:31</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># 3b) according to covariance matrix of pearson correlation of codebook matrix
 sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="pearson")
 </div>
-<strong class='message'>Start at 2014-03-25 12:24:56</strong>
+<strong class='message'>Start at 2014-03-25 16:40:31</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -312,13 +312,13 @@ sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="pearson")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:24:56</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-03-25 16:40:32</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'># 3c) directly using column-wise vectors of input matrix
 sReorder <- sCompReorder(sMap=data, amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-03-25 12:24:56</strong>
+<strong class='message'>Start at 2014-03-25 16:40:32</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -345,13 +345,13 @@ sReorder <- sCompReorder(sMap=data, amplifier=2, metric="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:24:57</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-03-25 16:40:32</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># 3d) according to covariance matrix of pearson correlation of input matrix
 sReorder <- sCompReorder(sMap=data, amplifier=2, metric="pearson")
 </div>
-<strong class='message'>Start at 2014-03-25 12:24:57</strong>
+<strong class='message'>Start at 2014-03-25 16:40:32</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -378,13 +378,15 @@ sReorder <- sCompReorder(sMap=data, amplifier=2, metric="pearson")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:24:57</strong>
+<strong class='message'>End at 2014-03-25 16:40:32</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
 # 4) visualise multiple component planes reorded within a sheet-shape rectangle grid
-visCompReorder(sMap=sMap, sReorder=sReorder, margin=rep(0.1,4), height=7,
-title.rotate=0, title.xy=c(0.45, 1), colormap="gbr", ncolors=10, zlim=c(-1,1),
+visCompReorder(sMap=sMap, sReorder=sReorder, margin=rep(0.1,4),
+height=7,
+title.rotate=0, title.xy=c(0.45, 1), colormap="gbr", ncolors=10,
+zlim=c(-1,1),
 border.color="transparent")
 </div>
 <a href="javascript:newWin('sCompReorder-82.png', 'sCompReorder-82.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='sCompReorder-82.png', width="400" /></a></pre>
@@ -403,9 +405,9 @@ border.color="transparent")
       
     <h2>See also</h2>
     
-  <code><a href='sTopology.html'>sTopology</a></code>, <code><a href='sPipeline.html'>sPipeline</a></code>,
-  <code><a href='sBMH.html'>sBMH</a></code>, <code><a href='sDistance.html'>sDistance</a></code>,
-  <code><a href='visCompReorder.html'>visCompReorder</a></code>
+<code><a href='sTopology.html'>sTopology</a></code>, <code><a href='sPipeline.html'>sPipeline</a></code>,
+<code><a href='sBMH.html'>sBMH</a></code>, <code><a href='sDistance.html'>sDistance</a></code>,
+<code><a href='visCompReorder.html'>visCompReorder</a></code>
 
     
     <h2>Citation</h2>

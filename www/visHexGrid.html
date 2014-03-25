@@ -109,7 +109,7 @@
   
     <h3>Description</h3>
     <p><code>visHexGrid</code> is supposed to visualise a
-  supra-hexagonal grid</p>
+supra-hexagonal grid</p>
   
     <h3>Usage</h3>
     <pre>visHexGrid(hbin, area.size = 1, border.color = NULL, fill.color = NULL)</pre>
@@ -120,7 +120,7 @@
       <dd>an object of class "hexbin"</dd>
       <dt>area.size</dt>
       <dd>an inteter or a vector specifying the
-  area size of each hexagon</dd>
+area size of each hexagon</dd>
       <dt>border.color</dt>
       <dd>the border color for each hexagon</dd>
       <dt>fill.color</dt>
@@ -148,7 +148,7 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-25 12:25:17</strong>
+<strong class='message'>Start at 2014-03-25 16:40:51</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -175,7 +175,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:25:17</strong>
+<strong class='message'>End at 2014-03-25 16:40:51</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -183,7 +183,8 @@ sMap <- sPipeline(data=data)
 dat <- data.frame(sMap$coord)
 xdim <- sMap$xdim
 ydim <- sMap$ydim
-hbin <- hexbin::hexbin(dat$x, dat$y, xbins=xdim-1, shape=sqrt(0.75)*ydim/xdim)
+hbin <- hexbin::hexbin(dat$x, dat$y, xbins=xdim-1,
+shape=sqrt(0.75)*ydim/xdim)
 
 # 4) visualise hbin object
 vp <- hexbin::hexViewport(hbin)
@@ -205,7 +206,7 @@ visHexGrid(hbin)
       
     <h2>See also</h2>
     
-  <code><a href='visHexComp.html'>visHexComp</a></code>
+<code><a href='visHexComp.html'>visHexComp</a></code>
 
     
     <h2>Citation</h2>

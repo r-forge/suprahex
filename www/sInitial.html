@@ -102,19 +102,20 @@
         
       </header>
       
-      <h2>Function to initialise a sInit object given a topology and input data</h2>
+      <h2>Function to initialise a sInit object given a topology and input
+data</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>sInitial</code> is supposed to initialise an object of
-  class "sInit" given a topology and input data. As a
-  matter of fact, it initialises the codebook matrix (in
-  input high-dimensional space). The return object inherits
-  the topology information (i.e., a "sTopol" object from
-  <code>sTopology</code>), along with initialised codebook matrix
-  and method used.</p>
+class "sInit" given a topology and input data. As a
+matter of fact, it initialises the codebook matrix (in
+input high-dimensional space). The return object inherits
+the topology information (i.e., a "sTopol" object from
+<code>sTopology</code>), along with initialised codebook matrix
+and method used.</p>
   
     <h3>Usage</h3>
     <pre>sInitial(data, sTopol, init = c("linear", "uniform", "sample"))</pre>
@@ -125,10 +126,10 @@
       <dd>a data frame or matrix of input data</dd>
       <dt>sTopol</dt>
       <dd>an object of class "sTopol" (see
-  <code>sTopology</code>)</dd>
+<code>sTopology</code>)</dd>
       <dt>init</dt>
       <dd>an initialisation method. It can be one of
-  "uniform", "sample" and "linear" initialisation methods</dd>
+"uniform", "sample" and "linear" initialisation methods</dd>
     </dl>
     <!-- 
     -->
@@ -137,26 +138,26 @@
       <h3>Value</h3>
       
       <p>an object of class "sInit", a list with following
-  components: <ul>
+components: <ul>
 <li><code>nHex</code>: the total number
-  of hexagons/rectanges in the grid </li>
+of hexagons/rectanges in the grid </li>
 <li><code>xdim</code>:
-  x-dimension of the grid </li>
+x-dimension of the grid </li>
 <li><code>ydim</code>: y-dimension
-  of the grid </li>
+of the grid </li>
 <li><code>lattice</code>: the grid lattice
-  </li>
+</li>
 <li><code>shape</code>: the grid shape </li>
 <li><code>coord</code>: a
-  matrix of nHex x 2, with each row corresponding to the
-  coordinates of a hexagon/rectangle in the 2D map grid
-  </li>
+matrix of nHex x 2, with each row corresponding to the
+coordinates of a hexagon/rectangle in the 2D map grid
+</li>
 <li><code>init</code>: an initialisation method
-  </li>
+</li>
 <li><code>codebook</code>: a codebook matrix of nHex x
-  ncol(data), with each row corresponding to a prototype
-  vector in input high-dimensional space
-  </li>
+ncol(data), with each row corresponding to a prototype
+vector in input high-dimensional space
+</li>
 <li><code>call</code>: the call that produced this result </li>
 </ul></p>
       <p></p>
@@ -166,14 +167,14 @@
       
       <p>The initialisation methods include: <ul>
 <li>"uniform": the codebook matrix is uniformly
-  initialised via randomly taking any values within the
-  interval [min, max] of each column of input data
-  </li>
+initialised via randomly taking any values within the
+interval [min, max] of each column of input data
+</li>
 <li>"sample": the codebook matrix is initialised via
-  randomly sampling/selecting input data </li>
+randomly sampling/selecting input data </li>
 <li>"linear":
-  the codebook matrix is linearly initialised along the
-  first two greatest eigenvectors of input data </li>
+the codebook matrix is linearly initialised along the
+first two greatest eigenvectors of input data </li>
 </ul></p>
       <p></p>
     </div>
@@ -209,7 +210,7 @@ sI_uniform <- sInitial(data=data, sTopol=sTopol, init="uniform")
       
     <h2>See also</h2>
     
-  <code><a href='sTopology.html'>sTopology</a></code>
+<code><a href='sTopology.html'>sTopology</a></code>
 
     
     <h2>Citation</h2>

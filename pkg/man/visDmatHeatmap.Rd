@@ -1,88 +1,90 @@
 \name{visDmatHeatmap}
 \alias{visDmatHeatmap}
-\title{Function to visualise gene clusters/bases partitioned from a supra-hexagonal grid using heatmap}
+\title{Function to visualise gene clusters/bases partitioned from a
+supra-hexagonal grid using heatmap}
 \usage{
-  visDmatHeatmap(sMap, data, sBase, base.color = "rainbow",
-    base.separated.arg = NULL,
-    base.legend.location = c("none", "bottomleft", "bottomright", "bottom", "left", "topleft", "top", "topright", "right", "center"),
-    reorderRow = c("none", "hclust", "svd"), keep.data = F,
-    ...)
+visDmatHeatmap(sMap, data, sBase, base.color = "rainbow",
+base.separated.arg = NULL,
+base.legend.location = c("none", "bottomleft", "bottomright", "bottom",
+"left", "topleft", "top", "topright", "right", "center"),
+reorderRow = c("none", "hclust", "svd"), keep.data = F,
+...)
 }
 \arguments{
-  \item{sMap}{an object of class "sMap" or a codebook
-  matrix}
+\item{sMap}{an object of class "sMap" or a codebook
+matrix}
 
-  \item{data}{a data frame or matrix of input data}
+\item{data}{a data frame or matrix of input data}
 
-  \item{sBase}{an object of class "sBase"}
+\item{sBase}{an object of class "sBase"}
 
-  \item{base.color}{short name for the colormap used to
-  encode bases (in row side bar). It can be one of "jet"
-  (jet colormap), "bwr" (blue-white-red colormap), "gbr"
-  (green-black-red colormap), "wyr" (white-yellow-red
-  colormap), "br" (black-red colormap), "yr" (yellow-red
-  colormap), "wb" (white-black colormap), and "rainbow"
-  (rainbow colormap, that is,
-  red-yellow-green-cyan-blue-magenta). Alternatively, any
-  hyphen-separated HTML color names, e.g.
-  "blue-black-yellow", "royalblue-white-sandybrown",
-  "darkgreen-white-darkviolet". A list of standard color
-  names can be found in
-  \url{http://html-color-codes.info/color-names}}
+\item{base.color}{short name for the colormap used to
+encode bases (in row side bar). It can be one of "jet"
+(jet colormap), "bwr" (blue-white-red colormap), "gbr"
+(green-black-red colormap), "wyr" (white-yellow-red
+colormap), "br" (black-red colormap), "yr" (yellow-red
+colormap), "wb" (white-black colormap), and "rainbow"
+(rainbow colormap, that is,
+red-yellow-green-cyan-blue-magenta). Alternatively, any
+hyphen-separated HTML color names, e.g.
+"blue-black-yellow", "royalblue-white-sandybrown",
+"darkgreen-white-darkviolet". A list of standard color
+names can be found in
+\url{http://html-color-codes.info/color-names}}
 
-  \item{base.separated.arg}{a list of main parameters used
-  for styling bar separated lines. See 'Note' below for
-  details on the parameters}
+\item{base.separated.arg}{a list of main parameters used
+for styling bar separated lines. See 'Note' below for
+details on the parameters}
 
-  \item{base.legend.location}{location of legend to
-  describe bases. If "none", this legend will not be
-  displayed}
+\item{base.legend.location}{location of legend to
+describe bases. If "none", this legend will not be
+displayed}
 
-  \item{reorderRow}{the way to reorder the rows within a
-  base. It can be "none" for rows within a base being
-  reorded by the hexagon indexes, "hclust" for rows within
-  a base being reorded according to hierarchical clustering
-  of patterns seen, "svd" for rows within a base being
-  reorded according to svd of patterns seen}
+\item{reorderRow}{the way to reorder the rows within a
+base. It can be "none" for rows within a base being
+reorded by the hexagon indexes, "hclust" for rows within
+a base being reorded according to hierarchical clustering
+of patterns seen, "svd" for rows within a base being
+reorded according to svd of patterns seen}
 
-  \item{keep.data}{logical to indicate whether or not to
-  also write out the input data. By default, it sets to
-  false for not keeping it. It is highly expensive to keep
-  the large data sets}
+\item{keep.data}{logical to indicate whether or not to
+also write out the input data. By default, it sets to
+false for not keeping it. It is highly expensive to keep
+the large data sets}
 
-  \item{...}{additional graphic parameters used in
-  "visHeatmapAdv". For most parameters, please refer to
-  \url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}}
+\item{...}{additional graphic parameters used in
+"visHeatmapAdv". For most parameters, please refer to
+\url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}}
 }
 \value{
-  a data frame with following components: \itemize{
-  \item{\code{ID}: ID for data. It inherits the rownames of
-  data (if exists). Otherwise, it is sequential integer
-  values starting with 1 and ending with dlen, the total
-  number of rows of the input data}
-  \item{\code{Hexagon_index}: the index for best-matching
-  hexagons} \item{\code{Cluster_base}: optional, it is only
-  appended when sBase is given. It stores the cluster
-  memberships/bases} \item{\code{data}: optional, it is
-  only appended when keep.data is true} } Note: the
-  returned data has rows in the same order as visualised in
-  the heatmap
+a data frame with following components: \itemize{
+\item{\code{ID}: ID for data. It inherits the rownames of
+data (if exists). Otherwise, it is sequential integer
+values starting with 1 and ending with dlen, the total
+number of rows of the input data}
+\item{\code{Hexagon_index}: the index for best-matching
+hexagons} \item{\code{Cluster_base}: optional, it is only
+appended when sBase is given. It stores the cluster
+memberships/bases} \item{\code{data}: optional, it is
+only appended when keep.data is true} } Note: the
+returned data has rows in the same order as visualised in
+the heatmap
 }
 \description{
-  \code{visDmatHeatmap} is supposed to visualise gene
-  clusters/bases partitioned from a supra-hexagonal grid
-  using heatmap
+\code{visDmatHeatmap} is supposed to visualise gene
+clusters/bases partitioned from a supra-hexagonal grid
+using heatmap
 }
 \note{
-  A list of parameters in "base.separated.arg": \itemize{
-  \item{"lty": the line type. Line types can either be
-  specified as an integer (0=blank, 1=solid (default),
-  2=dashed, 3=dotted, 4=dotdash, 5=longdash, 6=twodash) or
-  as one of the character strings
-  "blank","solid","dashed","dotted","dotdash","longdash","twodash",
-  where "blank" uses 'invisible lines' (i.e., does not draw
-  them)} \item{"lwd": the line width} \item{"col": the line
-  color} }
+A list of parameters in "base.separated.arg": \itemize{
+\item{"lty": the line type. Line types can either be
+specified as an integer (0=blank, 1=solid (default),
+2=dashed, 3=dotted, 4=dotdash, 5=longdash, 6=twodash) or
+as one of the character strings
+"blank","solid","dashed","dotted","dotdash","longdash","twodash",
+where "blank" uses 'invisible lines' (i.e., does not draw
+them)} \item{"lwd": the line width} \item{"col": the line
+color} }
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10
@@ -96,9 +98,10 @@ sBase <- sDmatCluster(sMap=sMap, which_neigh=1,
 distMeasure="median", clusterLinkage="average")
 
 # 4) heatmap visualisation
-output <- visDmatHeatmap(sMap, data, sBase, base.legend.location="bottomleft", labRow=NA)
+output <- visDmatHeatmap(sMap, data, sBase,
+base.legend.location="bottomleft", labRow=NA)
 }
 \seealso{
-  \code{\link{sDmatCluster}}, \code{\link{visHeatmapAdv}}
+\code{\link{sDmatCluster}}, \code{\link{visHeatmapAdv}}
 }
 

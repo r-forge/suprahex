@@ -109,7 +109,7 @@
   
     <h3>Description</h3>
     <p><code>sDmatCluster</code> is supposed to obtain clusters from a
-  grid map. It returns an object of class "sBase".</p>
+grid map. It returns an object of class "sBase".</p>
   
     <h3>Usage</h3>
     <pre>sDmatCluster(sMap, which_neigh = 1, distMeasure = c("median", "mean", "min", "max"), 
@@ -122,28 +122,28 @@
       <dd>an object of class "sMap"</dd>
       <dt>which_neigh</dt>
       <dd>which neighbors in 2D output space are
-  used for the calculation. By default, it sets to "1" for
-  direct neighbors, and "2" for neighbors within neighbors
-  no more than 2, and so on</dd>
+used for the calculation. By default, it sets to "1" for
+direct neighbors, and "2" for neighbors within neighbors
+no more than 2, and so on</dd>
       <dt>distMeasure</dt>
       <dd>distance measure used to calculate
-  distances in high-dimensional input space. It can be one
-  of "median", "mean", "min" and "max" measures</dd>
+distances in high-dimensional input space. It can be one
+of "median", "mean", "min" and "max" measures</dd>
       <dt>clusterLinkage</dt>
       <dd>cluster linkage used to derive
-  clusters. It can be "bmh", which accumulates a cluster
-  just based on best-matching hexagons/rectanges but can
-  not ensure each cluster is continuous. Instead, each
-  cluster is continuous when using region-growing algorithm
-  with one of "average", "complete" and "single" linkages</dd>
+clusters. It can be "bmh", which accumulates a cluster
+just based on best-matching hexagons/rectanges but can
+not ensure each cluster is continuous. Instead, each
+cluster is continuous when using region-growing algorithm
+with one of "average", "complete" and "single" linkages</dd>
       <dt>reindexSeed</dt>
       <dd>the way to index seed. It can be
-  "hclust" for reindexing seeds according to hierarchical
-  clustering of patterns seen in seeds, "svd" for
-  reindexing seeds according to svd of patterns seen in
-  seeds, or "none" for seeds being simply increased by the
-  hexagon indexes (i.e. always in an increasing order as
-  hexagons radiate outwards)</dd>
+"hclust" for reindexing seeds according to hierarchical
+clustering of patterns seen in seeds, "svd" for
+reindexing seeds according to svd of patterns seen in
+seeds, or "none" for seeds being simply increased by the
+hexagon indexes (i.e. always in an increasing order as
+hexagons radiate outwards)</dd>
     </dl>
     <!-- 
     -->
@@ -152,16 +152,16 @@
       <h3>Value</h3>
       
       <p>an object of class "sBase", a list with following
-  components: <ul>
+components: <ul>
 <li><code>seeds</code>: the vector to
-  store cluster seeds, i.e., a list of local minima (in 2D
-  output space) of distance matrix (in input space). They
-  are represented by the indexes of hexagons/rectangles
-  </li>
+store cluster seeds, i.e., a list of local minima (in 2D
+output space) of distance matrix (in input space). They
+are represented by the indexes of hexagons/rectangles
+</li>
 <li><code>bases</code>: the vector with the length of nHex to
-  store the cluster memberships/bases, where nHex is the
-  total number of hexagons/rectanges in the grid
-  </li>
+store the cluster memberships/bases, where nHex is the
+total number of hexagons/rectanges in the grid
+</li>
 <li><code>call</code>: the call that produced this result </li>
 </ul></p>
       <p></p>
@@ -170,9 +170,9 @@
       <h3>Note</h3>
       
       <p>The first item in the return "seeds" is the first
-  cluster, whose memberships are those in the return
-  "bases" that equals 1. The same relationship is held for
-  the second item, and so on</p>
+cluster, whose memberships are those in the return
+"bases" that equals 1. The same relationship is held for
+the second item, and so on</p>
     </div>
     
     <h3 id="examples">Examples</h3>
@@ -182,7 +182,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-25 12:24:59</strong>
+<strong class='message'>Start at 2014-03-25 16:40:35</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -209,7 +209,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:24:59</strong>
+<strong class='message'>End at 2014-03-25 16:40:35</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -217,7 +217,8 @@ sMap <- sPipeline(data=data)
 # 3a) based on "bmh" criterion
 # sBase <- sDmatCluster(sMap=sMap, which_neigh=1, distMeasure="median", clusterLinkage="bmh")
 # 3b) using region-growing algorithm with linkage "average"
-sBase <- sDmatCluster(sMap=sMap, which_neigh=1, distMeasure="median", clusterLinkage="average")
+sBase <- sDmatCluster(sMap=sMap, which_neigh=1, distMeasure="median",
+clusterLinkage="average")
 
 # 4) visualise clusters/bases partitioned from the sMap
 visDmatCluster(sMap,sBase)
@@ -238,9 +239,9 @@ visDmatCluster(sMap,sBase)
       
     <h2>See also</h2>
     
-  <code><a href='sPipeline.html'>sPipeline</a></code>, <code><a href='sDmatMinima.html'>sDmatMinima</a></code>,
-  <code><a href='sBMH.html'>sBMH</a></code>, <code><a href='sNeighDirect.html'>sNeighDirect</a></code>,
-  <code><a href='sDistance.html'>sDistance</a></code>, <code><a href='visDmatCluster.html'>visDmatCluster</a></code>
+<code><a href='sPipeline.html'>sPipeline</a></code>, <code><a href='sDmatMinima.html'>sDmatMinima</a></code>,
+<code><a href='sBMH.html'>sBMH</a></code>, <code><a href='sNeighDirect.html'>sNeighDirect</a></code>,
+<code><a href='sDistance.html'>sDistance</a></code>, <code><a href='visDmatCluster.html'>visDmatCluster</a></code>
 
     
     <h2>Citation</h2>

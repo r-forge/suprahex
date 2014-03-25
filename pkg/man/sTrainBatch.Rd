@@ -2,68 +2,68 @@
 \alias{sTrainBatch}
 \title{Function to implement training via batch algorithm}
 \usage{
-  sTrainBatch(sMap, data, sTrain)
+sTrainBatch(sMap, data, sTrain)
 }
 \arguments{
-  \item{sMap}{an object of class "sMap" or "sInit"}
+\item{sMap}{an object of class "sMap" or "sInit"}
 
-  \item{data}{a data frame or matrix of input data}
+\item{data}{a data frame or matrix of input data}
 
-  \item{sTrain}{an object of class "sTrain"}
+\item{sTrain}{an object of class "sTrain"}
 }
 \value{
-  an object of class "sMap", a list with following
-  components: \itemize{ \item{\code{nHex}: the total number
-  of hexagons/rectanges in the grid} \item{\code{xdim}:
-  x-dimension of the grid} \item{\code{ydim}: y-dimension
-  of the grid} \item{\code{lattice}: the grid lattice}
-  \item{\code{shape}: the grid shape} \item{\code{coord}: a
-  matrix of nHex x 2, with each row corresponding to the
-  coordinates of a hexagon/rectangle in the 2D map grid}
-  \item{\code{init}: an initialisation method}
-  \item{\code{neighKernel}: the training neighborhood
-  kernel} \item{\code{codebook}: a codebook matrix of nHex
-  x ncol(data), with each row corresponding to a prototype
-  vector in input high-dimensional space}
-  \item{\code{call}: the call that produced this result} }
+an object of class "sMap", a list with following
+components: \itemize{ \item{\code{nHex}: the total number
+of hexagons/rectanges in the grid} \item{\code{xdim}:
+x-dimension of the grid} \item{\code{ydim}: y-dimension
+of the grid} \item{\code{lattice}: the grid lattice}
+\item{\code{shape}: the grid shape} \item{\code{coord}: a
+matrix of nHex x 2, with each row corresponding to the
+coordinates of a hexagon/rectangle in the 2D map grid}
+\item{\code{init}: an initialisation method}
+\item{\code{neighKernel}: the training neighborhood
+kernel} \item{\code{codebook}: a codebook matrix of nHex
+x ncol(data), with each row corresponding to a prototype
+vector in input high-dimensional space}
+\item{\code{call}: the call that produced this result} }
 }
 \description{
-  \code{sTrainBatch} is supposed to perform batch training
-  algorithm. It requires three inputs: a "sMap" or "sInit"
-  object, input data, and a "sTrain" object specifying
-  training environment. The training is implemented
-  iteratively, but instead of choosing a single input
-  vector, the whole input matrix is used. In each training
-  cycle, the whole input matrix first land in the map
-  through identifying the corresponding winner
-  hexagon/rectangle (BMH), and then the codebook matrix is
-  updated via updating formula (see "Note" below for
-  details). It returns an object of class "sMap".
+\code{sTrainBatch} is supposed to perform batch training
+algorithm. It requires three inputs: a "sMap" or "sInit"
+object, input data, and a "sTrain" object specifying
+training environment. The training is implemented
+iteratively, but instead of choosing a single input
+vector, the whole input matrix is used. In each training
+cycle, the whole input matrix first land in the map
+through identifying the corresponding winner
+hexagon/rectangle (BMH), and then the codebook matrix is
+updated via updating formula (see "Note" below for
+details). It returns an object of class "sMap".
 }
 \note{
-  Updating formula is: \eqn{m_i(t+1) =
-  \frac{\sum_{j=1}^{dlen}h_{wi}(t)x_j}{\sum_{j=1}^{dlen}h_{wi}(t)}},
-  where \itemize{ \item{\eqn{t} denotes the training
-  time/step} \item{\eqn{x_j} is an input vector \eqn{j}
-  from the input data matrix (with \eqn{dlen} rows in
-  total)} \item{\eqn{i} and \eqn{w} stand for the
-  hexagon/rectangle \eqn{i} and the winner BMH \eqn{w},
-  respectively} \item{\eqn{m_i(t+1)} is the prototype
-  vector of the hexagon \eqn{i} at time \eqn{t+1}}
-  \item{\eqn{h_{wi}(t)} is the neighborhood kernel, a
-  non-increasing function of i) the distance \eqn{d_{wi}}
-  between the hexagon/rectangle \eqn{i} and the winner BMH
-  \eqn{w}, and ii) the radius \eqn{\delta_t} at time
-  \eqn{t}. There are five kernels available:} \itemize{
-  \item{For "gaussian" kernel,
-  \eqn{h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}}} \item{For
-  "cutguassian" kernel,
-  \eqn{h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}*(d_{wi} \le
-  \delta_t)}} \item{For "bubble" kernel,
-  \eqn{h_{wi}(t)=(d_{wi} \le \delta_t)}} \item{For "ep"
-  kernel, \eqn{h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi}
-  \le \delta_t)}} \item{For "gamma" kernel,
-  \eqn{h_{wi}(t)=1/\Gamma(d_{wi}^2/(4*\delta_t^2)+2)}} } }
+Updating formula is: \eqn{m_i(t+1) =
+\frac{\sum_{j=1}^{dlen}h_{wi}(t)x_j}{\sum_{j=1}^{dlen}h_{wi}(t)}},
+where \itemize{ \item{\eqn{t} denotes the training
+time/step} \item{\eqn{x_j} is an input vector \eqn{j}
+from the input data matrix (with \eqn{dlen} rows in
+total)} \item{\eqn{i} and \eqn{w} stand for the
+hexagon/rectangle \eqn{i} and the winner BMH \eqn{w},
+respectively} \item{\eqn{m_i(t+1)} is the prototype
+vector of the hexagon \eqn{i} at time \eqn{t+1}}
+\item{\eqn{h_{wi}(t)} is the neighborhood kernel, a
+non-increasing function of i) the distance \eqn{d_{wi}}
+between the hexagon/rectangle \eqn{i} and the winner BMH
+\eqn{w}, and ii) the radius \eqn{\delta_t} at time
+\eqn{t}. There are five kernels available:} \itemize{
+\item{For "gaussian" kernel,
+\eqn{h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}}} \item{For
+"cutguassian" kernel,
+\eqn{h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}*(d_{wi} \le
+\delta_t)}} \item{For "bubble" kernel,
+\eqn{h_{wi}(t)=(d_{wi} \le \delta_t)}} \item{For "ep"
+kernel, \eqn{h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi}
+\le \delta_t)}} \item{For "gamma" kernel,
+\eqn{h_{wi}(t)=1/\Gamma(d_{wi}^2/(4*\delta_t^2)+2)}} } }
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10
@@ -89,6 +89,6 @@ sT_finetune <- sTrainology(sMap=sI, data=data, stage="finetune")
 sM_finetune <- sTrainBatch(sMap=sM_rough, data=data, sTrain=sT_rough)
 }
 \seealso{
-  \code{\link{sTrainology}}, \code{\link{visKernels}}
+\code{\link{sTrainology}}, \code{\link{visKernels}}
 }
 

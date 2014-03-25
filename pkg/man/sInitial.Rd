@@ -1,52 +1,53 @@
 \name{sInitial}
 \alias{sInitial}
-\title{Function to initialise a sInit object given a topology and input data}
+\title{Function to initialise a sInit object given a topology and input
+data}
 \usage{
-  sInitial(data, sTopol,
-    init = c("linear", "uniform", "sample"))
+sInitial(data, sTopol,
+init = c("linear", "uniform", "sample"))
 }
 \arguments{
-  \item{data}{a data frame or matrix of input data}
+\item{data}{a data frame or matrix of input data}
 
-  \item{sTopol}{an object of class "sTopol" (see
-  \code{sTopology})}
+\item{sTopol}{an object of class "sTopol" (see
+\code{sTopology})}
 
-  \item{init}{an initialisation method. It can be one of
-  "uniform", "sample" and "linear" initialisation methods}
+\item{init}{an initialisation method. It can be one of
+"uniform", "sample" and "linear" initialisation methods}
 }
 \value{
-  an object of class "sInit", a list with following
-  components: \itemize{ \item{\code{nHex}: the total number
-  of hexagons/rectanges in the grid} \item{\code{xdim}:
-  x-dimension of the grid} \item{\code{ydim}: y-dimension
-  of the grid} \item{\code{lattice}: the grid lattice}
-  \item{\code{shape}: the grid shape} \item{\code{coord}: a
-  matrix of nHex x 2, with each row corresponding to the
-  coordinates of a hexagon/rectangle in the 2D map grid}
-  \item{\code{init}: an initialisation method}
-  \item{\code{codebook}: a codebook matrix of nHex x
-  ncol(data), with each row corresponding to a prototype
-  vector in input high-dimensional space}
-  \item{\code{call}: the call that produced this result} }
+an object of class "sInit", a list with following
+components: \itemize{ \item{\code{nHex}: the total number
+of hexagons/rectanges in the grid} \item{\code{xdim}:
+x-dimension of the grid} \item{\code{ydim}: y-dimension
+of the grid} \item{\code{lattice}: the grid lattice}
+\item{\code{shape}: the grid shape} \item{\code{coord}: a
+matrix of nHex x 2, with each row corresponding to the
+coordinates of a hexagon/rectangle in the 2D map grid}
+\item{\code{init}: an initialisation method}
+\item{\code{codebook}: a codebook matrix of nHex x
+ncol(data), with each row corresponding to a prototype
+vector in input high-dimensional space}
+\item{\code{call}: the call that produced this result} }
 }
 \description{
-  \code{sInitial} is supposed to initialise an object of
-  class "sInit" given a topology and input data. As a
-  matter of fact, it initialises the codebook matrix (in
-  input high-dimensional space). The return object inherits
-  the topology information (i.e., a "sTopol" object from
-  \code{sTopology}), along with initialised codebook matrix
-  and method used.
+\code{sInitial} is supposed to initialise an object of
+class "sInit" given a topology and input data. As a
+matter of fact, it initialises the codebook matrix (in
+input high-dimensional space). The return object inherits
+the topology information (i.e., a "sTopol" object from
+\code{sTopology}), along with initialised codebook matrix
+and method used.
 }
 \note{
-  The initialisation methods include: \itemize{
-  \item{"uniform": the codebook matrix is uniformly
-  initialised via randomly taking any values within the
-  interval [min, max] of each column of input data}
-  \item{"sample": the codebook matrix is initialised via
-  randomly sampling/selecting input data} \item{"linear":
-  the codebook matrix is linearly initialised along the
-  first two greatest eigenvectors of input data} }
+The initialisation methods include: \itemize{
+\item{"uniform": the codebook matrix is uniformly
+initialised via randomly taking any values within the
+interval [min, max] of each column of input data}
+\item{"sample": the codebook matrix is initialised via
+randomly sampling/selecting input data} \item{"linear":
+the codebook matrix is linearly initialised along the
+first two greatest eigenvectors of input data} }
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10
@@ -65,6 +66,6 @@ sI_uniform <- sInitial(data=data, sTopol=sTopol, init="uniform")
 # sI_linear <- sInitial(data=data, sTopol=sTopol, init="linear")
 }
 \seealso{
-  \code{\link{sTopology}}
+\code{\link{sTopology}}
 }
 

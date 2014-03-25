@@ -102,14 +102,15 @@
         
       </header>
       
-      <h2>Function to visualise codebook matrix or input patterns within a supra-hexagonal grid</h2>
+      <h2>Function to visualise codebook matrix or input patterns within a
+supra-hexagonal grid</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>visHexPattern</code> is supposed to codebook matrix or
-  input patterns within a supra-hexagonal grid.</p>
+input patterns within a supra-hexagonal grid.</p>
   
     <h3>Usage</h3>
     <pre>visHexPattern(sObj, plotType = c("lines", "bars", "radars"), pattern = NULL, height = 7, 
@@ -121,50 +122,50 @@
     <dl>
       <dt>sObj</dt>
       <dd>an object of class "sMap" or "sTopol" or
-  "sInit"</dd>
+"sInit"</dd>
       <dt>plotType</dt>
       <dd>the plot type, can be "lines" for
-  line/point graph, "bars" for bar graph, "radars" for
-  radar graph</dd>
+line/point graph, "bars" for bar graph, "radars" for
+radar graph</dd>
       <dt>pattern</dt>
       <dd>By default, it sets to "NULL" for the
-  codebook matrix. It is intended for the user-input
-  patterns, i.e., a matrix with the dimension of nHex x
-  nPattern, where nHex is the number of hexagons and
-  nPattern is the number of elements for each pattern</dd>
+codebook matrix. It is intended for the user-input
+patterns, i.e., a matrix with the dimension of nHex x
+nPattern, where nHex is the number of hexagons and
+nPattern is the number of elements for each pattern</dd>
       <dt>height</dt>
       <dd>a numeric value specifying the height of
-  device</dd>
+device</dd>
       <dt>margin</dt>
       <dd>margins as units of length 4 or 1</dd>
       <dt>colormap</dt>
       <dd>short name for the predifined colormap,
-  and "customized" for custom input (see the next
-  'customized.color'). The predifined colormap can be one
-  of "jet" (jet colormap), "bwr" (blue-white-red colormap),
-  "gbr" (green-black-red colormap), "wyr" (white-yellow-red
-  colormap), "br" (black-red colormap), "yr" (yellow-red
-  colormap), "wb" (white-black colormap), and "rainbow"
-  (rainbow colormap, that is,
-  red-yellow-green-cyan-blue-magenta). Alternatively, any
-  hyphen-separated HTML color names, e.g.
-  "blue-black-yellow", "royalblue-white-sandybrown",
-  "darkgreen-white-darkviolet". A list of standard color
-  names can be found in
-  <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
+and "customized" for custom input (see the next
+'customized.color'). The predifined colormap can be one
+of "jet" (jet colormap), "bwr" (blue-white-red colormap),
+"gbr" (green-black-red colormap), "wyr" (white-yellow-red
+colormap), "br" (black-red colormap), "yr" (yellow-red
+colormap), "wb" (white-black colormap), and "rainbow"
+(rainbow colormap, that is,
+red-yellow-green-cyan-blue-magenta). Alternatively, any
+hyphen-separated HTML color names, e.g.
+"blue-black-yellow", "royalblue-white-sandybrown",
+"darkgreen-white-darkviolet". A list of standard color
+names can be found in
+<a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
       <dt>customized.color</dt>
       <dd>the customized color for pattern
-  visualisation</dd>
+visualisation</dd>
       <dt>zeropattern.color</dt>
       <dd>the color for zero horizental
-  line</dd>
+line</dd>
       <dt>legend.cex</dt>
       <dd>a numerical value giving the amount by
-  which legend text should be magnified relative to the
-  default (i.e., 1)</dd>
+which legend text should be magnified relative to the
+default (i.e., 1)</dd>
       <dt>newpage</dt>
       <dd>logical to indicate whether to open a new
-  page. By default, it sets to true for opening a new page</dd>
+page. By default, it sets to true for opening a new page</dd>
     </dl>
     <!-- 
     -->
@@ -179,20 +180,20 @@
       
       <p>The "plotType" includes: <ul>
 <li>"lines": line
-  plot. If multple colors are given, the points are also
-  plotted. When the pattern involves both positive and
-  negative values, zero horizental line is also shown
-  </li>
+plot. If multple colors are given, the points are also
+plotted. When the pattern involves both positive and
+negative values, zero horizental line is also shown
+</li>
 <li>"bars": bar plot. When the pattern involves both
-  positive and negative values, the zero horizental line is
-  in the middle of the hexagon; otherwise at the top of the
-  hexagon for all negative values, and at the bottom for
-  all positive values </li>
+positive and negative values, the zero horizental line is
+in the middle of the hexagon; otherwise at the top of the
+hexagon for all negative values, and at the bottom for
+all positive values </li>
 <li>"radars": radar plot. Each
-  radar diagram represents one pattern, wherein each
-  element value is proportional to the distance from the
-  center. Note, it starts on the right and wind
-  counterclockwise around the circle </li>
+radar diagram represents one pattern, wherein each
+element value is proportional to the distance from the
+center. Note, it starts on the right and wind
+counterclockwise around the circle </li>
 </ul></p>
       <p></p>
     </div>
@@ -207,7 +208,7 @@ colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-25 12:25:21</strong>
+<strong class='message'>Start at 2014-03-25 16:40:56</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -234,8 +235,8 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:25:22</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-03-25 16:40:56</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
 # 3) plot codebook patterns using different types
@@ -287,7 +288,7 @@ customized.color=rep(c("red","green"),each=3))
       
     <h2>See also</h2>
     
-  <code><a href='sPipeline.html'>sPipeline</a></code>, <code><a href='visColormap.html'>visColormap</a></code>
+<code><a href='sPipeline.html'>sPipeline</a></code>, <code><a href='visColormap.html'>visColormap</a></code>
 
     
     <h2>Citation</h2>

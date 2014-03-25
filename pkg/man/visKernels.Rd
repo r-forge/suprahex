@@ -2,42 +2,42 @@
 \alias{visKernels}
 \title{Function to visualize neighborhood kernels}
 \usage{
-  visKernels(newpage = T)
+visKernels(newpage = T)
 }
 \arguments{
-  \item{newpage}{logical to indicate whether to open a new
-  page. By default, it sets to true for opening a new page}
+\item{newpage}{logical to indicate whether to open a new
+page. By default, it sets to true for opening a new page}
 }
 \value{
-  invisible
+invisible
 }
 \description{
-  \code{visKernels} is supposed to visualize a series of
-  neighborhood kernels, each of which is a non-increasing
-  functions of: i) the distance \eqn{d_{wi}} between the
-  hexagon/rectangle \eqn{i} and the winner \eqn{w}, and ii)
-  the radius \eqn{\delta_t} at time \eqn{t}.
+\code{visKernels} is supposed to visualize a series of
+neighborhood kernels, each of which is a non-increasing
+functions of: i) the distance \eqn{d_{wi}} between the
+hexagon/rectangle \eqn{i} and the winner \eqn{w}, and ii)
+the radius \eqn{\delta_t} at time \eqn{t}.
 }
 \note{
-  There are five kernels that are currently supported:
-  \itemize{ \item{For "gaussian" kernel,
-  \eqn{h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}}} \item{For
-  "cutguassian" kernel,
-  \eqn{h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}*(d_{wi} \le
-  \delta_t)}} \item{For "bubble" kernel,
-  \eqn{h_{wi}(t)=(d_{wi} \le \delta_t)}} \item{For "ep"
-  kernel, \eqn{h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi}
-  \le \delta_t)}} \item{For "gamma" kernel,
-  \eqn{h_{wi}(t)=1/\Gamma(d_{wi}^2/(4*\delta_t^2)+2)}} }
-  These kernels above are displayed within a plot for each
-  fixed radius. Three different radii (i.e., 1 and 2) are
-  illustrated.
+There are five kernels that are currently supported:
+\itemize{ \item{For "gaussian" kernel,
+\eqn{h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}}} \item{For
+"cutguassian" kernel,
+\eqn{h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}*(d_{wi} \le
+\delta_t)}} \item{For "bubble" kernel,
+\eqn{h_{wi}(t)=(d_{wi} \le \delta_t)}} \item{For "ep"
+kernel, \eqn{h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi}
+\le \delta_t)}} \item{For "gamma" kernel,
+\eqn{h_{wi}(t)=1/\Gamma(d_{wi}^2/(4*\delta_t^2)+2)}} }
+These kernels above are displayed within a plot for each
+fixed radius. Three different radii (i.e., 1 and 2) are
+illustrated.
 }
 \examples{
 # visualise currently supported five kernels
 visKernels()
 }
 \seealso{
-  \code{\link{sTrainSeq}}, \code{\link{sTrainBatch}}
+\code{\link{sTrainSeq}}, \code{\link{sTrainBatch}}
 }
 

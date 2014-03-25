@@ -109,8 +109,8 @@
   
     <h3>Description</h3>
     <p><code>visHeatmap</code> is supposed to visualise input data
-  matrix using heatmap. Note: this heatmap displays matrix
-  in a bottom-to-top direction</p>
+matrix using heatmap. Note: this heatmap displays matrix
+in a bottom-to-top direction</p>
   
     <h3>Usage</h3>
     <pre>visHeatmap(data, scale = c("none", "row", "column"), row.metric = c("none", "pearson", 
@@ -126,80 +126,80 @@
     <dl>
       <dt>data</dt>
       <dd>an input gene-sample data matrix used for
-  heatmap</dd>
+heatmap</dd>
       <dt>scale</dt>
       <dd>a character indicating when the input matrix
-  should be centered and scaled. It can be one of "none"
-  (no scaling), "row" (being scaled in the row direction),
-  "column" (being scaled in the column direction)</dd>
+should be centered and scaled. It can be one of "none"
+(no scaling), "row" (being scaled in the row direction),
+"column" (being scaled in the column direction)</dd>
       <dt>row.metric</dt>
       <dd>distance metric used to calculate the
-  distance metric between rows. It can be one of "none"
-  (i.e. no dendrogram between rows), "pearson", "spearman",
-  "kendall", "euclidean", "manhattan", "cos" and "mi". See
-  details at
-  <a href = 'http://suprahex.r-forge.r-project.org/sDistance.html'>http://suprahex.r-forge.r-project.org/sDistance.html</a></dd>
+distance metric between rows. It can be one of "none"
+(i.e. no dendrogram between rows), "pearson", "spearman",
+"kendall", "euclidean", "manhattan", "cos" and "mi". See
+details at
+<a href = 'http://suprahex.r-forge.r-project.org/sDistance.html'>http://suprahex.r-forge.r-project.org/sDistance.html</a></dd>
       <dt>row.method</dt>
       <dd>the agglomeration method used to
-  cluster rows. This should be one of "ward", "single",
-  "complete", "average", "mcquitty", "median" or
-  "centroid". See 'Note' below for details</dd>
+cluster rows. This should be one of "ward", "single",
+"complete", "average", "mcquitty", "median" or
+"centroid". See 'Note' below for details</dd>
       <dt>column.metric</dt>
       <dd>distance metric used to calculate
-  the distance metric between columns. It can be one of
-  "none" (i.e. no dendrogram between rows), "pearson",
-  "spearman", "kendall", "euclidean", "manhattan", "cos"
-  and "mi". See details at
-  <a href = 'http://suprahex.r-forge.r-project.org/sDistance.html'>http://suprahex.r-forge.r-project.org/sDistance.html</a></dd>
+the distance metric between columns. It can be one of
+"none" (i.e. no dendrogram between rows), "pearson",
+"spearman", "kendall", "euclidean", "manhattan", "cos"
+and "mi". See details at
+<a href = 'http://suprahex.r-forge.r-project.org/sDistance.html'>http://suprahex.r-forge.r-project.org/sDistance.html</a></dd>
       <dt>column.method</dt>
       <dd>the agglomeration method used to
-  cluster columns. This should be one of "ward", "single",
-  "complete", "average", "mcquitty", "median" or
-  "centroid". See 'Note' below for details</dd>
+cluster columns. This should be one of "ward", "single",
+"complete", "average", "mcquitty", "median" or
+"centroid". See 'Note' below for details</dd>
       <dt>colormap</dt>
       <dd>short name for the colormap. It can be
-  one of "jet" (jet colormap), "bwr" (blue-white-red
-  colormap), "gbr" (green-black-red colormap), "wyr"
-  (white-yellow-red colormap), "br" (black-red colormap),
-  "yr" (yellow-red colormap), "wb" (white-black colormap),
-  and "rainbow" (rainbow colormap, that is,
-  red-yellow-green-cyan-blue-magenta). Alternatively, any
-  hyphen-separated HTML color names, e.g.
-  "blue-black-yellow", "royalblue-white-sandybrown",
-  "darkgreen-white-darkviolet". A list of standard color
-  names can be found in
-  <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
+one of "jet" (jet colormap), "bwr" (blue-white-red
+colormap), "gbr" (green-black-red colormap), "wyr"
+(white-yellow-red colormap), "br" (black-red colormap),
+"yr" (yellow-red colormap), "wb" (white-black colormap),
+and "rainbow" (rainbow colormap, that is,
+red-yellow-green-cyan-blue-magenta). Alternatively, any
+hyphen-separated HTML color names, e.g.
+"blue-black-yellow", "royalblue-white-sandybrown",
+"darkgreen-white-darkviolet". A list of standard color
+names can be found in
+<a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
       <dt>ncolors</dt>
       <dd>the number of colors specified over the
-  colormap</dd>
+colormap</dd>
       <dt>zlim</dt>
       <dd>the minimum and maximum z/patttern values for
-  which colors should be plotted, defaulting to the range
-  of the finite values of z. Each of the given colors will
-  be used to color an equispaced interval of this range.
-  The midpoints of the intervals cover the range, so that
-  values just outside the range will be plotted</dd>
+which colors should be plotted, defaulting to the range
+of the finite values of z. Each of the given colors will
+be used to color an equispaced interval of this range.
+The midpoints of the intervals cover the range, so that
+values just outside the range will be plotted</dd>
       <dt>row.cutree</dt>
       <dd>an integer scalar specifying the
-  desired number of groups being cut from the row
-  dendrogram. Note, this optional is only enabled when the
-  row dengrogram is built</dd>
+desired number of groups being cut from the row
+dendrogram. Note, this optional is only enabled when the
+row dengrogram is built</dd>
       <dt>row.colormap</dt>
       <dd>short name for the colormap to
-  color-code the row groups (i.e. sidebar colors used to
-  annotate the rows)</dd>
+color-code the row groups (i.e. sidebar colors used to
+annotate the rows)</dd>
       <dt>column.cutree</dt>
       <dd>an integer scalar specifying the
-  desired number of groups being cut from the column
-  dendrogram. Note, this optional is only enabled when the
-  column dengrogram is built</dd>
+desired number of groups being cut from the column
+dendrogram. Note, this optional is only enabled when the
+column dengrogram is built</dd>
       <dt>column.colormap</dt>
       <dd>short name for the colormap to
-  color-code the column groups (i.e. sidebar colors used to
-  annotate the columns)</dd>
+color-code the column groups (i.e. sidebar colors used to
+annotate the columns)</dd>
       <dt>...</dt>
       <dd>additional graphic parameters. Type ?heatmap
-  for the complete list.</dd>
+for the complete list.</dd>
     </dl>
     <!-- 
     -->
@@ -214,21 +214,21 @@
       
       <p>The clustering methods are provided: <ul>
 <li>"ward": Ward's minimum variance method aims at
-  finding compact, spherical clusters </li>
+finding compact, spherical clusters </li>
 <li>"single": The
-  single linkage method (which is closely related to the
-  minimal spanning tree) adopts a 'friends of friends'
-  clustering strategy </li>
+single linkage method (which is closely related to the
+minimal spanning tree) adopts a 'friends of friends'
+clustering strategy </li>
 <li>"complete": The complete
-  linkage method finds similar clusters
-  </li>
+linkage method finds similar clusters
+</li>
 <li>"average","mcquitty","median","centroid": These
-  methods can be regarded as aiming for clusters with
-  characteristics somewhere between the single and complete
-  link methods. Two methods "median" and "centroid" are not
-  leading to a monotone distance measure, or equivalently
-  the resulting dendrograms can have so called inversions
-  (which are hard to interpret) </li>
+methods can be regarded as aiming for clusters with
+characteristics somewhere between the single and complete
+link methods. Two methods "median" and "centroid" are not
+leading to a monotone distance measure, or equivalently
+the resulting dendrograms can have so called inversions
+(which are hard to interpret) </li>
 </ul></p>
       <p></p>
     </div>
@@ -243,11 +243,14 @@ colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 # 2) prepare colors for the column sidebar
 lvs <- unique(colnames(data))
 lvs_color <- visColormap(colormap="rainbow")(length(lvs))
-my_ColSideColors <- sapply(colnames(data), function(x) lvs_color[x==lvs])
+my_ColSideColors <- sapply(colnames(data), function(x)
+lvs_color[x==lvs])
 
 # 3) heatmap with row dendrogram (with 10 color-coded groups)
-visHeatmap(data, row.metric="euclidean", row.method="average", colormap="gbr", zlim=c(-2,2),
-ColSideColors=my_ColSideColors, row.cutree=10, row.colormap="jet", labRow=NA)
+visHeatmap(data, row.metric="euclidean", row.method="average",
+colormap="gbr", zlim=c(-2,2),
+ColSideColors=my_ColSideColors, row.cutree=10, row.colormap="jet",
+labRow=NA)
 </div>
 <a href="javascript:newWin('visHeatmap-2.png', 'visHeatmap-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHeatmap-2.png', width="400" /></a></pre>
   </div>
@@ -265,7 +268,7 @@ ColSideColors=my_ColSideColors, row.cutree=10, row.colormap="jet", labRow=NA)
       
     <h2>See also</h2>
     
-  <code><a href='visHeatmap.html'>visHeatmap</a></code>
+<code><a href='visHeatmap.html'>visHeatmap</a></code>
 
     
     <h2>Citation</h2>

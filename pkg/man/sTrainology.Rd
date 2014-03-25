@@ -2,78 +2,78 @@
 \alias{sTrainology}
 \title{Function to define trainology (training environment)}
 \usage{
-  sTrainology(sMap, data,
-    algorithm = c("batch", "sequential"),
-    stage = c("rough", "finetune", "complete"),
-    alphaType = c("invert", "linear", "power"),
-    neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma"))
+sTrainology(sMap, data,
+algorithm = c("batch", "sequential"),
+stage = c("rough", "finetune", "complete"),
+alphaType = c("invert", "linear", "power"),
+neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma"))
 }
 \arguments{
-  \item{sMap}{an object of class "sMap" or "sInit"}
+\item{sMap}{an object of class "sMap" or "sInit"}
 
-  \item{data}{a data frame or matrix of input data}
+\item{data}{a data frame or matrix of input data}
 
-  \item{algorithm}{the training algorithm. It can be one of
-  "sequential" and "batch" algorithm}
+\item{algorithm}{the training algorithm. It can be one of
+"sequential" and "batch" algorithm}
 
-  \item{stage}{the training stage. The training can be
-  achieved using two stages (i.e., "rough" and "finetune")
-  or one stage only (i.e., "complete")}
+\item{stage}{the training stage. The training can be
+achieved using two stages (i.e., "rough" and "finetune")
+or one stage only (i.e., "complete")}
 
-  \item{alphaType}{the alpha type. It can be one of
-  "invert", "linear" and "power" alpha types}
+\item{alphaType}{the alpha type. It can be one of
+"invert", "linear" and "power" alpha types}
 
-  \item{neighKernel}{the training neighbor kernel. It can
-  be one of "gaussian", "bubble", "cutgaussian", "ep" and
-  "gamma" kernels}
+\item{neighKernel}{the training neighbor kernel. It can
+be one of "gaussian", "bubble", "cutgaussian", "ep" and
+"gamma" kernels}
 }
 \value{
-  an object of class "sTrain", a list with following
-  components: \itemize{ \item{\code{algorithm}: the
-  training algorithm} \item{\code{stage}: the training
-  stage} \item{\code{alphaType}: the alpha type}
-  \item{\code{alphaInitial}: the initial alpha}
-  \item{\code{radiusInitial}: the initial radius}
-  \item{\code{radiusFinal}: the final radius}
-  \item{\code{neighKernel}: the neighbor kernel}
-  \item{\code{call}: the call that produced this result} }
+an object of class "sTrain", a list with following
+components: \itemize{ \item{\code{algorithm}: the
+training algorithm} \item{\code{stage}: the training
+stage} \item{\code{alphaType}: the alpha type}
+\item{\code{alphaInitial}: the initial alpha}
+\item{\code{radiusInitial}: the initial radius}
+\item{\code{radiusFinal}: the final radius}
+\item{\code{neighKernel}: the neighbor kernel}
+\item{\code{call}: the call that produced this result} }
 }
 \description{
-  \code{sTrainology} is supposed to define the train-ology
-  (i.e., the training environment/parameters). The
-  trainology here refers to the training algorithm, the
-  training stage, the stage-specific parameters (alpha
-  type, initial alpha, initial radius, final radius and
-  train length), and the training neighbor kernel used. It
-  returns an object of class "sTrain".
+\code{sTrainology} is supposed to define the train-ology
+(i.e., the training environment/parameters). The
+trainology here refers to the training algorithm, the
+training stage, the stage-specific parameters (alpha
+type, initial alpha, initial radius, final radius and
+train length), and the training neighbor kernel used. It
+returns an object of class "sTrain".
 }
 \note{
-  Training stage-specific parameters: \itemize{
-  \item{"radiusInitial": it depends on the grid shape and
-  training stage} \itemize{ \item{For "sheet" shape: it
-  equals \eqn{max(1,ceiling(max(xdim,ydim)/8))} at "rough"
-  or "complete" stage, and
-  \eqn{max(1,ceiling(max(xdim,ydim)/32))} at "finetune"
-  stage} \item{For "suprahex" shape: it equals
-  \eqn{max(1,ceiling(r/2))} at "rough" or "complete" stage,
-  and \eqn{max(1,ceiling(r/8))} at "finetune" stage} }
-  \item{"radiusFinal": it depends on the training stage}
-  \itemize{ \item{At "rough" stage, it equals
-  \eqn{radiusInitial/4}} \item{At "finetune" or "complete"
-  stage, it equals \eqn{1}} } \item{"trainLength": how many
-  times the whole input data are set for training. It
-  depends on the training stage and training algorithm}
-  \itemize{ \item{At "rough" stage, it equals \eqn{max(1,10
-  * trainDepth)}} \item{At "finetune" stage, it equals
-  \eqn{max(1,40 * trainDepth)}} \item{At "complete" stage,
-  it equals \eqn{max(1,50 * trainDepth)}} \item{When using
-  "batch" algorithm and the trainLength equals 1 according
-  to the above equation, the trainLength is forced to be 2
-  unless \eqn{radiusInitial} equals \eqn{radiusFinal}}
-  \item{Where \eqn{trainDepth} is the training depth,
-  defined as \eqn{nHex/dlen}, i.e., how many
-  hexagons/rectanges are used per the input data length
-  (here \eqn{dlen} refers to the number of rows)} } }
+Training stage-specific parameters: \itemize{
+\item{"radiusInitial": it depends on the grid shape and
+training stage} \itemize{ \item{For "sheet" shape: it
+equals \eqn{max(1,ceiling(max(xdim,ydim)/8))} at "rough"
+or "complete" stage, and
+\eqn{max(1,ceiling(max(xdim,ydim)/32))} at "finetune"
+stage} \item{For "suprahex" shape: it equals
+\eqn{max(1,ceiling(r/2))} at "rough" or "complete" stage,
+and \eqn{max(1,ceiling(r/8))} at "finetune" stage} }
+\item{"radiusFinal": it depends on the training stage}
+\itemize{ \item{At "rough" stage, it equals
+\eqn{radiusInitial/4}} \item{At "finetune" or "complete"
+stage, it equals \eqn{1}} } \item{"trainLength": how many
+times the whole input data are set for training. It
+depends on the training stage and training algorithm}
+\itemize{ \item{At "rough" stage, it equals \eqn{max(1,10
+* trainDepth)}} \item{At "finetune" stage, it equals
+\eqn{max(1,40 * trainDepth)}} \item{At "complete" stage,
+it equals \eqn{max(1,50 * trainDepth)}} \item{When using
+"batch" algorithm and the trainLength equals 1 according
+to the above equation, the trainLength is forced to be 2
+unless \eqn{radiusInitial} equals \eqn{radiusFinal}}
+\item{Where \eqn{trainDepth} is the training depth,
+defined as \eqn{nHex/dlen}, i.e., how many
+hexagons/rectanges are used per the input data length
+(here \eqn{dlen} refers to the number of rows)} } }
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10
@@ -95,6 +95,6 @@ sT_finetune <- sTrainology(sMap=sI, data=data, stage="finetune")
 sT_complete <- sTrainology(sMap=sI, data=data, stage="complete")
 }
 \seealso{
-  \code{\link{sInitial}}
+\code{\link{sInitial}}
 }
 

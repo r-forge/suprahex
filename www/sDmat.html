@@ -102,15 +102,16 @@
         
       </header>
       
-      <h2>Function to calculate distance matrix in high-dimensional input space but according to neighborhood relationships in 2D output space</h2>
+      <h2>Function to calculate distance matrix in high-dimensional input
+space but according to neighborhood relationships in 2D output space</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>sDmat</code> is supposed to calculate distance (measured
-  in high-dimensional input space) to neighbors (defined by
-  based on 2D output space) for each of hexagons/rectangles</p>
+in high-dimensional input space) to neighbors (defined by
+based on 2D output space) for each of hexagons/rectangles</p>
   
     <h3>Usage</h3>
     <pre>sDmat(sMap, which_neigh = 1, distMeasure = c("median", "mean", "min", "max"))</pre>
@@ -121,12 +122,12 @@
       <dd>an object of class "sMap"</dd>
       <dt>which_neigh</dt>
       <dd>which neighbors in 2D output space are
-  used for the calculation. By default, it sets to "1" for
-  direct neighbors, and "2" for neighbors within neighbors
-  no more than 2, and so on</dd>
+used for the calculation. By default, it sets to "1" for
+direct neighbors, and "2" for neighbors within neighbors
+no more than 2, and so on</dd>
       <dt>distMeasure</dt>
       <dd>distance measure used to calculate
-  distances in high-dimensional input space</dd>
+distances in high-dimensional input space</dd>
     </dl>
     <!-- 
     -->
@@ -136,9 +137,9 @@
       
       <p><ul>
 <li><code>dMat</code>: a vector with the length of
-  nHex. It stores the distance a hexaon/rectangle is away
-  from its output-space-defined neighbors in
-  high-dimensional input space </li>
+nHex. It stores the distance a hexaon/rectangle is away
+from its output-space-defined neighbors in
+high-dimensional input space </li>
 </ul></p>
       <p></p>
     </div>
@@ -146,7 +147,7 @@
       <h3>Note</h3>
       
       <p>"which_neigh" is defined in output 2D space, but
-  "distMeasure" is defined in high-dimensional input space</p>
+"distMeasure" is defined in high-dimensional input space</p>
     </div>
     
     <h3 id="examples">Examples</h3>
@@ -156,7 +157,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-25 12:24:59</strong>
+<strong class='message'>Start at 2014-03-25 16:40:34</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -183,7 +184,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:24:59</strong>
+<strong class='message'>End at 2014-03-25 16:40:34</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -208,7 +209,7 @@ dMat <- sDmat(sMap=sMap, which_neigh=1, distMeasure="median")
       
     <h2>See also</h2>
     
-  <code><a href='sNeighAny.html'>sNeighAny</a></code>
+<code><a href='sNeighAny.html'>sNeighAny</a></code>
 
     
     <h2>Citation</h2>

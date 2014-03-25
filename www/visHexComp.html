@@ -102,14 +102,15 @@
         
       </header>
       
-      <h2>Function to visualise a component plane of a supra-hexagonal grid</h2>
+      <h2>Function to visualise a component plane of a supra-hexagonal
+grid</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>visHexComp</code> is supposed to visualise a
-  supra-hexagonal grid in the context of viewport</p>
+supra-hexagonal grid in the context of viewport</p>
   
     <h3>Usage</h3>
     <pre>visHexComp(sMap, comp, margin = rep(0.6, 4), area.size = 1, colormap = c("bwr", "jet", 
@@ -122,39 +123,39 @@
       <dd>an object of class "sMap"</dd>
       <dt>comp</dt>
       <dd>a component/column of codebook matrix from an
-  object "sMap"</dd>
+object "sMap"</dd>
       <dt>margin</dt>
       <dd>margins as units of length 4 or 1</dd>
       <dt>area.size</dt>
       <dd>an inteter or a vector specifying the
-  area size of each hexagon</dd>
+area size of each hexagon</dd>
       <dt>colormap</dt>
       <dd>short name for the colormap. It can be
-  one of "jet" (jet colormap), "bwr" (blue-white-red
-  colormap), "gbr" (green-black-red colormap), "wyr"
-  (white-yellow-red colormap), "br" (black-red colormap),
-  "yr" (yellow-red colormap), "wb" (white-black colormap),
-  and "rainbow" (rainbow colormap, that is,
-  red-yellow-green-cyan-blue-magenta). Alternatively, any
-  hyphen-separated HTML color names, e.g.
-  "blue-black-yellow", "royalblue-white-sandybrown",
-  "darkgreen-white-darkviolet". A list of standard color
-  names can be found in
-  <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
+one of "jet" (jet colormap), "bwr" (blue-white-red
+colormap), "gbr" (green-black-red colormap), "wyr"
+(white-yellow-red colormap), "br" (black-red colormap),
+"yr" (yellow-red colormap), "wb" (white-black colormap),
+and "rainbow" (rainbow colormap, that is,
+red-yellow-green-cyan-blue-magenta). Alternatively, any
+hyphen-separated HTML color names, e.g.
+"blue-black-yellow", "royalblue-white-sandybrown",
+"darkgreen-white-darkviolet". A list of standard color
+names can be found in
+<a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
       <dt>ncolors</dt>
       <dd>the number of colors specified</dd>
       <dt>zlim</dt>
       <dd>the minimum and maximum z values for which
-  colors should be plotted, defaulting to the range of the
-  finite values of z. Each of the given colors will be used
-  to color an equispaced interval of this range. The
-  midpoints of the intervals cover the range, so that
-  values just outside the range will be plotted</dd>
+colors should be plotted, defaulting to the range of the
+finite values of z. Each of the given colors will be used
+to color an equispaced interval of this range. The
+midpoints of the intervals cover the range, so that
+values just outside the range will be plotted</dd>
       <dt>border.color</dt>
       <dd>the border color for each hexagon</dd>
       <dt>newpage</dt>
       <dd>a logical to indicate whether or not to
-  open a new page</dd>
+open a new page</dd>
     </dl>
     <!-- 
     -->
@@ -178,7 +179,7 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-25 12:25:16</strong>
+<strong class='message'>Start at 2014-03-25 16:40:51</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -205,12 +206,13 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:25:16</strong>
+<strong class='message'>End at 2014-03-25 16:40:51</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
 # 3) visualise the first component plane with a supra-hexagonal grid
-visHexComp(sMap, comp=sMap$codebook[,1], colormap="jet", ncolors=100, zlim=c(-1,1))
+visHexComp(sMap, comp=sMap$codebook[,1], colormap="jet", ncolors=100,
+zlim=c(-1,1))
 </div>
 <a href="javascript:newWin('visHexComp-18.png', 'visHexComp-18.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHexComp-18.png', width="400" /></a></pre>
   </div>
@@ -228,7 +230,7 @@ visHexComp(sMap, comp=sMap$codebook[,1], colormap="jet", ncolors=100, zlim=c(-1,
       
     <h2>See also</h2>
     
-  <code><a href='visColormap.html'>visColormap</a></code>, <code><a href='visHexGrid.html'>visHexGrid</a></code>
+<code><a href='visColormap.html'>visColormap</a></code>, <code><a href='visHexGrid.html'>visHexGrid</a></code>
 
     
     <h2>Citation</h2>

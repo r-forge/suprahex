@@ -102,17 +102,18 @@
         
       </header>
       
-      <h2>Function to identify local minima (in 2D output space) of distance matrix (in high-dimensional input space)</h2>
+      <h2>Function to identify local minima (in 2D output space) of
+distance matrix (in high-dimensional input space)</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>sDmatMinima</code> is supposed to identify local minima
-  of distance matrix (resulting from <code><a href='sDmat.html'>sDmat</a></code>).
-  The criterion of being local minima is that the distance
-  associated with a hexagon/rectangle is always smaller
-  than its direct neighbors (i.e., 1-neighborhood)</p>
+of distance matrix (resulting from <code><a href='sDmat.html'>sDmat</a></code>).
+The criterion of being local minima is that the distance
+associated with a hexagon/rectangle is always smaller
+than its direct neighbors (i.e., 1-neighborhood)</p>
   
     <h3>Usage</h3>
     <pre>sDmatMinima(sMap, which_neigh = 1, distMeasure = c("median", "mean", "min", "max"))</pre>
@@ -123,13 +124,13 @@
       <dd>an object of class "sMap"</dd>
       <dt>which_neigh</dt>
       <dd>which neighbors in 2D output space are
-  used for the calculation. By default, it sets to "1" for
-  direct neighbors, and "2" for neighbors within neighbors
-  no more than 2, and so on</dd>
+used for the calculation. By default, it sets to "1" for
+direct neighbors, and "2" for neighbors within neighbors
+no more than 2, and so on</dd>
       <dt>distMeasure</dt>
       <dd>distance measure used to calculate
-  distances in high-dimensional input space. It can be one
-  of "median", "mean", "min" and "max" measures</dd>
+distances in high-dimensional input space. It can be one
+of "median", "mean", "min" and "max" measures</dd>
     </dl>
     <!-- 
     -->
@@ -139,8 +140,8 @@
       
       <p><ul>
 <li><code>minima</code>: a vector to store a list
-  of local minima (represented by the indexes of
-  hexogans/rectangles </li>
+of local minima (represented by the indexes of
+hexogans/rectangles </li>
 </ul></p>
       <p></p>
     </div>
@@ -148,11 +149,11 @@
       <h3>Note</h3>
       
       <p>Do not get confused by "which_neigh" and the criteria of
-  being local minima. Both of them deal with 2D output
-  space. However, "which_neigh" is used to assist in the
-  calculation of distance matrix (so can be 1-neighborhood
-  or more); instead, the criterion of being local minima is
-  only 1-neighborhood in the strictest sense</p>
+being local minima. Both of them deal with 2D output
+space. However, "which_neigh" is used to assist in the
+calculation of distance matrix (so can be 1-neighborhood
+or more); instead, the criterion of being local minima is
+only 1-neighborhood in the strictest sense</p>
     </div>
     
     <h3 id="examples">Examples</h3>
@@ -162,7 +163,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-25 12:25:00</strong>
+<strong class='message'>Start at 2014-03-25 16:40:35</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -189,7 +190,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:25:00</strong>
+<strong class='message'>End at 2014-03-25 16:40:35</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -211,7 +212,7 @@ minima <- sDmatMinima(sMap=sMap, which_neigh=1, distMeasure="median")
       
     <h2>See also</h2>
     
-  <code><a href='sDmat.html'>sDmat</a></code>, <code><a href='sNeighAny.html'>sNeighAny</a></code>
+<code><a href='sDmat.html'>sDmat</a></code>, <code><a href='sNeighAny.html'>sNeighAny</a></code>
 
     
     <h2>Citation</h2>

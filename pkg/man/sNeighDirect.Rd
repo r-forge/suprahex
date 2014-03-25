@@ -1,31 +1,32 @@
 \name{sNeighDirect}
 \alias{sNeighDirect}
-\title{Function to calculate direct neighbors for each hexagon/rectangle in a grid}
+\title{Function to calculate direct neighbors for each
+hexagon/rectangle in a grid}
 \usage{
-  sNeighDirect(sObj)
+sNeighDirect(sObj)
 }
 \arguments{
-  \item{sObj}{an object of class "sTopol" or "sInit" or
-  "sMap"}
+\item{sObj}{an object of class "sTopol" or "sInit" or
+"sMap"}
 }
 \value{
-  \itemize{ \item{\code{dNeigh}: a matrix of nHex x nHex,
-  containing presence/absence info in terms of direct
-  neighbors, where nHex is the total number of
-  hexagons/rectanges in the grid} }
+\itemize{ \item{\code{dNeigh}: a matrix of nHex x nHex,
+containing presence/absence info in terms of direct
+neighbors, where nHex is the total number of
+hexagons/rectanges in the grid} }
 }
 \description{
-  \code{sNeighDirect} is supposed to calculate direct
-  neighbors for each hexagon/rectangle in a regular 2D
-  grid. It returns a matrix with rows for the self, and
-  columns for its direct neighbors.
+\code{sNeighDirect} is supposed to calculate direct
+neighbors for each hexagon/rectangle in a regular 2D
+grid. It returns a matrix with rows for the self, and
+columns for its direct neighbors.
 }
 \note{
-  The return matrix has rows for the self, and columns for
-  its direct neighbors. The "1" means the presence of
-  direct neighbors, "0" for the absence. It has
-  rows/columns ordered in the same order as the "coord"
-  matrix of the input object does.
+The return matrix has rows for the self, and columns for
+its direct neighbors. The "1" means the presence of
+direct neighbors, "0" for the absence. It has
+rows/columns ordered in the same order as the "coord"
+matrix of the input object does.
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10
@@ -45,6 +46,6 @@ dNeigh <- sNeighDirect(sObj=sTopol)
 # dNeigh <- sNeighDirect(sObj=sI)
 }
 \seealso{
-  \code{\link{sHexDist}}
+\code{\link{sHexDist}}
 }
 

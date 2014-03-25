@@ -1,48 +1,49 @@
 \name{sWriteData}
 \alias{sWriteData}
-\title{Function to write out the best-matching hexagons and/or cluster bases in terms of data}
+\title{Function to write out the best-matching hexagons and/or cluster
+bases in terms of data}
 \usage{
-  sWriteData(sMap, data, sBase = NULL, filename = NULL,
-    keep.data = F)
+sWriteData(sMap, data, sBase = NULL, filename = NULL,
+keep.data = F)
 }
 \arguments{
-  \item{sMap}{an object of class "sMap" or a codebook
-  matrix}
+\item{sMap}{an object of class "sMap" or a codebook
+matrix}
 
-  \item{data}{a data frame or matrix of input data}
+\item{data}{a data frame or matrix of input data}
 
-  \item{sBase}{an object of class "sBase"}
+\item{sBase}{an object of class "sBase"}
 
-  \item{filename}{a character string naming a filename}
+\item{filename}{a character string naming a filename}
 
-  \item{keep.data}{logical to indicate whether or not to
-  also write out the input data. By default, it sets to
-  false for not keeping it. It is highly expensive to keep
-  the large data sets}
+\item{keep.data}{logical to indicate whether or not to
+also write out the input data. By default, it sets to
+false for not keeping it. It is highly expensive to keep
+the large data sets}
 }
 \value{
-  a data frame with following components: \itemize{
-  \item{\code{ID}: ID for data. It inherits the rownames of
-  data (if exists). Otherwise, it is sequential integer
-  values starting with 1 and ending with dlen, the total
-  number of rows of the input data}
-  \item{\code{Hexagon_index}: the index for best-matching
-  hexagons} \item{\code{Cluster_base}: optional, it is only
-  appended when sBase is given. It stores the cluster
-  memberships/bases} \item{\code{data}: optional, it is
-  only appended when keep.data is true} }
+a data frame with following components: \itemize{
+\item{\code{ID}: ID for data. It inherits the rownames of
+data (if exists). Otherwise, it is sequential integer
+values starting with 1 and ending with dlen, the total
+number of rows of the input data}
+\item{\code{Hexagon_index}: the index for best-matching
+hexagons} \item{\code{Cluster_base}: optional, it is only
+appended when sBase is given. It stores the cluster
+memberships/bases} \item{\code{data}: optional, it is
+only appended when keep.data is true} }
 }
 \description{
-  \code{sWriteData} is supposed to write out the
-  best-matching hexagons and/or cluster bases in terms of
-  data.
+\code{sWriteData} is supposed to write out the
+best-matching hexagons and/or cluster bases in terms of
+data.
 }
 \note{
-  If "filename" is not NULL, a tab-delimited text file will
-  be also written out. If "sBase" is not NULL and comes
-  from the "sMap" partition, then cluster bases are also
-  appended. if "keep.data" is true, the data will be part
-  of output.
+If "filename" is not NULL, a tab-delimited text file will
+be also written out. If "sBase" is not NULL and comes
+from the "sMap" partition, then cluster bases are also
+appended. if "keep.data" is true, the data will be part
+of output.
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10
@@ -59,9 +60,10 @@ sBase <- sDmatCluster(sMap=sMap, which_neigh=1,
 distMeasure="median", clusterLinkage="average")
 
 # 5) write data's BMH and cluster bases
-output <- sWriteData(sMap=sMap, data=data, sBase=sBase, filename="sData_base_output.txt")
+output <- sWriteData(sMap=sMap, data=data, sBase=sBase,
+filename="sData_base_output.txt")
 }
 \seealso{
-  \code{\link{sBMH}}
+\code{\link{sBMH}}
 }
 

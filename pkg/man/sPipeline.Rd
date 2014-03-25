@@ -1,97 +1,98 @@
 \name{sPipeline}
 \alias{sPipeline}
-\title{Function to setup the pipeline for completing ab initio training given the input data}
+\title{Function to setup the pipeline for completing ab initio training
+given the input data}
 \usage{
-  sPipeline(data = NULL, xdim = NULL, ydim = NULL,
-    nHex = NULL, lattice = c("hexa", "rect"),
-    shape = c("suprahex", "sheet"),
-    init = c("linear", "uniform", "sample"),
-    algorithm = c("batch", "sequential"),
-    alphaType = c("invert", "linear", "power"),
-    neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma"),
-    finetuneSustain = F, verbose = T)
+sPipeline(data = NULL, xdim = NULL, ydim = NULL,
+nHex = NULL, lattice = c("hexa", "rect"),
+shape = c("suprahex", "sheet"),
+init = c("linear", "uniform", "sample"),
+algorithm = c("batch", "sequential"),
+alphaType = c("invert", "linear", "power"),
+neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma"),
+finetuneSustain = F, verbose = T)
 }
 \arguments{
-  \item{data}{a data frame or matrix of input data}
+\item{data}{a data frame or matrix of input data}
 
-  \item{xdim}{an integer specifying x-dimension of the
-  grid}
+\item{xdim}{an integer specifying x-dimension of the
+grid}
 
-  \item{ydim}{an integer specifying y-dimension of the
-  grid}
+\item{ydim}{an integer specifying y-dimension of the
+grid}
 
-  \item{nHex}{the number of hexagons/rectangles in the
-  grid}
+\item{nHex}{the number of hexagons/rectangles in the
+grid}
 
-  \item{lattice}{the grid lattice, either "hexa" for a
-  hexagon or "rect" for a rectangle}
+\item{lattice}{the grid lattice, either "hexa" for a
+hexagon or "rect" for a rectangle}
 
-  \item{shape}{the grid shape, either "suprahex" for a
-  supra-hexagonal grid or "sheet" for a hexagonal/rectangle
-  sheet}
+\item{shape}{the grid shape, either "suprahex" for a
+supra-hexagonal grid or "sheet" for a hexagonal/rectangle
+sheet}
 
-  \item{init}{an initialisation method. It can be one of
-  "uniform", "sample" and "linear" initialisation methods}
+\item{init}{an initialisation method. It can be one of
+"uniform", "sample" and "linear" initialisation methods}
 
-  \item{algorithm}{the training algorithm. It can be one of
-  "sequential" and "batch" algorithm}
+\item{algorithm}{the training algorithm. It can be one of
+"sequential" and "batch" algorithm}
 
-  \item{alphaType}{the alpha type. It can be one of
-  "invert", "linear" and "power" alpha types}
+\item{alphaType}{the alpha type. It can be one of
+"invert", "linear" and "power" alpha types}
 
-  \item{neighKernel}{the training neighborhood kernel. It
-  can be one of "gaussian", "bubble", "cutgaussian", "ep"
-  and "gamma" kernels}
+\item{neighKernel}{the training neighborhood kernel. It
+can be one of "gaussian", "bubble", "cutgaussian", "ep"
+and "gamma" kernels}
 
-  \item{finetuneSustain}{logical to indicate whether
-  sustain the "finetune" training. If true, it will repeat
-  the "finetune" stage until the mean quantization error
-  does get worse. By default, it sets to true}
+\item{finetuneSustain}{logical to indicate whether
+sustain the "finetune" training. If true, it will repeat
+the "finetune" stage until the mean quantization error
+does get worse. By default, it sets to true}
 
-  \item{verbose}{logical to indicate whether the messages
-  will be displayed in the screen. By default, it sets to
-  false for no display}
+\item{verbose}{logical to indicate whether the messages
+will be displayed in the screen. By default, it sets to
+false for no display}
 }
 \value{
-  an object of class "sMap", a list with following
-  components: \itemize{ \item{\code{nHex}: the total number
-  of hexagons/rectanges in the grid} \item{\code{xdim}:
-  x-dimension of the grid} \item{\code{ydim}: y-dimension
-  of the grid} \item{\code{lattice}: the grid lattice}
-  \item{\code{shape}: the grid shape} \item{\code{coord}: a
-  matrix of nHex x 2, with rows corresponding to the
-  coordinates of all hexagons/rectangles in the 2D map
-  grid} \item{\code{init}: an initialisation method}
-  \item{\code{neighKernel}: the training neighborhood
-  kernel} \item{\code{codebook}: a codebook matrix of nHex
-  x ncol(data), with rows corresponding to prototype
-  vectors in input high-dimensional space}
-  \item{\code{hits}: a vector of nHex, each element meaning
-  that a hexagon/rectangle contains the number of input
-  data vectors being hit wherein} \item{\code{mqe}: the
-  mean quantization error for the "best" BMH}
-  \item{\code{call}: the call that produced this result} }
+an object of class "sMap", a list with following
+components: \itemize{ \item{\code{nHex}: the total number
+of hexagons/rectanges in the grid} \item{\code{xdim}:
+x-dimension of the grid} \item{\code{ydim}: y-dimension
+of the grid} \item{\code{lattice}: the grid lattice}
+\item{\code{shape}: the grid shape} \item{\code{coord}: a
+matrix of nHex x 2, with rows corresponding to the
+coordinates of all hexagons/rectangles in the 2D map
+grid} \item{\code{init}: an initialisation method}
+\item{\code{neighKernel}: the training neighborhood
+kernel} \item{\code{codebook}: a codebook matrix of nHex
+x ncol(data), with rows corresponding to prototype
+vectors in input high-dimensional space}
+\item{\code{hits}: a vector of nHex, each element meaning
+that a hexagon/rectangle contains the number of input
+data vectors being hit wherein} \item{\code{mqe}: the
+mean quantization error for the "best" BMH}
+\item{\code{call}: the call that produced this result} }
 }
 \description{
-  \code{sPipeline} is supposed to finish ab inito training
-  for the input data. It returns an object of class "sMap".
+\code{sPipeline} is supposed to finish ab inito training
+for the input data. It returns an object of class "sMap".
 }
 \note{
-  The pipeline sequentially consists of: \itemize{ \item{i)
-  \code{\link{sTopology}} used to define the topology of a
-  grid (with "suprahex" shape by default ) according to the
-  input data;} \item{ii) \code{\link{sInitial}} used to
-  initialise the codebook matrix given the pre-defined
-  topology and the input data (by default using "uniform"
-  initialisation method);} \item{iii)
-  \code{\link{sTrainology}} and \code{\link{sTrainSeq}}
-  used to get the grid map trained at both "rough" and
-  "finetune" stages. If instructed, sustain the "finetune"
-  training until the mean quantization error does get
-  worse;} \item{iv) \code{\link{sBMH}} used to identify the
-  best-matching hexagons/rectangles (BMH) for the input
-  data, and these response data are appended to the
-  resulting object of "sMap" class.} }
+The pipeline sequentially consists of: \itemize{ \item{i)
+\code{\link{sTopology}} used to define the topology of a
+grid (with "suprahex" shape by default ) according to the
+input data;} \item{ii) \code{\link{sInitial}} used to
+initialise the codebook matrix given the pre-defined
+topology and the input data (by default using "uniform"
+initialisation method);} \item{iii)
+\code{\link{sTrainology}} and \code{\link{sTrainSeq}}
+used to get the grid map trained at both "rough" and
+"finetune" stages. If instructed, sustain the "finetune"
+training until the mean quantization error does get
+worse;} \item{iv) \code{\link{sBMH}} used to identify the
+best-matching hexagons/rectangles (BMH) for the input
+data, and these response data are appended to the
+resulting object of "sMap" class.} }
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10
@@ -111,24 +112,25 @@ sMap <- sPipeline(data=data, neighKernel="gaussian")
 # sMap <- sPipeline(data=data, neighKernel="gamma")
 
 # 3) visualise multiple component planes of a supra-hexagonal grid
-visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=0.8))
+visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1),
+gp=grid::gpar(cex=0.8))
 }
 \author{
-  Hai Fang \email{hfang@cs.bris.ac.uk}
+Hai Fang \email{hfang@cs.bris.ac.uk}
 }
 \references{
-  Hai Fang and Julian Gough. (2014) supraHex: an
-  R/Bioconductor package for tabular omics data analysis
-  using a supra-hexagonal map. \emph{Biochemical and
-  Biophysical Research Communications}, 443(1), 285-289.
-  DOI: \url{http://dx.doi.org/10.1016/j.bbrc.2013.11.103},
-  PMID:
-  \url{http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102}
+Hai Fang and Julian Gough. (2014) supraHex: an
+R/Bioconductor package for tabular omics data analysis
+using a supra-hexagonal map. \emph{Biochemical and
+Biophysical Research Communications}, 443(1), 285-289.
+DOI: \url{http://dx.doi.org/10.1016/j.bbrc.2013.11.103},
+PMID:
+\url{http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102}
 }
 \seealso{
-  \code{\link{sTopology}}, \code{\link{sInitial}},
-  \code{\link{sTrainology}}, \code{\link{sTrainSeq}},
-  \code{\link{sTrainBatch}}, \code{\link{sBMH}},
-  \code{\link{visHexMulComp}}
+\code{\link{sTopology}}, \code{\link{sInitial}},
+\code{\link{sTrainology}}, \code{\link{sTrainSeq}},
+\code{\link{sTrainBatch}}, \code{\link{sBMH}},
+\code{\link{visHexMulComp}}
 }
 

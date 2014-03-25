@@ -1,39 +1,40 @@
 \name{sBMH}
 \alias{sBMH}
-\title{Function to identify the best-matching hexagons/rectangles for the input data}
+\title{Function to identify the best-matching hexagons/rectangles for
+the input data}
 \usage{
-  sBMH(sMap, data, which_bmh = c("best", "worst", "all"))
+sBMH(sMap, data, which_bmh = c("best", "worst", "all"))
 }
 \arguments{
-  \item{sMap}{an object of class "sMap" or a codebook
-  matrix}
+\item{sMap}{an object of class "sMap" or a codebook
+matrix}
 
-  \item{data}{a data frame or matrix of input data}
+\item{data}{a data frame or matrix of input data}
 
-  \item{which_bmh}{which BMH is requested. It can be a
-  vector consisting of any integer values from [1, nHex].
-  Alternatively, it can also be one of "best", "worst" and
-  "all" choices. Here, "best" is equivalent to \eqn{1},
-  "worst" for \eqn{nHex}, and "all" for \eqn{seq(1,nHex)}}
+\item{which_bmh}{which BMH is requested. It can be a
+vector consisting of any integer values from [1, nHex].
+Alternatively, it can also be one of "best", "worst" and
+"all" choices. Here, "best" is equivalent to \eqn{1},
+"worst" for \eqn{nHex}, and "all" for \eqn{seq(1,nHex)}}
 }
 \value{
-  a list with following components: \itemize{
-  \item{\code{bmh}: the requested BMH matrix of dlen x
-  length(which_bmh), where dlen is the total number of rows
-  of the input data} \item{\code{qerr}: the corresponding
-  matrix of quantization errors (i.e., the distance between
-  the input data and their BMH), with the same dimensions
-  as "bmh" above} \item{\code{mqe}: the mean quantization
-  error for the "best" BMH} \item{\code{call}: the call
-  that produced this result} }
+a list with following components: \itemize{
+\item{\code{bmh}: the requested BMH matrix of dlen x
+length(which_bmh), where dlen is the total number of rows
+of the input data} \item{\code{qerr}: the corresponding
+matrix of quantization errors (i.e., the distance between
+the input data and their BMH), with the same dimensions
+as "bmh" above} \item{\code{mqe}: the mean quantization
+error for the "best" BMH} \item{\code{call}: the call
+that produced this result} }
 }
 \description{
-  \code{sBMH} is supposed to identify the best-matching
-  hexagons/rectangles (BMH) for the input data.
+\code{sBMH} is supposed to identify the best-matching
+hexagons/rectangles (BMH) for the input data.
 }
 \note{
-  "which_bmh" upon request can be a vector consisting of
-  any integer values from [1, nHex]
+"which_bmh" upon request can be a vector consisting of
+any integer values from [1, nHex]
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10
@@ -62,6 +63,6 @@ sM_finetune <- sTrainBatch(sMap=sM_rough, data=data, sTrain=sT_rough)
 response <- sBMH(sMap=sM_finetune, data=data, which_bmh="best")
 }
 \seealso{
-  \code{\link{sPipeline}}
+\code{\link{sPipeline}}
 }
 

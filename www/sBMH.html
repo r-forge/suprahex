@@ -102,14 +102,15 @@
         
       </header>
       
-      <h2>Function to identify the best-matching hexagons/rectangles for the input data</h2>
+      <h2>Function to identify the best-matching hexagons/rectangles for
+the input data</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>sBMH</code> is supposed to identify the best-matching
-  hexagons/rectangles (BMH) for the input data.</p>
+hexagons/rectangles (BMH) for the input data.</p>
   
     <h3>Usage</h3>
     <pre>sBMH(sMap, data, which_bmh = c("best", "worst", "all"))</pre>
@@ -118,15 +119,15 @@
     <dl>
       <dt>sMap</dt>
       <dd>an object of class "sMap" or a codebook
-  matrix</dd>
+matrix</dd>
       <dt>data</dt>
       <dd>a data frame or matrix of input data</dd>
       <dt>which_bmh</dt>
       <dd>which BMH is requested. It can be a
-  vector consisting of any integer values from [1, nHex].
-  Alternatively, it can also be one of "best", "worst" and
-  "all" choices. Here, "best" is equivalent to <code class = 'eq'>1</code>,
-  "worst" for <code class = 'eq'>nHex</code>, and "all" for <code class = 'eq'>seq(1,nHex)</code></dd>
+vector consisting of any integer values from [1, nHex].
+Alternatively, it can also be one of "best", "worst" and
+"all" choices. Here, "best" is equivalent to <code class = 'eq'>1</code>,
+"worst" for <code class = 'eq'>nHex</code>, and "all" for <code class = 'eq'>seq(1,nHex)</code></dd>
     </dl>
     <!-- 
     -->
@@ -136,16 +137,16 @@
       
       <p>a list with following components: <ul>
 <li><code>bmh</code>: the requested BMH matrix of dlen x
-  length(which_bmh), where dlen is the total number of rows
-  of the input data </li>
+length(which_bmh), where dlen is the total number of rows
+of the input data </li>
 <li><code>qerr</code>: the corresponding
-  matrix of quantization errors (i.e., the distance between
-  the input data and their BMH), with the same dimensions
-  as "bmh" above </li>
+matrix of quantization errors (i.e., the distance between
+the input data and their BMH), with the same dimensions
+as "bmh" above </li>
 <li><code>mqe</code>: the mean quantization
-  error for the "best" BMH </li>
+error for the "best" BMH </li>
 <li><code>call</code>: the call
-  that produced this result </li>
+that produced this result </li>
 </ul></p>
       <p></p>
     </div>
@@ -153,7 +154,7 @@
       <h3>Note</h3>
       
       <p>"which_bmh" upon request can be a vector consisting of
-  any integer values from [1, nHex]</p>
+any integer values from [1, nHex]</p>
     </div>
     
     <h3 id="examples">Examples</h3>
@@ -197,7 +198,7 @@ response <- sBMH(sMap=sM_finetune, data=data, which_bmh="best")
       
     <h2>See also</h2>
     
-  <code><a href='sPipeline.html'>sPipeline</a></code>
+<code><a href='sPipeline.html'>sPipeline</a></code>
 
     
     <h2>Citation</h2>

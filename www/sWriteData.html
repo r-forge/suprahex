@@ -102,15 +102,16 @@
         
       </header>
       
-      <h2>Function to write out the best-matching hexagons and/or cluster bases in terms of data</h2>
+      <h2>Function to write out the best-matching hexagons and/or cluster
+bases in terms of data</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>sWriteData</code> is supposed to write out the
-  best-matching hexagons and/or cluster bases in terms of
-  data.</p>
+best-matching hexagons and/or cluster bases in terms of
+data.</p>
   
     <h3>Usage</h3>
     <pre>sWriteData(sMap, data, sBase = NULL, filename = NULL, keep.data = F)</pre>
@@ -119,7 +120,7 @@
     <dl>
       <dt>sMap</dt>
       <dd>an object of class "sMap" or a codebook
-  matrix</dd>
+matrix</dd>
       <dt>data</dt>
       <dd>a data frame or matrix of input data</dd>
       <dt>sBase</dt>
@@ -128,9 +129,9 @@
       <dd>a character string naming a filename</dd>
       <dt>keep.data</dt>
       <dd>logical to indicate whether or not to
-  also write out the input data. By default, it sets to
-  false for not keeping it. It is highly expensive to keep
-  the large data sets</dd>
+also write out the input data. By default, it sets to
+false for not keeping it. It is highly expensive to keep
+the large data sets</dd>
     </dl>
     <!-- 
     -->
@@ -140,17 +141,17 @@
       
       <p>a data frame with following components: <ul>
 <li><code>ID</code>: ID for data. It inherits the rownames of
-  data (if exists). Otherwise, it is sequential integer
-  values starting with 1 and ending with dlen, the total
-  number of rows of the input data
-  </li>
+data (if exists). Otherwise, it is sequential integer
+values starting with 1 and ending with dlen, the total
+number of rows of the input data
+</li>
 <li><code>Hexagon_index</code>: the index for best-matching
-  hexagons </li>
+hexagons </li>
 <li><code>Cluster_base</code>: optional, it is only
-  appended when sBase is given. It stores the cluster
-  memberships/bases </li>
+appended when sBase is given. It stores the cluster
+memberships/bases </li>
 <li><code>data</code>: optional, it is
-  only appended when keep.data is true </li>
+only appended when keep.data is true </li>
 </ul></p>
       <p></p>
     </div>
@@ -158,10 +159,10 @@
       <h3>Note</h3>
       
       <p>If "filename" is not NULL, a tab-delimited text file will
-  be also written out. If "sBase" is not NULL and comes
-  from the "sMap" partition, then cluster bases are also
-  appended. if "keep.data" is true, the data will be part
-  of output.</p>
+be also written out. If "sBase" is not NULL and comes
+from the "sMap" partition, then cluster bases are also
+appended. if "keep.data" is true, the data will be part
+of output.</p>
     </div>
     
     <h3 id="examples">Examples</h3>
@@ -171,7 +172,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-25 12:25:06</strong>
+<strong class='message'>Start at 2014-03-25 16:40:41</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -198,7 +199,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:25:06</strong>
+<strong class='message'>End at 2014-03-25 16:40:41</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -210,7 +211,8 @@ sBase <- sDmatCluster(sMap=sMap, which_neigh=1,
 distMeasure="median", clusterLinkage="average")
 
 # 5) write data's BMH and cluster bases
-output <- sWriteData(sMap=sMap, data=data, sBase=sBase, filename="sData_base_output.txt")
+output <- sWriteData(sMap=sMap, data=data, sBase=sBase,
+filename="sData_base_output.txt")
 </div></pre>
   </div>
   
@@ -227,7 +229,7 @@ output <- sWriteData(sMap=sMap, data=data, sBase=sBase, filename="sData_base_out
       
     <h2>See also</h2>
     
-  <code><a href='sBMH.html'>sBMH</a></code>
+<code><a href='sBMH.html'>sBMH</a></code>
 
     
     <h2>Citation</h2>

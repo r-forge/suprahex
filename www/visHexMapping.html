@@ -102,14 +102,15 @@
         
       </header>
       
-      <h2>Function to visualise various mapping items within a supra-hexagonal grid</h2>
+      <h2>Function to visualise various mapping items within a
+supra-hexagonal grid</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>visHexMapping</code> is supposed to visualise various
-  mapping items within a supra-hexagonal grid</p>
+mapping items within a supra-hexagonal grid</p>
   
     <h3>Usage</h3>
     <pre>visHexMapping(sObj, mappingType = c("indexes", "hits", "dist", "antidist", "bases", 
@@ -121,36 +122,36 @@
     <dl>
       <dt>sObj</dt>
       <dd>an object of class "sMap" or "sInit" or
-  "sTopol"</dd>
+"sTopol"</dd>
       <dt>mappingType</dt>
       <dd>the mapping type, can be "indexes",
-  "hits", "dist", "antidist", "bases", and "customized"</dd>
+"hits", "dist", "antidist", "bases", and "customized"</dd>
       <dt>labels</dt>
       <dd>NULL or a vector with the length of nHex</dd>
       <dt>height</dt>
       <dd>a numeric value specifying the height of
-  device</dd>
+device</dd>
       <dt>margin</dt>
       <dd>margins as units of length 4 or 1</dd>
       <dt>area.size</dt>
       <dd>an inteter or a vector specifying the
-  area size of each hexagon</dd>
+area size of each hexagon</dd>
       <dt>gp</dt>
       <dd>an object of class "gpar". It is the output
-  from a call to the function "gpar" (i.e., a list of
-  graphical parameter settings)</dd>
+from a call to the function "gpar" (i.e., a list of
+graphical parameter settings)</dd>
       <dt>border.color</dt>
       <dd>the border color for each hexagon</dd>
       <dt>fill.color</dt>
       <dd>the filled color for each hexagon</dd>
       <dt>clip</dt>
       <dd>either "on" for clipping to the extent of
-  this viewport, "inherit" for inheriting the clipping
-  region from the parent viewport, or "off" to turn
-  clipping off altogether</dd>
+this viewport, "inherit" for inheriting the clipping
+region from the parent viewport, or "off" to turn
+clipping off altogether</dd>
       <dt>newpage</dt>
       <dd>logical to indicate whether to open a new
-  page. By default, it sets to true for opening a new page</dd>
+page. By default, it sets to true for opening a new page</dd>
     </dl>
     <!-- 
     -->
@@ -165,17 +166,17 @@
       
       <p>The mappingType includes: <ul>
 <li>"indexes": the
-  index of hexagons in a supra-hexagonal grid
-  </li>
+index of hexagons in a supra-hexagonal grid
+</li>
 <li>"hits": the number of input data vectors hitting
-  the hexagons </li>
+the hexagons </li>
 <li>"dist": distance (in high-dimensional
-  input space) to neighbors (defined in 2D output space)
-  </li>
+input space) to neighbors (defined in 2D output space)
+</li>
 <li>"antidist": the oppose version of "dist"
-  </li>
+</li>
 <li>"bases": clusters partitioned from the sMap
-  </li>
+</li>
 <li>"customized": displaying input "labels" </li>
 </ul></p>
       <p></p>
@@ -191,7 +192,7 @@ colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-25 12:25:17</strong>
+<strong class='message'>Start at 2014-03-25 16:40:52</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -218,8 +219,8 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:25:18</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-03-25 16:40:52</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
 # 3) visualise supported mapping items within a supra-hexagonal grid
@@ -258,8 +259,8 @@ visHexMapping(sMap,mappingType="bases")
       
     <h2>See also</h2>
     
-  <code><a href='sDmat.html'>sDmat</a></code>, <code><a href='sDmatCluster.html'>sDmatCluster</a></code>,
-  <code><a href='visHexGrid.html'>visHexGrid</a></code>
+<code><a href='sDmat.html'>sDmat</a></code>, <code><a href='sDmatCluster.html'>sDmatCluster</a></code>,
+<code><a href='visHexGrid.html'>visHexGrid</a></code>
 
     
     <h2>Citation</h2>

@@ -102,16 +102,17 @@
         
       </header>
       
-      <h2>Function to calculate any neighbors for each hexagon/rectangle in a grid</h2>
+      <h2>Function to calculate any neighbors for each hexagon/rectangle
+in a grid</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>sNeighAny</code> is supposed to calculate any neighbors
-  for each hexagon/rectangle in a regular 2D grid. It
-  returns a matrix with rows for the self, and columns for
-  its any neighbors.</p>
+for each hexagon/rectangle in a regular 2D grid. It
+returns a matrix with rows for the self, and columns for
+its any neighbors.</p>
   
     <h3>Usage</h3>
     <pre>sNeighAny(sObj)</pre>
@@ -120,7 +121,7 @@
     <dl>
       <dt>sObj</dt>
       <dd>an object of class "sTopol" or "sInit" or
-  "sMap"</dd>
+"sMap"</dd>
     </dl>
     <!-- 
     -->
@@ -130,9 +131,9 @@
       
       <p><ul>
 <li><code>aNeigh</code>: a matrix of nHex x nHex,
-  containing distance info in terms of any neighbors, where
-  nHex is the total number of hexagons/rectanges in the
-  grid </li>
+containing distance info in terms of any neighbors, where
+nHex is the total number of hexagons/rectanges in the
+grid </li>
 </ul></p>
       <p></p>
     </div>
@@ -140,10 +141,10 @@
       <h3>Note</h3>
       
       <p>The return matrix has rows for the self, and columns for
-  its neighbors. The non-zeros mean the distance away from
-  its neighbors, and the zeros for the self-self. It has
-  rows/columns ordered in the same order as the "coord"
-  matrix of the input object does.</p>
+its neighbors. The non-zeros mean the distance away from
+its neighbors, and the zeros for the self-self. It has
+rows/columns ordered in the same order as the "coord"
+matrix of the input object does.</p>
     </div>
     
     <h3 id="examples">Examples</h3>
@@ -178,7 +179,7 @@ aNeigh <- sNeighAny(sObj=sTopol)
       
     <h2>See also</h2>
     
-  <code><a href='sNeighDirect.html'>sNeighDirect</a></code>
+<code><a href='sNeighDirect.html'>sNeighDirect</a></code>
 
     
     <h2>Citation</h2>

@@ -5,7 +5,7 @@
 <title>sPipeline @ supraHex 1.1.16</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="
-  Hai Fang &lt;a href='mailto:hfang@cs.bris.ac.uk'&gt;hfang@cs.bris.ac.uk&lt;/a&gt;
+Hai Fang &lt;a href='mailto:hfang@cs.bris.ac.uk'&gt;hfang@cs.bris.ac.uk&lt;/a&gt;
 ">
 
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -104,14 +104,15 @@
         
       </header>
       
-      <h2>Function to setup the pipeline for completing ab initio training given the input data</h2>
+      <h2>Function to setup the pipeline for completing ab initio training
+given the input data</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>sPipeline</code> is supposed to finish ab inito training
-  for the input data. It returns an object of class "sMap".</p>
+for the input data. It returns an object of class "sMap".</p>
   
     <h3>Usage</h3>
     <pre>sPipeline(data = NULL, xdim = NULL, ydim = NULL, nHex = NULL, lattice = c("hexa", 
@@ -126,42 +127,42 @@
       <dd>a data frame or matrix of input data</dd>
       <dt>xdim</dt>
       <dd>an integer specifying x-dimension of the
-  grid</dd>
+grid</dd>
       <dt>ydim</dt>
       <dd>an integer specifying y-dimension of the
-  grid</dd>
+grid</dd>
       <dt>nHex</dt>
       <dd>the number of hexagons/rectangles in the
-  grid</dd>
+grid</dd>
       <dt>lattice</dt>
       <dd>the grid lattice, either "hexa" for a
-  hexagon or "rect" for a rectangle</dd>
+hexagon or "rect" for a rectangle</dd>
       <dt>shape</dt>
       <dd>the grid shape, either "suprahex" for a
-  supra-hexagonal grid or "sheet" for a hexagonal/rectangle
-  sheet</dd>
+supra-hexagonal grid or "sheet" for a hexagonal/rectangle
+sheet</dd>
       <dt>init</dt>
       <dd>an initialisation method. It can be one of
-  "uniform", "sample" and "linear" initialisation methods</dd>
+"uniform", "sample" and "linear" initialisation methods</dd>
       <dt>algorithm</dt>
       <dd>the training algorithm. It can be one of
-  "sequential" and "batch" algorithm</dd>
+"sequential" and "batch" algorithm</dd>
       <dt>alphaType</dt>
       <dd>the alpha type. It can be one of
-  "invert", "linear" and "power" alpha types</dd>
+"invert", "linear" and "power" alpha types</dd>
       <dt>neighKernel</dt>
       <dd>the training neighborhood kernel. It
-  can be one of "gaussian", "bubble", "cutgaussian", "ep"
-  and "gamma" kernels</dd>
+can be one of "gaussian", "bubble", "cutgaussian", "ep"
+and "gamma" kernels</dd>
       <dt>finetuneSustain</dt>
       <dd>logical to indicate whether
-  sustain the "finetune" training. If true, it will repeat
-  the "finetune" stage until the mean quantization error
-  does get worse. By default, it sets to true</dd>
+sustain the "finetune" training. If true, it will repeat
+the "finetune" stage until the mean quantization error
+does get worse. By default, it sets to true</dd>
       <dt>verbose</dt>
       <dd>logical to indicate whether the messages
-  will be displayed in the screen. By default, it sets to
-  false for no display</dd>
+will be displayed in the screen. By default, it sets to
+false for no display</dd>
     </dl>
     <!-- 
     -->
@@ -170,34 +171,34 @@
       <h3>Value</h3>
       
       <p>an object of class "sMap", a list with following
-  components: <ul>
+components: <ul>
 <li><code>nHex</code>: the total number
-  of hexagons/rectanges in the grid </li>
+of hexagons/rectanges in the grid </li>
 <li><code>xdim</code>:
-  x-dimension of the grid </li>
+x-dimension of the grid </li>
 <li><code>ydim</code>: y-dimension
-  of the grid </li>
+of the grid </li>
 <li><code>lattice</code>: the grid lattice
-  </li>
+</li>
 <li><code>shape</code>: the grid shape </li>
 <li><code>coord</code>: a
-  matrix of nHex x 2, with rows corresponding to the
-  coordinates of all hexagons/rectangles in the 2D map
-  grid </li>
+matrix of nHex x 2, with rows corresponding to the
+coordinates of all hexagons/rectangles in the 2D map
+grid </li>
 <li><code>init</code>: an initialisation method
-  </li>
+</li>
 <li><code>neighKernel</code>: the training neighborhood
-  kernel </li>
+kernel </li>
 <li><code>codebook</code>: a codebook matrix of nHex
-  x ncol(data), with rows corresponding to prototype
-  vectors in input high-dimensional space
-  </li>
+x ncol(data), with rows corresponding to prototype
+vectors in input high-dimensional space
+</li>
 <li><code>hits</code>: a vector of nHex, each element meaning
-  that a hexagon/rectangle contains the number of input
-  data vectors being hit wherein </li>
+that a hexagon/rectangle contains the number of input
+data vectors being hit wherein </li>
 <li><code>mqe</code>: the
-  mean quantization error for the "best" BMH
-  </li>
+mean quantization error for the "best" BMH
+</li>
 <li><code>call</code>: the call that produced this result </li>
 </ul></p>
       <p></p>
@@ -207,23 +208,23 @@
       
       <p>The pipeline sequentially consists of: <ul>
 <li>i)
-  <code><a href='sTopology.html'>sTopology</a></code> used to define the topology of a
-  grid (with "suprahex" shape by default ) according to the
-  input data; </li>
+<code><a href='sTopology.html'>sTopology</a></code> used to define the topology of a
+grid (with "suprahex" shape by default ) according to the
+input data; </li>
 <li>ii) <code><a href='sInitial.html'>sInitial</a></code> used to
-  initialise the codebook matrix given the pre-defined
-  topology and the input data (by default using "uniform"
-  initialisation method); </li>
+initialise the codebook matrix given the pre-defined
+topology and the input data (by default using "uniform"
+initialisation method); </li>
 <li>iii)
-  <code><a href='sTrainology.html'>sTrainology</a></code> and <code><a href='sTrainSeq.html'>sTrainSeq</a></code>
-  used to get the grid map trained at both "rough" and
-  "finetune" stages. If instructed, sustain the "finetune"
-  training until the mean quantization error does get
-  worse; </li>
+<code><a href='sTrainology.html'>sTrainology</a></code> and <code><a href='sTrainSeq.html'>sTrainSeq</a></code>
+used to get the grid map trained at both "rough" and
+"finetune" stages. If instructed, sustain the "finetune"
+training until the mean quantization error does get
+worse; </li>
 <li>iv) <code><a href='sBMH.html'>sBMH</a></code> used to identify the
-  best-matching hexagons/rectangles (BMH) for the input
-  data, and these response data are appended to the
-  resulting object of "sMap" class. </li>
+best-matching hexagons/rectangles (BMH) for the input
+data, and these response data are appended to the
+resulting object of "sMap" class. </li>
 </ul></p>
       <p></p>
     </div>
@@ -231,12 +232,12 @@
       <h3>References</h3>
       
       <p>Hai Fang and Julian Gough. (2014) supraHex: an
-  R/Bioconductor package for tabular omics data analysis
-  using a supra-hexagonal map. <em>Biochemical and
-  Biophysical Research Communications</em>, 443(1), 285-289.
-  DOI: <a href = 'http://dx.doi.org/10.1016/j.bbrc.2013.11.103'>http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>,
-  PMID:
-  <a href = 'http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102'>http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102</a></p>
+R/Bioconductor package for tabular omics data analysis
+using a supra-hexagonal map. <em>Biochemical and
+Biophysical Research Communications</em>, 443(1), 285-289.
+DOI: <a href = 'http://dx.doi.org/10.1016/j.bbrc.2013.11.103'>http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>,
+PMID:
+<a href = 'http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102'>http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102</a></p>
     </div>
     
     <h3 id="examples">Examples</h3>
@@ -248,7 +249,7 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 # 2a) with "gaussian" kernel
 sMap <- sPipeline(data=data, neighKernel="gaussian")
 </div>
-<strong class='message'>Start at 2014-03-25 12:25:03</strong>
+<strong class='message'>Start at 2014-03-25 16:40:38</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -275,7 +276,7 @@ sMap <- sPipeline(data=data, neighKernel="gaussian")
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:25:03</strong>
+<strong class='message'>End at 2014-03-25 16:40:38</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># 2b) with "bubble" kernel
@@ -288,7 +289,8 @@ sMap <- sPipeline(data=data, neighKernel="gaussian")
 # sMap <- sPipeline(data=data, neighKernel="gamma")
 
 # 3) visualise multiple component planes of a supra-hexagonal grid
-visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=0.8))
+visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1),
+gp=grid::gpar(cex=0.8))
 </div>
 <a href="javascript:newWin('sPipeline-18.png', 'sPipeline-18.png', '1200', '960')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='sPipeline-18.png', width="400" /></a></pre>
   </div>
@@ -306,10 +308,10 @@ visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=
       
     <h2>See also</h2>
     
-  <code><a href='sTopology.html'>sTopology</a></code>, <code><a href='sInitial.html'>sInitial</a></code>,
-  <code><a href='sTrainology.html'>sTrainology</a></code>, <code><a href='sTrainSeq.html'>sTrainSeq</a></code>,
-  <code><a href='sTrainBatch.html'>sTrainBatch</a></code>, <code><a href='sBMH.html'>sBMH</a></code>,
-  <code><a href='visHexMulComp.html'>visHexMulComp</a></code>
+<code><a href='sTopology.html'>sTopology</a></code>, <code><a href='sInitial.html'>sInitial</a></code>,
+<code><a href='sTrainology.html'>sTrainology</a></code>, <code><a href='sTrainSeq.html'>sTrainSeq</a></code>,
+<code><a href='sTrainBatch.html'>sTrainBatch</a></code>, <code><a href='sBMH.html'>sBMH</a></code>,
+<code><a href='visHexMulComp.html'>visHexMulComp</a></code>
 
     
     <h2>Citation</h2>
@@ -325,7 +327,7 @@ visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=
     
     <h3>Author</h3>
     
-  Hai Fang <a href='mailto:hfang@cs.bris.ac.uk'>hfang@cs.bris.ac.uk</a>
+Hai Fang <a href='mailto:hfang@cs.bris.ac.uk'>hfang@cs.bris.ac.uk</a>
 
     
     -->

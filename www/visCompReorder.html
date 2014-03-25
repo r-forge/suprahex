@@ -102,15 +102,16 @@
         
       </header>
       
-      <h2>Function to visualise multiple component planes reorded within a sheet-shape rectangle grid</h2>
+      <h2>Function to visualise multiple component planes reorded within a
+sheet-shape rectangle grid</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
     <p><code>visCompReorder</code> is supposed to visualise multiple
-  component planes reorded within a sheet-shape rectangle
-  grid</p>
+component planes reorded within a sheet-shape rectangle
+grid</p>
   
     <h3>Usage</h3>
     <pre>visCompReorder(sMap, sReorder, margin = rep(0.1, 4), height = 7, title.rotate = 0, 
@@ -127,39 +128,39 @@
       <dd>margins as units of length 4 or 1</dd>
       <dt>height</dt>
       <dd>a numeric value specifying the height of
-  device</dd>
+device</dd>
       <dt>title.rotate</dt>
       <dd>the rotation of the title</dd>
       <dt>title.xy</dt>
       <dd>the coordinates of the title</dd>
       <dt>colormap</dt>
       <dd>short name for the colormap. It can be
-  one of "jet" (jet colormap), "bwr" (blue-white-red
-  colormap), "gbr" (green-black-red colormap), "wyr"
-  (white-yellow-red colormap), "br" (black-red colormap),
-  "yr" (yellow-red colormap), "wb" (white-black colormap),
-  and "rainbow" (rainbow colormap, that is,
-  red-yellow-green-cyan-blue-magenta). Alternatively, any
-  hyphen-separated HTML color names, e.g.
-  "blue-black-yellow", "royalblue-white-sandybrown",
-  "darkgreen-white-darkviolet". A list of standard color
-  names can be found in
-  <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
+one of "jet" (jet colormap), "bwr" (blue-white-red
+colormap), "gbr" (green-black-red colormap), "wyr"
+(white-yellow-red colormap), "br" (black-red colormap),
+"yr" (yellow-red colormap), "wb" (white-black colormap),
+and "rainbow" (rainbow colormap, that is,
+red-yellow-green-cyan-blue-magenta). Alternatively, any
+hyphen-separated HTML color names, e.g.
+"blue-black-yellow", "royalblue-white-sandybrown",
+"darkgreen-white-darkviolet". A list of standard color
+names can be found in
+<a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
       <dt>ncolors</dt>
       <dd>the number of colors specified</dd>
       <dt>zlim</dt>
       <dd>the minimum and maximum z values for which
-  colors should be plotted, defaulting to the range of the
-  finite values of z. Each of the given colors will be used
-  to color an equispaced interval of this range. The
-  midpoints of the intervals cover the range, so that
-  values just outside the range will be plotted</dd>
+colors should be plotted, defaulting to the range of the
+finite values of z. Each of the given colors will be used
+to color an equispaced interval of this range. The
+midpoints of the intervals cover the range, so that
+values just outside the range will be plotted</dd>
       <dt>border.color</dt>
       <dd>the border color for each hexagon</dd>
       <dt>gp</dt>
       <dd>an object of class "gpar". It is the output
-  from a call to the function "gpar" (i.e., a list of
-  graphical parameter settings)</dd>
+from a call to the function "gpar" (i.e., a list of
+graphical parameter settings)</dd>
     </dl>
     <!-- 
     -->
@@ -185,7 +186,7 @@ colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-25 12:25:08</strong>
+<strong class='message'>Start at 2014-03-25 16:40:43</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -212,14 +213,14 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:25:08</strong>
+<strong class='message'>End at 2014-03-25 16:40:43</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
 # 3) reorder component planes
 sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-03-25 12:25:08</strong>
+<strong class='message'>Start at 2014-03-25 16:40:43</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -246,13 +247,15 @@ sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 12:25:09</strong>
+<strong class='message'>End at 2014-03-25 16:40:44</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
 # 4) visualise multiple component planes reorded within a sheet-shape rectangle grid
-visCompReorder(sMap=sMap, sReorder=sReorder, margin=rep(0.1,4), height=7,
-title.rotate=0, title.xy=c(0.45, 1), colormap="gbr", ncolors=10, zlim=c(-1,1),
+visCompReorder(sMap=sMap, sReorder=sReorder, margin=rep(0.1,4),
+height=7,
+title.rotate=0, title.xy=c(0.45, 1), colormap="gbr", ncolors=10,
+zlim=c(-1,1),
 border.color="transparent")
 </div>
 <a href="javascript:newWin('visCompReorder-34.png', 'visCompReorder-34.png', '1200', '685.714285714286')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visCompReorder-34.png', width="400" /></a></pre>
@@ -271,8 +274,8 @@ border.color="transparent")
       
     <h2>See also</h2>
     
-  <code><a href='visVp.html'>visVp</a></code>, <code><a href='visHexComp.html'>visHexComp</a></code>,
-  <code><a href='visColorbar.html'>visColorbar</a></code>, <code><a href='sCompReorder.html'>sCompReorder</a></code>
+<code><a href='visVp.html'>visVp</a></code>, <code><a href='visHexComp.html'>visHexComp</a></code>,
+<code><a href='visColorbar.html'>visColorbar</a></code>, <code><a href='sCompReorder.html'>sCompReorder</a></code>
 
     
     <h2>Citation</h2>
