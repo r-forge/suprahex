@@ -125,7 +125,7 @@ data <- Xiang # a matrix of 3,625 genes expressed in 7 samples
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2014-03-24 12:52:59</strong>
+<strong class='message'>Start at 2014-03-25 11:24:44</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -152,8 +152,8 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 6 to 1.5
    radius (at finetune stage): from 1.5 to 1
 </strong>
-<strong class='message'>End at 2014-03-24 12:53:00</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-03-25 11:24:46</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap,title.rotate=10,colormap="darkblue-white-darkorange")
 </div>
@@ -203,7 +203,7 @@ output <- <a href='visDmatHeatmap.html' target=visDmatHeatmap>visDmatHeatmap</a>
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap, metric="pearson")
 </div>
-<strong class='message'>Start at 2014-03-24 12:53:29</strong>
+<strong class='message'>Start at 2014-03-25 11:25:14</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -230,8 +230,8 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-24 12:53:29</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-03-25 11:25:15</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap,sReorder,title.rotate=10,colormap="darkblue-white-darkorange")
 </div>

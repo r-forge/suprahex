@@ -60,6 +60,7 @@
 #' \item{"bg": a character string giving the color to be used for the background of the text frames or of the plotting symbols if it applies; this is eventually recycled. It can be one of "jet" (jet colormap), "bwr" (blue-white-red colormap), "gbr" (green-black-red colormap), "wyr" (white-yellow-red colormap), "br" (black-red colormap), "yr" (yellow-red colormap), "wb" (white-black colormap), and "rainbow" (rainbow colormap, that is, red-yellow-green-cyan-blue-magenta). Alternatively, any hyphen-separated HTML color names, e.g. "blue-black-yellow", "royalblue-white-sandybrown", "darkgreen-white-darkviolet". A list of standard color names can be found in \url{http://html-color-codes.info/color-names}}
 #' }
 #' @export
+#' @importFrom ape nj fastme.ols fastme.bal boot.phylo consensus is.rooted unroot root mrca write.tree read.tree plot.phylo nodelabels
 #' @seealso \code{\link{visTreeBootstrap}}
 #' @include visTreeBootstrap.r
 #' @examples
@@ -171,20 +172,20 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
      
         ########################################################################
         ## unroot the tree
-        if(is.rooted(tr)) tr <- unroot(tr)
+        if(ape::is.rooted(tr)) tr <- ape::unroot(tr)
     
         ## reroot the tree either according to miminum bootstrap value or the bp vector index (if given)
         tmp_bs <- as.numeric(tr$node.label)
         if(is.integer(reroot) & reroot>=1 & reroot<=length(tr$node.label)){
             ## miminum bootstrap value and the node index
             reroot_index_mrca <- reroot+length(tr$tip.label)
-            tree_bs <- root(tr, node=reroot_index_mrca, resolve.root=F, interactive=F)
+            tree_bs <- ape::root(tr, node=reroot_index_mrca, resolve.root=F, interactive=F)
         }else if(reroot=="min.bootstrap"){
             ## miminum bootstrap value and the node index
             min_bs <- min(tmp_bs[!is.na(tmp_bs)])
             min_bs_index <- which(tmp_bs==min_bs)[1]
             reroot_index_mrca <- min_bs_index+length(tr$tip.label)
-            tree_bs <- root(tr, node=reroot_index_mrca, resolve.root=F, interactive=F)
+            tree_bs <- ape::root(tr, node=reroot_index_mrca, resolve.root=F, interactive=F)
         }else{
             tree_bs <- tr
         }
@@ -192,8 +193,8 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
         ## write and re-read the reroot tree
         ## this ensures the tree structure indexing is "as-is"
         newick_tmp <- "MyNewickTreefile.tre"
-        write.tree(tree_bs, file="MyNewickTreefile.tre")
-        tree_bs <- read.tree(file=newick_tmp)
+        ape::write.tree(tree_bs, file="MyNewickTreefile.tre")
+        tree_bs <- ape::read.tree(file=newick_tmp)
         unlink(newick_tmp) # delete the file
     }
     

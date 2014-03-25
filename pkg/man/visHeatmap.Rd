@@ -114,7 +114,7 @@
   (which are hard to interpret)} }
 }
 \examples{
-# 1) generate data with three different distributions, each with an iid normal random matrix of 100 x 3
+# 1) generate data with an iid matrix of 100 x 9
 data <- cbind(matrix(rnorm(100*3,mean=0,sd=1), nrow=100, ncol=3),
 matrix(rnorm(100*3,mean=0.5,sd=1), nrow=100, ncol=3),
 matrix(rnorm(100*3,mean=-0.5,sd=1), nrow=100, ncol=3))

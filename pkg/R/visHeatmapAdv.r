@@ -32,7 +32,7 @@
 #' @seealso \code{\link{visHeatmapAdv}}
 #' @include visHeatmapAdv.r
 #' @examples
-#' # 1) generate data with three different distributions, each with an iid normal random matrix of 100 x 3
+#' # 1) generate data with an iid matrix of 100 x 9
 #' data <- cbind(matrix(rnorm(100*3,mean=0,sd=1), nrow=100, ncol=3), 
 #' matrix(rnorm(100*3,mean=0.5,sd=1), nrow=100, ncol=3), 
 #' matrix(rnorm(100*3,mean=-0.5,sd=1), nrow=100, ncol=3))
@@ -49,7 +49,8 @@
 #' visHeatmapAdv(data, dendrogram="column", colormap="gbr", zlim=c(-2,2))
 #'
 #' # 3) heatmap after only clustering rows (with 2 color-coded groups)
-#' visHeatmapAdv(data, Colv=FALSE, colormap="gbr", zlim=c(-2,2), row.cutree=2, row.colormap="jet", labRow=NA)
+#' visHeatmapAdv(data, Colv=FALSE, colormap="gbr", zlim=c(-2,2), 
+#' row.cutree=2, row.colormap="jet", labRow=NA)
 #'
 #' # 4) prepare colors for the column sidebar
 #' # color for stages (S1-S3)
@@ -67,7 +68,9 @@
 #' colnames(ColSideColors) <- c("Stages","Replicates")
 #'
 #' # 5) heatmap without clustering on rows and columns but with the two sidebars in columns
-#' visHeatmapAdv(data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-2,2), density.info="density", tracecol="yellow", ColSideColors=ColSideColors, ColSideHeight=0.5, ColSideLabelLocation="right")
+#' visHeatmapAdv(data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-2,2), 
+#' density.info="density", tracecol="yellow", ColSideColors=ColSideColors, 
+#' ColSideHeight=0.5, ColSideLabelLocation="right")
 
 visHeatmapAdv <- function (data, scale=c("none","row","column"), Rowv=T, Colv=T, dendrogram=c("both","row","column","none"), dist.metric=c("euclidean","pearson","spearman","kendall","manhattan","cos","mi"), linkage.method=c("complete","ward","single","average","mcquitty","median","centroid"), 
 colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=64, zlim=NULL, RowSideColors=NULL, row.cutree=NULL, row.colormap=c("jet"), ColSideColors=NULL, column.cutree=NULL, column.colormap=c("jet"), ...)
