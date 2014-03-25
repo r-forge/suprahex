@@ -24,7 +24,7 @@
 #' @seealso \code{\link{sPipeline}}, \code{\link{visColormap}}
 #' @include visHexPattern.r
 #' @examples
-#' # 1) generate data with three different distributions, each with an iid normal random matrix of 1000 x 3
+#' # 1) generate data with an iid matrix of 1000 x 9
 #' data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3), 
 #' matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3), 
 #' matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
@@ -35,17 +35,11 @@
 #'
 #' # 3) plot codebook patterns using different types
 #' # 3a) line plot
-#' visHexPattern(sMap, plotType="lines", customized.color="red", zeropattern.color="gray") 
-#' # visHexPattern(sMap, plotType="lines", customized.color=rep(c("red","green","blue"),each=3))
+#' visHexPattern(sMap, plotType="lines")
 #' # 3b) bar plot
 #' visHexPattern(sMap, plotType="bars")
-#' # visHexPattern(sMap, plotType="bars", colormap="jet", legend.cex=0.8)
-#' # visHexPattern(sMap, plotType="bars", customized.color=rep(c("red","green","blue"),each=3))
 #' # 3c) radar plot
 #' visHexPattern(sMap, plotType="radars")
-#' # visHexPattern(sMap, plotType="radars", colormap="jet", legend.cex=0.8)
-#' # visHexPattern(sMap, plotType="radars", customized.color=rep(c("red","green","blue"),each=3))
-#'
 #' # 4) plot user-input patterns using different types
 #' # 4a) generate pattern data with two different groups "S" and "T"
 #' nHex <- sMap$nHex
@@ -53,12 +47,14 @@
 #' matrix(runif(nHex*3,min=1,max=2), nrow=nHex, ncol=3))
 #' colnames(pattern) <- c("S1","S2","S3","T1","T2","T3")
 #' # 4b) for line plot
-#' visHexPattern(sMap, plotType="lines", pattern=pattern, customized.color="red", zeropattern.color="gray")
-#' # visHexPattern(sMap, plotType="lines", pattern=pattern, customized.color=rep(c("red","green"),each=3))
+#' visHexPattern(sMap, plotType="lines", pattern=pattern, 
+#' customized.color="red", zeropattern.color="gray")
 #' # 4c) for bar plot
-#' visHexPattern(sMap, plotType="bars", pattern=pattern, customized.color=rep(c("red","green"),each=3))
+#' visHexPattern(sMap, plotType="bars", pattern=pattern, 
+#' customized.color=rep(c("red","green"),each=3))
 #' # 4d) for radar plot
-#' visHexPattern(sMap, plotType="radars", pattern=pattern, customized.color=rep(c("red","green"),each=3))
+#' visHexPattern(sMap, plotType="radars", pattern=pattern, 
+#' customized.color=rep(c("red","green"),each=3))
 
 visHexPattern <- function (sObj, plotType=c("lines","bars","radars"), pattern=NULL, height=7, margin=rep(0.1,4), colormap=c("customized","bwr","jet","gbr","wyr","br","yr","rainbow","wb"), customized.color="red", zeropattern.color="gray", legend.cex=0.8, newpage=T)
 {

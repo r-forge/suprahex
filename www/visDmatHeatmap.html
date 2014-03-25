@@ -215,7 +215,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-25 11:25:36</strong>
+<strong class='message'>Start at 2014-03-25 12:25:11</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -242,7 +242,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 11:25:36</strong>
+<strong class='message'>End at 2014-03-25 12:25:11</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -251,7 +251,7 @@ sBase <- sDmatCluster(sMap=sMap, which_neigh=1,
 distMeasure="median", clusterLinkage="average")
 
 # 4) heatmap visualisation
-output <- visDmatHeatmap(sMap=sMap, data=data, sBase=sBase, base.legend.location="bottomleft", labRow=NA)
+output <- visDmatHeatmap(sMap, data, sBase, base.legend.location="bottomleft", labRow=NA)
 </div>
 <a href="javascript:newWin('visDmatHeatmap-18.png', 'visDmatHeatmap-18.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visDmatHeatmap-18.png', width="400" /></a></pre>
   </div>

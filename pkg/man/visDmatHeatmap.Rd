@@ -96,7 +96,7 @@ sBase <- sDmatCluster(sMap=sMap, which_neigh=1,
 distMeasure="median", clusterLinkage="average")
 
 # 4) heatmap visualisation
-output <- visDmatHeatmap(sMap=sMap, data=data, sBase=sBase, base.legend.location="bottomleft", labRow=NA)
+output <- visDmatHeatmap(sMap, data, sBase, base.legend.location="bottomleft", labRow=NA)
 }
 \seealso{
   \code{\link{sDmatCluster}}, \code{\link{visHeatmapAdv}}

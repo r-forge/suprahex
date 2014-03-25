@@ -70,7 +70,7 @@
 #' data <- t(data)
 #'
 #' # 2) build neighbor-joining tree with bootstrap values and visualise it by default
-#' visTreeBootstrap(data, metric="mi")
+#' visTreeBootstrap(data)
 #'
 #' # 3) only display those internal nodes with bootstrap values > 30
 #' # 3a) generate the bootstrapped tree (without visualisation)
@@ -89,7 +89,7 @@
 #' visTreeBootstrap(data, nodelabels.arg=list(text=text,node=node))
 #'
 #' # 4) obtain the consensus tree
-#' tree_cons <- visTreeBootstrap(data, consensus=TRUE, consensus.majority=0.5)
+#' tree_cons <- visTreeBootstrap(data, consensus=TRUE, num.bootstrap=10)
 
 visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), metric=c("euclidean","pearson","spearman","cos","manhattan","kendall","mi"), num.bootstrap=100, consensus=FALSE, consensus.majority=0.5, reroot="min.bootstrap", plot.phylo.arg=NULL, nodelabels.arg=NULL, visTree=T, verbose=T, ...)
 {

@@ -198,7 +198,7 @@
     </div>
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate data with three different distributions, each with an iid normal random matrix of 1000 x 3
+    <pre class="examples"><div class='input'># 1) generate data with an iid matrix of 1000 x 9
 data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3),
 matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3),
 matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
@@ -207,7 +207,7 @@ colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-25 11:25:46</strong>
+<strong class='message'>Start at 2014-03-25 12:25:21</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -234,46 +234,42 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-25 11:25:46</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-03-25 12:25:22</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
 # 3) plot codebook patterns using different types
 # 3a) line plot
-visHexPattern(sMap, plotType="lines", customized.color="red", zeropattern.color="gray")
+visHexPattern(sMap, plotType="lines")
 </div>
 <a href="javascript:newWin('visHexPattern-18.png', 'visHexPattern-18.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHexPattern-18.png', width="400" /></a>
-<div class='input'># visHexPattern(sMap, plotType="lines", customized.color=rep(c("red","green","blue"),each=3))
-# 3b) bar plot
+<div class='input'># 3b) bar plot
 visHexPattern(sMap, plotType="bars")
 </div>
 <a href="javascript:newWin('visHexPattern-20.png', 'visHexPattern-20.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHexPattern-20.png', width="400" /></a>
-<div class='input'># visHexPattern(sMap, plotType="bars", colormap="jet", legend.cex=0.8)
-# visHexPattern(sMap, plotType="bars", customized.color=rep(c("red","green","blue"),each=3))
-# 3c) radar plot
+<div class='input'># 3c) radar plot
 visHexPattern(sMap, plotType="radars")
 </div>
 <a href="javascript:newWin('visHexPattern-22.png', 'visHexPattern-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHexPattern-22.png', width="400" /></a>
-<div class='input'># visHexPattern(sMap, plotType="radars", colormap="jet", legend.cex=0.8)
-# visHexPattern(sMap, plotType="radars", customized.color=rep(c("red","green","blue"),each=3))
-
-# 4) plot user-input patterns using different types
+<div class='input'># 4) plot user-input patterns using different types
 # 4a) generate pattern data with two different groups "S" and "T"
 nHex <- sMap$nHex
 pattern <- cbind(matrix(runif(nHex*3,min=0,max=1), nrow=nHex, ncol=3),
 matrix(runif(nHex*3,min=1,max=2), nrow=nHex, ncol=3))
 colnames(pattern) <- c("S1","S2","S3","T1","T2","T3")
 # 4b) for line plot
-visHexPattern(sMap, plotType="lines", pattern=pattern, customized.color="red", zeropattern.color="gray")
+visHexPattern(sMap, plotType="lines", pattern=pattern,
+customized.color="red", zeropattern.color="gray")
 </div>
 <a href="javascript:newWin('visHexPattern-24.png', 'visHexPattern-24.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHexPattern-24.png', width="400" /></a>
-<div class='input'># visHexPattern(sMap, plotType="lines", pattern=pattern, customized.color=rep(c("red","green"),each=3))
-# 4c) for bar plot
-visHexPattern(sMap, plotType="bars", pattern=pattern, customized.color=rep(c("red","green"),each=3))
+<div class='input'># 4c) for bar plot
+visHexPattern(sMap, plotType="bars", pattern=pattern,
+customized.color=rep(c("red","green"),each=3))
 </div>
 <a href="javascript:newWin('visHexPattern-26.png', 'visHexPattern-26.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHexPattern-26.png', width="400" /></a>
 <div class='input'># 4d) for radar plot
-visHexPattern(sMap, plotType="radars", pattern=pattern, customized.color=rep(c("red","green"),each=3))
+visHexPattern(sMap, plotType="radars", pattern=pattern,
+customized.color=rep(c("red","green"),each=3))
 </div>
 <a href="javascript:newWin('visHexPattern-28.png', 'visHexPattern-28.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='visHexPattern-28.png', width="400" /></a></pre>
   </div>

@@ -213,7 +213,7 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 data <- t(data)
 
 # 2) build neighbor-joining tree with bootstrap values and visualise it by default
-visTreeBootstrap(data, metric="mi")
+visTreeBootstrap(data)
 
 # 3) only display those internal nodes with bootstrap values > 30
 # 3a) generate the bootstrapped tree (without visualisation)
@@ -232,7 +232,7 @@ node <- Ntip + (1:Nnode)[flag]
 visTreeBootstrap(data, nodelabels.arg=list(text=text,node=node))
 
 # 4) obtain the consensus tree
-tree_cons <- visTreeBootstrap(data, consensus=TRUE, consensus.majority=0.5)
+tree_cons <- visTreeBootstrap(data, consensus=TRUE, num.bootstrap=10)
 }
 \seealso{
   \code{\link{visTreeBootstrap}}

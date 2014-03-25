@@ -41,7 +41,7 @@
 #' distMeasure="median", clusterLinkage="average")
 #' 
 #' # 4) heatmap visualisation
-#' output <- visDmatHeatmap(sMap=sMap, data=data, sBase=sBase, base.legend.location="bottomleft", labRow=NA)
+#' output <- visDmatHeatmap(sMap, data, sBase, base.legend.location="bottomleft", labRow=NA)
 
 visDmatHeatmap <- function (sMap, data, sBase, base.color="rainbow", base.separated.arg=NULL, base.legend.location=c("none","bottomleft","bottomright","bottom","left","topleft","top","topright","right","center"), reorderRow=c("none","hclust","svd"), keep.data=F, ...)
 {

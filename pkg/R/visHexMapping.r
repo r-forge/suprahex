@@ -28,7 +28,7 @@
 #' @seealso \code{\link{sDmat}}, \code{\link{sDmatCluster}}, \code{\link{visHexGrid}}
 #' @include visHexMapping.r
 #' @examples
-#' # 1) generate data with three different distributions, each with an iid normal random matrix of 1000 x 3
+#' # 1) generate data with an iid matrix of 1000 x 9
 #' data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3), 
 #' matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3), 
 #' matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
