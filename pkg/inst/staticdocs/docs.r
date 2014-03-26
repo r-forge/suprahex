@@ -59,6 +59,7 @@ list(
 
     ),
     
+    if(0){
     icons = list(  
         sPipeline = sd_icon({
           textGrob("Common", rot = 45, gp = gpar(cex = 1))
@@ -74,5 +75,5 @@ list(
         visCompReorder = sd_icon(inherit = "visHexPattern"),
         visDmatCluster = sd_icon(inherit = "visHexPattern")
     )
-    
+    }
 )
