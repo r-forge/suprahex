@@ -112,13 +112,13 @@
 algorithm. It requires three inputs: a "sMap" or "sInit"
 object, input data, and a "sTrain" object specifying
 training environment. The training is implemented
-iteratively, but instead of choosing a single input
-vector, the whole input matrix is used. In each training
-cycle, the whole input matrix first land in the map
-through identifying the corresponding winner
-hexagon/rectangle (BMH), and then the codebook matrix is
-updated via updating formula (see "Note" below for
-details). It returns an object of class "sMap".</p>
+iteratively, but instead of choosing a single input vector,
+the whole input matrix is used. In each training cycle, the
+whole input matrix first land in the map through
+identifying the corresponding winner hexagon/rectangle
+(BMH), and then the codebook matrix is updated via updating
+formula (see "Note" below for details). It returns an
+object of class "sMap".</p>
   
     <h3>Usage</h3>
     <pre>sTrainBatch(sMap, data, sTrain)</pre>
@@ -144,8 +144,8 @@ components: <ul>
 of hexagons/rectanges in the grid </li>
 <li><code>xdim</code>:
 x-dimension of the grid </li>
-<li><code>ydim</code>: y-dimension
-of the grid </li>
+<li><code>ydim</code>: y-dimension of
+the grid </li>
 <li><code>lattice</code>: the grid lattice
 </li>
 <li><code>shape</code>: the grid shape </li>
@@ -155,13 +155,13 @@ coordinates of a hexagon/rectangle in the 2D map grid
 </li>
 <li><code>init</code>: an initialisation method
 </li>
-<li><code>neighKernel</code>: the training neighborhood
-kernel </li>
-<li><code>codebook</code>: a codebook matrix of nHex
-x ncol(data), with each row corresponding to a prototype
-vector in input high-dimensional space
+<li><code>neighKernel</code>: the training neighborhood kernel
 </li>
-<li><code>call</code>: the call that produced this result </li>
+<li><code>codebook</code>: a codebook matrix of nHex x
+ncol(data), with each row corresponding to a prototype
+vector in input high-dimensional space </li>
+<li><code>call</code>:
+the call that produced this result </li>
 </ul></p>
       <p></p>
     </div>
@@ -173,20 +173,20 @@ vector in input high-dimensional space
 where <ul>
 <li><code class = 'eq'>t</code> denotes the training
 time/step </li>
-<li><code class = 'eq'>x_j</code> is an input vector <code class = 'eq'>j</code>
-from the input data matrix (with <code class = 'eq'>dlen</code> rows in
-total) </li>
-<li><code class = 'eq'>i</code> and <code class = 'eq'>w</code> stand for the
-hexagon/rectangle <code class = 'eq'>i</code> and the winner BMH <code class = 'eq'>w</code>,
-respectively </li>
-<li><code class = 'eq'>m_i(t+1)</code> is the prototype
-vector of the hexagon <code class = 'eq'>i</code> at time <code class = 'eq'>t+1</code>
+<li><code class = 'eq'>x_j</code> is an input vector <code class = 'eq'>j</code> from
+the input data matrix (with <code class = 'eq'>dlen</code> rows in total)
 </li>
-<li><code class = 'eq'>h_{wi}(t)</code> is the neighborhood kernel, a
-non-increasing function of i) the distance <code class = 'eq'>d_{wi}</code>
-between the hexagon/rectangle <code class = 'eq'>i</code> and the winner BMH
-<code class = 'eq'>w</code>, and ii) the radius <code class = 'eq'>\delta_t</code> at time
-<code class = 'eq'>t</code>. There are five kernels available: <ul>
+<li><code class = 'eq'>i</code> and <code class = 'eq'>w</code> stand for the hexagon/rectangle
+<code class = 'eq'>i</code> and the winner BMH <code class = 'eq'>w</code>, respectively
+</li>
+<li><code class = 'eq'>m_i(t+1)</code> is the prototype vector of the hexagon
+<code class = 'eq'>i</code> at time <code class = 'eq'>t+1</code> </li>
+<li><code class = 'eq'>h_{wi}(t)</code> is the
+neighborhood kernel, a non-increasing function of i) the
+distance <code class = 'eq'>d_{wi}</code> between the hexagon/rectangle <code class = 'eq'>i</code>
+and the winner BMH <code class = 'eq'>w</code>, and ii) the radius
+<code class = 'eq'>\delta_t</code> at time <code class = 'eq'>t</code>. There are five kernels
+available: <ul>
 <li>For "gaussian" kernel,
 <code class = 'eq'>h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}</code> </li>
 <li>For
@@ -196,8 +196,8 @@ between the hexagon/rectangle <code class = 'eq'>i</code> and the winner BMH
 <li>For "bubble" kernel,
 <code class = 'eq'>h_{wi}(t)=(d_{wi} \le \delta_t)</code> </li>
 <li>For "ep"
-kernel, <code class = 'eq'>h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi}
-\le \delta_t)</code> </li>
+kernel, <code class = 'eq'>h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi} \le
+\delta_t)</code> </li>
 <li>For "gamma" kernel,
 <code class = 'eq'>h_{wi}(t)=1/\Gamma(d_{wi}^2/(4*\delta_t^2)+2)</code> </li>
 </ul>

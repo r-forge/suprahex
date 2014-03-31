@@ -1,7 +1,6 @@
 \name{sHexDist}
 \alias{sHexDist}
-\title{Function to calculate distances between hexagons/rectangles in a
-2D grid}
+\title{Function to calculate distances between hexagons/rectangles in a 2D grid}
 \usage{
 sHexDist(sObj)
 }
@@ -16,8 +15,8 @@ total number of hexagons/rectanges in the grid} }
 }
 \description{
 \code{sHexDist} is supposed to calculate euclidian
-distances between each pair of hexagons/rectangles in a
-2D grid of input "sTopol" or "sMap" object. It returns a
+distances between each pair of hexagons/rectangles in a 2D
+grid of input "sTopol" or "sMap" object. It returns a
 symmetric matrix containing pairwise distances.
 }
 \note{

@@ -1,12 +1,10 @@
 \name{visHexMulComp}
 \alias{visHexMulComp}
-\title{Function to visualise multiple component planes of a
-supra-hexagonal grid}
+\title{Function to visualise multiple component planes of a supra-hexagonal grid}
 \usage{
-visHexMulComp(sMap, margin = rep(0.1, 4), height = 7,
-title.rotate = 0, title.xy = c(0.45, 1),
-colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"),
-ncolors = 40, zlim = NULL,
+visHexMulComp(sMap, margin = rep(0.1, 4), height = 7, title.rotate = 0,
+title.xy = c(0.45, 1), colormap = c("bwr", "jet", "gbr", "wyr", "br",
+"yr", "rainbow", "wb"), ncolors = 40, zlim = NULL,
 border.color = "transparent", gp = grid::gpar())
 }
 \arguments{

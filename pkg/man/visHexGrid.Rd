@@ -2,8 +2,7 @@
 \alias{visHexGrid}
 \title{Function to visualise a supra-hexagonal grid}
 \usage{
-visHexGrid(hbin, area.size = 1, border.color = NULL,
-fill.color = NULL)
+visHexGrid(hbin, area.size = 1, border.color = NULL, fill.color = NULL)
 }
 \arguments{
 \item{hbin}{an object of class "hexbin"}

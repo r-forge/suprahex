@@ -1,7 +1,6 @@
 \name{sBMH}
 \alias{sBMH}
-\title{Function to identify the best-matching hexagons/rectangles for
-the input data}
+\title{Function to identify the best-matching hexagons/rectangles for the input data}
 \usage{
 sBMH(sMap, data, which_bmh = c("best", "worst", "all"))
 }
@@ -23,18 +22,18 @@ a list with following components: \itemize{
 length(which_bmh), where dlen is the total number of rows
 of the input data} \item{\code{qerr}: the corresponding
 matrix of quantization errors (i.e., the distance between
-the input data and their BMH), with the same dimensions
-as "bmh" above} \item{\code{mqe}: the mean quantization
-error for the "best" BMH} \item{\code{call}: the call
-that produced this result} }
+the input data and their BMH), with the same dimensions as
+"bmh" above} \item{\code{mqe}: the mean quantization error
+for the "best" BMH} \item{\code{call}: the call that
+produced this result} }
 }
 \description{
 \code{sBMH} is supposed to identify the best-matching
 hexagons/rectangles (BMH) for the input data.
 }
 \note{
-"which_bmh" upon request can be a vector consisting of
-any integer values from [1, nHex]
+"which_bmh" upon request can be a vector consisting of any
+integer values from [1, nHex]
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10

@@ -26,8 +26,8 @@ There are five kernels that are currently supported:
 \eqn{h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}*(d_{wi} \le
 \delta_t)}} \item{For "bubble" kernel,
 \eqn{h_{wi}(t)=(d_{wi} \le \delta_t)}} \item{For "ep"
-kernel, \eqn{h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi}
-\le \delta_t)}} \item{For "gamma" kernel,
+kernel, \eqn{h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi} \le
+\delta_t)}} \item{For "gamma" kernel,
 \eqn{h_{wi}(t)=1/\Gamma(d_{wi}^2/(4*\delta_t^2)+2)}} }
 These kernels above are displayed within a plot for each
 fixed radius. Three different radii (i.e., 1 and 2) are

@@ -1,7 +1,6 @@
 \name{sNeighDirect}
 \alias{sNeighDirect}
-\title{Function to calculate direct neighbors for each
-hexagon/rectangle in a grid}
+\title{Function to calculate direct neighbors for each hexagon/rectangle in a grid}
 \usage{
 sNeighDirect(sObj)
 }
@@ -17,16 +16,16 @@ hexagons/rectanges in the grid} }
 }
 \description{
 \code{sNeighDirect} is supposed to calculate direct
-neighbors for each hexagon/rectangle in a regular 2D
-grid. It returns a matrix with rows for the self, and
-columns for its direct neighbors.
+neighbors for each hexagon/rectangle in a regular 2D grid.
+It returns a matrix with rows for the self, and columns for
+its direct neighbors.
 }
 \note{
 The return matrix has rows for the self, and columns for
-its direct neighbors. The "1" means the presence of
-direct neighbors, "0" for the absence. It has
-rows/columns ordered in the same order as the "coord"
-matrix of the input object does.
+its direct neighbors. The "1" means the presence of direct
+neighbors, "0" for the absence. It has rows/columns ordered
+in the same order as the "coord" matrix of the input object
+does.
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10

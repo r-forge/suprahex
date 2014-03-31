@@ -2,9 +2,9 @@
 \alias{sDmatCluster}
 \title{Function to partition a grid map into clusters}
 \usage{
-sDmatCluster(sMap, which_neigh = 1,
-distMeasure = c("median", "mean", "min", "max"),
-clusterLinkage = c("average", "complete", "single", "bmh"),
+sDmatCluster(sMap, which_neigh = 1, distMeasure = c("median", "mean",
+"min",
+"max"), clusterLinkage = c("average", "complete", "single", "bmh"),
 reindexSeed = c("hclust", "svd", "none"))
 }
 \arguments{
@@ -38,8 +38,8 @@ hexagons radiate outwards)}
 an object of class "sBase", a list with following
 components: \itemize{ \item{\code{seeds}: the vector to
 store cluster seeds, i.e., a list of local minima (in 2D
-output space) of distance matrix (in input space). They
-are represented by the indexes of hexagons/rectangles}
+output space) of distance matrix (in input space). They are
+represented by the indexes of hexagons/rectangles}
 \item{\code{bases}: the vector with the length of nHex to
 store the cluster memberships/bases, where nHex is the
 total number of hexagons/rectanges in the grid}
@@ -50,10 +50,10 @@ total number of hexagons/rectanges in the grid}
 grid map. It returns an object of class "sBase".
 }
 \note{
-The first item in the return "seeds" is the first
-cluster, whose memberships are those in the return
-"bases" that equals 1. The same relationship is held for
-the second item, and so on
+The first item in the return "seeds" is the first cluster,
+whose memberships are those in the return "bases" that
+equals 1. The same relationship is held for the second
+item, and so on
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10

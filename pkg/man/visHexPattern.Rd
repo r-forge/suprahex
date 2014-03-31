@@ -1,15 +1,13 @@
 \name{visHexPattern}
 \alias{visHexPattern}
-\title{Function to visualise codebook matrix or input patterns within a
-supra-hexagonal grid}
+\title{Function to visualise codebook matrix or input patterns within a supra-hexagonal grid}
 \usage{
-visHexPattern(sObj,
-plotType = c("lines", "bars", "radars"),
-pattern = NULL, height = 7, margin = rep(0.1, 4),
-colormap = c("customized", "bwr", "jet", "gbr", "wyr", "br", "yr",
-"rainbow", "wb"),
-customized.color = "red", zeropattern.color = "gray",
-legend.cex = 0.8, newpage = T)
+visHexPattern(sObj, plotType = c("lines", "bars", "radars"), pattern =
+NULL,
+height = 7, margin = rep(0.1, 4), colormap = c("customized", "bwr",
+"jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"), customized.color =
+"red",
+zeropattern.color = "gray", legend.cex = 0.8, newpage = T)
 }
 \arguments{
 \item{sObj}{an object of class "sMap" or "sTopol" or
@@ -73,12 +71,12 @@ negative values, zero horizental line is also shown}
 \item{"bars": bar plot. When the pattern involves both
 positive and negative values, the zero horizental line is
 in the middle of the hexagon; otherwise at the top of the
-hexagon for all negative values, and at the bottom for
-all positive values} \item{"radars": radar plot. Each
-radar diagram represents one pattern, wherein each
-element value is proportional to the distance from the
-center. Note, it starts on the right and wind
-counterclockwise around the circle} }
+hexagon for all negative values, and at the bottom for all
+positive values} \item{"radars": radar plot. Each radar
+diagram represents one pattern, wherein each element value
+is proportional to the distance from the center. Note, it
+starts on the right and wind counterclockwise around the
+circle} }
 }
 \examples{
 # 1) generate data with an iid matrix of 1000 x 9

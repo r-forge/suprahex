@@ -108,16 +108,15 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>sTopology</code> is supposed to define the topology of a
-2D map grid. The topological shape can be either a
+    <p><code>sTopology</code> is supposed to define the topology of a 2D
+map grid. The topological shape can be either a
 supra-hexagonal grid or a hexagonal/rectangle sheet. It
-returns an object of "sTopol" class, containing: the
-total number of hexagons/rectangles in the grid, the grid
-xy-dimensions, the grid lattice, the grid shape, and the
-2D coordinates of all hexagons/rectangles in the grid.
-The 2D coordinates can be directly used to measure
-distances between any pair of lattice
-hexagons/rectangles.</p>
+returns an object of "sTopol" class, containing: the total
+number of hexagons/rectangles in the grid, the grid
+xy-dimensions, the grid lattice, the grid shape, and the 2D
+coordinates of all hexagons/rectangles in the grid. The 2D
+coordinates can be directly used to measure distances
+between any pair of lattice hexagons/rectangles.</p>
   
     <h3>Usage</h3>
     <pre>sTopology(data = NULL, xdim = NULL, ydim = NULL, nHex = NULL, lattice = c("hexa", 
@@ -160,42 +159,40 @@ explaination </li>
 </li>
 <li><code>ydim</code>: y-dimension of the grid
 </li>
-<li><code>lattice</code>: the grid lattice
-</li>
-<li><code>shape</code>: the grid shape </li>
-<li><code>coord</code>: a
-matrix of nHex x 2, with each row corresponding to the
-coordinates of a hexagon/rectangle in the 2D map grid
-</li>
-<li><code>call</code>: the call that produced this result </li>
+<li><code>lattice</code>: the grid lattice </li>
+<li><code>shape</code>:
+the grid shape </li>
+<li><code>coord</code>: a matrix of nHex x 2,
+with each row corresponding to the coordinates of a
+hexagon/rectangle in the 2D map grid </li>
+<li><code>call</code>:
+the call that produced this result </li>
 </ul></p>
       <p></p>
     </div>
     <div class="Note">
       <h3>Note</h3>
       
-      <p>The output of nHex depends on the input arguments and
-grid shape: <ul>
-<li>How the input parameters are
-used to determine nHex is taken priority in the following
-order: "xdim & ydim" > "nHex" > "data" </li>
-<li>If both of
-xdim and ydim are given, <code class = 'eq'>nHex=xdim*ydim</code> for the
-"sheet" shape, <code class = 'eq'>r=(min(xdim,ydim)+1)/2</code> for the
-"suprahex" shape </li>
-<li>If only data is input,
-<code class = 'eq'>nHex=5*sqrt(dlen)</code>, where dlen is the number of rows
-of the input data </li>
-<li>With nHex in hand, it depends on
-the grid shape: <ul>
-<li>For "sheet" shape,
-xy-dimensions of sheet grid is determined according to
-the square root of the two biggest eigenvalues of the
-input data </li>
-<li>For "suprahex" shape, see
-<code><a href='sHexGrid.html'>sHexGrid</a></code> for calculating the grid radius r.
-The xdim (and ydim) is related to r via <code class = 'eq'>xdim=2*r-1</code>
+      <p>The output of nHex depends on the input arguments and grid
+shape: <ul>
+<li>How the input parameters are used to
+determine nHex is taken priority in the following order:
+"xdim & ydim" > "nHex" > "data" </li>
+<li>If both of xdim and
+ydim are given, <code class = 'eq'>nHex=xdim*ydim</code> for the "sheet" shape,
+<code class = 'eq'>r=(min(xdim,ydim)+1)/2</code> for the "suprahex" shape
 </li>
+<li>If only data is input, <code class = 'eq'>nHex=5*sqrt(dlen)</code>, where
+dlen is the number of rows of the input data </li>
+<li>With
+nHex in hand, it depends on the grid shape: <ul>
+<li>For "sheet" shape, xy-dimensions of sheet grid is
+determined according to the square root of the two biggest
+eigenvalues of the input data </li>
+<li>For "suprahex" shape,
+see <code><a href='sHexGrid.html'>sHexGrid</a></code> for calculating the grid radius
+r. The xdim (and ydim) is related to r via
+<code class = 'eq'>xdim=2*r-1</code> </li>
 </ul>
  </li>
 </ul></p>

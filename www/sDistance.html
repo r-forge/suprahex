@@ -102,8 +102,7 @@
         
       </header>
       
-      <h2>Function to compute the pairwise distance for a given data
-matrix</h2>
+      <h2>Function to compute the pairwise distance for a given data matrix</h2>
 
 <div class="row">
   <div class="span8">
@@ -133,9 +132,9 @@ available</dd>
       <h3>Value</h3>
       
       <p><ul>
-<li><code>dist</code>: a symmetric distance matrix
-of nRow x nRow, where nRow is the number of rows of input
-data matrix </li>
+<li><code>dist</code>: a symmetric distance matrix of
+nRow x nRow, where nRow is the number of rows of input data
+matrix </li>
 </ul></p>
       <p></p>
     </div>
@@ -143,53 +142,52 @@ data matrix </li>
       <h3>Note</h3>
       
       <p>The distance metrics are supported: <ul>
-<li>"pearson": Pearson correlation. Note that two
-curves that have identical shape, but different magnitude
-will still have a correlation of 1 </li>
-<li>"spearman":
-Spearman rank correlation. As a nonparametric version of
-the pearson correlation, it calculates the correlation
-between the ranks of the data values in the two vectors
-(more robust against outliers) </li>
-<li>"kendall": Kendall
-tau rank correlation. Compared to spearman rank
-correlation, it goes a step further by using only the
-relative ordering to calculate the correlation. For all
-pairs of data points <code class = 'eq'>(x_i, y_i)</code> and <code class = 'eq'>(x_j,
-y_j)</code>, it calls a pair of points either as concordant
-(<code class = 'eq'>Nc</code> in total) if <code class = 'eq'>(x_i - x_j)*(y_i - y_j)>0</code>,
-or as discordant (<code class = 'eq'>Nd</code> in total) if <code class = 'eq'>(x_i -
-x_j)*(y_i - y_j)<0</code>. Finally, it calculates gamma
-coefficient <code class = 'eq'>(Nc-Nd)/(Nc+Nd)</code> as a measure of
-association which is highly resistant to tied data
-</li>
+<li>"pearson": Pearson correlation. Note that two curves
+that have identical shape, but different magnitude will
+still have a correlation of 1 </li>
+<li>"spearman": Spearman
+rank correlation. As a nonparametric version of the pearson
+correlation, it calculates the correlation between the
+ranks of the data values in the two vectors (more robust
+against outliers) </li>
+<li>"kendall": Kendall tau rank
+correlation. Compared to spearman rank correlation, it goes
+a step further by using only the relative ordering to
+calculate the correlation. For all pairs of data points
+<code class = 'eq'>(x_i, y_i)</code> and <code class = 'eq'>(x_j, y_j)</code>, it calls a pair of
+points either as concordant (<code class = 'eq'>Nc</code> in total) if
+<code class = 'eq'>(x_i - x_j)*(y_i - y_j)>0</code>, or as discordant (<code class = 'eq'>Nd</code>
+in total) if <code class = 'eq'>(x_i - x_j)*(y_i - y_j)<0</code>. Finally, it
+calculates gamma coefficient <code class = 'eq'>(Nc-Nd)/(Nc+Nd)</code> as a
+measure of association which is highly resistant to tied
+data </li>
 <li>"euclidean": Euclidean distance. Unlike the
-correlation-based distance measures, it takes the
-magnitude into account (input data should be suitably
-normalized </li>
-<li>"manhattan": Cityblock distance. The
-distance between two vectors is the sum of absolute value
-of their differences along any coordinate dimension
+correlation-based distance measures, it takes the magnitude
+into account (input data should be suitably normalized
 </li>
-<li>"cos": Cosine similarity. As an uncentered version
-of pearson correlation, it is a measure of similarity
-between two vectors of an inner product space, i.e.,
-measuring the cosine of the angle between them (using a
-dot product and magnitude) </li>
-<li>"mi": Mutual
-information (MI). <code class = 'eq'>MI</code> provides a general measure of
-dependencies between variables, in particular, positive,
-negative and nonlinear correlations. The caclulation of
-<code class = 'eq'>MI</code> is implemented via applying adaptive
-partitioning method for deriving equal-probability bins
-(i.e., each bin contains approximately the same number of
-data points). The number of bins is heuristically
-determined (the lower bound): <code class = 'eq'>1+log2(n)</code>, where n is
-the length of the vector. Because <code class = 'eq'>MI</code> increases with
-entropy, we normalize it to allow comparison of different
-pairwise clone similarities: <code class = 'eq'>2*MI/[H(x)+H(y)]</code>,
-where <code class = 'eq'>H(x)</code> and <code class = 'eq'>H(y)</code> stand for the entropy for
-the vector <code class = 'eq'>x</code> and <code class = 'eq'>y</code>, respectively </li>
+<li>"manhattan": Cityblock distance. The distance between
+two vectors is the sum of absolute value of their
+differences along any coordinate dimension </li>
+<li>"cos":
+Cosine similarity. As an uncentered version of pearson
+correlation, it is a measure of similarity between two
+vectors of an inner product space, i.e., measuring the
+cosine of the angle between them (using a dot product and
+magnitude) </li>
+<li>"mi": Mutual information (MI). <code class = 'eq'>MI</code>
+provides a general measure of dependencies between
+variables, in particular, positive, negative and nonlinear
+correlations. The caclulation of <code class = 'eq'>MI</code> is implemented
+via applying adaptive partitioning method for deriving
+equal-probability bins (i.e., each bin contains
+approximately the same number of data points). The number
+of bins is heuristically determined (the lower bound):
+<code class = 'eq'>1+log2(n)</code>, where n is the length of the vector.
+Because <code class = 'eq'>MI</code> increases with entropy, we normalize it to
+allow comparison of different pairwise clone similarities:
+<code class = 'eq'>2*MI/[H(x)+H(y)]</code>, where <code class = 'eq'>H(x)</code> and <code class = 'eq'>H(y)</code>
+stand for the entropy for the vector <code class = 'eq'>x</code> and <code class = 'eq'>y</code>,
+respectively </li>
 </ul></p>
       <p></p>
     </div>
@@ -201,7 +199,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 # 2) calculate distance matrix using different metric
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-26 11:06:56</strong>
+<strong class='message'>Start at 2014-03-31 09:46:16</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -228,8 +226,8 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-26 11:06:56</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-03-31 09:46:17</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'># 2a) using "pearson" metric
 dist <- sDistance(data=data, metric="pearson")

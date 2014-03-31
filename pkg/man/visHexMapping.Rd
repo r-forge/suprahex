@@ -1,16 +1,15 @@
 \name{visHexMapping}
 \alias{visHexMapping}
-\title{Function to visualise various mapping items within a
-supra-hexagonal grid}
+\title{Function to visualise various mapping items within a supra-hexagonal grid}
 \usage{
-visHexMapping(sObj,
-mappingType = c("indexes", "hits", "dist", "antidist", "bases",
-"customized"),
-labels = NULL, height = 7, margin = rep(0.1, 4),
-area.size = 1,
-gp = grid::gpar(cex = 0.7, font = 1, col.label = "black"),
-border.color = "black", fill.color = "transparent",
-clip = c("on", "inherit", "off"), newpage = T)
+visHexMapping(sObj, mappingType = c("indexes", "hits", "dist",
+"antidist",
+"bases", "customized"), labels = NULL, height = 7, margin = rep(0.1,
+4),
+area.size = 1, gp = grid::gpar(cex = 0.7, font = 1, col.label =
+"black"),
+border.color = "black", fill.color = "transparent", clip = c("on",
+"inherit", "off"), newpage = T)
 }
 \arguments{
 \item{sObj}{an object of class "sMap" or "sInit" or
@@ -54,13 +53,13 @@ mapping items within a supra-hexagonal grid
 }
 \note{
 The mappingType includes: \itemize{ \item{"indexes": the
-index of hexagons in a supra-hexagonal grid}
-\item{"hits": the number of input data vectors hitting
-the hexagons} \item{"dist": distance (in high-dimensional
-input space) to neighbors (defined in 2D output space)}
-\item{"antidist": the oppose version of "dist"}
-\item{"bases": clusters partitioned from the sMap}
-\item{"customized": displaying input "labels"} }
+index of hexagons in a supra-hexagonal grid} \item{"hits":
+the number of input data vectors hitting the hexagons}
+\item{"dist": distance (in high-dimensional input space) to
+neighbors (defined in 2D output space)} \item{"antidist":
+the oppose version of "dist"} \item{"bases": clusters
+partitioned from the sMap} \item{"customized": displaying
+input "labels"} }
 }
 \examples{
 # 1) generate data with an iid matrix of 1000 x 9

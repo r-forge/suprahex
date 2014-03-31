@@ -108,19 +108,18 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>sHexGrid</code> is supposed to define a supra-hexagonal
-map grid. A supra-hexagon is a giant hexagon, which
-seamlessly consists of smaller hexagons. Due to the
-symmetric nature, it can be uniquely determined by
-specifying the radius away from the grid centroid. This
-function takes input the grid radius (or the number of
-hexagons in the grid, but will be adjusted to meet the
-definition of supra-hexagon), and returns a list (see
-'Value' below) containing: the grid radius, the total
-number of hexagons in the grid, the 2D coordinates of the
-grid centroid, the step for each hexogan away from the
-grid centroid, and the 2D coordinates of all hexagons in
-the grid.</p>
+    <p><code>sHexGrid</code> is supposed to define a supra-hexagonal map
+grid. A supra-hexagon is a giant hexagon, which seamlessly
+consists of smaller hexagons. Due to the symmetric nature,
+it can be uniquely determined by specifying the radius away
+from the grid centroid. This function takes input the grid
+radius (or the number of hexagons in the grid, but will be
+adjusted to meet the definition of supra-hexagon), and
+returns a list (see 'Value' below) containing: the grid
+radius, the total number of hexagons in the grid, the 2D
+coordinates of the grid centroid, the step for each hexogan
+away from the grid centroid, and the 2D coordinates of all
+hexagons in the grid.</p>
   
     <h3>Usage</h3>
     <pre>sHexGrid(r = NULL, nHex = NULL)</pre>
@@ -140,26 +139,27 @@ supra-hexagonal grid</dd>
       <h3>Value</h3>
       
       <p>a list with following components: <ul>
-<li><code>r</code>: the grid radius </li>
-<li><code>nHex</code>: the
-total number of hexagons in the grid. It may differ from
-the input value; actually it is always no less than the
-input one to ensure a supra-hexagonal grid exactly
-formed </li>
-<li><code>centroid</code>: the 2D coordinates of the
-grid centroid </li>
-<li><code>stepCentroid</code>: a vector with
-the length of nHex. It stores how many steps a hexagon is
-awawy from the grid centroid ('1' for the centroid
-itself). Starting with the centroid, it orders outward.
-Also, for those hexagons of the same step, it orders from
-the rightmost in an anti-clock wise </li>
-<li><code>coord</code>:
-a matrix of nHex x 2 with each row specifying the 2D
-coordinates of a hexagon in the grid. The order of rows
-is the same as 'centroid' above </li>
-<li><code>call</code>: the
-call that produced this result </li>
+<li><code>r</code>:
+the grid radius </li>
+<li><code>nHex</code>: the total number of
+hexagons in the grid. It may differ from the input value;
+actually it is always no less than the input one to ensure
+a supra-hexagonal grid exactly formed
+</li>
+<li><code>centroid</code>: the 2D coordinates of the grid
+centroid </li>
+<li><code>stepCentroid</code>: a vector with the
+length of nHex. It stores how many steps a hexagon is awawy
+from the grid centroid ('1' for the centroid itself).
+Starting with the centroid, it orders outward. Also, for
+those hexagons of the same step, it orders from the
+rightmost in an anti-clock wise </li>
+<li><code>coord</code>: a
+matrix of nHex x 2 with each row specifying the 2D
+coordinates of a hexagon in the grid. The order of rows is
+the same as 'centroid' above </li>
+<li><code>call</code>: the call
+that produced this result </li>
 </ul></p>
       <p></p>
     </div>
@@ -173,8 +173,8 @@ coord[1,]</code> </li>
 <li><code class = 'eq'>stepCentroid[1] = 1</code>
 </li>
 <li><code class = 'eq'>stepCentroid[2:nHex] = unlist(sapply(2:r,
-function(x) (c( (1+6*x*(x-1)/2-6*(x-1)+1) :
-(1+6*x*(x-1)/2) )>=1)*x ))</code> </li>
+function(x) (c( (1+6*x*(x-1)/2-6*(x-1)+1) : (1+6*x*(x-1)/2)
+)>=1)*x ))</code> </li>
 </ul></p>
       <p></p>
     </div>

@@ -1,10 +1,8 @@
 \name{sWriteData}
 \alias{sWriteData}
-\title{Function to write out the best-matching hexagons and/or cluster
-bases in terms of data}
+\title{Function to write out the best-matching hexagons and/or cluster bases in terms of data}
 \usage{
-sWriteData(sMap, data, sBase = NULL, filename = NULL,
-keep.data = F)
+sWriteData(sMap, data, sBase = NULL, filename = NULL, keep.data = F)
 }
 \arguments{
 \item{sMap}{an object of class "sMap" or a codebook
@@ -30,8 +28,8 @@ number of rows of the input data}
 \item{\code{Hexagon_index}: the index for best-matching
 hexagons} \item{\code{Cluster_base}: optional, it is only
 appended when sBase is given. It stores the cluster
-memberships/bases} \item{\code{data}: optional, it is
-only appended when keep.data is true} }
+memberships/bases} \item{\code{data}: optional, it is only
+appended when keep.data is true} }
 }
 \description{
 \code{sWriteData} is supposed to write out the
@@ -40,10 +38,9 @@ data.
 }
 \note{
 If "filename" is not NULL, a tab-delimited text file will
-be also written out. If "sBase" is not NULL and comes
-from the "sMap" partition, then cluster bases are also
-appended. if "keep.data" is true, the data will be part
-of output.
+be also written out. If "sBase" is not NULL and comes from
+the "sMap" partition, then cluster bases are also appended.
+if "keep.data" is true, the data will be part of output.
 }
 \examples{
 # 1) generate an iid normal random matrix of 100x10

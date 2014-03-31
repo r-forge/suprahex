@@ -1,14 +1,14 @@
 \name{visDmatCluster}
 \alias{visDmatCluster}
-\title{Function to visualise clusters/bases partitioned from a
-supra-hexagonal grid}
+\title{Function to visualise clusters/bases partitioned from a supra-hexagonal grid}
 \usage{
-visDmatCluster(sMap, sBase, height = 7,
-margin = rep(0.1, 4), area.size = 1,
-gp = grid::gpar(cex = 0.8, font = 2, col.label = "black"),
-border.color = "transparent",
-colormap = c("rainbow", "jet", "bwr", "gbr", "wyr", "br", "yr", "wb"),
-clip = c("on", "inherit", "off"), newpage = T)
+visDmatCluster(sMap, sBase, height = 7, margin = rep(0.1, 4),
+area.size = 1, gp = grid::gpar(cex = 0.8, font = 2, col.label =
+"black"),
+border.color = "transparent", colormap = c("rainbow", "jet", "bwr",
+"gbr",
+"wyr", "br", "yr", "wb"), clip = c("on", "inherit", "off"), newpage =
+T)
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}

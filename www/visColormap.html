@@ -110,8 +110,7 @@
     <h3>Description</h3>
     <p><code>visColormap</code> is supposed to define a colormap. It
 returns a function, which will take an integer argument
-specifying how many colors interpolate the given
-colormap.</p>
+specifying how many colors interpolate the given colormap.</p>
   
     <h3>Usage</h3>
     <pre>visColormap(colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"))</pre>
@@ -128,9 +127,9 @@ colormap.</p>
       <h3>Value</h3>
       
       <p><ul>
-<li><code>palette.name</code>: a function that
-takes an integer argument for generating that number of
-colors interpolating the given sequence </li>
+<li><code>palette.name</code>: a function that takes
+an integer argument for generating that number of colors
+interpolating the given sequence </li>
 </ul></p>
       <p></p>
     </div>
@@ -143,18 +142,17 @@ colormap </li>
 <li>"bwr": blue-white-red </li>
 <li>"gbr":
 green-black-red </li>
-<li>"wyr": white-yellow-red
+<li>"wyr": white-yellow-red </li>
+<li>"br":
+black-red </li>
+<li>"yr": yellow-red </li>
+<li>"wb": white-black
 </li>
-<li>"br": black-red </li>
-<li>"yr": yellow-red
-</li>
-<li>"wb": white-black </li>
-<li>"rainbow": rainbow
-colormap, that is, red-yellow-green-cyan-blue-magenta
-</li>
-<li>Alternatively, any hyphen-separated HTML color
-names, e.g. "blue-black-yellow",
-"royalblue-white-sandybrown",
+<li>"rainbow": rainbow colormap, that is,
+red-yellow-green-cyan-blue-magenta </li>
+<li>Alternatively,
+any hyphen-separated HTML color names, e.g.
+"blue-black-yellow", "royalblue-white-sandybrown",
 "darkblue-lightblue-lightyellow-darkorange",
 "darkgreen-white-darkviolet",
 "darkgreen-lightgreen-lightpink-darkred". A list of

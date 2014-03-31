@@ -1,7 +1,6 @@
 \name{sNeighAny}
 \alias{sNeighAny}
-\title{Function to calculate any neighbors for each hexagon/rectangle
-in a grid}
+\title{Function to calculate any neighbors for each hexagon/rectangle in a grid}
 \usage{
 sNeighAny(sObj)
 }
@@ -12,14 +11,14 @@ sNeighAny(sObj)
 \value{
 \itemize{ \item{\code{aNeigh}: a matrix of nHex x nHex,
 containing distance info in terms of any neighbors, where
-nHex is the total number of hexagons/rectanges in the
-grid} }
+nHex is the total number of hexagons/rectanges in the grid}
+}
 }
 \description{
-\code{sNeighAny} is supposed to calculate any neighbors
-for each hexagon/rectangle in a regular 2D grid. It
-returns a matrix with rows for the self, and columns for
-its any neighbors.
+\code{sNeighAny} is supposed to calculate any neighbors for
+each hexagon/rectangle in a regular 2D grid. It returns a
+matrix with rows for the self, and columns for its any
+neighbors.
 }
 \note{
 The return matrix has rows for the self, and columns for

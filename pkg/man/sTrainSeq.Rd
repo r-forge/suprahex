@@ -15,66 +15,65 @@ sTrainSeq(sMap, data, sTrain)
 an object of class "sMap", a list with following
 components: \itemize{ \item{\code{nHex}: the total number
 of hexagons/rectanges in the grid} \item{\code{xdim}:
-x-dimension of the grid} \item{\code{ydim}: y-dimension
-of the grid} \item{\code{lattice}: the grid lattice}
+x-dimension of the grid} \item{\code{ydim}: y-dimension of
+the grid} \item{\code{lattice}: the grid lattice}
 \item{\code{shape}: the grid shape} \item{\code{coord}: a
 matrix of nHex x 2, with each row corresponding to the
 coordinates of a hexagon/rectangle in the 2D map grid}
 \item{\code{init}: an initialisation method}
-\item{\code{neighKernel}: the training neighborhood
-kernel} \item{\code{codebook}: a codebook matrix of nHex
-x ncol(data), with each row corresponding to a prototype
-vector in input high-dimensional space}
-\item{\code{call}: the call that produced this result} }
+\item{\code{neighKernel}: the training neighborhood kernel}
+\item{\code{codebook}: a codebook matrix of nHex x
+ncol(data), with each row corresponding to a prototype
+vector in input high-dimensional space} \item{\code{call}:
+the call that produced this result} }
 }
 \description{
-\code{sTrainSeq} is supposed to perform sequential
-training algorithm. It requires three inputs: a "sMap" or
-"sInit" object, input data, and a "sTrain" object
-specifying training environment. The training is
-implemented iteratively, each training cycle consisting
-of: i) randomly choose one input vector; ii) determine
-the winner hexagon/rectangle (BMH) according to minimum
-distance of codebook matrix to the input vector; ii)
-update the codebook matrix of the BMH and its neighbors
-via updating formula (see "Note" below for details). It
-also returns an object of class "sMap".
+\code{sTrainSeq} is supposed to perform sequential training
+algorithm. It requires three inputs: a "sMap" or "sInit"
+object, input data, and a "sTrain" object specifying
+training environment. The training is implemented
+iteratively, each training cycle consisting of: i) randomly
+choose one input vector; ii) determine the winner
+hexagon/rectangle (BMH) according to minimum distance of
+codebook matrix to the input vector; ii) update the
+codebook matrix of the BMH and its neighbors via updating
+formula (see "Note" below for details). It also returns an
+object of class "sMap".
 }
 \note{
 Updating formula is: \eqn{m_i(t+1) = m_i(t) +
 \alpha(t)*h_{wi}(t)*[x(t)-m_i(t)]}, where \itemize{
-\item{\eqn{t} denotes the training time/step}
-\item{\eqn{i} and \eqn{w} stand for the hexagon/rectangle
-\eqn{i} and the winner BMH \eqn{w}, respectively}
-\item{\eqn{x(t)} is an input vector randomly choosen
-(from the input data) at time \eqn{t}} \item{\eqn{m_i(t)}
-and \eqn{m_i(t+1)} are respectively the prototype vectors
-of the hexagon \eqn{i} at time \eqn{t} and \eqn{t+1}}
-\item{\eqn{\alpha(t)} is the learning rate at time
-\eqn{t}. There are three types of learning rate
-functions:} \itemize{ \item{For "linear" function,
-\eqn{\alpha(t)=\alpha_0*(1-t/T)}} \item{For "power"
-function,
-\eqn{\alpha(t)=\alpha_0*(0.005/\alpha_0)^{t/T}}}
-\item{For "invert" function,
-\eqn{\alpha(t)=\alpha_0/(1+100*t/T)}} \item{Where
-\eqn{\alpha_0} is the initial learing rate (typically,
-\eqn{\alpha_0=0.5} at "rough" stage, \eqn{\alpha_0=0.05}
-at "finetune" stage), \eqn{T} is the length of training
-time/step (often being set to input data length, i.e.,
-the total number of rows)} } \item{\eqn{h_{wi}(t)} is the
-neighborhood kernel, a non-increasing function of i) the
-distance \eqn{d_{wi}} between the hexagon/rectangle
-\eqn{i} and the winner BMH \eqn{w}, and ii) the radius
-\eqn{\delta_t} at time \eqn{t}. There are five kernels
-available:} \itemize{ \item{For "gaussian" kernel,
+\item{\eqn{t} denotes the training time/step} \item{\eqn{i}
+and \eqn{w} stand for the hexagon/rectangle \eqn{i} and the
+winner BMH \eqn{w}, respectively} \item{\eqn{x(t)} is an
+input vector randomly choosen (from the input data) at time
+\eqn{t}} \item{\eqn{m_i(t)} and \eqn{m_i(t+1)} are
+respectively the prototype vectors of the hexagon \eqn{i}
+at time \eqn{t} and \eqn{t+1}} \item{\eqn{\alpha(t)} is the
+learning rate at time \eqn{t}. There are three types of
+learning rate functions:} \itemize{ \item{For "linear"
+function, \eqn{\alpha(t)=\alpha_0*(1-t/T)}} \item{For
+"power" function,
+\eqn{\alpha(t)=\alpha_0*(0.005/\alpha_0)^{t/T}}} \item{For
+"invert" function, \eqn{\alpha(t)=\alpha_0/(1+100*t/T)}}
+\item{Where \eqn{\alpha_0} is the initial learing rate
+(typically, \eqn{\alpha_0=0.5} at "rough" stage,
+\eqn{\alpha_0=0.05} at "finetune" stage), \eqn{T} is the
+length of training time/step (often being set to input data
+length, i.e., the total number of rows)} }
+\item{\eqn{h_{wi}(t)} is the neighborhood kernel, a
+non-increasing function of i) the distance \eqn{d_{wi}}
+between the hexagon/rectangle \eqn{i} and the winner BMH
+\eqn{w}, and ii) the radius \eqn{\delta_t} at time \eqn{t}.
+There are five kernels available:} \itemize{ \item{For
+"gaussian" kernel,
 \eqn{h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}}} \item{For
 "cutguassian" kernel,
 \eqn{h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}*(d_{wi} \le
 \delta_t)}} \item{For "bubble" kernel,
 \eqn{h_{wi}(t)=(d_{wi} \le \delta_t)}} \item{For "ep"
-kernel, \eqn{h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi}
-\le \delta_t)}} \item{For "gamma" kernel,
+kernel, \eqn{h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi} \le
+\delta_t)}} \item{For "gamma" kernel,
 \eqn{h_{wi}(t)=1/\Gamma(d_{wi}^2/(4*\delta_t^2)+2)}} } }
 }
 \examples{

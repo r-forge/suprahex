@@ -1,14 +1,12 @@
 \name{visDmatHeatmap}
 \alias{visDmatHeatmap}
-\title{Function to visualise gene clusters/bases partitioned from a
-supra-hexagonal grid using heatmap}
+\title{Function to visualise gene clusters/bases partitioned from a supra-hexagonal grid using heatmap}
 \usage{
 visDmatHeatmap(sMap, data, sBase, base.color = "rainbow",
-base.separated.arg = NULL,
-base.legend.location = c("none", "bottomleft", "bottomright", "bottom",
-"left", "topleft", "top", "topright", "right", "center"),
-reorderRow = c("none", "hclust", "svd"), keep.data = F,
-...)
+base.separated.arg = NULL, base.legend.location = c("none",
+"bottomleft",
+"bottomright", "bottom", "left", "topleft", "top", "topright", "right",
+"center"), reorderRow = c("none", "hclust", "svd"), keep.data = F, ...)
 }
 \arguments{
 \item{sMap}{an object of class "sMap" or a codebook
@@ -65,10 +63,9 @@ number of rows of the input data}
 \item{\code{Hexagon_index}: the index for best-matching
 hexagons} \item{\code{Cluster_base}: optional, it is only
 appended when sBase is given. It stores the cluster
-memberships/bases} \item{\code{data}: optional, it is
-only appended when keep.data is true} } Note: the
-returned data has rows in the same order as visualised in
-the heatmap
+memberships/bases} \item{\code{data}: optional, it is only
+appended when keep.data is true} } Note: the returned data
+has rows in the same order as visualised in the heatmap
 }
 \description{
 \code{visDmatHeatmap} is supposed to visualise gene
@@ -79,8 +76,8 @@ using heatmap
 A list of parameters in "base.separated.arg": \itemize{
 \item{"lty": the line type. Line types can either be
 specified as an integer (0=blank, 1=solid (default),
-2=dashed, 3=dotted, 4=dotdash, 5=longdash, 6=twodash) or
-as one of the character strings
+2=dashed, 3=dotted, 4=dotdash, 5=longdash, 6=twodash) or as
+one of the character strings
 "blank","solid","dashed","dotted","dotdash","longdash","twodash",
 where "blank" uses 'invisible lines' (i.e., does not draw
 them)} \item{"lwd": the line width} \item{"col": the line

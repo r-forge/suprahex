@@ -102,15 +102,14 @@
         
       </header>
       
-      <h2>Function to calculate distance matrix in high-dimensional input
-space but according to neighborhood relationships in 2D output space</h2>
+      <h2>Function to calculate distance matrix in high-dimensional input space but according to neighborhood relationships in 2D output space</h2>
 
 <div class="row">
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>sDmat</code> is supposed to calculate distance (measured
-in high-dimensional input space) to neighbors (defined by
+    <p><code>sDmat</code> is supposed to calculate distance (measured in
+high-dimensional input space) to neighbors (defined by
 based on 2D output space) for each of hexagons/rectangles</p>
   
     <h3>Usage</h3>
@@ -138,8 +137,8 @@ distances in high-dimensional input space</dd>
       <p><ul>
 <li><code>dMat</code>: a vector with the length of
 nHex. It stores the distance a hexaon/rectangle is away
-from its output-space-defined neighbors in
-high-dimensional input space </li>
+from its output-space-defined neighbors in high-dimensional
+input space </li>
 </ul></p>
       <p></p>
     </div>
@@ -157,7 +156,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-26 11:06:56</strong>
+<strong class='message'>Start at 2014-03-31 09:46:17</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -184,7 +183,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-26 11:06:56</strong>
+<strong class='message'>End at 2014-03-31 09:46:17</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>

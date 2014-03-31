@@ -109,12 +109,12 @@
   
     <h3>Description</h3>
     <p><code>sTrainology</code> is supposed to define the train-ology
-(i.e., the training environment/parameters). The
-trainology here refers to the training algorithm, the
-training stage, the stage-specific parameters (alpha
-type, initial alpha, initial radius, final radius and
-train length), and the training neighbor kernel used. It
-returns an object of class "sTrain".</p>
+(i.e., the training environment/parameters). The trainology
+here refers to the training algorithm, the training stage,
+the stage-specific parameters (alpha type, initial alpha,
+initial radius, final radius and train length), and the
+training neighbor kernel used. It returns an object of
+class "sTrain".</p>
   
     <h3>Usage</h3>
     <pre>sTrainology(sMap, data, algorithm = c("batch", "sequential"), stage = c("rough", 
@@ -150,10 +150,10 @@ be one of "gaussian", "bubble", "cutgaussian", "ep" and
       
       <p>an object of class "sTrain", a list with following
 components: <ul>
-<li><code>algorithm</code>: the
-training algorithm </li>
-<li><code>stage</code>: the training
-stage </li>
+<li><code>algorithm</code>: the training
+algorithm </li>
+<li><code>stage</code>: the training stage
+</li>
 <li><code>alphaType</code>: the alpha type
 </li>
 <li><code>alphaInitial</code>: the initial alpha
@@ -175,8 +175,8 @@ stage </li>
 <li>"radiusInitial": it depends on the grid shape and
 training stage <ul>
 <li>For "sheet" shape: it
-equals <code class = 'eq'>max(1,ceiling(max(xdim,ydim)/8))</code> at "rough"
-or "complete" stage, and
+equals <code class = 'eq'>max(1,ceiling(max(xdim,ydim)/8))</code> at "rough" or
+"complete" stage, and
 <code class = 'eq'>max(1,ceiling(max(xdim,ydim)/32))</code> at "finetune"
 stage </li>
 <li>For "suprahex" shape: it equals
@@ -193,24 +193,23 @@ stage, it equals <code class = 'eq'>1</code> </li>
 </ul>
  </li>
 <li>"trainLength": how many
-times the whole input data are set for training. It
-depends on the training stage and training algorithm
-<ul>
-<li>At "rough" stage, it equals <code class = 'eq'>max(1,10
-* trainDepth)</code> </li>
+times the whole input data are set for training. It depends
+on the training stage and training algorithm <ul>
+<li>At "rough" stage, it equals <code class = 'eq'>max(1,10 *
+trainDepth)</code> </li>
 <li>At "finetune" stage, it equals
 <code class = 'eq'>max(1,40 * trainDepth)</code> </li>
-<li>At "complete" stage,
-it equals <code class = 'eq'>max(1,50 * trainDepth)</code> </li>
+<li>At "complete" stage, it
+equals <code class = 'eq'>max(1,50 * trainDepth)</code> </li>
 <li>When using
-"batch" algorithm and the trainLength equals 1 according
-to the above equation, the trainLength is forced to be 2
+"batch" algorithm and the trainLength equals 1 according to
+the above equation, the trainLength is forced to be 2
 unless <code class = 'eq'>radiusInitial</code> equals <code class = 'eq'>radiusFinal</code>
 </li>
-<li>Where <code class = 'eq'>trainDepth</code> is the training depth,
-defined as <code class = 'eq'>nHex/dlen</code>, i.e., how many
-hexagons/rectanges are used per the input data length
-(here <code class = 'eq'>dlen</code> refers to the number of rows) </li>
+<li>Where <code class = 'eq'>trainDepth</code> is the training depth, defined
+as <code class = 'eq'>nHex/dlen</code>, i.e., how many hexagons/rectanges are
+used per the input data length (here <code class = 'eq'>dlen</code> refers to
+the number of rows) </li>
 </ul>
  </li>
 </ul></p>

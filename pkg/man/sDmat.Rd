@@ -1,10 +1,9 @@
 \name{sDmat}
 \alias{sDmat}
-\title{Function to calculate distance matrix in high-dimensional input
-space but according to neighborhood relationships in 2D output space}
+\title{Function to calculate distance matrix in high-dimensional input space but according to neighborhood relationships in 2D output space}
 \usage{
-sDmat(sMap, which_neigh = 1,
-distMeasure = c("median", "mean", "min", "max"))
+sDmat(sMap, which_neigh = 1, distMeasure = c("median", "mean", "min",
+"max"))
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}
@@ -20,12 +19,12 @@ distances in high-dimensional input space}
 \value{
 \itemize{ \item{\code{dMat}: a vector with the length of
 nHex. It stores the distance a hexaon/rectangle is away
-from its output-space-defined neighbors in
-high-dimensional input space} }
+from its output-space-defined neighbors in high-dimensional
+input space} }
 }
 \description{
-\code{sDmat} is supposed to calculate distance (measured
-in high-dimensional input space) to neighbors (defined by
+\code{sDmat} is supposed to calculate distance (measured in
+high-dimensional input space) to neighbors (defined by
 based on 2D output space) for each of hexagons/rectangles
 }
 \note{

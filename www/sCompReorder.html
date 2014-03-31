@@ -108,16 +108,16 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>sCompReorder</code> is supposed to reorder component
-planes for the input map/data. It returns an object of
-class "sReorder". It is realized by using a new map grid
-(with sheet shape consisting of a rectangular lattice) to
-train component plane vectors (either column-wise vectors
-of codebook/data matrix or the covariance matrix
-thereof). As a result, similar component planes are
-placed closer to each other. It is highly recommend to
-use trained map (i.e. codebook matrix) as input if data
-matrix is hugely big to save computational costs.</p>
+    <p><code>sCompReorder</code> is supposed to reorder component planes
+for the input map/data. It returns an object of class
+"sReorder". It is realized by using a new map grid (with
+sheet shape consisting of a rectangular lattice) to train
+component plane vectors (either column-wise vectors of
+codebook/data matrix or the covariance matrix thereof). As
+a result, similar component planes are placed closer to
+each other. It is highly recommend to use trained map (i.e.
+codebook matrix) as input if data matrix is hugely big to
+save computational costs.</p>
   
     <h3>Usage</h3>
     <pre>sCompReorder(sMap, xdim = NULL, ydim = NULL, amplifier = NULL, metric = c("none", 
@@ -180,33 +180,31 @@ be one of "gaussian", "bubble", "cutgaussian", "ep" and
 components: <ul>
 <li><code>nHex</code>: the total number
 of rectanges in the grid </li>
-<li><code>xdim</code>: x-dimension
-of the grid </li>
+<li><code>xdim</code>: x-dimension of
+the grid </li>
 <li><code>ydim</code>: y-dimension of the grid
 </li>
 <li><code>uOrder</code>: the unique order/placement for each
-component plane that is reordered to the "sheet"-shape
-grid with rectangular lattice </li>
-<li><code>coord</code>: a
-matrix of nHex x 2, with each row corresponding to the
-coordinates of each "uOrder" rectangle in the 2D map
-grid </li>
-<li><code>call</code>: the call that produced this
-result </li>
+component plane that is reordered to the "sheet"-shape grid
+with rectangular lattice </li>
+<li><code>coord</code>: a matrix of
+nHex x 2, with each row corresponding to the coordinates of
+each "uOrder" rectangle in the 2D map grid
+</li>
+<li><code>call</code>: the call that produced this result </li>
 </ul></p>
       <p></p>
     </div>
     <div class="Note">
       <h3>Note</h3>
       
-      <p>To ensure the unique placement, each component plane
-mapped to the "sheet"-shape grid with rectangular lattice
-is determinied iteratively in an order from the best
-matched to the next compromised one. If multiple
-compoments are hit in the same rectangular lattice, the
-worse one is always sacrificed by moving to the next best
-one till all components are placed somewhere exclusively
-on their own.</p>
+      <p>To ensure the unique placement, each component plane mapped
+to the "sheet"-shape grid with rectangular lattice is
+determinied iteratively in an order from the best matched
+to the next compromised one. If multiple compoments are hit
+in the same rectangular lattice, the worse one is always
+sacrificed by moving to the next best one till all
+components are placed somewhere exclusively on their own.</p>
     </div>
     
     <h3 id="examples">Examples</h3>
@@ -217,7 +215,7 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-03-26 11:06:53</strong>
+<strong class='message'>Start at 2014-03-31 09:46:13</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -244,7 +242,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-26 11:06:53</strong>
+<strong class='message'>End at 2014-03-31 09:46:13</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -252,7 +250,7 @@ sMap <- sPipeline(data=data)
 # 3a) directly using column-wise vectors of codebook matrix
 sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-03-26 11:06:53</strong>
+<strong class='message'>Start at 2014-03-31 09:46:13</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -279,13 +277,13 @@ sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-26 11:06:53</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-03-31 09:46:14</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'># 3b) according to covariance matrix of pearson correlation of codebook matrix
 sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="pearson")
 </div>
-<strong class='message'>Start at 2014-03-26 11:06:53</strong>
+<strong class='message'>Start at 2014-03-31 09:46:14</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -312,13 +310,13 @@ sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="pearson")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-26 11:06:53</strong>
+<strong class='message'>End at 2014-03-31 09:46:14</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># 3c) directly using column-wise vectors of input matrix
 sReorder <- sCompReorder(sMap=data, amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-03-26 11:06:53</strong>
+<strong class='message'>Start at 2014-03-31 09:46:14</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -345,13 +343,13 @@ sReorder <- sCompReorder(sMap=data, amplifier=2, metric="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-26 11:06:54</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-03-31 09:46:14</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># 3d) according to covariance matrix of pearson correlation of input matrix
 sReorder <- sCompReorder(sMap=data, amplifier=2, metric="pearson")
 </div>
-<strong class='message'>Start at 2014-03-26 11:06:54</strong>
+<strong class='message'>Start at 2014-03-31 09:46:14</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -378,8 +376,8 @@ sReorder <- sCompReorder(sMap=data, amplifier=2, metric="pearson")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-26 11:06:54</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-03-31 09:46:15</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
 # 4) visualise multiple component planes reorded within a sheet-shape rectangle grid
