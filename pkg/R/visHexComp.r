@@ -15,6 +15,7 @@
 #' invisible
 #' @note none
 #' @export
+#' @import hexbin
 #' @seealso \code{\link{visColormap}}, \code{\link{visHexGrid}}
 #' @include visHexComp.r
 #' @examples

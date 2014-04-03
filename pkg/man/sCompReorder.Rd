@@ -97,17 +97,8 @@ sMap <- sPipeline(data=data)
 sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="none")
 # 3b) according to covariance matrix of pearson correlation of codebook matrix
 sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="pearson")
-# 3c) directly using column-wise vectors of input matrix
-sReorder <- sCompReorder(sMap=data, amplifier=2, metric="none")
-# 3d) according to covariance matrix of pearson correlation of input matrix
+# 3c) according to covariance matrix of pearson correlation of input matrix
 sReorder <- sCompReorder(sMap=data, amplifier=2, metric="pearson")
-
-# 4) visualise multiple component planes reorded within a sheet-shape rectangle grid
-visCompReorder(sMap=sMap, sReorder=sReorder, margin=rep(0.1,4),
-height=7,
-title.rotate=0, title.xy=c(0.45, 1), colormap="gbr", ncolors=10,
-zlim=c(-1,1),
-border.color="transparent")
 }
 \seealso{
 \code{\link{sTopology}}, \code{\link{sPipeline}},

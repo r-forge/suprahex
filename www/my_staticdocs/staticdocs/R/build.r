@@ -37,8 +37,9 @@ build_package <- function(package, base_path = NULL, examples=T, flag_demos=T) {
   package$manuals <- build_manual(package)
   package$readme <- readme(package)
   
-  package$installation <- installation(package)
-  package$citation <- citation(package)
+  package$installation <- install_cite_rdata(package, "INSTALLATIONs.md")
+  package$citation <- install_cite_rdata(package, "CITATIONs.md")
+  package$rdata <- install_cite_rdata(package, "RData.md")
   
   package$demos <- build_demos(package, flag_demos=flag_demos)
   package$topics <- build_topics(package)
@@ -72,6 +73,13 @@ build_package <- function(package, base_path = NULL, examples=T, flag_demos=T) {
   out <- file.path(package$base_path, "cite.html")
   package$pagetitle <- "Cite"
   render_page(package, "cite", package, out)
+  
+  ###############
+  # for RData_README html
+  message("Generating rdata.html")
+  out <- file.path(package$base_path, "rdata.html")
+  package$pagetitle <- "RData"
+  render_page(package, "rdata", package, out)
   
   ###############
   # for demos html
@@ -160,26 +168,13 @@ readme <- function(package) {
     }
 }
 
-installation <- function(package) {
+install_cite_rdata <- function(package, input_md_file="") {
     
-    local_path <- file.path(pkg_sd_path(package), "INSTALLATIONs.md")
+    local_path <- file.path(pkg_sd_path(package), input_md_file)
   
     if(file.exists(local_path)){
         markdown(path = local_path)
     }else{
-        #return( paste("<h2>Installation</h2>\n\n", sep="") )
-        return()
-    }
-}
-
-citation <- function(package) {
-    
-    local_path <- file.path(pkg_sd_path(package), "CITATIONs.md")
-  
-    if(file.exists(local_path)){
-        markdown(path = local_path)
-    }else{
-        #return( paste("<h2>Citation</h2>\n\n", sep="") )
         return()
     }
 }

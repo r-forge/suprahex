@@ -78,9 +78,7 @@ visHexMapping(sMap,mappingType="indexes")
 visHexMapping(sMap,mappingType="hits")
 # 3c) for distance (in high-dimensional input space) to neighbors (defined in 2D output space)
 visHexMapping(sMap,mappingType="dist")
-# 3d) for anti-distance (in high-dimensional input space) to neighbors (defined in 2D output space)
-visHexMapping(sMap,mappingType="antidist")
-# 3e) for clusters/bases partitioned from the sMap
+# 3d) for clusters/bases partitioned from the sMap
 visHexMapping(sMap,mappingType="bases")
 }
 \seealso{
