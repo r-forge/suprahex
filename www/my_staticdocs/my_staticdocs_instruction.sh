@@ -20,7 +20,10 @@ sourceDir(path="~/Sites/SVN/R-Forge/suprahex/www/my_staticdocs/staticdocs/R")
 ## all in one go
 build_package(package="~/Sites/SVN/supraHex", base_path="~/Sites/SUPERFAMILY/supraHex")
 
-# Disable 'flag_demos' if no update
+# "examples": no evaluation for examples
+# "flag_demos": to tell which demo to run
 build_package(package="~/Sites/SVN/supraHex", base_path="~/Sites/SUPERFAMILY/supraHex", examples=F, flag_demos=T)
 build_package(package="~/Sites/SVN/supraHex", base_path="~/Sites/SUPERFAMILY/supraHex", examples=T, flag_demos=F)
 build_package(package="~/Sites/SVN/supraHex", base_path="~/Sites/SUPERFAMILY/supraHex", examples=F, flag_demos=F)
+
+build_package(package="~/Sites/SVN/supraHex", base_path="~/Sites/SUPERFAMILY/supraHex", examples=T, flag_demos=c(F,F,F,T))

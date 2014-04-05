@@ -261,9 +261,19 @@ build_demos <- function(package, flag_demos) {
   filename <- str_c("demo-", pieces[,1], ".html")
   title <- pieces[, 2]
   
-  if(flag_demos){
+  if(sum(flag_demos)){
+    
+        ## controlling which demo will be run
+        tmp <- rep(TRUE, length(title))
+        tmp[1:length(flag_demos)] <- flag_demos
+        flag_demos <- tmp
+        
+        ##################################################################################
+    
       for(i in seq_along(title)) {
-      
+        
+        if(flag_demos[i]==FALSE) next
+        
         message("\t", title[i])
         
         demo_code <- readLines(file.path(demo_dir, in_path[i]))
