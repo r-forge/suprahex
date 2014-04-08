@@ -85,6 +85,6 @@ replay_html.recordedplot <- function(x, package, name_prefix, obj_id, ...) {
   #str_c("<p><img src='", name, "' alt='' width='400' /></p>")
   #str_c("<p><a href='", name,"' target='", name, "'><IMG src='", name, "' alt='' width='400' /></a></p>")
   
-  str_c("<a href=\"javascript:newWin('", name,"', '", name,"', '",wth,"', '",hgt,"')\" title=\"Click to enlarge\"><img style=\"max-width:95%;border:3px solid #FFFFFF;\" src='", name,"', width=\"400\" /></a>")
+  str_c("<a href=\"javascript:newWin('", name,"', '", name,"', '",wth,"', '",hgt,"')\" title=\"Click to enlarge\"><img style=\"max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;\" src='", name,"', width=\"400\" /></a>")
 }
 

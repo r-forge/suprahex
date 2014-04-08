@@ -130,7 +130,7 @@ data <- Fang - matrix(rep(apply(Fang,1,mean),ncol(Fang)),ncol=ncol(Fang))
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2014-03-26 11:05:29</strong>
+<strong class='message'>Start at 2014-04-08 10:30:04</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -157,46 +157,46 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 6 to 1.5
    radius (at finetune stage): from 1.5 to 1
 </strong>
-<strong class='message'>End at 2014-03-26 11:05:31</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>End at 2014-04-08 10:30:07</strong>
+<strong class='message'>Runtime in total is: 3 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap, title.rotate=10)
 </div>
-<a href="javascript:newWin('Fang-18.png', 'Fang-18.png', '1200', '840')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-18.png', width="400" /></a>
+<a href="javascript:newWin('Fang-18.png', 'Fang-18.png', '1200', '840')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-18.png', width="400" /></a>
 <div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="Output_Fang.txt")
 ## As you have seen, a figure displays the multiple components of trained map in a sample-specific manner. You also see that a .txt file has been saved in your disk. The output file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters). You can also force the input data to be output; type ?<a href='sWriteData.html' target=sWriteData>sWriteData</a> for details.
 
 # (III) Visualise the map, including built-in indexes, data hits/distributions, distance between map nodes, and codebook matrix
 <a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="indexes")
 </div>
-<a href="javascript:newWin('Fang-20.png', 'Fang-20.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-20.png', width="400" /></a>
+<a href="javascript:newWin('Fang-20.png', 'Fang-20.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-20.png', width="400" /></a>
 <div class='input'>## As you have seen, the smaller hexagons in the supra-hexagonal map are indexed as follows: start from the center, and then expand circularly outwards, and for each circle increase in an anti-clock order.
 
 <a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="hits")
 </div>
-<a href="javascript:newWin('Fang-22.png', 'Fang-22.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-22.png', width="400" /></a>
+<a href="javascript:newWin('Fang-22.png', 'Fang-22.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-22.png', width="400" /></a>
 <div class='input'>## As you have seen, the number represents how many input data vectors are hitting each hexagon, the size of which is proportional to the number of hits.
 
 <a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="dist")
 </div>
-<a href="javascript:newWin('Fang-24.png', 'Fang-24.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-24.png', width="400" /></a>
+<a href="javascript:newWin('Fang-24.png', 'Fang-24.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-24.png', width="400" /></a>
 <div class='input'>## As you have seen, map distance tells how far each hexagon is away from its neighbors, and the size of each hexagon is proportional to this distance.
 
 <a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="lines")
 </div>
-<a href="javascript:newWin('Fang-26.png', 'Fang-26.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-26.png', width="400" /></a>
+<a href="javascript:newWin('Fang-26.png', 'Fang-26.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-26.png', width="400" /></a>
 <div class='input'>## As you have seen, line plot displays the patterns associated with the codebook matrix. If multple colors are given, the points are also plotted. When the pattern involves both positive and negative values, zero horizental line is also shown.
 
 <a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="bars")
 </div>
-<a href="javascript:newWin('Fang-28.png', 'Fang-28.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-28.png', width="400" /></a>
+<a href="javascript:newWin('Fang-28.png', 'Fang-28.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-28.png', width="400" /></a>
 <div class='input'>## As you have seen, bar plot displays the patterns associated with the codebook matrix. When the pattern involves both positive and negative values, the zero horizental line is in the middle of the hexagon; otherwise at the top of the hexagon for all negative values, and at the bottom for all positive values.
 
 # (IV) Perform partitioning operation on the map to obtain continuous clusters (i.e. gene meta-clusters) as they are different from gene clusters in an individual map node
 sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
 <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase)
 </div>
-<a href="javascript:newWin('Fang-30.png', 'Fang-30.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-30.png', width="400" /></a>
+<a href="javascript:newWin('Fang-30.png', 'Fang-30.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-30.png', width="400" /></a>
 <div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="Output_base_Fang.txt")
 ## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output .txt file has been saved in your disk. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). You can also force the input data to be output; type ?sWriteData for details.
 
@@ -216,13 +216,13 @@ ColSideColors <- cbind(col_stages,col_replicates)
 colnames(ColSideColors) <- c("Stages","Replicates")
 output <- <a href='visDmatHeatmap.html' target=visDmatHeatmap>visDmatHeatmap</a>(sMap, data, sBase, base.legend.location="bottomleft", reorderRow="hclust", ColSideColors=ColSideColors, KeyValueName="log2(Ratio)", ColSideLabelLocation="right", labRow=NA)
 </div>
-<a href="javascript:newWin('Fang-32.png', 'Fang-32.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-32.png', width="400" /></a>
+<a href="javascript:newWin('Fang-32.png', 'Fang-32.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-32.png', width="400" /></a>
 <div class='input'>## As you have seen, heatmap is used to visualise patterns seen in genes within each meta-cluster/base. Row side bar indicates the meta-clusters/bases. Column side bar annotates samples. The returned variable "output" (NOT a txt file) has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). Note: it has rows in the same order as visualised in the heatmap
 
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(data, metric="euclidean")
 </div>
-<strong class='message'>Start at 2014-03-26 11:06:09</strong>
+<strong class='message'>Start at 2014-04-08 10:30:44</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -249,12 +249,12 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(dat
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-03-26 11:06:11</strong>
+<strong class='message'>End at 2014-04-08 10:30:46</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap, sReorder, title.rotate=15)
 </div>
-<a href="javascript:newWin('Fang-50.png', 'Fang-50.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:3px solid #FFFFFF;" src='Fang-50.png', width="400" /></a>
+<a href="javascript:newWin('Fang-50.png', 'Fang-50.png', '1200', '1000')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Fang-50.png', width="400" /></a>
 <div class='input'>## As you have seen, reordered components of trained map is displayed. Each component illustrates a sample-specific map and is placed within a two-dimensional rectangular lattice. Across components/samples, genes with similar expression patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/samples, that is, samples with the similar expression profiles are placed closer to each other.
 </div>
       </pre>
@@ -278,7 +278,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(dat
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
     <!--
