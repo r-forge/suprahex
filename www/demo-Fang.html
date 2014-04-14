@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for human embryo dataset from Fang et al @ supraHex 1.1.17</title>
+<title>Demo for human embryo dataset from Fang et al @ supraHex 1.2.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.1.17</a>
+      <a class="brand" href="index.html">supraHex 1.2.0</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -105,9 +105,10 @@
       <h2>Demo for human embryo dataset from Fang et al</h2>
 
 Notes:
-<li> All results are based on supraHex (version 1.1.17). </li>
-<li> Images displayed below may be distorted, and they should be normal in your screen. </li>
-<li> Functions contained in supraHex 1.1.17 are hyperlinked in-place and also listed on the right side. </li>
+<li> All results are based on supraHex (version 1.2.0). </li>
+<li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
+<li> Images displayed below may be distorted, but should be normal in your screen. </li>
+<li> Functions contained in supraHex 1.2.0 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -130,7 +131,7 @@ data <- Fang - matrix(rep(apply(Fang,1,mean),ncol(Fang)),ncol=ncol(Fang))
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2014-04-08 10:30:04</strong>
+<strong class='message'>Start at 2014-04-14 15:43:42</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -157,8 +158,8 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 6 to 1.5
    radius (at finetune stage): from 1.5 to 1
 </strong>
-<strong class='message'>End at 2014-04-08 10:30:07</strong>
-<strong class='message'>Runtime in total is: 3 secs
+<strong class='message'>End at 2014-04-14 15:43:44</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap, title.rotate=10)
 </div>
@@ -222,7 +223,7 @@ output <- <a href='visDmatHeatmap.html' target=visDmatHeatmap>visDmatHeatmap</a>
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(data, metric="euclidean")
 </div>
-<strong class='message'>Start at 2014-04-08 10:30:44</strong>
+<strong class='message'>Start at 2014-04-14 15:44:22</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -249,7 +250,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(dat
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-08 10:30:46</strong>
+<strong class='message'>End at 2014-04-14 15:44:24</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap, sReorder, title.rotate=15)

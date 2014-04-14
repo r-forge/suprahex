@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for leukemia patient dataset from Golub et al @ supraHex 1.1.17</title>
+<title>Demo for leukemia patient dataset from Golub et al @ supraHex 1.2.0</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.1.17</a>
+      <a class="brand" href="index.html">supraHex 1.2.0</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -105,9 +105,10 @@
       <h2>Demo for leukemia patient dataset from Golub et al</h2>
 
 Notes:
-<li> All results are based on supraHex (version 1.1.17). </li>
-<li> Images displayed below may be distorted, and they should be normal in your screen. </li>
-<li> Functions contained in supraHex 1.1.17 are hyperlinked in-place and also listed on the right side. </li>
+<li> All results are based on supraHex (version 1.2.0). </li>
+<li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
+<li> Images displayed below may be distorted, but should be normal in your screen. </li>
+<li> Functions contained in supraHex 1.2.0 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -125,7 +126,7 @@ data <- Golub # a matrix of 3,051 genes expressed in 38 samples
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2014-04-08 10:29:11</strong>
+<strong class='message'>Start at 2014-04-14 15:42:48</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -152,7 +153,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 6 to 1.5
    radius (at finetune stage): from 1.5 to 1
 </strong>
-<strong class='message'>End at 2014-04-08 10:29:13</strong>
+<strong class='message'>End at 2014-04-14 15:42:50</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap,title.rotate=10,colormap="darkgreen-lightgreen-lightpink-darkred")
@@ -198,7 +199,7 @@ sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(data,metric="pearson") # see Figure 8
 </div>
-<strong class='message'>Start at 2014-04-08 10:29:36</strong>
+<strong class='message'>Start at 2014-04-14 15:43:13</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -225,7 +226,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(dat
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-08 10:29:46</strong>
+<strong class='message'>End at 2014-04-14 15:43:23</strong>
 <strong class='message'>Runtime in total is: 10 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap,sReorder,title.rotate=15,colormap="darkgreen-lightgreen-lightpink-darkred")
@@ -238,14 +239,14 @@ D <- t(data)
 rownames(D) <- paste(rownames(D), 1:nrow(D), sep=".") # temporally make sure the row names are unique
 tree_bs <- <a href='visTreeBootstrap.html' target=visTreeBootstrap>visTreeBootstrap</a>(D, nodelabels.arg=list(cex=0.7))
 </div>
-<strong class='message'>Start at 2014-04-08 10:29:49</strong>
+<strong class='message'>Start at 2014-04-14 15:43:25</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (38 by 3051)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-04-08 10:29:50</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>Finish at 2014-04-14 15:43:27</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <a href="javascript:newWin('Golub-58.png', 'Golub-58.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-58.png', width="400" /></a>
 <div class='input'>## As you have seen, neighbour-joining tree is constructed based on pairwise euclidean distance matrices between samples. The robustness of tree branching is evaluated using bootstraping. In internal nodes (also color-coded), the number represents the proportion of bootstrapped trees that support the observed internal branching. The higher the number, the more robust the tree branching. 100 means that the internal branching is always observed by resampling characters/genes. 

@@ -63,7 +63,7 @@
 #' @importFrom ape nj fastme.ols fastme.bal boot.phylo consensus is.rooted unroot root mrca write.tree read.tree plot.phylo nodelabels
 #' @seealso \code{\link{visTreeBootstrap}}
 #' @include visTreeBootstrap.r
-#' @examples
+#' @examples    
 #' # 1) generate an iid normal random matrix of 100x10 
 #' data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 #' colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
@@ -127,7 +127,11 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
     }
     ## build the tree
     d <- as.dist(sDistance(data, metric=metric))
-    tr <- do.call(algorithm, list(d))
+    tr <- switch(algorithm,
+        nj=do.call(ape::nj, list(d)),
+        fastme.ols=do.call(ape::fastme.ols, list(d)),
+        fastme.bal=do.call(ape::fastme.bal, list(d))
+    )
     
     if(verbose){
         message(sprintf("Second, perform bootstrap analysis with %d replicates...", num.bootstrap), appendLF=T)
@@ -135,7 +139,11 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
     ## perform bootstrap analysis
     f <- function(x) {
         d <- as.dist(sDistance(x, metric=metric))
-        do.call(algorithm, list(d))
+        switch(algorithm,
+            nj=do.call(ape::nj, list(d)),
+            fastme.ols=do.call(ape::fastme.ols, list(d)),
+            fastme.bal=do.call(ape::fastme.bal, list(d))
+        )
     }
     if(consensus==TRUE){
         res <- ape::boot.phylo(tr, data, f, B=num.bootstrap, block=1, quiet=TRUE, trees=TRUE)
@@ -295,8 +303,6 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
                         no.margin = plot.phylo.arg.default$no.margin,
                         label.offset = plot.phylo.arg.default$label.offset,
                         rotate.tree = plot.phylo.arg.default$rotate.tree,
-                        show.tip.label = TRUE,
-                        show.node.label = FALSE,
                         ...
                         )
         ape::nodelabels(
