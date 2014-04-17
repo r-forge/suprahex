@@ -57,6 +57,20 @@ build_section <- function(section, package) {
   
   desc <- section$description
   
+  ###
+    markdown <- function(x = NULL, path = NULL) {
+      if (is.null(path)) {
+        if (is.null(x) || x == ""){
+            return("")
+        }else{
+            markdownToHTML(text = x, fragment.only = TRUE, options = c("safelink", "use_xhtml", "smartypants"))
+        }
+      }else{
+        markdownToHTML(text = x, file = path, fragment.only = TRUE, options = c("safelink", "use_xhtml", "smartypants"))
+      }
+    }
+  ###
+  
   list(
     title = section$name %||% "Missing section title",
     description = markdown(desc),
