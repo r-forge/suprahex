@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visTreeBootstrap @ supraHex 1.2.0</title>
+<title>visTreeBootstrap @ supraHex 1.2.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.2.0</a>
+      <a class="brand" href="index.html">supraHex 1.2.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -360,14 +360,14 @@ data <- t(data)
 # 2) build neighbor-joining tree with bootstrap values and visualise it by default
 visTreeBootstrap(data)
 </div>
-<strong class='message'>Start at 2014-04-17 15:25:57</strong>
+<strong class='message'>Start at 2014-05-09 19:55:15</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-04-17 15:25:58</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>Finish at 2014-05-09 19:55:15</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <a href="javascript:newWin('visTreeBootstrap-10.png', 'visTreeBootstrap-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visTreeBootstrap-10.png', width="400" /></a>
 <div class='output'>
@@ -385,13 +385,13 @@ Unrooted; includes branch lengths.
 # 3a) generate the bootstrapped tree (without visualisation)
 tree_bs <- visTreeBootstrap(data, visTree=FALSE)
 </div>
-<strong class='message'>Start at 2014-04-17 15:25:58</strong>
+<strong class='message'>Start at 2014-05-09 19:55:15</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-04-17 15:25:58</strong>
+<strong class='message'>Finish at 2014-05-09 19:55:15</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># 3b) look at the bootstrap values and ordered row names of input matrix
@@ -413,14 +413,14 @@ text <- tree_bs$node.label[flag]
 node <- Ntip + (1:Nnode)[flag]
 visTreeBootstrap(data, nodelabels.arg=list(text=text,node=node))
 </div>
-<strong class='message'>Start at 2014-04-17 15:25:58</strong>
+<strong class='message'>Start at 2014-05-09 19:55:15</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-04-17 15:25:58</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>Finish at 2014-05-09 19:55:16</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <a href="javascript:newWin('visTreeBootstrap-34.png', 'visTreeBootstrap-34.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visTreeBootstrap-34.png', width="400" /></a>
 <div class='output'>
@@ -437,13 +437,13 @@ Unrooted; includes branch lengths.
 # 4) obtain the consensus tree
 tree_cons <- visTreeBootstrap(data, consensus=TRUE, num.bootstrap=10)
 </div>
-<strong class='message'>Start at 2014-04-17 15:25:58</strong>
+<strong class='message'>Start at 2014-05-09 19:55:16</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 10 replicates...</strong>
 <strong class='message'>Finally, obtain consensus tree based on 0.50 majority...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-04-17 15:25:58</strong>
+<strong class='message'>Finish at 2014-05-09 19:55:16</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong></pre>
   </div>

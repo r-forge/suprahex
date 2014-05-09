@@ -2,7 +2,8 @@
 \alias{visHexGrid}
 \title{Function to visualise a supra-hexagonal grid}
 \usage{
-visHexGrid(hbin, area.size = 1, border.color = NULL, fill.color = NULL)
+visHexGrid(hbin, area.size = 1, border.color = NULL, fill.color = NULL,
+lty = 1, lwd = 1, lineend = "round", linejoin = "round")
 }
 \arguments{
 \item{hbin}{an object of class "hexbin"}
@@ -13,6 +14,18 @@ area size of each hexagon}
 \item{border.color}{the border color for each hexagon}
 
 \item{fill.color}{the filled color for each hexagon}
+
+\item{lty}{the line type for each hexagon. 0 for 'blank',
+1 for 'solid', 2 for 'dashed', 3 for 'dotted', 4 for
+'dotdash', 5 for 'longdash', 6 for 'twodash'}
+
+\item{lwd}{the line width for each hexagon}
+
+\item{lineend}{the line end style for each hexagon. It
+can be one of 'round', 'butt' and 'square'}
+
+\item{linejoin}{the line join style for each hexagon. It
+can be one of 'round', 'mitre' and 'bevel'}
 }
 \value{
 invisible

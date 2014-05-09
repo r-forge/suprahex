@@ -3,12 +3,12 @@
 \title{Function to visualise clusters/bases partitioned from a supra-hexagonal grid}
 \usage{
 visDmatCluster(sMap, sBase, height = 7, margin = rep(0.1, 4),
-area.size = 1, gp = grid::gpar(cex = 0.8, font = 2, col.label =
-"black"),
-border.color = "transparent", colormap = c("rainbow", "jet", "bwr",
-"gbr",
-"wyr", "br", "yr", "wb"), clip = c("on", "inherit", "off"), newpage =
-T)
+area.size = 1, gp = grid::gpar(cex = 0.8, font = 2, col = "black"),
+border.color = "transparent", fill.color = NULL, lty = 1, lwd = 1,
+lineend = "round", linejoin = "round", colormap = c("rainbow", "jet",
+"bwr", "gbr", "wyr", "br", "yr", "wb"), clip = c("on", "inherit",
+"off"),
+newpage = T)
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}
@@ -28,6 +28,20 @@ from a call to the function "gpar" (i.e., a list of
 graphical parameter settings)}
 
 \item{border.color}{the border color for each hexagon}
+
+\item{fill.color}{the filled color for each hexagon}
+
+\item{lty}{the line type for each hexagon. 0 for 'blank',
+1 for 'solid', 2 for 'dashed', 3 for 'dotted', 4 for
+'dotdash', 5 for 'longdash', 6 for 'twodash'}
+
+\item{lwd}{the line width for each hexagon}
+
+\item{lineend}{the line end style for each hexagon. It
+can be one of 'round', 'butt' and 'square'}
+
+\item{linejoin}{the line join style for each hexagon. It
+can be one of 'round', 'mitre' and 'bevel'}
 
 \item{colormap}{short name for the colormap. It can be
 one of "jet" (jet colormap), "bwr" (blue-white-red
@@ -75,11 +89,22 @@ distMeasure="median", clusterLinkage="average")
 visDmatCluster(sMap,sBase)
 # 4a) also, the area size is proportional to the hits
 visDmatCluster(sMap,sBase, area.size=log2(sMap$hits+1))
-# 4b) also, the area size is proportional to the index of bases
-visDmatCluster(sMap,sBase, area.size=sBase$bases)
+# 4b) also, the area size is inversely proportional to the map distance
+dMat <- sDmat(sMap)
+visDmatCluster(sMap,sBase, area.size=-1*log2(dMat))
+
+# 5) customise the fill color and line type
+my_color <-
+visColormap(colormap="PapayaWhip-pink-Tomato")(length(sBase$seeds))[sBase$bases]
+my_lty <- (sBase$bases \%\% 2)
+visDmatCluster(sMap,sBase, fill.color=my_color, lty=my_lty,
+border.color="black", lwd=2, area.size=0.9)
+# also, the area size is inversely proportional to the map distance
+visDmatCluster(sMap,sBase, fill.color=my_color, lty=my_lty,
+border.color="black", lwd=2, area.size=-1*log2(dMat))
 }
 \seealso{
-\code{\link{sDmatCluster}}, \code{\link{visColormap}},
-\code{\link{visHexGrid}}
+\code{\link{sDmatCluster}}, \code{\link{sDmat}},
+\code{\link{visColormap}}, \code{\link{visHexGrid}}
 }
 

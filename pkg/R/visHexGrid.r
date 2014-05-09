@@ -6,6 +6,10 @@
 #' @param area.size an inteter or a vector specifying the area size of each hexagon
 #' @param border.color the border color for each hexagon
 #' @param fill.color the filled color for each hexagon
+#' @param lty the line type for each hexagon. 0 for 'blank', 1 for 'solid', 2 for 'dashed', 3 for 'dotted', 4 for 'dotdash', 5 for 'longdash', 6 for 'twodash'
+#' @param lwd the line width for each hexagon
+#' @param lineend the line end style for each hexagon. It can be one of 'round', 'butt' and 'square'
+#' @param linejoin the line join style for each hexagon. It can be one of 'round', 'mitre' and 'bevel'
 #' @return 
 #' invisible
 #' @note none
@@ -30,7 +34,7 @@
 #' vp <- hexbin::hexViewport(hbin)
 #' visHexGrid(hbin)
 
-visHexGrid <- function (hbin, area.size=1, border.color=NULL, fill.color=NULL) 
+visHexGrid <- function (hbin, area.size=1, border.color=NULL, fill.color=NULL, lty=1, lwd=1, lineend="round", linejoin="round") 
 {
     if (class(hbin) != "hexbin"){
         stop("The funciton must apply to a 'hexbin' object.\n")
@@ -62,7 +66,7 @@ visHexGrid <- function (hbin, area.size=1, border.color=NULL, fill.color=NULL)
     
     pltx <- rep.int(hexC$x, n) * rep.int(radius, n6) + rep.int(xnew, n6)
     plty <- rep.int(hexC$y, n) * rep.int(radius, n6) + rep.int(ynew, n6)
-    grid::grid.polygon(pltx, plty, default.units="native", id=NULL, id.lengths=n6, gp=grid::gpar(fill=fill.color, col=border.color))
+    grid::grid.polygon(pltx, plty, default.units="native", id=NULL, id.lengths=n6, gp=grid::gpar(fill=fill.color, col=border.color, lty=lty, lwd=lwd, lineend=lineend, linejoin=linejoin))
     
     invisible()
 }

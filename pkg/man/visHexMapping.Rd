@@ -6,10 +6,11 @@ visHexMapping(sObj, mappingType = c("indexes", "hits", "dist",
 "antidist",
 "bases", "customized"), labels = NULL, height = 7, margin = rep(0.1,
 4),
-area.size = 1, gp = grid::gpar(cex = 0.7, font = 1, col.label =
-"black"),
-border.color = "black", fill.color = "transparent", clip = c("on",
-"inherit", "off"), newpage = T)
+area.size = 1, gp = grid::gpar(cex = 0.7, font = 1, col = "black"),
+border.color = "black", fill.color = "transparent", lty = 1, lwd = 1,
+lineend = "round", linejoin = "round", clip = c("on", "inherit",
+"off"),
+newpage = T)
 }
 \arguments{
 \item{sObj}{an object of class "sMap" or "sInit" or
@@ -35,6 +36,18 @@ graphical parameter settings)}
 \item{border.color}{the border color for each hexagon}
 
 \item{fill.color}{the filled color for each hexagon}
+
+\item{lty}{the line type for each hexagon. 0 for 'blank',
+1 for 'solid', 2 for 'dashed', 3 for 'dotted', 4 for
+'dotdash', 5 for 'longdash', 6 for 'twodash'}
+
+\item{lwd}{the line width for each hexagon}
+
+\item{lineend}{the line end style for each hexagon. It
+can be one of 'round', 'butt' and 'square'}
+
+\item{linejoin}{the line join style for each hexagon. It
+can be one of 'round', 'mitre' and 'bevel'}
 
 \item{clip}{either "on" for clipping to the extent of
 this viewport, "inherit" for inheriting the clipping

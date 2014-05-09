@@ -102,7 +102,7 @@ visHexPattern <- function (sObj, plotType=c("lines","bars","radars"), pattern=NU
         if(r%%2){
             tmpColor <- c("transparent", "#555555")
         }else{
-            tmpColor <- c("#555555", "transparent")   
+            tmpColor <- c("#555555", "transparent")    
         }
         myBorderColor <- tmpColor[stepCentroid%%2 + 1]
     }

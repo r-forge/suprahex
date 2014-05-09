@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visDmatCluster @ supraHex 1.2.0</title>
+<title>visDmatCluster @ supraHex 1.2.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.2.0</a>
+      <a class="brand" href="index.html">supraHex 1.2.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -113,8 +113,9 @@ clusters/bases partitioned from a supra-hexagonal grid</p>
   
     <h3>Usage</h3>
     <pre>visDmatCluster(sMap, sBase, height = 7, margin = rep(0.1, 4), area.size = 1, gp = grid::gpar(cex = 0.8, 
-  font = 2, col.label = "black"), border.color = "transparent", colormap = c("rainbow", 
-      "jet", "bwr", "gbr", "wyr", "br", "yr", "wb"), clip = c("on", "inherit", "off"), 
+  font = 2, col = "black"), border.color = "transparent", fill.color = NULL, lty = 1, 
+      lwd = 1, lineend = "round", linejoin = "round", colormap = c("rainbow", "jet", 
+          "bwr", "gbr", "wyr", "br", "yr", "wb"), clip = c("on", "inherit", "off"), 
       newpage = T)</pre>
     
     <h3>Arguments</h3>
@@ -137,6 +138,20 @@ from a call to the function "gpar" (i.e., a list of
 graphical parameter settings)</dd>
       <dt>border.color</dt>
       <dd>the border color for each hexagon</dd>
+      <dt>fill.color</dt>
+      <dd>the filled color for each hexagon</dd>
+      <dt>lty</dt>
+      <dd>the line type for each hexagon. 0 for 'blank',
+1 for 'solid', 2 for 'dashed', 3 for 'dotted', 4 for
+'dotdash', 5 for 'longdash', 6 for 'twodash'</dd>
+      <dt>lwd</dt>
+      <dd>the line width for each hexagon</dd>
+      <dt>lineend</dt>
+      <dd>the line end style for each hexagon. It
+can be one of 'round', 'butt' and 'square'</dd>
+      <dt>linejoin</dt>
+      <dd>the line join style for each hexagon. It
+can be one of 'round', 'mitre' and 'bevel'</dd>
       <dt>colormap</dt>
       <dd>short name for the colormap. It can be
 one of "jet" (jet colormap), "bwr" (blue-white-red
@@ -180,7 +195,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-04-17 15:25:22</strong>
+<strong class='message'>Start at 2014-05-09 19:54:40</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -207,7 +222,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-17 15:25:22</strong>
+<strong class='message'>End at 2014-05-09 19:54:40</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -223,10 +238,25 @@ visDmatCluster(sMap,sBase)
 visDmatCluster(sMap,sBase, area.size=log2(sMap$hits+1))
 </div>
 <a href="javascript:newWin('visDmatCluster-20.png', 'visDmatCluster-20.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDmatCluster-20.png', width="400" /></a>
-<div class='input'># 4b) also, the area size is proportional to the index of bases
-visDmatCluster(sMap,sBase, area.size=sBase$bases)
+<div class='input'># 4b) also, the area size is inversely proportional to the map distance
+dMat <- sDmat(sMap)
+visDmatCluster(sMap,sBase, area.size=-1*log2(dMat))
 </div>
-<a href="javascript:newWin('visDmatCluster-22.png', 'visDmatCluster-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDmatCluster-22.png', width="400" /></a></pre>
+<a href="javascript:newWin('visDmatCluster-22.png', 'visDmatCluster-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDmatCluster-22.png', width="400" /></a>
+<div class='input'>
+# 5) customise the fill color and line type
+my_color <-
+visColormap(colormap="PapayaWhip-pink-Tomato")(length(sBase$seeds))[sBase$bases]
+my_lty <- (sBase$bases %% 2)
+visDmatCluster(sMap,sBase, fill.color=my_color, lty=my_lty,
+border.color="black", lwd=2, area.size=0.9)
+</div>
+<a href="javascript:newWin('visDmatCluster-24.png', 'visDmatCluster-24.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDmatCluster-24.png', width="400" /></a>
+<div class='input'># also, the area size is inversely proportional to the map distance
+visDmatCluster(sMap,sBase, fill.color=my_color, lty=my_lty,
+border.color="black", lwd=2, area.size=-1*log2(dMat))
+</div>
+<a href="javascript:newWin('visDmatCluster-26.png', 'visDmatCluster-26.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visDmatCluster-26.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">
@@ -242,8 +272,8 @@ visDmatCluster(sMap,sBase, area.size=sBase$bases)
       
     <h2>See also</h2>
     
-<code><a href='sDmatCluster.html'>sDmatCluster</a></code>, <code><a href='visColormap.html'>visColormap</a></code>,
-<code><a href='visHexGrid.html'>visHexGrid</a></code>
+<code><a href='sDmatCluster.html'>sDmatCluster</a></code>, <code><a href='sDmat.html'>sDmat</a></code>,
+<code><a href='visColormap.html'>visColormap</a></code>, <code><a href='visHexGrid.html'>visHexGrid</a></code>
 
     
     <h2>Citation</h2>
