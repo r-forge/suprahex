@@ -90,6 +90,9 @@
           <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
         </ul>
         <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
       </div>
@@ -154,9 +157,13 @@ biocLite(&quot;supraHex&quot;)
 
 <p>To install <a href="http://bioconductor.org/packages/devel/bioc/html/supraHex.html">latest development version</a> (<code>highly recommended</code> for benefits of latest improvements), run:</p>
 
-<pre><code>if(!require(hexbin)) install.packages(&quot;hexbin&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
-if(!require(ape)) install.packages(&quot;ape&quot;,repos=&quot;http://www.stats.bris.ac.uk/R&quot;)
-install.packages(&quot;supraHex&quot;,repos=&quot;http://R-Forge.R-project.org&quot;, type=&quot;source&quot;)
+<pre><code>library(BiocInstaller) 
+useDevel(devel=T)
+source(&quot;http://bioconductor.org/biocLite.R&quot;)
+biocLite(&quot;supraHex&quot;)
+# After intallation, it is very important to reset back to the release version of Bioconductor
+# Otherwise, packages to be installed will come from the development version (might be instable)
+useDevel(devel=F)
 </code></pre>
 
 

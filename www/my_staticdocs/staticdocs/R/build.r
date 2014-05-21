@@ -20,7 +20,7 @@
 #' @import stringr
 #' @importFrom devtools load_all
 #' @aliases staticdocs-package
-build_package <- function(package, base_path = NULL, examples=T, replace.examplefiles.forced=T, flag_demos=T) {
+build_package <- function(package, base_path = NULL, examples=T, replace.examplefiles.forced=T, flag_demos=T, flag_faqs=T) {
   load_all(package)
   
   package <- package_info(package, base_path, examples=examples)
@@ -42,6 +42,8 @@ build_package <- function(package, base_path = NULL, examples=T, replace.example
   package$rdata <- install_cite_rdata(package, "RData.md")
   
   package$demos <- build_demos(package, flag_demos=flag_demos)
+  package$faqs <- build_faqs(package, flag_faqs=flag_faqs)
+  
   package$topics <- build_topics(package, replace.examplefiles.forced=replace.examplefiles.forced)
   
   package <- build_index(package)
@@ -88,6 +90,12 @@ build_package <- function(package, base_path = NULL, examples=T, replace.example
   package$pagetitle <- "Demos"
   render_page(package, "demos", package, out)
   
+  ###############
+  # for faqs html
+  message("Generating faqs.html")
+  out <- file.path(package$base_path, "faqs.html")
+  package$pagetitle <- "FAQs"
+  render_page(package, "faqs", package, out)
   
   ###############
   
@@ -348,5 +356,97 @@ build_demos <- function(package, flag_demos) {
   }
   
   list(demo = unname(apply(cbind(filename, title), 1, as.list)))
+}
+
+build_faqs <- function(package, flag_faqs) {
+  faq_dir <- file.path(pkg_sd_path(package), "faq")
+
+  if (!file.exists(faq_dir)) return()
+  
+  message("Rendering faqs")
+  faqs <- readLines(file.path(faq_dir, "List_faqs.txt"))
+  
+  pieces <- str_split_fixed(faqs, "\\s+", 2)
+  in_path <- str_c(pieces[, 1], ".r")
+  filename <- str_c("faq-", pieces[,1], ".html")
+  title <- pieces[, 2]
+  
+  if(sum(flag_faqs)){
+    
+        ## controlling which faq will be run
+        tmp <- rep(TRUE, length(title))
+        tmp[1:length(flag_faqs)] <- flag_faqs
+        flag_faqs <- tmp
+        
+        ##################################################################################
+    
+      for(i in seq_along(title)) {
+        
+        if(flag_faqs[i]==FALSE) next
+        
+        message("\t", title[i])
+        
+        faq_code <- readLines(file.path(faq_dir, in_path[i]))
+        faq_expr <- evaluate(faq_code, new.env(parent = globalenv()))
+
+        package$faq <- replay_html(faq_expr, package = package, name = str_c(pieces[i], "-"))
+        
+        
+        ########################################################
+        # Functions used are hyperlinked to the relevant documentation
+
+        tmp_faq <- package$faq
+        
+        #all_fun <- package$rd_index[,1]
+        all_fun <- str_replace_all(package$collate, '.r$', '')
+        
+        # add hypelink
+        
+        ## all functions found within faq
+        functions_found_within_faq <- vector()
+        
+        tmp_faq_lines <- unlist(str_split(tmp_faq, '\n'))
+        for(k in 1:length(tmp_faq_lines)){
+            
+            source <- tmp_faq_lines[k]
+            
+            ## find all (e.g. "sCompReorder"   "visCompReorder")
+            list_find <- vector()
+            for(t in 1:length(all_fun)){
+                target <- all_fun[t]
+                
+                if(!is.na(str_match(source, target))){
+                    list_find <- c(list_find,target)
+                }
+            }
+            
+            ## remain the longest string
+            if(length(list_find)){
+                target_final <- list_find[which.max(nchar(list_find))]
+                tmp_replace <- str_c("<a href='", target_final, ".html' target=", target_final, ">",target_final,"</a>")
+                tmp_faq_lines[k] <- str_replace_all(source, target_final, tmp_replace)
+                
+                functions_found_within_faq <- c(functions_found_within_faq, target_final)
+            }
+            
+        }
+        replace_faq <- str_c(tmp_faq_lines, collapse='\n')
+        package$faq <- replace_faq
+        
+        
+        name <- unique(functions_found_within_faq)
+        if(length(name)){
+            hypername <- str_c(name, collpase='.html')
+            package$faq_funcs <- list(faq_func = unname(apply(cbind(name, hypername), 1, as.list)))
+        }
+        ########################################################
+        
+        package$pagetitle <- title[i]
+        render_page(package, "faq", package, file.path(package$base_path, filename[i]))
+        graphics.off()
+      }
+  }
+  
+  list(faq = unname(apply(cbind(filename, title), 1, as.list)))
 }
 
