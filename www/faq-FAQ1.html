@@ -100,6 +100,21 @@
   </div>
 </div>
 
+<script>
+  (function() {
+    var cx = '012094530736424854714:5dmiiel8qeq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
     <div class="container">
       <header>
         
@@ -124,7 +139,7 @@ data <- matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3)
 # train a supra-hexagonal map by data
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data, xdim=15)
 </div>
-<strong class='message'>Start at 2014-05-21 16:32:25</strong>
+<strong class='message'>Start at 2014-05-27 11:55:06</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -141,7 +156,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data, xdim=15)
    dimension of grid coord: 169x2
    initialisation method: linear
    dimension of codebook matrix: 169x3
-   mean quantization error: 0.342702855593103
+   mean quantization error: 0.335604204671441
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: batch
@@ -151,7 +166,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data, xdim=15)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-21 16:32:26</strong>
+<strong class='message'>End at 2014-05-27 11:55:07</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'># visualise the supra-hexagonal map with node numbering

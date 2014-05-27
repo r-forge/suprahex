@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for multilayer omics dataset from Hiratani et al @ supraHex 1.2.0</title>
+<title>Demo for multilayer omics dataset from Hiratani et al @ supraHex 1.3.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.2.0</a>
+      <a class="brand" href="index.html">supraHex 1.3.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -90,12 +90,30 @@
           <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
         </ul>
         <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:5dmiiel8qeq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
 
     <div class="container">
       <header>
@@ -105,10 +123,10 @@
       <h2>Demo for multilayer omics dataset from Hiratani et al</h2>
 
 Notes:
-<li> All results are based on supraHex (version 1.2.0). </li>
+<li> All results are based on supraHex (version 1.3.1). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in supraHex 1.2.0 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in supraHex 1.3.1 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -137,7 +155,7 @@ ls() # you should see three variables: 'RT', 'CpG' and 'EX'
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2014-04-17 15:27:04</strong>
+<strong class='message'>Start at 2014-05-27 11:50:51</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -164,8 +182,8 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 8 to 2
    radius (at finetune stage): from 2 to 1
 </strong>
-<strong class='message'>End at 2014-04-17 15:27:14</strong>
-<strong class='message'>Runtime in total is: 10 secs
+<strong class='message'>End at 2014-05-27 11:51:02</strong>
+<strong class='message'>Runtime in total is: 11 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap, title.rotate=5, gp=grid::gpar(cex=0.8), zlim=c(-2,2), colormap="darkblue-white-darkorange")
 </div>
@@ -210,7 +228,7 @@ sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap, metric="mi")
 </div>
-<strong class='message'>Start at 2014-04-17 15:28:47</strong>
+<strong class='message'>Start at 2014-05-27 11:52:35</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -237,7 +255,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-17 15:28:49</strong>
+<strong class='message'>End at 2014-05-27 11:52:37</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap, sReorder, title.rotate=10, gp=grid::gpar(cex=0.6,font=2),zlim=c(-2,2), colormap="darkblue-white-darkorange")
@@ -259,7 +277,7 @@ sOverlay <- <a href='sMapOverlay.html' target=sMapOverlay>sMapOverlay</a>(sMap=s
 sOverlay <- <a href='sMapOverlay.html' target=sMapOverlay>sMapOverlay</a>(sMap=sMap, data=data, additional=EX)
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sOverlay, metric="none") # here reorder samples based on overlaid distribution data rather than expression data
 </div>
-<strong class='message'>Start at 2014-04-17 15:28:55</strong>
+<strong class='message'>Start at 2014-05-27 11:52:44</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -286,8 +304,8 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sOv
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-04-17 15:28:58</strong>
-<strong class='message'>Runtime in total is: 3 secs
+<strong class='message'>End at 2014-05-27 11:52:46</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sOverlay, sReorder, title.rotate=10, colormap="darkgreen-lightgreen-lightpink-darkred")
 </div>

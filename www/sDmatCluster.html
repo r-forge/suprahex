@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>sDmatCluster @ supraHex 1.2.1</title>
+<title>sDmatCluster @ supraHex 1.3.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.2.1</a>
+      <a class="brand" href="index.html">supraHex 1.3.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -90,12 +90,30 @@
           <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
         </ul>
         <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
           <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
         </ul>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:5dmiiel8qeq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
 
     <div class="container">
       <header>
@@ -182,7 +200,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-05-09 19:54:30</strong>
+<strong class='message'>Start at 2014-05-27 11:55:33</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -209,7 +227,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-09 19:54:30</strong>
+<strong class='message'>End at 2014-05-27 11:55:33</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>

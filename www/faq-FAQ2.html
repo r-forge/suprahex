@@ -100,6 +100,21 @@
   </div>
 </div>
 
+<script>
+  (function() {
+    var cx = '012094530736424854714:5dmiiel8qeq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
     <div class="container">
       <header>
         
@@ -127,7 +142,7 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 # get trained using by default setup
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
 </div>
-<strong class='message'>Start at 2014-05-21 16:55:17</strong>
+<strong class='message'>Start at 2014-05-27 11:55:08</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -144,7 +159,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
    dimension of grid coord: 61x2
    initialisation method: linear
    dimension of codebook matrix: 61x10
-   mean quantization error: 4.91333045850258
+   mean quantization error: 4.9630432442287
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: batch
@@ -154,13 +169,13 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-21 16:55:17</strong>
+<strong class='message'>End at 2014-05-27 11:55:08</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># reorder component planes
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap=sMap)
 </div>
-<strong class='message'>Start at 2014-05-21 16:55:17</strong>
+<strong class='message'>Start at 2014-05-27 11:55:08</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -177,7 +192,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
    dimension of grid coord: 30x2
    initialisation method: linear
    dimension of codebook matrix: 30x61
-   mean quantization error: 5.2866197409241
+   mean quantization error: 4.58202954421453
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -187,8 +202,8 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-21 16:55:18</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-05-27 11:55:08</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># visualise multiple component planes reorded within a sheet-shape rectangle grid
 <a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap=sMap, sReorder=sReorder)
@@ -198,7 +213,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
 # As you have seen, these 10 samples are organised onto a 6 X 5 rectangle grid. You can change it to 7 X 7, for example:
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap=sMap, xdim=7, ydim=7)
 </div>
-<strong class='message'>Start at 2014-05-21 16:55:19</strong>
+<strong class='message'>Start at 2014-05-27 11:55:09</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -215,7 +230,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
    dimension of grid coord: 49x2
    initialisation method: linear
    dimension of codebook matrix: 49x61
-   mean quantization error: 3.6315591163764
+   mean quantization error: 3.08127685132509
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -225,8 +240,8 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-21 16:55:20</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-05-27 11:55:11</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap=sMap, sReorder=sReorder)
 </div>

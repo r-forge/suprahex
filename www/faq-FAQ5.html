@@ -100,6 +100,21 @@
   </div>
 </div>
 
+<script>
+  (function() {
+    var cx = '012094530736424854714:5dmiiel8qeq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
     <div class="container">
       <header>
         
@@ -125,7 +140,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
 </div>
-<strong class='message'>Start at 2014-05-21 18:19:18</strong>
+<strong class='message'>Start at 2014-05-27 11:55:30</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -142,7 +157,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
    dimension of grid coord: 61x2
    initialisation method: linear
    dimension of codebook matrix: 61x10
-   mean quantization error: 4.91333045850258
+   mean quantization error: 4.61431442408722
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: batch
@@ -152,7 +167,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-21 18:19:18</strong>
+<strong class='message'>End at 2014-05-27 11:55:30</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap=sMap)
