@@ -138,11 +138,11 @@ Notes:
 
 # generate an iid normal random matrix of 100x10
 data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
-colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
+colnames(data) <- paste('S', seq(1:10), sep="")
 # get trained using by default setup
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
 </div>
-<strong class='message'>Start at 2014-05-27 11:55:08</strong>
+<strong class='message'>Start at 2014-05-30 16:14:16</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -169,13 +169,13 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-27 11:55:08</strong>
+<strong class='message'>End at 2014-05-30 16:14:16</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># reorder component planes
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap=sMap)
 </div>
-<strong class='message'>Start at 2014-05-27 11:55:08</strong>
+<strong class='message'>Start at 2014-05-30 16:14:16</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -202,8 +202,8 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-27 11:55:08</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-05-30 16:14:17</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'># visualise multiple component planes reorded within a sheet-shape rectangle grid
 <a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap=sMap, sReorder=sReorder)
@@ -213,7 +213,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
 # As you have seen, these 10 samples are organised onto a 6 X 5 rectangle grid. You can change it to 7 X 7, for example:
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap=sMap, xdim=7, ydim=7)
 </div>
-<strong class='message'>Start at 2014-05-27 11:55:09</strong>
+<strong class='message'>Start at 2014-05-30 16:14:18</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -240,7 +240,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-27 11:55:11</strong>
+<strong class='message'>End at 2014-05-30 16:14:20</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap=sMap, sReorder=sReorder)

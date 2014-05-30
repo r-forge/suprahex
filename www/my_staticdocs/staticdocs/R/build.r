@@ -32,6 +32,14 @@ build_package <- function(package, base_path = NULL, examples=T, replace.example
     if(file.exists(images_local_path)){
         file.copy(dir(images_local_path, full.names = TRUE), base_path, recursive = TRUE)
     }
+    
+    # copy a directory 'R'
+    dest <- file.path(package$base_path, "R")
+    if (!file.exists(dest)) dir.create(dest)
+    R_local_path <- file.path(gsub('/inst/staticdocs','',pkg_sd_path(package)), "R")
+    if(file.exists(R_local_path)){
+        file.copy(dir(R_local_path, full.names = TRUE), dest, recursive = TRUE)
+    }
 
   package$vignettes <- build_vignettes(package)
   package$manuals <- build_manual(package)
@@ -124,6 +132,13 @@ build_topics <- function(package, replace.examplefiles.forced) {
   index$title <- ""
   index$in_index <- TRUE
   
+    ###############
+    R_functions <- package$collate
+    wh <- dev.size(units="px")
+    wth <- 1200
+    hgt <- wth*wh[2]/wh[1]
+    ###############
+  
   for (i in seq_along(index$name)) {
     message("Generating ", basename(paths[[i]]))
     
@@ -160,6 +175,16 @@ build_topics <- function(package, replace.examplefiles.forced) {
         }
     }
     #####################################################################################
+    
+    ## popup window for source code
+    ##########################################
+    temp <- paste(index$name[i],'.r', sep='')
+    if (temp %in% R_functions) {
+        #html$sourcecode <- paste("\n<code><a href=R/",temp,">",temp,"</a></code>\n", sep='')
+        name <- paste("R/",temp, sep='')
+        html$sourcecode <- str_c("<a href=\"javascript:newWin('", name,"', '", name,"', '",wth,"', '",hgt,"')\" title=\"Click to view\"><B><code>",temp,"</code></B></a>")
+    }
+    ###########################################
     
     render_page(package, "topic", html, paths[[i]])
     graphics.off()

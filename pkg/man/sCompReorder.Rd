@@ -41,8 +41,13 @@ details}
 \item{init}{an initialisation method. It can be one of
 "uniform", "sample" and "linear" initialisation methods}
 
-\item{algorithm}{the training algorithm. Currently, only
-"sequential" algorithm has been implemented}
+\item{algorithm}{the training algorithm. It can be one of
+"sequential" and "batch" algorithm. By default, it uses
+'sequential' algorithm. If the input data contains a
+large number of samples but not a great amount of zero
+entries, then it is reasonable to use 'batch' algorithm
+for its fast computations (probably also without the
+compromise of accuracy)}
 
 \item{alphaType}{the alpha type. It can be one of
 "invert", "linear" and "power" alpha types}

@@ -143,16 +143,16 @@ install.packages("evaluate",repos="http://cran.r-project.org",type="source")
 </div>
 <div class='output'>
 The downloaded source packages are in
-	‘/private/var/folders/pj/y48x614s6b901_km380njtsh0000gq/T/RtmpFZnpss/downloaded_packages’
+	‘/private/var/folders/pj/y48x614s6b901_km380njtsh0000gq/T/Rtmp5eXJz2/downloaded_packages’
 </div>
 <div class='input'>library(evaluate)
 
 ## Then, produce an image in the screen
 data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
-colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
+colnames(data) <- paste('S', seq(1:10), sep="")
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
 </div>
-<strong class='message'>Start at 2014-05-27 11:55:20</strong>
+<strong class='message'>Start at 2014-05-30 16:14:26</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -179,12 +179,12 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-27 11:55:20</strong>
+<strong class='message'>End at 2014-05-30 16:14:26</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap=sMap)
 </div>
-<strong class='message'>Start at 2014-05-27 11:55:20</strong>
+<strong class='message'>Start at 2014-05-30 16:14:26</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -211,8 +211,8 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-27 11:55:21</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-05-30 16:14:26</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap=sMap, sReorder=sReorder)
 </div>

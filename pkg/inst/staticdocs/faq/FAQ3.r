@@ -10,7 +10,7 @@ library(evaluate)
 
 ## Then, produce an image in the screen
 data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
-colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
+colnames(data) <- paste('S', seq(1:10), sep="")
 sMap <- sPipeline(data=data)
 sReorder <- sCompReorder(sMap=sMap)
 visCompReorder(sMap=sMap, sReorder=sReorder)

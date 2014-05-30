@@ -5,7 +5,7 @@
 # Yes. <span style="font-weight:bold; color:#F87217; text-decoration:underline">These meta-clusters can also be useful to correlate with sample relationships displayed by visCompReorder.</span> See an example below:
 
 data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
-colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
+colnames(data) <- paste('S', seq(1:10), sep="")
 sMap <- sPipeline(data=data)
 sReorder <- sCompReorder(sMap=sMap)
 visCompReorder(sMap=sMap, sReorder=sReorder)

@@ -3,7 +3,7 @@
 # <span style="font-weight:bold; color:#F87217; text-decoration:underline">Another key reason is based on the fact that: the users are always willing to check gene expression pattern within each meta-cluster. Because of this, we have provided the function visDmatHeatmap, from which the legend key is shown.</span>
 
 data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
-colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
+colnames(data) <- paste('S', seq(1:10), sep="")
 sMap <- sPipeline(data=data)
 sBase <- sDmatCluster(sMap=sMap)
 visDmatCluster(sMap,sBase)

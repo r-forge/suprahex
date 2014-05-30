@@ -4,7 +4,7 @@
 
 # generate an iid normal random matrix of 100x10
 data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
-colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
+colnames(data) <- paste('S', seq(1:10), sep="")
 # get trained using by default setup
 sMap <- sPipeline(data=data)
 # reorder component planes

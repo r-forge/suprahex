@@ -178,8 +178,13 @@ details</dd>
       <dd>an initialisation method. It can be one of
 "uniform", "sample" and "linear" initialisation methods</dd>
       <dt>algorithm</dt>
-      <dd>the training algorithm. Currently, only
-"sequential" algorithm has been implemented</dd>
+      <dd>the training algorithm. It can be one of
+"sequential" and "batch" algorithm. By default, it uses
+'sequential' algorithm. If the input data contains a
+large number of samples but not a great amount of zero
+entries, then it is reasonable to use 'batch' algorithm
+for its fast computations (probably also without the
+compromise of accuracy)</dd>
       <dt>alphaType</dt>
       <dd>the alpha type. It can be one of
 "invert", "linear" and "power" alpha types</dd>
@@ -233,7 +238,7 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-05-27 11:55:31</strong>
+<strong class='message'>Start at 2014-05-30 14:52:26</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -260,7 +265,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-27 11:55:31</strong>
+<strong class='message'>End at 2014-05-30 14:52:26</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -268,7 +273,7 @@ sMap <- sPipeline(data=data)
 # 3a) directly using column-wise vectors of codebook matrix
 sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2014-05-27 11:55:31</strong>
+<strong class='message'>Start at 2014-05-30 14:52:26</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -295,13 +300,13 @@ sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-27 11:55:32</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-05-30 14:52:26</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># 3b) according to covariance matrix of pearson correlation of codebook matrix
 sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="pearson")
 </div>
-<strong class='message'>Start at 2014-05-27 11:55:32</strong>
+<strong class='message'>Start at 2014-05-30 14:52:26</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -328,13 +333,13 @@ sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="pearson")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-27 11:55:32</strong>
+<strong class='message'>End at 2014-05-30 14:52:26</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># 3c) according to covariance matrix of pearson correlation of input matrix
 sReorder <- sCompReorder(sMap=data, amplifier=2, metric="pearson")
 </div>
-<strong class='message'>Start at 2014-05-27 11:55:32</strong>
+<strong class='message'>Start at 2014-05-30 14:52:26</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -361,8 +366,8 @@ sReorder <- sCompReorder(sMap=data, amplifier=2, metric="pearson")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-27 11:55:32</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-05-30 14:52:27</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong></pre>
   </div>
   
@@ -376,7 +381,10 @@ sReorder <- sCompReorder(sMap=data, amplifier=2, metric="pearson")
       
     </ul> 
     -->
-      
+    
+    <h2>Source code</h2>
+    <a href="javascript:newWin('R/sCompReorder.r', 'R/sCompReorder.r', '1200', '1200')" title="Click to view"><B><code>sCompReorder.r</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='sTopology.html'>sTopology</a></code>, <code><a href='sPipeline.html'>sPipeline</a></code>,

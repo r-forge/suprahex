@@ -32,7 +32,15 @@ sheet}
 "uniform", "sample" and "linear" initialisation methods}
 
 \item{algorithm}{the training algorithm. It can be one of
-"sequential" and "batch" algorithm}
+"sequential" and "batch" algorithm. By default, it uses
+'batch' algorithm purely because of its fast computations
+(probably also without the compromise of accuracy).
+However, it is highly recommended not to use 'batch'
+algorithm if the input data contain lots of zeros; it is
+because matrix multiplication used in the 'batch'
+algorithm can be problematic in this context. If much
+computation resource is at hand, it is alwasy safe to use
+the 'sequential' algorithm}
 
 \item{alphaType}{the alpha type. It can be one of
 "invert", "linear" and "power" alpha types}

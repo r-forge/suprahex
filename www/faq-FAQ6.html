@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>How to choose the training algorithm: sequential vs batch? @ supraHex 1.3.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.3.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:5dmiiel8qeq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>How to choose the training algorithm: sequential vs batch?</h2>
+
+Notes:
+<li> All results are based on supraHex (version 1.3.1). </li>
+<li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light-cyan background, and the rest are outputs in the screen. </li>
+<li> Images displayed below may be distorted, but should be normal in your screen. </li>
+<li> Functions contained in supraHex 1.3.1 are hyperlinked in-place and also listed on the right side. </li>
+<li> Key texts are underlined, in bold and in pumpkin-orange color. </li>
+
+<div class="row">
+    <div class="span8">
+      <pre>
+      <div class='input'># <span style="font-weight:bold; color:#F87217; text-decoration:underline">The choice of 'sequential vs batch' training algorithm largely depends on the compromise: runtime, accuracy, and the nature of the input data.</span>
+
+# Generally speaking, the 'batch' algorithm should be used when: 1) you care about the runtime, 2) input data is huge (both of rows and columns in number), and 3) input data do not contain too many zero entries. For these reasons, the function <a href='sPipeline.html' target=sPipeline>sPipeline</a> uses 'batch' algorithm as a default choise.
+
+# However, the 'sequential' algorithm should be favored when: 1) you really care about the accuracy and 2) are not sure the nature of the input data. For these reasons, the function <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a> uses 'sequential' algorithm as a default choise.
+
+# <span style="font-weight:bold; color:#F87217; text-decoration:underline">Special note: if the input data do contain a great amount of zero entries (very sparse), the 'sequential' algorithm must be used.</span> Otherwise, using the 'batch' algorithm will lead to most of data points being clustered into one or a few of dominant hexagons/nodes, which is usually abnormal (see the example below).
+
+# Generate data with an iid matrix of 100 x 10
+data <- matrix(rnorm(100*10,mean=0,sd=1), nrow=100,ncol=10)
+colnames(data) <- paste('S', seq(1:10), sep="")
+# Force those negatives to be zeros, and thus being very sparse
+data[data<0] <- 0
+# Train using the 'batch' algorthm
+sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data, algorithm="batch")
+</div>
+<strong class='message'>Start at 2014-05-30 16:14:36</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 100x10
+   xy-dimension of map grid: xdim=9, ydim=9
+   grid lattice: hexa
+   grid shape: suprahex
+   dimension of grid coord: 61x2
+   initialisation method: linear
+   dimension of codebook matrix: 61x10
+   mean quantization error: 2.59498345965185
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: batch
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 7 at rough stage; 25 at finetune stage
+   radius (at rough stage): from 3 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2014-05-30 16:14:36</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'>## Look at the number of input data vectors hitting the hexagons
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="hits")
+</div>
+<a href="javascript:newWin('FAQ6-18.png', 'FAQ6-18.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-18.png', width="400" /></a>
+<div class='input'># Now, train using the 'sequential' algorthm
+sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data, algorithm="sequential")
+</div>
+<strong class='message'>Start at 2014-05-30 16:14:36</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid...</strong>
+<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
+<strong class='message'>Third, get training at the rough stage...</strong>
+<strong class='message'>Fourth, get training at the finetune stage...</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 100x10
+   xy-dimension of map grid: xdim=9, ydim=9
+   grid lattice: hexa
+   grid shape: suprahex
+   dimension of grid coord: 61x2
+   initialisation method: linear
+   dimension of codebook matrix: 61x10
+   mean quantization error: 1.88486291245215
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 7 at rough stage; 25 at finetune stage
+   radius (at rough stage): from 3 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2014-05-30 16:14:38</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'>## Look at the number of input data vectors hitting the hexagons
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="hits")</div>
+<a href="javascript:newWin('FAQ6-36.png', 'FAQ6-36.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ6-36.png', width="400" /></a>
+      </pre>
+    </div>
+
+  <div class="span4">
+    
+    <h2>Functions used in this FAQ</h2>
+    <ul>
+      <li><a href="sPipeline.html">sPipeline</a></li>
+      <li><a href="sCompReorder.html">sCompReorder</a></li>
+      <li><a href="visHexMapping.html">visHexMapping</a></li>
+    </ul>
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+    <!--
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/supraHex">http://supfam.org/supraHex</a></li>
+    </ul>
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    -->
+    
+  </div>
+
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

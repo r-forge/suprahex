@@ -163,7 +163,15 @@ sheet</dd>
 "uniform", "sample" and "linear" initialisation methods</dd>
       <dt>algorithm</dt>
       <dd>the training algorithm. It can be one of
-"sequential" and "batch" algorithm</dd>
+"sequential" and "batch" algorithm. By default, it uses
+'batch' algorithm purely because of its fast computations
+(probably also without the compromise of accuracy).
+However, it is highly recommended not to use 'batch'
+algorithm if the input data contain lots of zeros; it is
+because matrix multiplication used in the 'batch'
+algorithm can be problematic in this context. If much
+computation resource is at hand, it is alwasy safe to use
+the 'sequential' algorithm</dd>
       <dt>alphaType</dt>
       <dd>the alpha type. It can be one of
 "invert", "linear" and "power" alpha types</dd>
@@ -265,7 +273,7 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 # 2a) with "gaussian" kernel
 sMap <- sPipeline(data=data, neighKernel="gaussian")
 </div>
-<strong class='message'>Start at 2014-05-27 11:55:37</strong>
+<strong class='message'>Start at 2014-05-30 14:52:31</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -292,7 +300,7 @@ sMap <- sPipeline(data=data, neighKernel="gaussian")
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-27 11:55:37</strong>
+<strong class='message'>End at 2014-05-30 14:52:31</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># 2b) with "bubble" kernel
@@ -321,7 +329,10 @@ gp=grid::gpar(cex=0.8))
       
     </ul> 
     -->
-      
+    
+    <h2>Source code</h2>
+    <a href="javascript:newWin('R/sPipeline.r', 'R/sPipeline.r', '1200', '1200')" title="Click to view"><B><code>sPipeline.r</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='sTopology.html'>sTopology</a></code>, <code><a href='sInitial.html'>sInitial</a></code>,
