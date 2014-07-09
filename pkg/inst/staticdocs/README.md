@@ -12,6 +12,8 @@
 
 `supraHex` aims to deliver an eye-intuitive tool and a dedicated website with extensive online documentation and easy-to-follow demos.
 
+For more, see <a href="slides_supraHex.pdf" target="slides" style="font-size: 12px; color: #F87217; text-decoration: overline; border-bottom: 1px solid #F87217">slides</a> and <a href="poster_ISMB2014.png" target="slides" style="font-size: 12px; color: #F87217; text-decoration: overline; border-bottom: 1px solid #F87217">poster in ISMB2014</a>.
+
 ## Features
 
 * The supra-hexagonal map trained via a self-organising learning algorithm;

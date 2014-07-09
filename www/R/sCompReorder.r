@@ -21,7 +21,19 @@
 #'  \item{\code{coord}: a matrix of nHex x 2, with each row corresponding to the coordinates of each "uOrder" rectangle in the 2D map grid}
 #'  \item{\code{call}: the call that produced this result}
 #' }
-#' @note To ensure the unique placement, each component plane mapped to the "sheet"-shape grid with rectangular lattice is determinied iteratively in an order from the best matched to the next compromised one. If multiple compoments are hit in the same rectangular lattice, the worse one is always sacrificed by moving to the next best one till all components are placed somewhere exclusively on their own.
+#' @note 
+#' All component planes are uniquely placed within a "sheet"-shape rectangle grid:
+#' \itemize{
+#' \item{Each component plane mapped to the "sheet"-shape grid with rectangular lattice is determinied iteratively in an order from the best matched to the next compromised one.}
+#' \item{If multiple compoments are hit in the same rectangular lattice, the worse one is always sacrificed by moving to the next best one till all components are placed somewhere exclusively on their own.}
+#' }
+#' The size of "sheet"-shape rectangle grid depends on the input arguments: 
+#' \itemize{
+#' \item{How the input parameters are used to determine nHex is taken priority in the following order: "xdim & ydim" > "nHex" > "data".}
+#' \item{If both of xdim and ydim are given, \eqn{nHex=xdim*ydim}.}
+#' \item{If only data is input, \eqn{nHex=5*sqrt(dlen)}, where dlen is the number of rows of the input data.}
+#' \item{After nHex is determined, xy-dimensions of rectangle grid are then determined according to the square root of the two biggest eigenvalues of the input data.}
+#' }
 #' @export
 #' @seealso \code{\link{sTopology}}, \code{\link{sPipeline}}, \code{\link{sBMH}}, \code{\link{sDistance}}, \code{\link{visCompReorder}}
 #' @include sCompReorder.r
