@@ -2,6 +2,8 @@
 
 <B><h4>An open-source R/Bioconductor package for tabular omics data analysis using `a supra-hexagonal map`</h4></B>
 
+<B><font size=1 color="#ff00"><I>ANNOUNCEMENT</I></font></B>: <a href="Best_Artwork_Award_ISMB2014.pdf" target="artwork" style="font-size: 12px; color: #F87217; text-decoration: overline; border-bottom: 1px solid #F87217">supraHex</a> has won <a href="http://www.iscb.org/ismb2014-general-info/2234-ismb2014-award-winners#art" target="ISMB2014" >The Best Artwork Award in ISMB 2014</a>.
+
 ## Introduction
 
 `The supra-hexagonal map` is a giant hexagon on a 2-dimensional map grid seamlessly consisting of smaller hexagons. 
@@ -13,6 +15,7 @@
 `supraHex` aims to deliver an eye-intuitive tool and a dedicated website with extensive online documentation and easy-to-follow demos.
 
 For more, see <a href="slides_supraHex.pdf" target="slides" style="font-size: 12px; color: #F87217; text-decoration: overline; border-bottom: 1px solid #F87217">slides</a> and <a href="poster_ISMB2014.png" target="slides" style="font-size: 12px; color: #F87217; text-decoration: overline; border-bottom: 1px solid #F87217">poster in ISMB2014</a>.
+
 
 ## Features
 
