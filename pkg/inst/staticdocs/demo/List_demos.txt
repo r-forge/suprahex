@@ -2,3 +2,4 @@ Hiratani    Demo for multilayer omics dataset from Hiratani et al
 Golub   Demo for leukemia patient dataset from Golub et al
 Fang    Demo for human embryo dataset from Fang et al
 Xiang   Demo for arabidopsis embryo dataset from Xiang et al
+ISMB2014   Demo for for the artwork in ISMB 2014

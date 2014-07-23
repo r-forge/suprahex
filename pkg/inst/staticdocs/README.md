@@ -2,7 +2,8 @@
 
 <B><h4>An open-source R/Bioconductor package for tabular omics data analysis using `a supra-hexagonal map`</h4></B>
 
-<B><font size=1 color="#ff00"><I>ANNOUNCEMENT</I></font></B>: <a href="Best_Artwork_Award_ISMB2014.pdf" target="artwork" style="font-size: 12px; color: #F87217; text-decoration: overline; border-bottom: 1px solid #F87217">supraHex</a> has won <a href="http://www.iscb.org/ismb2014-general-info/2234-ismb2014-award-winners#art" target="ISMB2014" >The Best Artwork Award in ISMB 2014</a>.
+## News
+The artwork called <a href="Best_Artwork_Award_ISMB2014.pdf" target="artwork" style="font-size: 12px; color: #F87217; text-decoration: overline; border-bottom: 1px solid #F87217">supraHex</a> has won <a href="http://www.iscb.org/ismb2014-general-info/2234-ismb2014-award-winners#art" target="ISMB2014" >The Best Artwork Award in ISMB 2014</a>. This artwork is automatically done and is reproducible <a href="demo-ISMB2014.html" target="ISMB2014">here</a>.
 
 ## Introduction
 
