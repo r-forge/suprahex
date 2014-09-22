@@ -126,9 +126,9 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visColormap</code> is supposed to define a colormap. It
-returns a function, which will take an integer argument
-specifying how many colors interpolate the given colormap.</p>
+    <p><code>visColormap</code> is supposed to define a colormap. It returns a
+function, which will take an integer argument specifying how many
+colors interpolate the given colormap.</p>
   
     <h3>Usage</h3>
     <pre>visColormap(colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"))</pre>
@@ -141,44 +141,56 @@ specifying how many colors interpolate the given colormap.</p>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p><ul>
-<li><code>palette.name</code>: a function that takes
-an integer argument for generating that number of colors
-interpolating the given sequence </li>
+<li><code>palette.name</code>: a function that takes an integer argument
+for generating that number of colors interpolating the given sequence
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>The input colormap includes: <ul>
-<li>"jet": jet
-colormap </li>
-<li>"bwr": blue-white-red </li>
-<li>"gbr":
-green-black-red </li>
-<li>"wyr": white-yellow-red </li>
-<li>"br":
-black-red </li>
-<li>"yr": yellow-red </li>
+      <p>The input colormap includes:
+<ul>
+<li>"jet": jet colormap
+</li>
+<li>"bwr": blue-white-red
+</li>
+<li>"gbr": green-black-red
+</li>
+<li>"wyr": white-yellow-red
+</li>
+<li>"br": black-red
+</li>
+<li>"yr": yellow-red
+</li>
 <li>"wb": white-black
 </li>
 <li>"rainbow": rainbow colormap, that is,
-red-yellow-green-cyan-blue-magenta </li>
-<li>Alternatively,
-any hyphen-separated HTML color names, e.g.
+red-yellow-green-cyan-blue-magenta
+</li>
+<li>Alternatively, any hyphen-separated HTML color names, e.g.
 "blue-black-yellow", "royalblue-white-sandybrown",
 "darkblue-lightblue-lightyellow-darkorange",
-"darkgreen-white-darkviolet",
-"darkgreen-lightgreen-lightpink-darkred". A list of
-standard color names can be found in
-<a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a> </li>
+"darkgreen-white-darkviolet", "darkgreen-lightgreen-lightpink-darkred".
+A list of standard color names can be found in
+<a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a>
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) define "blue-white-red" colormap
@@ -206,16 +218,19 @@ palette.name(10)
     <h2>Source code</h2>
     <a href="javascript:newWin('R/visColormap.r', 'R/visColormap.r', '1200', '1200')" title="Click to view"><B><code>visColormap.r</code></B></a>
     
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/visColormap.txt', 'man/visColormap.txt', '1200', '1200')" title="Click to view"><B><code>visColormap.Rd</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='visColoralpha.html'>visColoralpha</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

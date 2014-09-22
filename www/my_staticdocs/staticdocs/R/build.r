@@ -40,6 +40,39 @@ build_package <- function(package, base_path = NULL, examples=T, replace.example
     if(file.exists(R_local_path)){
         file.copy(dir(R_local_path, full.names = TRUE), dest, recursive = TRUE)
     }
+    
+    # copy a directory 'man'
+    dest <- file.path(package$base_path, "man")
+    if (!file.exists(dest)) dir.create(dest)
+    R_local_path <- file.path(gsub('/inst/staticdocs','',pkg_sd_path(package)), "man")
+    if(file.exists(R_local_path)){
+        file.copy(dir(R_local_path, full.names = TRUE), dest, recursive = TRUE)
+        
+        #######################
+        ## rename *.Rd to *.txt becaue the web cannot identify *.Rd files
+        all_files <- list.files(path=dest, pattern="*.Rd",full.name=T)
+        sapply(all_files, function(x){
+            y <- gsub(".Rd$", ".txt", x, perl=T)
+            file.rename(x, y)
+        })
+        #######################
+    }
+    
+    # copy a directory 'demo'
+    dest <- file.path(package$base_path, "demo")
+    if (!file.exists(dest)) dir.create(dest)
+    R_local_path <- file.path(pkg_sd_path(package), "demo")
+    if(file.exists(R_local_path)){
+        file.copy(dir(R_local_path, full.names = TRUE), dest, recursive = TRUE)
+    }
+
+    # copy a directory 'faq'
+    dest <- file.path(package$base_path, "faq")
+    if (!file.exists(dest)) dir.create(dest)
+    R_local_path <- file.path(pkg_sd_path(package), "faq")
+    if(file.exists(R_local_path)){
+        file.copy(dir(R_local_path, full.names = TRUE), dest, recursive = TRUE)
+    }
 
   package$vignettes <- build_vignettes(package)
   package$manuals <- build_manual(package)
@@ -186,6 +219,22 @@ build_topics <- function(package, replace.examplefiles.forced) {
     }
     ###########################################
     
+    ## popup window for Rd
+    ##########################################
+    #temp <- paste(index$name[i],'.Rd', sep='')
+    temp <- paste(index$name[i],'.txt', sep='')       
+    if (temp %in% gsub(".r$",".txt",R_functions,perl=T)) {
+        name <- paste("man/",temp, sep='')
+        html$sourceman <- str_c("<a href=\"javascript:newWin('", name,"', '", name,"', '",wth,"', '",hgt,"')\" title=\"Click to view\"><B><code>",gsub(".txt$",".Rd",temp,perl=T),"</code></B></a>")
+    }
+    ###########################################
+    
+    ########
+    # remove those cell empty
+    flag <- sapply(html$sections, function(x) length(x)>0)
+    html$sections <- html$sections[flag>=1]
+    ########
+    
     render_page(package, "topic", html, paths[[i]])
     graphics.off()
 
@@ -313,6 +362,12 @@ build_demos <- function(package, flag_demos) {
         
         ##################################################################################
     
+        ###############
+        wh <- dev.size(units="px")
+        wth <- 1200
+        hgt <- wth*wh[2]/wh[1]
+        ###############
+    
       for(i in seq_along(title)) {
         
         if(flag_demos[i]==FALSE) next
@@ -323,7 +378,6 @@ build_demos <- function(package, flag_demos) {
         demo_expr <- evaluate(demo_code, new.env(parent = globalenv()))
 
         package$demo <- replay_html(demo_expr, package = package, name = str_c(pieces[i], "-"))
-        
         
         ########################################################
         # Functions used are hyperlinked to the relevant documentation
@@ -366,13 +420,21 @@ build_demos <- function(package, flag_demos) {
         replace_demo <- str_c(tmp_demo_lines, collapse='\n')
         package$demo <- replace_demo
         
-        
         name <- unique(functions_found_within_demo)
         if(length(name)){
             hypername <- str_c(name, collpase='.html')
             package$demo_funcs <- list(demo_func = unname(apply(cbind(name, hypername), 1, as.list)))
         }
+        
         ########################################################
+        
+        ## popup window for demo
+        ##########################################
+        temp <- in_path[i]
+        name <- paste("demo/",temp, sep='')
+        package$sourcedemo <- str_c("<a href=\"javascript:newWin('", name,"', '", name,"', '",wth,"', '",hgt,"')\" title=\"Click to view\"><B><code>",temp,"</code></B></a>")
+        ###########################################
+        
         
         package$pagetitle <- title[i]
         render_page(package, "demo", package, file.path(package$base_path, filename[i]))
@@ -404,6 +466,12 @@ build_faqs <- function(package, flag_faqs) {
         flag_faqs <- tmp
         
         ##################################################################################
+    
+        ###############
+        wh <- dev.size(units="px")
+        wth <- 1200
+        hgt <- wth*wh[2]/wh[1]
+        ###############
     
       for(i in seq_along(title)) {
         
@@ -465,6 +533,14 @@ build_faqs <- function(package, flag_faqs) {
             package$faq_funcs <- list(faq_func = unname(apply(cbind(name, hypername), 1, as.list)))
         }
         ########################################################
+        
+        ## popup window for faq
+        ##########################################
+        temp <- in_path[i]
+        name <- paste("faq/",temp, sep='')
+        package$sourcefaq <- str_c("<a href=\"javascript:newWin('", name,"', '", name,"', '",wth,"', '",hgt,"')\" title=\"Click to view\"><B><code>",temp,"</code></B></a>")
+        ###########################################
+        
         
         package$pagetitle <- title[i]
         render_page(package, "faq", package, file.path(package$base_path, filename[i]))

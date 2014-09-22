@@ -126,9 +126,8 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visDmatHeatmap</code> is supposed to visualise gene
-clusters/bases partitioned from a supra-hexagonal grid
-using heatmap</p>
+    <p><code>visDmatHeatmap</code> is supposed to visualise gene clusters/bases
+partitioned from a supra-hexagonal grid using heatmap</p>
   
     <h3>Usage</h3>
     <pre>visDmatHeatmap(sMap, data, sBase, base.color = "rainbow", base.separated.arg = NULL, 
@@ -139,91 +138,93 @@ using heatmap</p>
     <h3>Arguments</h3>
     <dl>
       <dt>sMap</dt>
-      <dd>an object of class "sMap" or a codebook
-matrix</dd>
+      <dd>an object of class "sMap" or a codebook matrix</dd>
       <dt>data</dt>
       <dd>a data frame or matrix of input data</dd>
       <dt>sBase</dt>
       <dd>an object of class "sBase"</dd>
       <dt>base.color</dt>
-      <dd>short name for the colormap used to
-encode bases (in row side bar). It can be one of "jet"
-(jet colormap), "bwr" (blue-white-red colormap), "gbr"
-(green-black-red colormap), "wyr" (white-yellow-red
-colormap), "br" (black-red colormap), "yr" (yellow-red
-colormap), "wb" (white-black colormap), and "rainbow"
-(rainbow colormap, that is,
-red-yellow-green-cyan-blue-magenta). Alternatively, any
-hyphen-separated HTML color names, e.g.
+      <dd>short name for the colormap used to encode bases (in
+row side bar). It can be one of "jet" (jet colormap), "bwr"
+(blue-white-red colormap), "gbr" (green-black-red colormap), "wyr"
+(white-yellow-red colormap), "br" (black-red colormap), "yr"
+(yellow-red colormap), "wb" (white-black colormap), and "rainbow"
+(rainbow colormap, that is, red-yellow-green-cyan-blue-magenta).
+Alternatively, any hyphen-separated HTML color names, e.g.
 "blue-black-yellow", "royalblue-white-sandybrown",
-"darkgreen-white-darkviolet". A list of standard color
-names can be found in
-<a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
+"darkgreen-white-darkviolet". A list of standard color names can be
+found in <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
       <dt>base.separated.arg</dt>
-      <dd>a list of main parameters used
-for styling bar separated lines. See 'Note' below for
-details on the parameters</dd>
+      <dd>a list of main parameters used for styling
+bar separated lines. See 'Note' below for details on the parameters</dd>
       <dt>base.legend.location</dt>
-      <dd>location of legend to
-describe bases. If "none", this legend will not be
-displayed</dd>
+      <dd>location of legend to describe bases. If
+"none", this legend will not be displayed</dd>
       <dt>reorderRow</dt>
-      <dd>the way to reorder the rows within a
-base. It can be "none" for rows within a base being
-reorded by the hexagon indexes, "hclust" for rows within
-a base being reorded according to hierarchical clustering
-of patterns seen, "svd" for rows within a base being
-reorded according to svd of patterns seen</dd>
+      <dd>the way to reorder the rows within a base. It can be
+"none" for rows within a base being reorded by the hexagon indexes,
+"hclust" for rows within a base being reorded according to hierarchical
+clustering of patterns seen, "svd" for rows within a base being reorded
+according to svd of patterns seen</dd>
       <dt>keep.data</dt>
-      <dd>logical to indicate whether or not to
-also write out the input data. By default, it sets to
-false for not keeping it. It is highly expensive to keep
-the large data sets</dd>
+      <dd>logical to indicate whether or not to also write out
+the input data. By default, it sets to false for not keeping it. It is
+highly expensive to keep the large data sets</dd>
       <dt>...</dt>
-      <dd>additional graphic parameters used in
-"visHeatmapAdv". For most parameters, please refer to
+      <dd>additional graphic parameters used in "visHeatmapAdv". For
+most parameters, please refer to
 <a href = 'http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2'>http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2</a></dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>a data frame with following components: <ul>
-<li><code>ID</code>: ID for data. It inherits the rownames of
-data (if exists). Otherwise, it is sequential integer
-values starting with 1 and ending with dlen, the total
-number of rows of the input data
+      <p>a data frame with following components:
+<ul>
+<li><code>ID</code>: ID for data. It inherits the rownames of data (if
+exists). Otherwise, it is sequential integer values starting with 1 and
+ending with dlen, the total number of rows of the input data
 </li>
-<li><code>Hexagon_index</code>: the index for best-matching
-hexagons </li>
-<li><code>Cluster_base</code>: optional, it is only
-appended when sBase is given. It stores the cluster
-memberships/bases </li>
-<li><code>data</code>: optional, it is only
-appended when keep.data is true </li>
-</ul>
- Note: the returned data
-has rows in the same order as visualised in the heatmap</p>
+<li><code>Hexagon_index</code>: the index for best-matching hexagons
+</li>
+<li><code>Cluster_base</code>: optional, it is only appended when sBase is
+given. It stores the cluster memberships/bases
+</li>
+<li><code>data</code>: optional, it is only appended when keep.data is
+true
+</li>
+</ul></p>
+      <p>Note: the returned data has rows in the same order as visualised in the
+heatmap</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>A list of parameters in "base.separated.arg": <ul>
-<li>"lty": the line type. Line types can either be
-specified as an integer (0=blank, 1=solid (default),
-2=dashed, 3=dotted, 4=dotdash, 5=longdash, 6=twodash) or as
-one of the character strings
-"blank","solid","dashed","dotted","dotdash","longdash","twodash",
-where "blank" uses 'invisible lines' (i.e., does not draw
-them) </li>
-<li>"lwd": the line width </li>
-<li>"col": the line
-color </li>
+      <p>A list of parameters in "base.separated.arg":
+<ul>
+<li>"lty": the line type. Line types can either be specified as an
+integer (0=blank, 1=solid (default), 2=dashed, 3=dotted, 4=dotdash,
+5=longdash, 6=twodash) or as one of the character strings
+"blank","solid","dashed","dotted","dotdash","longdash","twodash", where
+"blank" uses 'invisible lines' (i.e., does not draw them)
+</li>
+<li>"lwd": the line width
+</li>
+<li>"col": the line color
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
@@ -232,7 +233,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-05-30 14:52:39</strong>
+<strong class='message'>Start at 2014-09-22 20:22:46</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -259,7 +260,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-30 14:52:39</strong>
+<strong class='message'>End at 2014-09-22 20:22:46</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -288,16 +289,19 @@ base.legend.location="bottomleft", labRow=NA)
     <h2>Source code</h2>
     <a href="javascript:newWin('R/visDmatHeatmap.r', 'R/visDmatHeatmap.r', '1200', '1200')" title="Click to view"><B><code>visDmatHeatmap.r</code></B></a>
     
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/visDmatHeatmap.txt', 'man/visDmatHeatmap.txt', '1200', '1200')" title="Click to view"><B><code>visDmatHeatmap.Rd</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='sDmatCluster.html'>sDmatCluster</a></code>, <code><a href='visHeatmapAdv.html'>visHeatmapAdv</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

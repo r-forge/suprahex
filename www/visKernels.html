@@ -126,11 +126,10 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visKernels</code> is supposed to visualize a series of
-neighborhood kernels, each of which is a non-increasing
-functions of: i) the distance <code class = 'eq'>d_{wi}</code> between the
-hexagon/rectangle <code class = 'eq'>i</code> and the winner <code class = 'eq'>w</code>, and ii)
-the radius <code class = 'eq'>\delta_t</code> at time <code class = 'eq'>t</code>.</p>
+    <p><code>visKernels</code> is supposed to visualize a series of neighborhood
+kernels, each of which is a non-increasing functions of: i) the
+distance <code class = 'eq'>d_{wi}</code> between the hexagon/rectangle <code class = 'eq'>i</code> and the
+winner <code class = 'eq'>w</code>, and ii) the radius <code class = 'eq'>\delta_t</code> at time <code class = 'eq'>t</code>.</p>
   
     <h3>Usage</h3>
     <pre>visKernels(newpage = T)</pre>
@@ -138,40 +137,48 @@ the radius <code class = 'eq'>\delta_t</code> at time <code class = 'eq'>t</code
     <h3>Arguments</h3>
     <dl>
       <dt>newpage</dt>
-      <dd>logical to indicate whether to open a new
-page. By default, it sets to true for opening a new page</dd>
+      <dd>logical to indicate whether to open a new page. By
+default, it sets to true for opening a new page</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p>invisible</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
       <p>There are five kernels that are currently supported:
 <ul>
 <li>For "gaussian" kernel,
-<code class = 'eq'>h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}</code> </li>
-<li>For
-"cutguassian" kernel,
-<code class = 'eq'>h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}*(d_{wi} \le
-\delta_t)</code> </li>
-<li>For "bubble" kernel,
-<code class = 'eq'>h_{wi}(t)=(d_{wi} \le \delta_t)</code> </li>
-<li>For "ep"
-kernel, <code class = 'eq'>h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi} \le
-\delta_t)</code> </li>
+<code class = 'eq'>h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}</code>
+</li>
+<li>For "cutguassian" kernel,
+<code class = 'eq'>h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}*(d_{wi} \le \delta_t)</code>
+</li>
+<li>For "bubble" kernel, <code class = 'eq'>h_{wi}(t)=(d_{wi} \le \delta_t)</code>
+</li>
+<li>For "ep" kernel, <code class = 'eq'>h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi}
+\le \delta_t)</code>
+</li>
 <li>For "gamma" kernel,
-<code class = 'eq'>h_{wi}(t)=1/\Gamma(d_{wi}^2/(4*\delta_t^2)+2)</code> </li>
+<code class = 'eq'>h_{wi}(t)=1/\Gamma(d_{wi}^2/(4*\delta_t^2)+2)</code>
+</li>
 </ul></p>
-      <p>These kernels above are displayed within a plot for each
-fixed radius. Three different radii (i.e., 1 and 2) are
-illustrated.</p>
+      <p>These kernels above are displayed within a plot for each fixed radius.
+Three different radii (i.e., 1 and 2) are illustrated.</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># visualise currently supported five kernels
@@ -194,16 +201,19 @@ visKernels()
     <h2>Source code</h2>
     <a href="javascript:newWin('R/visKernels.r', 'R/visKernels.r', '1200', '1200')" title="Click to view"><B><code>visKernels.r</code></B></a>
     
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/visKernels.txt', 'man/visKernels.txt', '1200', '1200')" title="Click to view"><B><code>visKernels.Rd</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='sTrainSeq.html'>sTrainSeq</a></code>, <code><a href='sTrainBatch.html'>sTrainBatch</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

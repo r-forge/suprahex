@@ -126,8 +126,7 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visHexGrid</code> is supposed to visualise a
-supra-hexagonal grid</p>
+    <p><code>visHexGrid</code> is supposed to visualise a supra-hexagonal grid</p>
   
     <h3>Usage</h3>
     <pre>visHexGrid(hbin, area.size = 1, border.color = NULL, fill.color = NULL, lty = 1, 
@@ -138,38 +137,46 @@ supra-hexagonal grid</p>
       <dt>hbin</dt>
       <dd>an object of class "hexbin"</dd>
       <dt>area.size</dt>
-      <dd>an inteter or a vector specifying the
-area size of each hexagon</dd>
+      <dd>an inteter or a vector specifying the area size of
+each hexagon</dd>
       <dt>border.color</dt>
       <dd>the border color for each hexagon</dd>
       <dt>fill.color</dt>
       <dd>the filled color for each hexagon</dd>
       <dt>lty</dt>
-      <dd>the line type for each hexagon. 0 for 'blank',
-1 for 'solid', 2 for 'dashed', 3 for 'dotted', 4 for
-'dotdash', 5 for 'longdash', 6 for 'twodash'</dd>
+      <dd>the line type for each hexagon. 0 for 'blank', 1 for
+'solid', 2 for 'dashed', 3 for 'dotted', 4 for 'dotdash', 5 for
+'longdash', 6 for 'twodash'</dd>
       <dt>lwd</dt>
       <dd>the line width for each hexagon</dd>
       <dt>lineend</dt>
-      <dd>the line end style for each hexagon. It
-can be one of 'round', 'butt' and 'square'</dd>
+      <dd>the line end style for each hexagon. It can be one of
+'round', 'butt' and 'square'</dd>
       <dt>linejoin</dt>
-      <dd>the line join style for each hexagon. It
-can be one of 'round', 'mitre' and 'bevel'</dd>
+      <dd>the line join style for each hexagon. It can be one of
+'round', 'mitre' and 'bevel'</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p>invisible</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
       <p>none</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
@@ -179,7 +186,7 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-05-30 14:52:44</strong>
+<strong class='message'>Start at 2014-09-22 20:22:50</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -206,8 +213,8 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-30 14:52:44</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-09-22 20:22:51</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
 # 3) create an object of "hexbin" class from sMap
@@ -238,16 +245,19 @@ visHexGrid(hbin)
     <h2>Source code</h2>
     <a href="javascript:newWin('R/visHexGrid.r', 'R/visHexGrid.r', '1200', '1200')" title="Click to view"><B><code>visHexGrid.r</code></B></a>
     
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/visHexGrid.txt', 'man/visHexGrid.txt', '1200', '1200')" title="Click to view"><B><code>visHexGrid.Rd</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='visHexComp.html'>visHexComp</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

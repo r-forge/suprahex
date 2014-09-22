@@ -142,7 +142,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 colnames(data) <- paste('S', seq(1:10), sep="")
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
 </div>
-<strong class='message'>Start at 2014-05-30 16:14:31</strong>
+<strong class='message'>Start at 2014-09-22 20:24:30</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -169,12 +169,12 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-30 16:14:31</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2014-09-22 20:24:31</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap=sMap)
 </div>
-<strong class='message'>Start at 2014-05-30 16:14:31</strong>
+<strong class='message'>Start at 2014-09-22 20:24:31</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -201,8 +201,8 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-30 16:14:32</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2014-09-22 20:24:31</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap=sMap, sReorder=sReorder)
 </div>
@@ -218,6 +218,9 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
 
   <div class="span4">
     
+    <h2>Source faq</h2>
+    <a href="javascript:newWin('faq/FAQ4.r', 'faq/FAQ4.r', '1200', '1200')" title="Click to view"><B><code>FAQ4.r</code></B></a>
+    
     <h2>Functions used in this FAQ</h2>
     <ul>
       <li><a href="visDmatCluster.html">visDmatCluster</a></li>
@@ -226,12 +229,10 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
       <li><a href="sPipeline.html">sPipeline</a></li>
       <li><a href="sCompReorder.html">sCompReorder</a></li>
     </ul>
-    
+    <!--    
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
-    
-    <!--
     
     <h2>URL</h2>
     <ul>

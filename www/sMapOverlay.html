@@ -126,15 +126,13 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>sMapOverlay</code> is supposed to overlay additional data
-onto the trained map for viewing the distribution of that
-additional data. It returns an object of class "sMap". It
-is realised by first estimating the hit histogram weighted
-by the neighborhood kernel, and then calculating the
-distribution of the additional data over the map (similarly
-weighted by the neighborhood kernel). The final overlaid
-distribution of additional data is normalised by the hit
-histogram.</p>
+    <p><code>sMapOverlay</code> is supposed to overlay additional data onto the
+trained map for viewing the distribution of that additional data. It
+returns an object of class "sMap". It is realised by first estimating
+the hit histogram weighted by the neighborhood kernel, and then
+calculating the distribution of the additional data over the map
+(similarly weighted by the neighborhood kernel). The final overlaid
+distribution of additional data is normalised by the hit histogram.</p>
   
     <h3>Usage</h3>
     <pre>sMapOverlay(sMap, data, additional)</pre>
@@ -146,57 +144,64 @@ histogram.</p>
       <dt>data</dt>
       <dd>a data frame or matrix of input data</dd>
       <dt>additional</dt>
-      <dd>a numeric vector or numeric matrix used
-to overlay onto the trained map. It must have the length
-(if being vector) or row number (if matrix) being equal
-to the number of rows in input data</dd>
+      <dd>a numeric vector or numeric matrix used to overlay
+onto the trained map. It must have the length (if being vector) or row
+number (if matrix) being equal to the number of rows in input data</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>an object of class "sMap", a list with following
-components: <ul>
-<li><code>nHex</code>: the total number
-of hexagons/rectanges in the grid </li>
-<li><code>xdim</code>:
-x-dimension of the grid </li>
-<li><code>ydim</code>: y-dimension of
-the grid </li>
+      <p>an object of class "sMap", a list with following components:
+<ul>
+<li><code>nHex</code>: the total number of hexagons/rectanges in the grid
+</li>
+<li><code>xdim</code>: x-dimension of the grid
+</li>
+<li><code>ydim</code>: y-dimension of the grid
+</li>
 <li><code>lattice</code>: the grid lattice
 </li>
-<li><code>shape</code>: the grid shape </li>
-<li><code>coord</code>: a
-matrix of nHex x 2, with rows corresponding to the
-coordinates of all hexagons/rectangles in the 2D map grid
+<li><code>shape</code>: the grid shape
+</li>
+<li><code>coord</code>: a matrix of nHex x 2, with rows corresponding to
+the coordinates of all hexagons/rectangles in the 2D map grid
 </li>
 <li><code>init</code>: an initialisation method
 </li>
 <li><code>neighKernel</code>: the training neighborhood kernel
 </li>
-<li><code>codebook</code>: a codebook matrix of nHex x
-ncol(additional), with rows corresponding to overlaid
-vectors </li>
-<li><code>hits</code>: a vector of nHex, each element
-meaning that a hexagon/rectangle contains the number of
-input data vectors being hit wherein </li>
-<li><code>mqe</code>: the
-mean quantization error for the "best" BMH
+<li><code>codebook</code>: a codebook matrix of nHex x ncol(additional),
+with rows corresponding to overlaid vectors
 </li>
-<li><code>call</code>: the call that produced this result </li>
+<li><code>hits</code>: a vector of nHex, each element meaning that a
+hexagon/rectangle contains the number of input data vectors being hit
+wherein
+</li>
+<li><code>mqe</code>: the mean quantization error for the "best" BMH
+</li>
+<li><code>call</code>: the call that produced this result
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>Weighting by neighbor kernel is to avoid rigid overlaying
-by only focusing on the best-matching map nodes as there
-may exist several closest best-matching nodes for an input
-data vector.</p>
+      <p>Weighting by neighbor kernel is to avoid rigid overlaying by only
+focusing on the best-matching map nodes as there may exist several
+closest best-matching nodes for an input data vector.</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
@@ -206,7 +211,7 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-05-30 14:52:29</strong>
+<strong class='message'>Start at 2014-09-22 20:22:37</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -233,7 +238,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-30 14:52:29</strong>
+<strong class='message'>End at 2014-09-22 20:22:37</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -262,17 +267,20 @@ visHexMulComp(sOverlay)
     <h2>Source code</h2>
     <a href="javascript:newWin('R/sMapOverlay.r', 'R/sMapOverlay.r', '1200', '1200')" title="Click to view"><B><code>sMapOverlay.r</code></B></a>
     
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/sMapOverlay.txt', 'man/sMapOverlay.txt', '1200', '1200')" title="Click to view"><B><code>sMapOverlay.Rd</code></B></a>
+    
     <h2>See also</h2>
     
-<code><a href='sPipeline.html'>sPipeline</a></code>, <code><a href='sBMH.html'>sBMH</a></code>,
-<code><a href='sHexDist.html'>sHexDist</a></code>, <code><a href='visHexMulComp.html'>visHexMulComp</a></code>
+<code><a href='sPipeline.html'>sPipeline</a></code>, <code><a href='sBMH.html'>sBMH</a></code>, <code><a href='sHexDist.html'>sHexDist</a></code>,
+<code><a href='visHexMulComp.html'>visHexMulComp</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

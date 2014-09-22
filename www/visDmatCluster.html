@@ -126,8 +126,8 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visDmatCluster</code> is supposed to visualise
-clusters/bases partitioned from a supra-hexagonal grid</p>
+    <p><code>visDmatCluster</code> is supposed to visualise clusters/bases
+partitioned from a supra-hexagonal grid</p>
   
     <h3>Usage</h3>
     <pre>visDmatCluster(sMap, sBase, height = 7, margin = rep(0.1, 4), area.size = 1, gp = grid::gpar(cex = 0.8, 
@@ -143,68 +143,71 @@ clusters/bases partitioned from a supra-hexagonal grid</p>
       <dt>sBase</dt>
       <dd>an object of class "sBase"</dd>
       <dt>height</dt>
-      <dd>a numeric value specifying the height of
-device</dd>
+      <dd>a numeric value specifying the height of device</dd>
       <dt>margin</dt>
       <dd>margins as units of length 4 or 1</dd>
       <dt>area.size</dt>
-      <dd>an inteter or a vector specifying the
-area size of each hexagon</dd>
+      <dd>an inteter or a vector specifying the area size of
+each hexagon</dd>
       <dt>gp</dt>
-      <dd>an object of class "gpar". It is the output
-from a call to the function "gpar" (i.e., a list of
-graphical parameter settings)</dd>
+      <dd>an object of class "gpar". It is the output from a call to
+the function "gpar" (i.e., a list of graphical parameter settings)</dd>
       <dt>border.color</dt>
       <dd>the border color for each hexagon</dd>
       <dt>fill.color</dt>
       <dd>the filled color for each hexagon</dd>
       <dt>lty</dt>
-      <dd>the line type for each hexagon. 0 for 'blank',
-1 for 'solid', 2 for 'dashed', 3 for 'dotted', 4 for
-'dotdash', 5 for 'longdash', 6 for 'twodash'</dd>
+      <dd>the line type for each hexagon. 0 for 'blank', 1 for
+'solid', 2 for 'dashed', 3 for 'dotted', 4 for 'dotdash', 5 for
+'longdash', 6 for 'twodash'</dd>
       <dt>lwd</dt>
       <dd>the line width for each hexagon</dd>
       <dt>lineend</dt>
-      <dd>the line end style for each hexagon. It
-can be one of 'round', 'butt' and 'square'</dd>
+      <dd>the line end style for each hexagon. It can be one of
+'round', 'butt' and 'square'</dd>
       <dt>linejoin</dt>
-      <dd>the line join style for each hexagon. It
-can be one of 'round', 'mitre' and 'bevel'</dd>
+      <dd>the line join style for each hexagon. It can be one of
+'round', 'mitre' and 'bevel'</dd>
       <dt>colormap</dt>
-      <dd>short name for the colormap. It can be
-one of "jet" (jet colormap), "bwr" (blue-white-red
-colormap), "gbr" (green-black-red colormap), "wyr"
-(white-yellow-red colormap), "br" (black-red colormap),
-"yr" (yellow-red colormap), "wb" (white-black colormap),
-and "rainbow" (rainbow colormap, that is,
+      <dd>short name for the colormap. It can be one of "jet"
+(jet colormap), "bwr" (blue-white-red colormap), "gbr" (green-black-red
+colormap), "wyr" (white-yellow-red colormap), "br" (black-red
+colormap), "yr" (yellow-red colormap), "wb" (white-black colormap), and
+"rainbow" (rainbow colormap, that is,
 red-yellow-green-cyan-blue-magenta). Alternatively, any
-hyphen-separated HTML color names, e.g.
-"blue-black-yellow", "royalblue-white-sandybrown",
-"darkgreen-white-darkviolet". A list of standard color
-names can be found in
+hyphen-separated HTML color names, e.g. "blue-black-yellow",
+"royalblue-white-sandybrown", "darkgreen-white-darkviolet". A list of
+standard color names can be found in
 <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
       <dt>clip</dt>
-      <dd>either "on" for clipping to the extent of
-this viewport, "inherit" for inheriting the clipping
-region from the parent viewport, or "off" to turn
-clipping off altogether</dd>
+      <dd>either "on" for clipping to the extent of this viewport,
+"inherit" for inheriting the clipping region from the parent viewport,
+or "off" to turn clipping off altogether</dd>
       <dt>newpage</dt>
-      <dd>logical to indicate whether to open a new
-page. By default, it sets to true for opening a new page</dd>
+      <dd>logical to indicate whether to open a new page. By
+default, it sets to true for opening a new page</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p>invisible</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
       <p>none</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
@@ -213,7 +216,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-05-30 14:52:37</strong>
+<strong class='message'>Start at 2014-09-22 20:22:44</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -240,7 +243,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-30 14:52:37</strong>
+<strong class='message'>End at 2014-09-22 20:22:44</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -291,17 +294,20 @@ border.color="black", lwd=2, area.size=-1*log2(dMat))
     <h2>Source code</h2>
     <a href="javascript:newWin('R/visDmatCluster.r', 'R/visDmatCluster.r', '1200', '1200')" title="Click to view"><B><code>visDmatCluster.r</code></B></a>
     
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/visDmatCluster.txt', 'man/visDmatCluster.txt', '1200', '1200')" title="Click to view"><B><code>visDmatCluster.Rd</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='sDmatCluster.html'>sDmatCluster</a></code>, <code><a href='sDmat.html'>sDmat</a></code>,
 <code><a href='visColormap.html'>visColormap</a></code>, <code><a href='visHexGrid.html'>visHexGrid</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

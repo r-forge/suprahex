@@ -126,8 +126,8 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visColoralpha</code> is supposed to add transparent (alpha)
-into colors.</p>
+    <p><code>visColoralpha</code> is supposed to add transparent (alpha) into
+colors.</p>
   
     <h3>Usage</h3>
     <pre>visColoralpha(col, alpha)</pre>
@@ -135,28 +135,34 @@ into colors.</p>
     <h3>Arguments</h3>
     <dl>
       <dt>col</dt>
-      <dd>input colors. It can be vector of R color
-specifications, such as a color name (as listed by
-'colors()), a hexadecimal string of the form "#rrggbb" or
-"#rrggbbaa"</dd>
+      <dd>input colors. It can be vector of R color specifications,
+such as a color name (as listed by 'colors()), a hexadecimal string of
+the form "#rrggbb" or "#rrggbbaa"</dd>
       <dt>alpha</dt>
-      <dd>numeric vector of values in the range [0, 1]
-for alpha transparency channel (0 means transparent and 1
-means opaque)</dd>
+      <dd>numeric vector of values in the range [0, 1] for alpha
+transparency channel (0 means transparent and 1 means opaque)</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p>a vector of colors (after transparent being added)</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
       <p>none</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) define "blue-white-red" colormap
@@ -184,16 +190,19 @@ cols <- visColoralpha(col, alpha=0.5)
     <h2>Source code</h2>
     <a href="javascript:newWin('R/visColoralpha.r', 'R/visColoralpha.r', '1200', '1200')" title="Click to view"><B><code>visColoralpha.r</code></B></a>
     
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/visColoralpha.txt', 'man/visColoralpha.txt', '1200', '1200')" title="Click to view"><B><code>visColoralpha.Rd</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='visColormap.html'>visColormap</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

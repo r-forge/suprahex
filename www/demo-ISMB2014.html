@@ -147,7 +147,70 @@ for(pkg in c("hexbin","ape","supraHex","graph","Rgraphviz","igraph","Biobase","l
         lapply(pkg, library, character.only=T)
     }
 }
+</div>
+<strong class='message'>Loading required package: ape</strong>
+<strong class='message'>Loading required package: graph</strong>
+<strong class='message'>
+Attaching package: ‘graph’
+</strong>
+<strong class='message'>The following object is masked from ‘package:ape’:
 
+    edges
+</strong>
+<strong class='message'>Loading required package: Rgraphviz</strong>
+<strong class='message'>Loading required package: igraph</strong>
+<strong class='message'>
+Attaching package: ‘igraph’
+</strong>
+<strong class='message'>The following objects are masked from ‘package:graph’:
+
+    degree, edges
+</strong>
+<strong class='message'>The following object is masked from ‘package:ape’:
+
+    edges
+</strong>
+<strong class='message'>Loading required package: Biobase</strong>
+<strong class='message'>Loading required package: BiocGenerics</strong>
+<strong class='message'>Loading required package: parallel</strong>
+<strong class='message'>
+Attaching package: ‘BiocGenerics’
+</strong>
+<strong class='message'>The following objects are masked from ‘package:parallel’:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB
+</strong>
+<strong class='message'>The following object is masked from ‘package:stats’:
+
+    xtabs
+</strong>
+<strong class='message'>The following objects are masked from ‘package:base’:
+
+    anyDuplicated, append, as.data.frame, as.vector, cbind, colnames,
+    do.call, duplicated, eval, evalq, Filter, Find, get, intersect,
+    is.unsorted, lapply, Map, mapply, match, mget, order, paste, pmax,
+    pmax.int, pmin, pmin.int, Position, rank, rbind, Reduce, rep.int,
+    rownames, sapply, setdiff, sort, table, tapply, union, unique,
+    unlist
+</strong>
+<strong class='message'>Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+</strong>
+<strong class='message'>Loading required package: limma</strong>
+<strong class='message'>
+Attaching package: ‘limma’
+</strong>
+<strong class='message'>The following object is masked from ‘package:BiocGenerics’:
+
+    plotMA
+</strong>
+<strong class='message'>Loading required package: dnet</strong>
+<div class='input'>
 ############################################################
 # Preprocess data (this should be done as your data suggest)
 ############################################################
@@ -248,7 +311,7 @@ data <- as.matrix(fit2$coefficients[flag>=1,])
 # (I) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data, xdim=13)
 </div>
-<strong class='message'>Start at 2014-07-23 23:14:14</strong>
+<strong class='message'>Start at 2014-09-22 20:29:40</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -275,7 +338,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data, xdim=13)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-07-23 23:14:14</strong>
+<strong class='message'>End at 2014-09-22 20:29:40</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -292,12 +355,15 @@ dMat <- <a href='sDmat.html' target=sDmat>sDmat</a>(sMap, which_neigh = 2, distM
 # (IV) Do visualisation in a single map
 <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap,sBase, gp=grid::gpar(cex=1.5, font=2, col="transparent"), colormap="PapayaWhip-pink-Tomato", area.size=-1*log2(dMat), border.color=border.color)
 </div>
-<a href="javascript:newWin('ISMB2014-20.png', 'ISMB2014-20.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='ISMB2014-20.png', width="400" /></a>
+<a href="javascript:newWin('ISMB2014-42.png', 'ISMB2014-42.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='ISMB2014-42.png', width="400" /></a>
 <div class='input'># As you have seen, the map distance (the hexagon size) tells how far each node is away from its neighbors, thus characterising relationships between clustered genes. The map is also partitioned to obtain gene meta-clusters covering continuous regions, as colour-coded by the 'potato-peach-tomato' colormap.</div>
       </pre>
     </div>
 
   <div class="span4">
+
+    <h2>Source demo</h2>
+    <a href="javascript:newWin('demo/ISMB2014.r', 'demo/ISMB2014.r', '1200', '1200')" title="Click to view"><B><code>ISMB2014.r</code></B></a>
     
     <h2>Functions used in this demo</h2>
     <ul>

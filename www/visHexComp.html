@@ -126,8 +126,8 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visHexComp</code> is supposed to visualise a
-supra-hexagonal grid in the context of viewport</p>
+    <p><code>visHexComp</code> is supposed to visualise a supra-hexagonal grid in
+the context of viewport</p>
   
     <h3>Usage</h3>
     <pre>visHexComp(sMap, comp, margin = rep(0.6, 4), area.size = 1, colormap = c("bwr", "jet", 
@@ -139,54 +139,58 @@ supra-hexagonal grid in the context of viewport</p>
       <dt>sMap</dt>
       <dd>an object of class "sMap"</dd>
       <dt>comp</dt>
-      <dd>a component/column of codebook matrix from an
-object "sMap"</dd>
+      <dd>a component/column of codebook matrix from an object
+"sMap"</dd>
       <dt>margin</dt>
       <dd>margins as units of length 4 or 1</dd>
       <dt>area.size</dt>
-      <dd>an inteter or a vector specifying the
-area size of each hexagon</dd>
+      <dd>an inteter or a vector specifying the area size of
+each hexagon</dd>
       <dt>colormap</dt>
-      <dd>short name for the colormap. It can be
-one of "jet" (jet colormap), "bwr" (blue-white-red
-colormap), "gbr" (green-black-red colormap), "wyr"
-(white-yellow-red colormap), "br" (black-red colormap),
-"yr" (yellow-red colormap), "wb" (white-black colormap),
-and "rainbow" (rainbow colormap, that is,
+      <dd>short name for the colormap. It can be one of "jet"
+(jet colormap), "bwr" (blue-white-red colormap), "gbr" (green-black-red
+colormap), "wyr" (white-yellow-red colormap), "br" (black-red
+colormap), "yr" (yellow-red colormap), "wb" (white-black colormap), and
+"rainbow" (rainbow colormap, that is,
 red-yellow-green-cyan-blue-magenta). Alternatively, any
-hyphen-separated HTML color names, e.g.
-"blue-black-yellow", "royalblue-white-sandybrown",
-"darkgreen-white-darkviolet". A list of standard color
-names can be found in
+hyphen-separated HTML color names, e.g. "blue-black-yellow",
+"royalblue-white-sandybrown", "darkgreen-white-darkviolet". A list of
+standard color names can be found in
 <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
       <dt>ncolors</dt>
       <dd>the number of colors specified</dd>
       <dt>zlim</dt>
-      <dd>the minimum and maximum z values for which
-colors should be plotted, defaulting to the range of the
-finite values of z. Each of the given colors will be used
-to color an equispaced interval of this range. The
-midpoints of the intervals cover the range, so that
-values just outside the range will be plotted</dd>
+      <dd>the minimum and maximum z values for which colors should be
+plotted, defaulting to the range of the finite values of z. Each of the
+given colors will be used to color an equispaced interval of this
+range. The midpoints of the intervals cover the range, so that values
+just outside the range will be plotted</dd>
       <dt>border.color</dt>
       <dd>the border color for each hexagon</dd>
       <dt>newpage</dt>
-      <dd>a logical to indicate whether or not to
-open a new page</dd>
+      <dd>a logical to indicate whether or not to open a new page</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
       <p>invisible</p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
       <p>none</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
@@ -196,7 +200,7 @@ colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-05-30 14:52:43</strong>
+<strong class='message'>Start at 2014-09-22 20:22:50</strong>
 <strong class='message'></strong>
 <strong class='message'>First, define topology of a map grid...</strong>
 <strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
@@ -223,7 +227,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-05-30 14:52:43</strong>
+<strong class='message'>End at 2014-09-22 20:22:50</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -248,16 +252,19 @@ zlim=c(-1,1))
     <h2>Source code</h2>
     <a href="javascript:newWin('R/visHexComp.r', 'R/visHexComp.r', '1200', '1200')" title="Click to view"><B><code>visHexComp.r</code></B></a>
     
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/visHexComp.txt', 'man/visHexComp.txt', '1200', '1200')" title="Click to view"><B><code>visHexComp.Rd</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='visColormap.html'>visColormap</a></code>, <code><a href='visHexGrid.html'>visHexGrid</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

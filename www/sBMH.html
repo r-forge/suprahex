@@ -135,44 +135,51 @@ hexagons/rectangles (BMH) for the input data.</p>
     <h3>Arguments</h3>
     <dl>
       <dt>sMap</dt>
-      <dd>an object of class "sMap" or a codebook
-matrix</dd>
+      <dd>an object of class "sMap" or a codebook matrix</dd>
       <dt>data</dt>
       <dd>a data frame or matrix of input data</dd>
       <dt>which_bmh</dt>
-      <dd>which BMH is requested. It can be a
-vector consisting of any integer values from [1, nHex].
-Alternatively, it can also be one of "best", "worst" and
-"all" choices. Here, "best" is equivalent to <code class = 'eq'>1</code>,
-"worst" for <code class = 'eq'>nHex</code>, and "all" for <code class = 'eq'>seq(1,nHex)</code></dd>
+      <dd>which BMH is requested. It can be a vector consisting
+of any integer values from [1, nHex]. Alternatively, it can also be one
+of "best", "worst" and "all" choices. Here, "best" is equivalent to
+<code class = 'eq'>1</code>, "worst" for <code class = 'eq'>nHex</code>, and "all" for <code class = 'eq'>seq(1,nHex)</code></dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>a list with following components: <ul>
-<li><code>bmh</code>: the requested BMH matrix of dlen x
-length(which_bmh), where dlen is the total number of rows
-of the input data </li>
-<li><code>qerr</code>: the corresponding
-matrix of quantization errors (i.e., the distance between
-the input data and their BMH), with the same dimensions as
-"bmh" above </li>
-<li><code>mqe</code>: the mean quantization error
-for the "best" BMH </li>
-<li><code>call</code>: the call that
-produced this result </li>
+      <p>a list with following components:
+<ul>
+<li><code>bmh</code>: the requested BMH matrix of dlen x length(which_bmh),
+where dlen is the total number of rows of the input data
+</li>
+<li><code>qerr</code>: the corresponding matrix of quantization errors
+(i.e., the distance between the input data and their BMH), with the
+same dimensions as "bmh" above
+</li>
+<li><code>mqe</code>: the mean quantization error for the "best" BMH
+</li>
+<li><code>call</code>: the call that produced this result
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>"which_bmh" upon request can be a vector consisting of any
-integer values from [1, nHex]</p>
+      <p>"which_bmh" upon request can be a vector consisting of any integer
+values from [1, nHex]</p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
@@ -216,16 +223,19 @@ response <- sBMH(sMap=sM_finetune, data=data, which_bmh="best")
     <h2>Source code</h2>
     <a href="javascript:newWin('R/sBMH.r', 'R/sBMH.r', '1200', '1200')" title="Click to view"><B><code>sBMH.r</code></B></a>
     
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/sBMH.txt', 'man/sBMH.txt', '1200', '1200')" title="Click to view"><B><code>sBMH.Rd</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='sPipeline.html'>sPipeline</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

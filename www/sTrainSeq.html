@@ -126,16 +126,14 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>sTrainSeq</code> is supposed to perform sequential training
-algorithm. It requires three inputs: a "sMap" or "sInit"
-object, input data, and a "sTrain" object specifying
-training environment. The training is implemented
-iteratively, each training cycle consisting of: i) randomly
-choose one input vector; ii) determine the winner
-hexagon/rectangle (BMH) according to minimum distance of
-codebook matrix to the input vector; ii) update the
-codebook matrix of the BMH and its neighbors via updating
-formula (see "Note" below for details). It also returns an
+    <p><code>sTrainSeq</code> is supposed to perform sequential training algorithm.
+It requires three inputs: a "sMap" or "sInit" object, input data, and a
+"sTrain" object specifying training environment. The training is
+implemented iteratively, each training cycle consisting of: i) randomly
+choose one input vector; ii) determine the winner hexagon/rectangle
+(BMH) according to minimum distance of codebook matrix to the input
+vector; ii) update the codebook matrix of the BMH and its neighbors via
+updating formula (see "Note" below for details). It also returns an
 object of class "sMap".</p>
   
     <h3>Usage</h3>
@@ -153,93 +151,103 @@ object of class "sMap".</p>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>an object of class "sMap", a list with following
-components: <ul>
-<li><code>nHex</code>: the total number
-of hexagons/rectanges in the grid </li>
-<li><code>xdim</code>:
-x-dimension of the grid </li>
-<li><code>ydim</code>: y-dimension of
-the grid </li>
+      <p>an object of class "sMap", a list with following components:
+<ul>
+<li><code>nHex</code>: the total number of hexagons/rectanges in the grid
+</li>
+<li><code>xdim</code>: x-dimension of the grid
+</li>
+<li><code>ydim</code>: y-dimension of the grid
+</li>
 <li><code>lattice</code>: the grid lattice
 </li>
-<li><code>shape</code>: the grid shape </li>
-<li><code>coord</code>: a
-matrix of nHex x 2, with each row corresponding to the
-coordinates of a hexagon/rectangle in the 2D map grid
+<li><code>shape</code>: the grid shape
+</li>
+<li><code>coord</code>: a matrix of nHex x 2, with each row corresponding
+to the coordinates of a hexagon/rectangle in the 2D map grid
 </li>
 <li><code>init</code>: an initialisation method
 </li>
 <li><code>neighKernel</code>: the training neighborhood kernel
 </li>
-<li><code>codebook</code>: a codebook matrix of nHex x
-ncol(data), with each row corresponding to a prototype
-vector in input high-dimensional space </li>
-<li><code>call</code>:
-the call that produced this result </li>
+<li><code>codebook</code>: a codebook matrix of nHex x ncol(data), with
+each row corresponding to a prototype vector in input high-dimensional
+space
+</li>
+<li><code>call</code>: the call that produced this result
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
       <p>Updating formula is: <code class = 'eq'>m_i(t+1) = m_i(t) +
-\alpha(t)*h_{wi}(t)*[x(t)-m_i(t)]</code>, where <ul>
-<li><code class = 'eq'>t</code> denotes the training time/step </li>
-<li><code class = 'eq'>i</code>
-and <code class = 'eq'>w</code> stand for the hexagon/rectangle <code class = 'eq'>i</code> and the
-winner BMH <code class = 'eq'>w</code>, respectively </li>
-<li><code class = 'eq'>x(t)</code> is an
-input vector randomly choosen (from the input data) at time
-<code class = 'eq'>t</code> </li>
-<li><code class = 'eq'>m_i(t)</code> and <code class = 'eq'>m_i(t+1)</code> are
-respectively the prototype vectors of the hexagon <code class = 'eq'>i</code>
-at time <code class = 'eq'>t</code> and <code class = 'eq'>t+1</code> </li>
-<li><code class = 'eq'>\alpha(t)</code> is the
-learning rate at time <code class = 'eq'>t</code>. There are three types of
-learning rate functions: <ul>
-<li>For "linear"
-function, <code class = 'eq'>\alpha(t)=\alpha_0*(1-t/T)</code> </li>
-<li>For
-"power" function,
-<code class = 'eq'>\alpha(t)=\alpha_0*(0.005/\alpha_0)^{t/T}</code> </li>
-<li>For
-"invert" function, <code class = 'eq'>\alpha(t)=\alpha_0/(1+100*t/T)</code>
+\alpha(t)*h_{wi}(t)*[x(t)-m_i(t)]</code>, where
+<ul>
+<li><code class = 'eq'>t</code> denotes the training time/step
 </li>
-<li>Where <code class = 'eq'>\alpha_0</code> is the initial learing rate
-(typically, <code class = 'eq'>\alpha_0=0.5</code> at "rough" stage,
-<code class = 'eq'>\alpha_0=0.05</code> at "finetune" stage), <code class = 'eq'>T</code> is the
-length of training time/step (often being set to input data
-length, i.e., the total number of rows) </li>
+<li><code class = 'eq'>i</code> and <code class = 'eq'>w</code> stand for the hexagon/rectangle <code class = 'eq'>i</code> and
+the winner BMH <code class = 'eq'>w</code>, respectively
+</li>
+<li><code class = 'eq'>x(t)</code> is an input vector randomly choosen (from the input
+data) at time <code class = 'eq'>t</code>
+</li>
+<li><code class = 'eq'>m_i(t)</code> and <code class = 'eq'>m_i(t+1)</code> are respectively the prototype
+vectors of the hexagon <code class = 'eq'>i</code> at time <code class = 'eq'>t</code> and <code class = 'eq'>t+1</code>
+</li>
+<li><code class = 'eq'>\alpha(t)</code> is the learning rate at time <code class = 'eq'>t</code>. There are
+three types of learning rate functions:
+<ul>
+<li>For "linear" function, <code class = 'eq'>\alpha(t)=\alpha_0*(1-t/T)</code>
+</li>
+<li>For "power" function,
+<code class = 'eq'>\alpha(t)=\alpha_0*(0.005/\alpha_0)^{t/T}</code>
+</li>
+<li>For "invert" function, <code class = 'eq'>\alpha(t)=\alpha_0/(1+100*t/T)</code>
+</li>
+<li>Where <code class = 'eq'>\alpha_0</code> is the initial learing rate (typically,
+<code class = 'eq'>\alpha_0=0.5</code> at "rough" stage, <code class = 'eq'>\alpha_0=0.05</code> at "finetune"
+stage), <code class = 'eq'>T</code> is the length of training time/step (often being set to
+input data length, i.e., the total number of rows)
+</li>
 </ul></p>
       <p></li>
-<li><code class = 'eq'>h_{wi}(t)</code> is the neighborhood kernel, a
-non-increasing function of i) the distance <code class = 'eq'>d_{wi}</code>
-between the hexagon/rectangle <code class = 'eq'>i</code> and the winner BMH
-<code class = 'eq'>w</code>, and ii) the radius <code class = 'eq'>\delta_t</code> at time <code class = 'eq'>t</code>.
-There are five kernels available: <ul>
-<li>For
-"gaussian" kernel,
-<code class = 'eq'>h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}</code> </li>
-<li>For
-"cutguassian" kernel,
-<code class = 'eq'>h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}*(d_{wi} \le
-\delta_t)</code> </li>
-<li>For "bubble" kernel,
-<code class = 'eq'>h_{wi}(t)=(d_{wi} \le \delta_t)</code> </li>
-<li>For "ep"
-kernel, <code class = 'eq'>h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi} \le
-\delta_t)</code> </li>
+<li><code class = 'eq'>h_{wi}(t)</code> is the neighborhood kernel, a non-increasing
+function of i) the distance <code class = 'eq'>d_{wi}</code> between the hexagon/rectangle
+<code class = 'eq'>i</code> and the winner BMH <code class = 'eq'>w</code>, and ii) the radius <code class = 'eq'>\delta_t</code>
+at time <code class = 'eq'>t</code>. There are five kernels available:
+<ul>
+<li>For "gaussian" kernel,
+<code class = 'eq'>h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}</code>
+</li>
+<li>For "cutguassian" kernel,
+<code class = 'eq'>h_{wi}(t)=e^{-d_{wi}^2/(2*\delta_t^2)}*(d_{wi} \le \delta_t)</code>
+</li>
+<li>For "bubble" kernel, <code class = 'eq'>h_{wi}(t)=(d_{wi} \le \delta_t)</code>
+</li>
+<li>For "ep" kernel, <code class = 'eq'>h_{wi}(t)=(1-d_{wi}^2/\delta_t^2)*(d_{wi}
+\le \delta_t)</code>
+</li>
 <li>For "gamma" kernel,
-<code class = 'eq'>h_{wi}(t)=1/\Gamma(d_{wi}^2/(4*\delta_t^2)+2)</code> </li>
-</ul>
- </li>
+<code class = 'eq'>h_{wi}(t)=1/\Gamma(d_{wi}^2/(4*\delta_t^2)+2)</code>
+</li>
+</ul></p>
+      <p></li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
@@ -282,16 +290,19 @@ sM_finetune <- sTrainSeq(sMap=sM_rough, data=data, sTrain=sT_rough)
     <h2>Source code</h2>
     <a href="javascript:newWin('R/sTrainSeq.r', 'R/sTrainSeq.r', '1200', '1200')" title="Click to view"><B><code>sTrainSeq.r</code></B></a>
     
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/sTrainSeq.txt', 'man/sTrainSeq.txt', '1200', '1200')" title="Click to view"><B><code>sTrainSeq.Rd</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='sTrainology.html'>sTrainology</a></code>, <code><a href='visKernels.html'>visKernels</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>

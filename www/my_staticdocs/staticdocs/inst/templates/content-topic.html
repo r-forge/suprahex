@@ -31,14 +31,17 @@
     -->
     
     {{#sections}}
+    <!-- 
     <div class="{{title}}">
+    -->
       <h3>{{title}}</h3>
       
       {{#contents}}
       <p>{{{.}}}</p>
       {{/contents}}
-
+    <!-- 
     </div>
+    -->
     {{/sections}}
 
     {{#examples }}
@@ -62,6 +65,11 @@
     <h2>Source code</h2>
     {{{sourcecode}}}
     {{/sourcecode}}
+    
+    {{#sourceman}}
+    <h2>Source man</h2>
+    {{{sourceman}}}
+    {{/sourceman}}
     
     {{#seealso}}
     <h2>See also</h2>

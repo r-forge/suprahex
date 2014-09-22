@@ -126,15 +126,14 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>sTopology</code> is supposed to define the topology of a 2D
-map grid. The topological shape can be either a
-supra-hexagonal grid or a hexagonal/rectangle sheet. It
-returns an object of "sTopol" class, containing: the total
-number of hexagons/rectangles in the grid, the grid
-xy-dimensions, the grid lattice, the grid shape, and the 2D
-coordinates of all hexagons/rectangles in the grid. The 2D
-coordinates can be directly used to measure distances
-between any pair of lattice hexagons/rectangles.</p>
+    <p><code>sTopology</code> is supposed to define the topology of a 2D map grid.
+The topological shape can be either a supra-hexagonal grid or a
+hexagonal/rectangle sheet. It returns an object of "sTopol" class,
+containing: the total number of hexagons/rectangles in the grid, the
+grid xy-dimensions, the grid lattice, the grid shape, and the 2D
+coordinates of all hexagons/rectangles in the grid. The 2D coordinates
+can be directly used to measure distances between any pair of lattice
+hexagons/rectangles.</p>
   
     <h3>Usage</h3>
     <pre>sTopology(data = NULL, xdim = NULL, ydim = NULL, nHex = NULL, lattice = c("hexa", 
@@ -145,77 +144,83 @@ between any pair of lattice hexagons/rectangles.</p>
       <dt>data</dt>
       <dd>a data frame or matrix of input data</dd>
       <dt>xdim</dt>
-      <dd>an integer specifying x-dimension of the
-grid</dd>
+      <dd>an integer specifying x-dimension of the grid</dd>
       <dt>ydim</dt>
-      <dd>an integer specifying y-dimension of the
-grid</dd>
+      <dd>an integer specifying y-dimension of the grid</dd>
       <dt>nHex</dt>
-      <dd>the number of hexagons/rectangles in the
-grid</dd>
+      <dd>the number of hexagons/rectangles in the grid</dd>
       <dt>lattice</dt>
-      <dd>the grid lattice, either "hexa" for a
-hexagon or "rect" for a rectangle</dd>
+      <dd>the grid lattice, either "hexa" for a hexagon or "rect"
+for a rectangle</dd>
       <dt>shape</dt>
-      <dd>the grid shape, either "suprahex" for a
-supra-hexagonal grid or "sheet" for a hexagonal/rectangle
-sheet</dd>
+      <dd>the grid shape, either "suprahex" for a supra-hexagonal
+grid or "sheet" for a hexagonal/rectangle sheet</dd>
     </dl>
     <!-- 
     -->
     
+    <!-- 
     <div class="Value">
+    -->
       <h3>Value</h3>
       
-      <p>an object of class "sTopol", a list with following
-components: <ul>
-<li><code>nHex</code>: the total number
-of hexagons/rectanges in the grid. It is not always the
-same as the input nHex (if any); see "Note" below for the
-explaination </li>
+      <p>an object of class "sTopol", a list with following components:
+<ul>
+<li><code>nHex</code>: the total number of hexagons/rectanges in the grid.
+It is not always the same as the input nHex (if any); see "Note" below
+for the explaination
+</li>
 <li><code>xdim</code>: x-dimension of the grid
 </li>
 <li><code>ydim</code>: y-dimension of the grid
 </li>
-<li><code>lattice</code>: the grid lattice </li>
-<li><code>shape</code>:
-the grid shape </li>
-<li><code>coord</code>: a matrix of nHex x 2,
-with each row corresponding to the coordinates of a
-hexagon/rectangle in the 2D map grid </li>
-<li><code>call</code>:
-the call that produced this result </li>
+<li><code>lattice</code>: the grid lattice
+</li>
+<li><code>shape</code>: the grid shape
+</li>
+<li><code>coord</code>: a matrix of nHex x 2, with each row corresponding
+to the coordinates of a hexagon/rectangle in the 2D map grid
+</li>
+<li><code>call</code>: the call that produced this result
+</li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
+    <!-- 
     <div class="Note">
+    -->
       <h3>Note</h3>
       
-      <p>The output of nHex depends on the input arguments and grid
-shape: <ul>
-<li>How the input parameters are used to
-determine nHex is taken priority in the following order:
-"xdim & ydim" > "nHex" > "data" </li>
-<li>If both of xdim and
-ydim are given, <code class = 'eq'>nHex=xdim*ydim</code> for the "sheet" shape,
-<code class = 'eq'>r=(min(xdim,ydim)+1)/2</code> for the "suprahex" shape
+      <p>The output of nHex depends on the input arguments and grid shape:
+<ul>
+<li>How the input parameters are used to determine nHex is taken
+priority in the following order: "xdim & ydim" > "nHex" > "data"
 </li>
-<li>If only data is input, <code class = 'eq'>nHex=5*sqrt(dlen)</code>, where
-dlen is the number of rows of the input data </li>
-<li>With
-nHex in hand, it depends on the grid shape: <ul>
-<li>For "sheet" shape, xy-dimensions of sheet grid is
-determined according to the square root of the two biggest
-eigenvalues of the input data </li>
-<li>For "suprahex" shape,
-see <code><a href='sHexGrid.html'>sHexGrid</a></code> for calculating the grid radius
-r. The xdim (and ydim) is related to r via
-<code class = 'eq'>xdim=2*r-1</code> </li>
-</ul>
- </li>
+<li>If both of xdim and ydim are given, <code class = 'eq'>nHex=xdim*ydim</code> for the
+"sheet" shape, <code class = 'eq'>r=(min(xdim,ydim)+1)/2</code> for the "suprahex" shape
+</li>
+<li>If only data is input, <code class = 'eq'>nHex=5*sqrt(dlen)</code>, where dlen is the
+number of rows of the input data
+</li>
+<li>With nHex in hand, it depends on the grid shape:
+<ul>
+<li>For "sheet" shape, xy-dimensions of sheet grid is determined
+according to the square root of the two biggest eigenvalues of the
+input data
+</li>
+<li>For "suprahex" shape, see <code><a href='sHexGrid.html'>sHexGrid</a></code> for calculating
+the grid radius r. The xdim (and ydim) is related to r via
+<code class = 'eq'>xdim=2*r-1</code>
+</li>
+</ul></p>
+      <p></li>
 </ul></p>
       <p></p>
+    <!-- 
     </div>
+    -->
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># For "suprahex" shape
@@ -267,16 +272,19 @@ visHexMapping(sTopol,mappingType="indexes")
     <h2>Source code</h2>
     <a href="javascript:newWin('R/sTopology.r', 'R/sTopology.r', '1200', '1200')" title="Click to view"><B><code>sTopology.r</code></B></a>
     
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/sTopology.txt', 'man/sTopology.txt', '1200', '1200')" title="Click to view"><B><code>sTopology.Rd</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='sHexGrid.html'>sHexGrid</a></code>, <code><a href='visHexMapping.html'>visHexMapping</a></code>
 
-    
+    <!--
+
     <h2>Citation</h2>
     <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
-    <!--
     
     <h2>URL</h2>
     <ul>
