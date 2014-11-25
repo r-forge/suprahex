@@ -173,7 +173,7 @@ biocLite(c(&quot;supraHex&quot;,&quot;devtools&quot;))
 <p>To install <a href="https://github.com/hfang-bristol/supraHex">latest development version</a> (<code>highly recommended</code> for benefits of latest improvements), run:</p>
 
 <pre><code>library(devtools)
-for(pkg in c(&quot;supraHex&quot;&quot;)){
+for(pkg in c(&quot;supraHex&quot;)){
     if(pkg %in% rownames(installed.packages())) remove.packages(pkg)
     install_github(repo=paste(&quot;hfang-bristol&quot;,pkg,sep=&quot;/&quot;))
 }

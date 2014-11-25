@@ -42,7 +42,7 @@ To install [stable release version](http://bioconductor.org/packages/release/bio
 To install [latest development version](https://github.com/hfang-bristol/supraHex) (`highly recommended` for benefits of latest improvements), run:
     
     library(devtools)
-    for(pkg in c("supraHex"")){
+    for(pkg in c("supraHex")){
         if(pkg %in% rownames(installed.packages())) remove.packages(pkg)
         install_github(repo=paste("hfang-bristol",pkg,sep="/"))
     }
