@@ -3,7 +3,7 @@
 \alias{sTrainBatch}
 \title{Function to implement training via batch algorithm}
 \usage{
-sTrainBatch(sMap, data, sTrain)
+sTrainBatch(sMap, data, sTrain, verbose = T)
 }
 \arguments{
 \item{sMap}{an object of class "sMap" or "sInit"}
@@ -11,6 +11,9 @@ sTrainBatch(sMap, data, sTrain)
 \item{data}{a data frame or matrix of input data}
 
 \item{sTrain}{an object of class "sTrain"}
+
+\item{verbose}{logical to indicate whether the messages will be
+displayed in the screen. By default, it sets to TRUE for display}
 }
 \value{
 an object of class "sMap", a list with following components:

@@ -44,3 +44,13 @@ To install [latest development version](http://bioconductor.org/packages/devel/b
     if(!require(hexbin)) install.packages("hexbin",repos="http://www.stats.bris.ac.uk/R")
     if(!require(ape)) install.packages("ape",repos="http://www.stats.bris.ac.uk/R")
     install.packages("supraHex",repos="http://R-Forge.R-project.org", type="source")
+
+To install [latest development version](http://bioconductor.org/packages/devel/bioc/html/supraHex.html) (`highly recommended` for benefits of latest improvements), run:
+
+    library(BiocInstaller) 
+    useDevel(devel=T)
+    source("http://bioconductor.org/biocLite.R")
+    biocLite("supraHex")
+    # After intallation, it is very important to reset back to the release version of Bioconductor
+    # Otherwise, packages to be installed will come from the development version (might be instable)
+    useDevel(devel=F)

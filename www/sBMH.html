@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>sBMH @ supraHex 1.3.1</title>
+<title>sBMH @ supraHex 1.5.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.3.1</a>
+      <a class="brand" href="index.html">supraHex 1.5.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -197,13 +197,43 @@ sT_rough <- sTrainology(sMap=sI, data=data, stage="rough")
 
 # 5) training at "rough" stage
 sM_rough <- sTrainBatch(sMap=sI, data=data, sTrain=sT_rough)
-
+</div>
+<strong class='message'>	1 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<strong class='message'>	2 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<strong class='message'>	3 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<strong class='message'>	4 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<strong class='message'>	5 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<strong class='message'>	6 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<strong class='message'>	7 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<div class='input'>
 # 6) define trainology at "finetune" stage
 sT_finetune <- sTrainology(sMap=sI, data=data, stage="finetune")
 
 # 7) training at "finetune" stage
 sM_finetune <- sTrainBatch(sMap=sM_rough, data=data, sTrain=sT_rough)
-
+</div>
+<strong class='message'>	1 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<strong class='message'>	2 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<strong class='message'>	3 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<strong class='message'>	4 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<strong class='message'>	5 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<strong class='message'>	6 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<strong class='message'>	7 out of 7 (2014-11-25 10:32:07)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:07)</strong>
+<div class='input'>
 # 8) find the best-matching hexagons/rectangles for the input data
 response <- sBMH(sMap=sM_finetune, data=data, which_bmh="best")
 </div></pre>
@@ -226,6 +256,8 @@ response <- sBMH(sMap=sM_finetune, data=data, which_bmh="best")
     <h2>Source man</h2>
     <a href="javascript:newWin('man/sBMH.txt', 'man/sBMH.txt', '1200', '1200')" title="Click to view"><B><code>sBMH.Rd</code></B></a>
     
+    <a href="javascript:newWin('man/sBMH.pdf', 'man/sBMH.pdf', '1200', '1200')" title="Click to view"><B><code>sBMH.pdf</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='sPipeline.html'>sPipeline</a></code>
@@ -233,7 +265,7 @@ response <- sBMH(sMap=sM_finetune, data=data, which_bmh="best")
     <!--
 
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
     

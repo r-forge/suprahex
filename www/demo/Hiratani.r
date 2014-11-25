@@ -10,7 +10,7 @@
 
 # (I) Load the package and import data
 library(supraHex)
-URL <- url("http://supfam.org/SUPERFAMILY/dcGO/supraHex/realcases/Hiratani_TableS1.Rda")
+URL <- url("http://supfam.org/supraHex/Hiratani_TableS1.Rda")
 load(URL)
 close(URL)
 ls() # you should see three variables: 'RT', 'CpG' and 'EX'

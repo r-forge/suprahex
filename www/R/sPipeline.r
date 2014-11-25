@@ -80,15 +80,23 @@ sPipeline <- function(data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("hex
     neighKernel <- match.arg(neighKernel)
     
     ## define the topology of a map grid
-    if (verbose) message("First, define topology of a map grid...", appendLF=T)
+    if (verbose){
+        now <- Sys.time()
+        message(sprintf("First, define topology of a map grid (%s)...", as.character(now)), appendLF=T)
+    }
     sTopol <- sTopology(data=data, xdim=xdim, ydim=ydim, nHex=nHex, lattice=lattice, shape=shape)
     
     ## initialise the codebook matrix given a topology and input data
-    if (verbose) message("Second, initialise the codebook matrix given a topology and input data...", appendLF=T)
-    sI <- sInitial(data=data, sTopol=sTopol, init=init) 
+    if (verbose){
+        message(sprintf("Second, initialise the codebook matrix (%d X %d) using '%s' initialisation, given a topology and input data (%s)...", sTopol$nHex, ncol(data), init, as.character(now)), appendLF=T)
+    }
+    sI <- sInitial(data=data, sTopol=sTopol, init=init)
     
     ## get training at the rough stage
-    if (verbose) message("Third, get training at the rough stage...", appendLF=T)
+    if (verbose){
+        now <- Sys.time()
+        message(sprintf("Third, get training at the rough stage (%s)...", as.character(now)), appendLF=T)
+    }
     sT_rough <- sTrainology(sMap=sI, data=data, algorithm=algorithm, stage="rough", alphaType=alphaType, neighKernel=neighKernel)
     if(algorithm == "sequential"){
         sM_rough <- sTrainSeq(sMap=sI, data=data, sTrain=sT_rough)
@@ -97,7 +105,10 @@ sPipeline <- function(data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("hex
     }
 
     ## get training at the finetune stage
-    if (verbose) message("Fourth, get training at the finetune stage...", appendLF=T)
+    if (verbose){
+        now <- Sys.time()
+        message(sprintf("Fourth, get training at the finetune stage (%s)...", as.character(now)), appendLF=T)
+    }
     sT_finetune <- sTrainology(sMap=sI, data=data, algorithm=algorithm, stage="finetune", alphaType=alphaType, neighKernel=neighKernel)
     if(algorithm == "sequential"){
         sM_finetune <- sTrainSeq(sMap=sM_rough, data=data, sTrain=sT_finetune)
@@ -114,7 +125,10 @@ sPipeline <- function(data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("hex
         # mqe: average quantization error
     
         ## sustain the finetune training till the mean quantization error (mqe) does not get worsen
-        if (verbose) message("Fifth, sustain the next 10 rounds of finetune training till the mean quantization error (mqe) does get worse...", appendLF=T)
+        if (verbose){
+            now <- Sys.time()
+            message(sprintf("Fifth, sustain the next 10 rounds of finetune training till the mean quantization error (mqe) does get worse (%s)...", as.character(now)), appendLF=T)
+        }
         mqe <- vector()
         k=1
         mqe[k] <- round(response$mqe * 10)/10
@@ -153,11 +167,17 @@ sPipeline <- function(data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("hex
         sM_final <- sM_finetune
     }
     
-    if (verbose) message("Next, identify the best-matching hexagon/rectangle for the input data...", appendLF=T)
+    if (verbose){
+        now <- Sys.time()
+        message(sprintf("Next, identify the best-matching hexagon/rectangle for the input data (%s)...", as.character(now)), appendLF=T)
+    }
     response <- sBMH(sMap=sM_final, data=data, which_bmh="best")
     
     ##################################################################
-    if (verbose) message("Finally, append the response data (hits and mqe) into the sMap object...", appendLF=T)
+    if (verbose){
+        now <- Sys.time()
+        message(sprintf("Finally, append the response data (hits and mqe) into the sMap object (%s)...", as.character(now)), appendLF=T)
+    }
     
     ## for hits
     hits <- sapply(seq(1,sM_final$nHex), function(x) sum(response$bmh==x))

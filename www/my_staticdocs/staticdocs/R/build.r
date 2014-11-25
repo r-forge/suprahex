@@ -48,10 +48,21 @@ build_package <- function(package, base_path = NULL, examples=T, replace.example
     if(file.exists(R_local_path)){
         file.copy(dir(R_local_path, full.names = TRUE), dest, recursive = TRUE)
         
+        R_functions <- package$collate
         #######################
         ## rename *.Rd to *.txt becaue the web cannot identify *.Rd files
         all_files <- list.files(path=dest, pattern="*.Rd",full.name=T)
         sapply(all_files, function(x){
+        
+            z <- gsub(".Rd$", ".pdf", x, perl=T)
+            t <- gsub(".*/", "", x, perl=T)
+            s <- gsub(".Rd$", "", t, perl=T)
+            w <- gsub(".Rd$", ".r", t, perl=T)
+            #R CMD Rd2pdf --no-preview --force --no-index --no-description --title=dcAlgoPredict --output=dcAlgoPredict.pdf dcGOR/man/dcAlgoPredict.Rd
+            if (w %in% R_functions) {
+                system(paste(shQuote(file.path(R.home("bin"), "R"))," CMD", " Rd2pdf", " --no-preview --force --no-index --no-description --output=", z, " --title=",s," ",x, sep=''))
+            }
+            
             y <- gsub(".Rd$", ".txt", x, perl=T)
             file.rename(x, y)
         })
@@ -226,6 +237,9 @@ build_topics <- function(package, replace.examplefiles.forced) {
     if (temp %in% gsub(".r$",".txt",R_functions,perl=T)) {
         name <- paste("man/",temp, sep='')
         html$sourceman <- str_c("<a href=\"javascript:newWin('", name,"', '", name,"', '",wth,"', '",hgt,"')\" title=\"Click to view\"><B><code>",gsub(".txt$",".Rd",temp,perl=T),"</code></B></a>")
+        
+        name_temp <- gsub(".txt$",".pdf",name,perl=T)
+        html$sourceman_pdf <- str_c("<a href=\"javascript:newWin('", name_temp,"', '", name_temp,"', '",wth,"', '",hgt,"')\" title=\"Click to view\"><B><code>",gsub(".txt$",".pdf",temp,perl=T),"</code></B></a>")
     }
     ###########################################
     

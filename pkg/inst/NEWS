@@ -1,3 +1,11 @@
+CHANGES IN VERSION 1.5.1
+-----------------------
+
+NEW FEATURES
+
+    o Fix the batch algorithm allowing for processing an input data containing many zero entries
+
+
 CHANGES IN VERSION 1.2.0
 -----------------------
 

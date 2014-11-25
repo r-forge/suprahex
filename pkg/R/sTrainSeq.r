@@ -5,6 +5,7 @@
 #' @param sMap an object of class "sMap" or "sInit"
 #' @param data a data frame or matrix of input data
 #' @param sTrain an object of class "sTrain"
+#' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to TRUE for display
 #' @return 
 #' an object of class "sMap", a list with following components:
 #' \itemize{
@@ -67,7 +68,7 @@
 #' # 7) training at "finetune" stage
 #' sM_finetune <- sTrainSeq(sMap=sM_rough, data=data, sTrain=sT_rough)
 
-sTrainSeq <- function(sMap, data, sTrain)
+sTrainSeq <- function(sMap, data, sTrain, verbose=T)
 {
     
     if (class(sMap) != "sMap" & class(sMap) != "sInit"){
@@ -120,12 +121,24 @@ sTrainSeq <- function(sMap, data, sTrain)
     Ud <- sHexDist(sObj=sMap)
     Ud <- Ud^2 ## squared Ud (see notes radius below)
     
+    ########################################################
+    ## A function to indicate the running progress
+    progress_indicate <- function(i, B, step, flag=F){
+        if(i %% ceiling(B/step) == 0 | i==B | i==1){
+            if(flag & verbose){
+                message(sprintf("\t%d out of %d (%s)", i, B, as.character(Sys.time())), appendLF=T)
+            }
+        }
+    }
     ##################################################################
+    
     updateStep <- min(dlen,1000)
     
     eps <- 1e-16
     set.seed(1234)
     for (t in 1:tlen){
+        
+        progress_indicate(i=t, B=tlen, 10, flag=T)
         
         ## For every updateStep: re-calculate sample index, neighborhood radius and learning rate
         ind <- t %% updateStep
@@ -177,14 +190,19 @@ sTrainSeq <- function(sMap, data, sTrain)
         }else if(neighKernel == "gamma"){
             h <- 1/gamma(Ud[,bmh]/(4*radius[ind]) +1+1)
         }
-      
+    
         ## alpha(t) * h(t)
         hAlpha <- h*alpha[ind]
-
+        
         ## update item
-        updataItem <- matrix(0, nrow=nHex, ncol=ncol(M))
-        for(i in 1:nHex){
-            updataItem[i,] <- hAlpha[i] * Mx[i,]
+        if(0){
+            updataItem <- matrix(0, nrow=nHex, ncol=ncol(M))
+            for(i in 1:nHex){
+                updataItem[i,] <- hAlpha[i] * Mx[i,]
+            }
+        }else{
+            tmp <- matrix(rep(hAlpha,dim(Mx)[2]), ncol=dim(Mx)[2])
+            updataItem <- tmp * Mx
         }
         
         ## update M

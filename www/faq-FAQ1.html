@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>What is the supra-hexagonal map?  @ supraHex 1.3.1</title>
+<title>What is the supra-hexagonal map?  @ supraHex 1.5.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.3.1</a>
+      <a class="brand" href="index.html">supraHex 1.5.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -123,10 +123,10 @@
       <h2>What is the supra-hexagonal map? </h2>
 
 Notes:
-<li> All results are based on supraHex (version 1.3.1). </li>
+<li> All results are based on supraHex (version 1.5.1). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light-cyan background, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in supraHex 1.3.1 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in supraHex 1.5.1 are hyperlinked in-place and also listed on the right side. </li>
 <li> Key texts are underlined, in bold and in pumpkin-orange color. </li>
 
 <div class="row">
@@ -139,14 +139,32 @@ data <- matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3)
 # train a supra-hexagonal map by data
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data, xdim=15)
 </div>
-<strong class='message'>Start at 2014-09-22 20:24:13</strong>
+<strong class='message'>Start at 2014-11-25 10:35:12</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid...</strong>
-<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
-<strong class='message'>Third, get training at the rough stage...</strong>
-<strong class='message'>Fourth, get training at the finetune stage...</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'>First, define topology of a map grid (2014-11-25 10:35:12)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (169 X 3) using 'linear' initialisation, given a topology and input data (2014-11-25 10:35:12)...</strong>
+<strong class='message'>Third, get training at the rough stage (2014-11-25 10:35:12)...</strong>
+<strong class='message'>	1 out of 2 (2014-11-25 10:35:12)</strong>
+<strong class='message'>	updated (2014-11-25 10:35:12)</strong>
+<strong class='message'>	2 out of 2 (2014-11-25 10:35:12)</strong>
+<strong class='message'>	updated (2014-11-25 10:35:12)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2014-11-25 10:35:12)...</strong>
+<strong class='message'>	1 out of 7 (2014-11-25 10:35:12)</strong>
+<strong class='message'>	updated (2014-11-25 10:35:12)</strong>
+<strong class='message'>	2 out of 7 (2014-11-25 10:35:12)</strong>
+<strong class='message'>	updated (2014-11-25 10:35:12)</strong>
+<strong class='message'>	3 out of 7 (2014-11-25 10:35:12)</strong>
+<strong class='message'>	updated (2014-11-25 10:35:12)</strong>
+<strong class='message'>	4 out of 7 (2014-11-25 10:35:12)</strong>
+<strong class='message'>	updated (2014-11-25 10:35:12)</strong>
+<strong class='message'>	5 out of 7 (2014-11-25 10:35:12)</strong>
+<strong class='message'>	updated (2014-11-25 10:35:12)</strong>
+<strong class='message'>	6 out of 7 (2014-11-25 10:35:12)</strong>
+<strong class='message'>	updated (2014-11-25 10:35:12)</strong>
+<strong class='message'>	7 out of 7 (2014-11-25 10:35:12)</strong>
+<strong class='message'>	updated (2014-11-25 10:35:12)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2014-11-25 10:35:12)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2014-11-25 10:35:12)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 1000x3
@@ -166,13 +184,13 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data, xdim=15)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-09-22 20:24:13</strong>
+<strong class='message'>End at 2014-11-25 10:35:12</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># visualise the supra-hexagonal map with node numbering
 <a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="indexes")
 </div>
-<a href="javascript:newWin('FAQ1-18.png', 'FAQ1-18.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ1-18.png', width="400" /></a>
+<a href="javascript:newWin('FAQ1-36.png', 'FAQ1-36.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='FAQ1-36.png', width="400" /></a>
 <div class='input'>
 # As you have seen, this architecture has a total of 169 smaller hexagons (ie map nodes) that are indexed as follows: start from the center, and then expand circularly outwards, and for each circle increase in an anti-clockwise order. <span style="font-weight:bold; color:#F87217; text-decoration:underline">It is uniquely determined by the x- or y-dimension of the map grid (or its radius r).</span>
 
@@ -195,7 +213,7 @@ nHex <- 1 + 6 * r * (r - 1)/2</div>
     </ul>
     <!--    
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
     <h2>URL</h2>

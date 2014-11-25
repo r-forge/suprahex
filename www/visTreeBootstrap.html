@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visTreeBootstrap @ supraHex 1.3.1</title>
+<title>visTreeBootstrap @ supraHex 1.5.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.3.1</a>
+      <a class="brand" href="index.html">supraHex 1.5.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -366,14 +366,14 @@ data <- t(data)
 # 2) build neighbor-joining tree with bootstrap values and visualise it by default
 visTreeBootstrap(data)
 </div>
-<strong class='message'>Start at 2014-09-22 20:23:19</strong>
+<strong class='message'>Start at 2014-11-25 10:32:56</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-22 20:23:19</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>Finish at 2014-11-25 10:32:57</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <a href="javascript:newWin('visTreeBootstrap-10.png', 'visTreeBootstrap-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visTreeBootstrap-10.png', width="400" /></a>
 <div class='output'>
@@ -391,13 +391,13 @@ Unrooted; includes branch lengths.
 # 3a) generate the bootstrapped tree (without visualisation)
 tree_bs <- visTreeBootstrap(data, visTree=FALSE)
 </div>
-<strong class='message'>Start at 2014-09-22 20:23:19</strong>
+<strong class='message'>Start at 2014-11-25 10:32:57</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-22 20:23:19</strong>
+<strong class='message'>Finish at 2014-11-25 10:32:57</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># 3b) look at the bootstrap values and ordered row names of input matrix
@@ -419,13 +419,13 @@ text <- tree_bs$node.label[flag]
 node <- Ntip + (1:Nnode)[flag]
 visTreeBootstrap(data, nodelabels.arg=list(text=text,node=node))
 </div>
-<strong class='message'>Start at 2014-09-22 20:23:19</strong>
+<strong class='message'>Start at 2014-11-25 10:32:57</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-22 20:23:19</strong>
+<strong class='message'>Finish at 2014-11-25 10:32:57</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <a href="javascript:newWin('visTreeBootstrap-34.png', 'visTreeBootstrap-34.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visTreeBootstrap-34.png', width="400" /></a>
@@ -443,13 +443,13 @@ Unrooted; includes branch lengths.
 # 4) obtain the consensus tree
 tree_cons <- visTreeBootstrap(data, consensus=TRUE, num.bootstrap=10)
 </div>
-<strong class='message'>Start at 2014-09-22 20:23:19</strong>
+<strong class='message'>Start at 2014-11-25 10:32:57</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 10 replicates...</strong>
 <strong class='message'>Finally, obtain consensus tree based on 0.50 majority...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2014-09-22 20:23:19</strong>
+<strong class='message'>Finish at 2014-11-25 10:32:57</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong></pre>
   </div>
@@ -471,6 +471,8 @@ tree_cons <- visTreeBootstrap(data, consensus=TRUE, num.bootstrap=10)
     <h2>Source man</h2>
     <a href="javascript:newWin('man/visTreeBootstrap.txt', 'man/visTreeBootstrap.txt', '1200', '1200')" title="Click to view"><B><code>visTreeBootstrap.Rd</code></B></a>
     
+    <a href="javascript:newWin('man/visTreeBootstrap.pdf', 'man/visTreeBootstrap.pdf', '1200', '1200')" title="Click to view"><B><code>visTreeBootstrap.pdf</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='visTreeBootstrap.html'>visTreeBootstrap</a></code>
@@ -478,7 +480,7 @@ tree_cons <- visTreeBootstrap(data, consensus=TRUE, num.bootstrap=10)
     <!--
 
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
     

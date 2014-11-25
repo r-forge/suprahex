@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visHexMapping @ supraHex 1.3.1</title>
+<title>visHexMapping @ supraHex 1.5.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.3.1</a>
+      <a class="brand" href="index.html">supraHex 1.5.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -227,14 +227,32 @@ colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2014-09-22 20:22:51</strong>
+<strong class='message'>Start at 2014-11-25 10:32:29</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid...</strong>
-<strong class='message'>Second, initialise the codebook matrix given a topology and input data...</strong>
-<strong class='message'>Third, get training at the rough stage...</strong>
-<strong class='message'>Fourth, get training at the finetune stage...</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object...</strong>
+<strong class='message'>First, define topology of a map grid (2014-11-25 10:32:29)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (169 X 9) using 'linear' initialisation, given a topology and input data (2014-11-25 10:32:29)...</strong>
+<strong class='message'>Third, get training at the rough stage (2014-11-25 10:32:29)...</strong>
+<strong class='message'>	1 out of 2 (2014-11-25 10:32:29)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:29)</strong>
+<strong class='message'>	2 out of 2 (2014-11-25 10:32:29)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:29)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2014-11-25 10:32:29)...</strong>
+<strong class='message'>	1 out of 7 (2014-11-25 10:32:29)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:29)</strong>
+<strong class='message'>	2 out of 7 (2014-11-25 10:32:29)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:29)</strong>
+<strong class='message'>	3 out of 7 (2014-11-25 10:32:29)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:29)</strong>
+<strong class='message'>	4 out of 7 (2014-11-25 10:32:29)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:29)</strong>
+<strong class='message'>	5 out of 7 (2014-11-25 10:32:29)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:29)</strong>
+<strong class='message'>	6 out of 7 (2014-11-25 10:32:29)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:29)</strong>
+<strong class='message'>	7 out of 7 (2014-11-25 10:32:29)</strong>
+<strong class='message'>	updated (2014-11-25 10:32:29)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2014-11-25 10:32:29)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2014-11-25 10:32:29)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 1000x9
@@ -254,7 +272,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-09-22 20:22:51</strong>
+<strong class='message'>End at 2014-11-25 10:32:29</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
@@ -262,19 +280,19 @@ sMap <- sPipeline(data=data)
 # 3a) for indexes of hexagons
 visHexMapping(sMap,mappingType="indexes")
 </div>
-<a href="javascript:newWin('visHexMapping-18.png', 'visHexMapping-18.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHexMapping-18.png', width="400" /></a>
+<a href="javascript:newWin('visHexMapping-36.png', 'visHexMapping-36.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHexMapping-36.png', width="400" /></a>
 <div class='input'># 3b) for the number of input data vectors hitting the hexagons
 visHexMapping(sMap,mappingType="hits")
 </div>
-<a href="javascript:newWin('visHexMapping-20.png', 'visHexMapping-20.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHexMapping-20.png', width="400" /></a>
+<a href="javascript:newWin('visHexMapping-38.png', 'visHexMapping-38.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHexMapping-38.png', width="400" /></a>
 <div class='input'># 3c) for distance (in high-dimensional input space) to neighbors (defined in 2D output space)
 visHexMapping(sMap,mappingType="dist")
 </div>
-<a href="javascript:newWin('visHexMapping-22.png', 'visHexMapping-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHexMapping-22.png', width="400" /></a>
+<a href="javascript:newWin('visHexMapping-40.png', 'visHexMapping-40.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHexMapping-40.png', width="400" /></a>
 <div class='input'># 3d) for clusters/bases partitioned from the sMap
 visHexMapping(sMap,mappingType="bases")
 </div>
-<a href="javascript:newWin('visHexMapping-24.png', 'visHexMapping-24.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHexMapping-24.png', width="400" /></a></pre>
+<a href="javascript:newWin('visHexMapping-42.png', 'visHexMapping-42.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHexMapping-42.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">
@@ -294,6 +312,8 @@ visHexMapping(sMap,mappingType="bases")
     <h2>Source man</h2>
     <a href="javascript:newWin('man/visHexMapping.txt', 'man/visHexMapping.txt', '1200', '1200')" title="Click to view"><B><code>visHexMapping.Rd</code></B></a>
     
+    <a href="javascript:newWin('man/visHexMapping.pdf', 'man/visHexMapping.pdf', '1200', '1200')" title="Click to view"><B><code>visHexMapping.pdf</code></B></a>
+    
     <h2>See also</h2>
     
 <code><a href='sDmat.html'>sDmat</a></code>, <code><a href='sDmatCluster.html'>sDmatCluster</a></code>,
@@ -302,7 +322,7 @@ visHexMapping(sMap,mappingType="bases")
     <!--
 
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
     

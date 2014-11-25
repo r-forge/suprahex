@@ -5,6 +5,7 @@
 #' @param sMap an object of class "sMap" or "sInit"
 #' @param data a data frame or matrix of input data
 #' @param sTrain an object of class "sTrain"
+#' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to TRUE for display
 #' @return 
 #' an object of class "sMap", a list with following components:
 #' \itemize{
@@ -60,7 +61,7 @@
 #' # 7) training at "finetune" stage
 #' sM_finetune <- sTrainBatch(sMap=sM_rough, data=data, sTrain=sT_rough)
 
-sTrainBatch <- function(sMap, data, sTrain)
+sTrainBatch <- function(sMap, data, sTrain, verbose=T)
 {
 
     if (class(sMap) != "sMap" & class(sMap) != "sInit"){
@@ -114,18 +115,27 @@ sTrainBatch <- function(sMap, data, sTrain)
     Ud <- sHexDist(sObj=sMap)
     Ud <- Ud^2 ## squared Ud (see notes radius below)
     
+    ########################################################
+    ## A function to indicate the running progress
+    progress_indicate <- function(i, B, step, flag=F){
+        if(i %% ceiling(B/step) == 0 | i==B | i==1){
+            if(flag & verbose){
+                message(sprintf("\t%d out of %d (%s)", i, B, as.character(Sys.time())), appendLF=T)
+            }
+        }
+    }
     ##################################################################
     
     for (t in 1:length(radius)){
         
-        if(1){
+        progress_indicate(i=t, B=length(radius), length(radius), flag=T)
         
+        if(1){
             response <- sBMH(M, D, which_bmh="best")
             # bmh: the requested BMH matrix of dlen x length(which_bmh)
             # qerr: the corresponding matrix of quantization errors
             # mqe: average quantization error
             bmh <- response$bmh
-        
         }else{
             bmh <- matrix(0, nrow=dlen, ncol=1)
             for (i in 1:dlen){
@@ -136,7 +146,6 @@ sTrainBatch <- function(sMap, data, sTrain)
                 bmh[i] <- min(which(tmp_dist == min(tmp_dist)))
             }
         }
-        
         
         ## neighborhood kernel and radius
         ## notice: Ud and radius have been squared
@@ -154,7 +163,12 @@ sTrainBatch <- function(sMap, data, sTrain)
         
         Hi <- H[,bmh]
         S <- Hi %*% D
-        A <- Hi %*% (D != 0)
+        #A <- Hi %*% (D != 0)
+        A <- Hi %*% !is.na(D)
+        
+        if(verbose){
+            message(sprintf("\tupdated (%s)", as.character(Sys.time())), appendLF=T)
+        }
         
         # only update units for which the "activation" is nonzero
         nonzero <- which(A > 0) 

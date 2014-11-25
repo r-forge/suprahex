@@ -99,7 +99,9 @@ sBMH <- function(sMap, data, which_bmh=c("best", "worst", "all"))
     const = tmp_m %*% t(D^2)
     
     ## blen: block from dlen
-    blen <- min(nHex, dlen)
+    #blen <- min(nHex, dlen)
+    blen <- min(nHex*10, dlen)
+    
     i_block <- 1
     while (i_block <= dlen){
         
@@ -151,5 +153,4 @@ sBMH <- function(sMap, data, which_bmh=c("best", "worst", "all"))
                       method = "suprahex")
         
     invisible(response)
-    
 }

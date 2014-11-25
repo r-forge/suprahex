@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Install @ supraHex 1.3.1</title>
+<title>Install @ supraHex 1.5.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.3.1</a>
+      <a class="brand" href="index.html">supraHex 1.5.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -127,20 +127,20 @@
   
     <h2>1. R requirement</h2>
 
-<p>R (<a href="http://www.r-project.org">http://www.r-project.org</a>) is a language and environment for statistical computing and graphics. We assume R (version 3.1.0) has been installed in your local machine. The current version 3.1.0 can be installed following quick instructions below for different platforms (Windows, Mac, and Linux).</p>
+<p>R (<a href="http://www.r-project.org">http://www.r-project.org</a>) is a language and environment for statistical computing and graphics. We assume R version (&gt;= 3.0.2) has been installed in your local machine. The current version 3.1.2 can be installed following quick instructions below for different platforms (Windows, Mac, and Linux).</p>
 
 <ul>
-<li>Quick link for <code>Windows</code>: <a href="http://www.stats.bris.ac.uk/R/bin/windows/base/R-3.1.0-win.exe">Download R for Windows</a>.</li>
-<li><p>Quick link for <code>Mac</code>: <a href="http://cran.r-project.org/bin/macosx/R-3.1.0-snowleopard.pkg">Download R for Mac OS X 10.6 (Snow Leopard or higher)</a>.</p></li>
+<li>Quick link for <code>Windows</code>: <a href="http://cran.r-project.org/bin/windows/base/R-3.1.2-win.exe">Download R for Windows</a>.</li>
+<li><p>Quick link for <code>Mac</code>: <a href="http://cran.r-project.org/bin/macosx/R-3.1.2-snowleopard.pkg">Download R for Mac OS X 10.6 (Snow Leopard or higher)</a>.</p></li>
 <li><p>Below are shell command lines for R installation in Terminal (for <code>Linux</code>):</p></li>
 </ul>
 
 <p>Assume you have a <code>ROOT (sudo)</code> privilege:</p>
 
 <pre><code>sudo su
-wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.1.0.tar.gz
-tar xvfz R-3.1.0.tar.gz
-cd R-3.1.0
+wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.1.2.tar.gz
+tar xvfz R-3.1.2.tar.gz
+cd R-3.1.2
 ./configure
 make
 make check
@@ -150,14 +150,14 @@ R # start R
 
 <p>Assume you do not have a ROOT privilege and want R installation under your home directory (below <code>/home/hfang</code> should be replaced with yours):</p>
 
-<pre><code>wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.1.0.tar.gz
-tar xvfz R-3.1.0.tar.gz
-cd R-3.1.0
-./configure --prefix=/home/hfang/R-3.1.0
+<pre><code>wget http://www.stats.bris.ac.uk/R/src/base/R-3/R-3.1.2.tar.gz
+tar xvfz R-3.1.2.tar.gz
+cd R-3.1.2
+./configure --prefix=/home/hfang/R-3.1.2
 make
 make check
 make install
-/home/hfang/R-3.1.0/bin/R # start R
+/home/hfang/R-3.1.2/bin/R # start R
 </code></pre>
 
 <h2>2. Install the package from Bioconductor and R-Forge</h2>
@@ -167,18 +167,16 @@ make install
 <p>To install <a href="http://bioconductor.org/packages/release/bioc/html/supraHex.html">stable release version</a>, run:</p>
 
 <pre><code>source(&quot;http://bioconductor.org/biocLite.R&quot;)
-biocLite(&quot;supraHex&quot;)
+biocLite(c(&quot;supraHex&quot;,&quot;devtools&quot;))
 </code></pre>
 
-<p>To install <a href="http://bioconductor.org/packages/devel/bioc/html/supraHex.html">latest development version</a> (<code>highly recommended</code> for benefits of latest improvements), run:</p>
+<p>To install <a href="https://github.com/hfang-bristol/supraHex">latest development version</a> (<code>highly recommended</code> for benefits of latest improvements), run:</p>
 
-<pre><code>library(BiocInstaller) 
-useDevel(devel=T)
-source(&quot;http://bioconductor.org/biocLite.R&quot;)
-biocLite(&quot;supraHex&quot;)
-# After intallation, it is very important to reset back to the release version of Bioconductor
-# Otherwise, packages to be installed will come from the development version (might be instable)
-useDevel(devel=F)
+<pre><code>library(devtools)
+for(pkg in c(&quot;supraHex&quot;&quot;)){
+    if(pkg %in% rownames(installed.packages())) remove.packages(pkg)
+    install_github(repo=paste(&quot;hfang-bristol&quot;,pkg,sep=&quot;/&quot;))
+}
 </code></pre>
 
 
@@ -199,7 +197,7 @@ useDevel(devel=F)
     </ul>
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. Biochemical and Biophysical Research Communications, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">http://dx.doi.org/10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
     <h2>Author</h2>
