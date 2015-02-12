@@ -1,0 +1,493 @@
+ID	Hexagon_index	Cluster_base
+acantholytic squamous carcinoma cell line	88	11
+acute lymphoblastic leukemia (b-all) cell line	112	2
+acute lymphoblastic leukemia (t-all) cell line	52	2
+acute myeloid leukemia (fab m0) cell line	115	2
+acute myeloid leukemia (fab m1) cell line	85	9
+acute myeloid leukemia (fab m2) cell line	113	2
+acute myeloid leukemia (fab m3) cell line	112	2
+acute myeloid leukemia (fab m4) cell line	112	2
+acute myeloid leukemia (fab m4eo) cell line	79	2
+acute myeloid leukemia (fab m5) cell line	114	2
+acute myeloid leukemia (fab m6) cell line	111	1
+acute myeloid leukemia (fab m7) cell line	115	2
+adenocarcinoma cell line	35	8
+adrenal cortex adenocarcinoma cell line	122	9
+adult t-cell leukemia cell line	55	2
+alveolar cell carcinoma cell line	57	8
+anaplastic carcinoma cell line	124	11
+anaplastic large cell lymphoma cell line	116	2
+anaplastic squamous cell carcinoma cell line	121	9
+argyrophil small cell carcinoma cell line	88	11
+astrocytoma cell line	124	11
+b cell line	83	2
+basal cell carcinoma cell line	25	5
+bile duct carcinoma cell line	33	9
+biphenotypic b myelomonocytic leukemia cell line	85	9
+bone marrow stromal cell line	3	5
+breast carcinoma cell line	54	2
+bronchial squamous cell carcinoma cell line	36	8
+bronchioalveolar carcinoma cell line	8	7
+bronchogenic carcinoma cell line	57	8
+burkitt's lymphoma cell line	113	2
+carcinoid cell line	113	2
+carcinosarcoma cell line	124	11
+cervical cancer cell line	31	2
+cholangiocellular carcinoma cell line	20	10
+chondrosarcoma cell line	9	7
+choriocarcinoma cell line	81	2
+chronic lymphocytic leukemia (t-cll) cell line	112	2
+chronic myeloblastic leukemia (cml) cell line	119	2
+chronic myelogenous leukemia (cml) cell line	85	9
+chronic myelogenous leukemia cell line	113	2
+clear cell carcinoma cell line	30	2
+colon carcinoma cell line	31	2
+cord blood derived cell line	112	2
+diffuse large b-cell lymphoma cell line	113	2
+ductal cell carcinoma cell line	32	2
+embryonic kidney cell line	122	9
+embryonic pancreas cell line	8	7
+endometrial carcinoma cell line	20	10
+endometrial stromal sarcoma cell line	123	11
+endometrioid adenocarcinoma cell line	121	9
+epidermoid carcinoma  cell line	8	7
+epidermoid carcinoma cell line	8	7
+epithelioid sarcoma cell line	123	11
+ewing's sarcoma cell line	67	6
+extraskeletal myxoid chondrosarcoma cell line	123	11
+fibrosarcoma cell line	8	7
+fibrous histiocytoma cell line	18	8
+gall bladder carcinoma cell line	57	8
+gastric adenocarcinoma cell line	33	9
+gastric cancer cell line	122	9
+gastrointestinal carcinoma cell line	87	9
+giant cell carcinoma cell line	52	2
+glassy cell carcinoma cell line	36	8
+glioblastoma cell line	35	8
+glioma cell line	124	11
+granulosa cell tumor cell line	59	8
+hairy cell leukemia cell line	53	2
+hepatic mesenchymal tumor cell line	44	6
+hepatoblastoma cell line	118	2
+hepatoma cell line	35	8
+hereditary spherocytic anemia cell line	52	2
+hodgkin's lymphoma cell line	81	2
+keratoacanthoma cell line	2	7
+krukenberg tumor cell line	35	8
+large cell lung carcinoma cell line	114	2
+large cell non-keratinizing squamous carcinoma cell line	60	10
+leiomyoblastoma  cell line	121	9
+leiomyoma cell line	106	1
+leiomyosarcoma  cell line	40	10
+lens epithelial cell line	125	10
+liposarcoma cell line	56	9
+lung adenocarcinoma cell line	15	5
+lymphangiectasia cell line	53	2
+malignant trichilemmal cyst cell line	59	8
+maxillary sinus tumor cell line	123	11
+medulloblastoma cell line	81	2
+melanoma cell line	31	2
+meningioma cell line	2	7
+merkel cell carcinoma cell line	85	9
+mesenchymal stem cell line	11	5
+mesodermal tumor cell line	124	11
+mesothelioma cell line	31	2
+mixed mullerian tumor cell line	5	5
+mucinous adenocarcinoma cell line	5	5
+mucinous cystadenocarcinoma  cell line	18	8
+myelodysplastic syndrome cell line	6	7
+myeloma cell line	53	2
+myxofibrosarcoma cell line	6	7
+neuroblastoma cell line	121	9
+neuroectodermal tumor  cell line	120	9
+neuroectodermal tumor cell line	114	2
+neuroepithelioma cell line	122	9
+neurofibroma cell line	24	5
+nk t cell leukemia cell line	82	2
+non t non b acute lymphoblastic leukemia (all) cell line	122	9
+non-small cell lung cancer cell line	121	9
+normal embryonic palatal mesenchymal cell line	23	6
+normal intestinal epithelial cell line	10	5
+oral squamous cell carcinoma cell line	7	7
+osteoclastoma cell line	42	6
+osteosarcoma cell line	6	7
+pagetoid sarcoma cell line	88	11
+pancreatic carcinoma cell line	119	2
+papillary adenocarcinoma cell line	8	7
+papillotubular adenocarcinoma cell line	59	8
+peripheral neuroectodermal tumor cell line	2	7
+pharyngeal carcinoma cell line	9	7
+plasma cell leukemia cell line	53	2
+pleomorphic hepatocellular carcinoma cell line	2	7
+prostate cancer cell line	15	5
+rectal cancer cell line	2	7
+renal cell carcinoma cell line	7	7
+retinoblastoma cell line	121	9
+rhabdomyosarcoma cell line	80	2
+sacrococcigeal teratoma cell line	22	7
+serous adenocarcinoma cell line	20	10
+serous cystadenocarcinoma cell line	58	8
+signet ring carcinoma cell line	116	2
+small cell cervical cancer cell line	121	9
+small cell gastrointestinal carcinoma cell line	123	11
+small cell lung carcinoma cell line	121	9
+small-cell gastrointestinal carcinoma cell line	86	9
+somatostatinoma cell line	122	9
+spindle cell sarcoma cell line	23	6
+splenic lymphoma with villous lymphocytes cell line	81	2
+squamous cell carcinoma cell line	15	5
+squamous cell lung carcinoma cell line	57	8
+synovial sarcoma cell line	123	11
+teratocarcinoma cell line	53	2
+testicular germ cell embryonal carcinoma cell line	7	7
+thyroid carcinoma cell line	123	11
+achilles tendon	102	6
+adipocyte - breast	45	5
+adipocyte - omental	105	1
+adipocyte - perirenal	45	5
+adipocyte - subcutaneous	107	1
+adipocyte differentiation	24	5
+adipose tissue	94	3
+adrenal gland	127	4
+alveolar epithelial cells	75	1
+amniotic epithelial cells	14	5
+amniotic membrane cells	57	8
+amygdala	127	4
+amygdala - adult	61	10
+anulus pulposus cell	68	6
+aorta	94	3
+aortic smooth muscle cell response to fgf2	73	1
+aortic smooth muscle cell response to il1b	105	1
+appendix	93	3
+artery	98	6
+astrocyte - cerebellum	13	5
+astrocyte - cerebral cortex	124	11
+b lymphoblastoid cell line: gm12878 encode	16	2
+basophils	117	2
+bladder	94	3
+blood	82	2
+bone marrow	72	1
+brain	59	8
+breast	94	3
+bronchial epithelial cell	75	1
+cardiac myocyte	105	1
+caudate nucleus	127	4
+caudate nucleus - adult	91	4
+cd133+ stem cells - adult bone marrow derived	85	9
+cd133+ stem cells - cord blood derived	7	7
+cd14-cd16+ monocytes	52	2
+cd14+ monocyte derived endothelial progenitor cells	83	2
+cd14+ monocytes	118	2
+cd14+ monocytes - mock treated	118	2
+cd14+ monocytes - treated with b-glucan	117	2
+cd14+ monocytes - treated with bcg	117	2
+cd14+ monocytes - treated with candida	117	2
+cd14+ monocytes - treated with cryptococcus	117	2
+cd14+ monocytes - treated with group a streptococci	117	2
+cd14+ monocytes - treated with ifn + n-hexane	118	2
+cd14+ monocytes - treated with lipopolysaccharide	78	2
+cd14+ monocytes - treated with salmonella	78	2
+cd14+ monocytes - treated with trehalose dimycolate (tdm)	118	2
+cd14+cd16- monocytes	117	2
+cd14+cd16+ monocytes	112	2
+cd19+ b cells	115	2
+cd19+ b cells (pluriselect)	114	2
+cd34+ progenitors	118	2
+cd34+ stem cells - adult bone marrow derived	84	2
+cd4+ t cells	115	2
+cd4+cd25-cd45ra- memory conventional t cells	115	2
+cd4+cd25-cd45ra- memory conventional t cells expanded	54	2
+cd4+cd25-cd45ra+ memory conventional t cells expanded	81	2
+cd4+cd25-cd45ra+ naive conventional t cells	115	2
+cd4+cd25-cd45ra+ naive conventional t cells expanded	81	2
+cd4+cd25+cd45ra- memory regulatory t cells	113	2
+cd4+cd25+cd45ra- memory regulatory t cells expanded	81	2
+cd4+cd25+cd45ra- naive regulatory t cells expanded	53	2
+cd4+cd25+cd45ra+ naive regulatory t cells	115	2
+cd4+cd25+cd45ra+ naive regulatory t cells expanded	81	2
+cd8+ t cells	83	2
+cd8+ t cells (pluriselect)	81	2
+cerebellum	125	10
+cerebellum - adult	90	10
+cerebral meninges	127	4
+cerebrospinal fluid	13	5
+cervix	93	3
+chondrocyte - de diff	46	1
+chondrocyte - re diff	45	5
+chorionic membrane cells	1	7
+chronic myelogenous leukemia cell line:k562 encode	114	2
+ciliary epithelial cells	22	7
+clontech human universal reference total rna	93	3
+colon	95	3
+common myeloid progenitor cmp	111	1
+corneal epithelial cells	75	1
+corpus callosum	127	4
+cruciate ligament	98	6
+dendritic cells - monocyte immature derived	16	2
+dendritic cells - plasmacytoid	115	2
+diaphragm	95	3
+diencephalon	126	4
+ductus deferens	65	3
+duodenum fetal	66	10
+dura mater	93	3
+embryonic kidney cell line: hek293/slam infection	122	9
+endothelial cells - aortic	17	8
+endothelial cells - artery	33	9
+endothelial cells - lymphatic	35	8
+endothelial cells - microvascular	15	5
+endothelial cells - thoracic	33	9
+endothelial cells - umbilical vein	87	9
+endothelial cells - vein	30	2
+eosinophils	117	2
+epididymis	93	3
+epitheloid carcinoma cell line: helas3 encode	33	9
+esophageal epithelial cells	108	1
+esophagus	94	3
+eye	93	3
+eye - muscle inferior rectus	103	1
+eye - muscle lateral	103	1
+eye - muscle medial	101	6
+eye - muscle superior	98	6
+eye - vitreous humor	5	5
+fibroblast - aortic adventitial	24	5
+fibroblast - cardiac	24	5
+fibroblast - choroid plexus	27	5
+fibroblast - conjunctival	46	1
+fibroblast - dermal	27	5
+fibroblast - gingival	43	6
+fibroblast - lung	109	1
+fibroblast - lymphatic	107	1
+fibroblast - mammary	107	1
+fibroblast - periodontal ligament	11	5
+fibroblast - pulmonary artery	11	5
+fibroblast - skin dystrophia myotonica	42	6
+fibroblast - skin normal	42	6
+fibroblast - skin spinal muscular atrophy	42	6
+fibroblast - skin walker warburg	42	6
+fibroblast - villous mesenchymal	28	5
+fingernail (including nail plate	4	5
+frontal lobe	127	4
+gall bladder	94	3
+gingival epithelial cells	1	7
+glioblastoma cell line:a172	59	8
+globus pallidus	126	4
+globus pallidus - adult	39	10
+granulocyte macrophage progenitor	110	1
+h9 embryoid body cells melanocytic induction	60	10
+h9 embryonic stem cells	124	11
+hair follicle dermal papilla cells	48	1
+hair follicle outer root sheath cells	46	1
+heart	98	6
+heart - mitral valve	95	3
+heart - pulmonic valve	98	6
+heart - tricuspid valve	98	6
+heart adult	98	6
+hep-2 cells mock treated	29	5
+hep-2 cells treated with streptococci strain 5448	29	5
+hep-2 cells treated with streptococci strain jrs4	50	1
+hepatic sinusoidal endothelial cells	108	1
+hepatic stellate cells (lipocyte)	75	1
+hepatocellular carcinoma cell line: hepg2 encode	3	5
+hepatocyte	109	1
+hes3-gfp embryonic stem cells cardiomyocytic induction	4	5
+hippocampus	127	4
+hippocampus - adult	61	10
+immature langerhans cells	117	2
+insula	127	4
+intestinal epithelial cells (polarized)	60	10
+ips differentiation to neuron control donor c11-crl2429	89	10
+ips differentiation to neuron control donor c32-crl1502	89	10
+ips differentiation to neuron down-syndrome donor c11-ccl54	89	10
+ips differentiation to neuron down-syndrome donor c18-ccl54	89	10
+iris pigment epithelial cells	24	5
+k562 erythroblastic leukemia response to hemin	110	1
+keratinocyte - epidermal	50	1
+keratinocyte - oral	60	10
+keratocytes	48	1
+kidney	64	3
+left atrium	96	3
+left ventricle	98	6
+lens epithelial cells	4	5
+leukemia	34	8
+liver	108	1
+locus coeruleus	126	4
+locus coeruleus - adult	90	10
+lung	95	3
+lung right lower lobe	94	3
+lymph node	40	10
+lymphatic endothelial cells response to vegfc	29	5
+lymphoma	80	2
+macrophage - monocyte derived	79	2
+mallassez-derived cells	47	1
+mammary epithelial cell	28	5
+mast cell	85	9
+mast cell - stimulated	78	2
+mature adipocyte	99	6
+mcf7 breast cancer cell line response to egf1	55	2
+mcf7 breast cancer cell line response to hrg	55	2
+medial frontal gyrus - adult	61	10
+medial temporal gyrus	127	4
+medial temporal gyrus - adult	61	10
+medulla oblongata	62	4
+medulla oblongata - adult	39	10
+melanocyte	31	2
+melanocyte - dark	79	2
+melanocyte - light	51	2
+meningeal cells	12	5
+mesenchymal precursor cell - adipose	46	1
+mesenchymal precursor cell - bone marrow	70	6
+mesenchymal precursor cell - cardiac	24	5
+mesenchymal precursor cell - ovarian cancer left ovary	68	6
+mesenchymal precursor cell - ovarian cancer metastasis	100	6
+mesenchymal precursor cell - ovarian cancer right ovary	69	6
+mesenchymal stem cells - adipose	107	1
+mesenchymal stem cells - amniotic membrane	69	6
+mesenchymal stem cells - bone marrow	27	5
+mesenchymal stem cells - hepatic	105	1
+mesenchymal stem cells - umbilical	74	1
+mesenchymal stem cells - vertebral	2	7
+mesenchymal stem cells - wharton's jelly	68	6
+mesenchymal stem cells (adipose derived)	73	1
+mesenchymal stem cells (adipose derived) adipogenic induction	106	1
+mesothelial cells	69	6
+middle temporal gyrus	127	4
+migratory langerhans cells	112	2
+monocyte-derived macrophages response to lps	111	1
+monocyte-derived macrophages response to mock influenza infection	110	1
+monocyte-derived macrophages response to udorn influenza infection	110	1
+multipotent cord blood unrestricted somatic stem cells	24	5
+mycosis fungoides	55	2
+myoblast	69	6
+myoblast differentiation to myotubes	23	6
+nasal epithelial cells	11	5
+natural killer cells	118	2
+neural stem cells	115	2
+neurons	109	1
+neutrophil pmn	77	1
+neutrophils	6	7
+nucleus accumbens	92	4
+nucleus pulposus cell	25	5
+occipital cortex	126	4
+occipital cortex - adult	91	4
+occipital lobe	37	10
+occipital pole	127	4
+olfactory epithelial cells	69	6
+olfactory region	126	4
+oligodendrocyte - precursors	22	7
+optic nerve	12	5
+osteoblast	49	1
+osteoblast - differentiated	105	1
+ovary	93	3
+pancreas	108	1
+pancreatic stromal cells	42	6
+paracentral gyrus	127	4
+parietal lobe	37	10
+parietal lobe - adult	126	4
+parotid gland	104	1
+penis	95	3
+pericytes	48	1
+perineurial cells	3	5
+peripheral blood mononuclear cells	118	2
+pineal gland	39	10
+pineal gland - adult	40	10
+pituitary gland	62	4
+pituitary gland - adult	38	4
+placenta	95	3
+placental epithelial cells	50	1
+pons	127	4
+postcentral gyrus	127	4
+preadipocyte - breast	46	1
+preadipocyte - omental	46	1
+preadipocyte - perirenal	25	5
+preadipocyte - subcutaneous	47	1
+preadipocyte - visceral	12	5
+promyelocytes/myelocytes pmc	110	1
+prostate	93	3
+prostate epithelial cells	69	6
+prostate epithelial cells (polarized)	60	10
+prostate stromal cells	25	5
+putamen	91	4
+rectum	93	3
+renal cortical epithelial cells	12	5
+renal epithelial cells	14	5
+renal glomerular endothelial cells	33	9
+renal mesangial cells	14	5
+renal proximal tubular epithelial cell	14	5
+reticulocytes	110	1
+retina	93	3
+retinal pigment epithelial cells	4	5
+sabiosciences xpressref human universal total rna	95	3
+salivary acinar cells	35	8
+salivary gland	108	1
+saos-2 osteosarcoma treated with ascorbic acid and bgp to induce calcification	2	7
+schwann cells	75	1
+schwannoma cell line:hs-pss	2	7
+sebocyte	47	1
+seminal vesicle	97	6
+serous adenocarcinoma cell line:sk-ov-3-r	7	7
+serous adenocarcinoma cell line:sk-ov-3-r after co-culture with soc-57-02-g	18	8
+sertoli cells	45	5
+skeletal muscle	100	6
+skeletal muscle - soleus muscle	71	1
+skeletal muscle cells	12	5
+skeletal muscle cells differentiated into myotubes - multinucleated	14	5
+skeletal muscle satellite cells	10	5
+skin	96	3
+skin - palm	102	6
+small airway epithelial cells	36	8
+small intestine	96	3
+smooth muscle	63	3
+smooth muscle cells - aortic	73	1
+smooth muscle cells - bladder	22	7
+smooth muscle cells - brachiocephalic	106	1
+smooth muscle cells - brain vascular	25	5
+smooth muscle cells - bronchial	107	1
+smooth muscle cells - carotid	105	1
+smooth muscle cells - colonic	10	5
+smooth muscle cells - coronary artery	74	1
+smooth muscle cells - esophageal	48	1
+smooth muscle cells - internal thoracic artery	50	1
+smooth muscle cells - intestinal	29	5
+smooth muscle cells - prostate	26	5
+smooth muscle cells - pulmonary artery	29	5
+smooth muscle cells - subclavian artery	73	1
+smooth muscle cells - tracheal	76	1
+smooth muscle cells - umbilical artery	28	5
+smooth muscle cells - umbilical vein	107	1
+smooth muscle cells - uterine	46	1
+spinal cord	39	10
+spinal cord - adult	64	3
+spleen	39	10
+stomach	93	3
+submaxillary gland	101	6
+substantia nigra	39	10
+substantia nigra - adult	109	1
+synoviocyte	106	1
+temporal lobe	127	4
+temporal lobe fetal	35	8
+tenocyte	70	6
+testis	124	11
+thalamus	91	4
+thalamus - adult	65	3
+throat	95	3
+thymus	20	10
+thyroid	95	3
+tongue	97	6
+tongue epidermis (fungiform papillae)	103	1
+tonsil	63	3
+trabecular meshwork cells	75	1
+trachea	95	3
+tracheal epithelial cells	29	5
+umbilical cord	94	3
+universal rna - human normal tissues biochain	95	3
+urethra	103	1
+urothelial cells	27	5
+uterus	94	3
+vagina	93	3
+whole blood (ribopure)	117	2
+transitional cell carcinoma cell line	11	5
+transitional-cell carcinoma cell line	33	9
+tridermal teratoma cell line	22	7
+tubular adenocarcinoma cell line	35	8
+wilms' tumor cell line	32	2
+xeroderma pigentosum b cell line	31	2

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Demo for human cell type evolutionary profile dataset from Sardar et al @ supraHex 1.5.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.5.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:5dmiiel8qeq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Demo for human cell type evolutionary profile dataset from Sardar et al</h2>
+
+Notes:
+<li> All results are based on supraHex (version 1.5.1). </li>
+<li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
+<li> Images displayed below may be distorted, but should be normal in your screen. </li>
+<li> Functions contained in supraHex 1.5.1 are hyperlinked in-place and also listed on the right side. </li>
+
+<div class="row">
+    <div class="span8">
+      <pre>
+      <div class='input'># This is a demo for human cell type evolutionary profile dataset from Sardar et al
+# 
+# This dataset (available from <a href="http://www.ncbi.nlm.nih.gov/pubmed/24692656" target="24692656">http://www.ncbi.nlm.nih.gov/pubmed/24692656</a>) contains protein innovation usage (PIU) evolutionary profiles for 492 unique cell types, cell lines and tissues (in short, 492 cell types) over the human evolutionary lineage (13 key phyletic divisions in the NCBI taxonomy). These 13  are (from human towards cellular organisms): "Human", "Theria (Live birth Mammals)", "Mammalia (Placental mammals, Marsupials and Monotremes)", "Amniota (Four limbed vertebrates with terrestrial eggs)", "Euteleostomi (Bony vertebrates)", "Chordata (Have a notochord/spinal column)", "Deuterostomia (Mouth comes second, after anus)", "Coelomata (Body cavity forming)", "Bilateria (Bilateral symmetry forming)", "Eumetazoa (True tissue forming animals)", "Opisthokonta (Animal-like and Fungi-like)", "Eukaryota", and "Cellular organisms".
+#
+# The dataset is stored in a form of matrix of 492 cell types X 13 taxonomy/divisions.
+# The purpose of this demo is to group/cluster cell types with similar evolutionary profiles (over human ancestry) using self-organising algorithm.
+# With the package 'supraHex', users can also easily visualise results at each step of the analysis.
+###############################################################################
+
+# (I) Load the package and import data
+library(supraHex)
+## import data file <a href="Sardar_PIU.txt">Sardar_PIU.txt</a>
+data <- read.table(file="http://supfam.org/supraHex/Sardar_PIU.txt", header=T, row.names=1, sep="\t", check.names=F) # PIU matrix of 492 cell types X 13 taxonomy
+## check data dimensions and types
+dim(data)
+</div>
+<div class='output'>[1] 492  13
+</div>
+<div class='input'>str(data)
+</div>
+<div class='output'>'data.frame':	492 obs. of  13 variables:
+ $ Human                                                  : num  -0.0508 -1.0535 -0.8006 -0.7468 -0.9453 ...
+ $ Theria (Live birth Mammals)                            : num  0.658 -0.861 -0.754 -0.728 0.565 ...
+ $ Mammalia (Placental mammals, Marsupials and Monotremes): num  0.0683 -0.5504 -0.8316 2.4421 1.7404 ...
+ $ Amniota (Four limbed vertebrates with terrestrial eggs): num  1.375 0.357 0.895 0.854 1.013 ...
+ $ Euteleostomi (Bony vertebrates)                        : num  0.59 -1.891 -1.315 -1.615 -0.705 ...
+ $ Chordata (Have a notochord/spinal column)              : num  0.318 -1.411 -1.881 -1.321 0.243 ...
+ $ Deuterostomia (Mouth comes second, after anus)         : num  0.514 -1.357 -0.343 -0.534 -0.109 ...
+ $ Coelomata (Body cavity forming)                        : num  0.318 -1.735 -0.359 -0.745 0.135 ...
+ $ Bilateria (Bilateral symmetry forming)                 : num  -0.112 -0.385 -1.285 -0.107 -0.278 ...
+ $ Eumetazoa (True tissue forming animals)                : num  0.0866 -1.4478 -0.6449 -1.0234 -0.3559 ...
+ $ Opisthokonta (Animal-like and Fungi-like)              : num  1.152 -0.776 0.694 -0.496 0.729 ...
+ $ Eukaryota                                              : num  -0.156 2.088 1.345 1.345 0.238 ...
+ $ Cellular organisms                                     : num  -0.707 1.132 0.387 0.729 -0.125 ...
+</div>
+<div class='input'>
+# (II) Train the supra-hexagonal map with input data only
+sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
+</div>
+<strong class='message'>Start at 2015-02-12 17:20:53</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid (2015-02-12 17:20:53)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (127 X 13) using 'linear' initialisation, given a topology and input data (2015-02-12 17:20:53)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-02-12 17:20:53)...</strong>
+<strong class='message'>	1 out of 3 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>	2 out of 3 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>	3 out of 3 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-02-12 17:20:53)...</strong>
+<strong class='message'>	1 out of 11 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>	2 out of 11 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>	3 out of 11 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>	4 out of 11 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>	5 out of 11 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>	6 out of 11 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>	7 out of 11 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>	8 out of 11 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>	9 out of 11 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>	10 out of 11 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>	11 out of 11 (2015-02-12 17:20:53)</strong>
+<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-02-12 17:20:53)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-02-12 17:20:53)...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 492x13
+   xy-dimension of map grid: xdim=13, ydim=13
+   grid lattice: hexa
+   grid shape: suprahex
+   dimension of grid coord: 127x2
+   initialisation method: linear
+   dimension of codebook matrix: 127x13
+   mean quantization error: 3.02542877610304
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: batch
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 3 at rough stage; 11 at finetune stage
+   radius (at rough stage): from 4 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2015-02-12 17:20:53</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap, title.rotate=5, title.xy=c(0.25,1), gp=grid::gpar(cex=0.6), zlim=c(-2,2), colormap="jet")
+</div>
+<a href="javascript:newWin('Sardar-50.png', 'Sardar-50.png', '1200', '545.454545454545')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Sardar-50.png', width="400" /></a>
+<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="Output_Sardar_PIU.txt")
+## As you have seen, a figure displays the multiple components of trained map in a sample-specific manner. You also see that a txt file <a href="Output_Sardar_PIU.txt">Output_Sardar_PIU.txt</a> has been saved in your disk. The output file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. cell type clusters). You can also force the input data to be output (see below).
+<a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="Output_Sardar_PIU_2.txt", keep.data=T)
+
+# (III) Visualise the map, including built-in indexes, data hits/distributions, distance between map nodes, and codebook matrix
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="indexes")
+</div>
+<a href="javascript:newWin('Sardar-52.png', 'Sardar-52.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Sardar-52.png', width="400" /></a>
+<div class='input'>## As you have seen, the smaller hexagons in the supra-hexagonal map are indexed as follows: start from the center, and then expand circularly outwards, and for each circle increase in an anti-clock order.
+
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="hits")
+</div>
+<a href="javascript:newWin('Sardar-54.png', 'Sardar-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Sardar-54.png', width="400" /></a>
+<div class='input'>## As you have seen, the number represents how many input data vectors (cell types) are hitting each hexagon, the size of which is proportional to the number of hits.
+
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="dist")
+</div>
+<a href="javascript:newWin('Sardar-56.png', 'Sardar-56.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Sardar-56.png', width="400" /></a>
+<div class='input'>## As you have seen, map distance tells how far each hexagon is away from its neighbors, and the size of each hexagon is proportional to this distance.
+
+<a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="lines")
+</div>
+<a href="javascript:newWin('Sardar-58.png', 'Sardar-58.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Sardar-58.png', width="400" /></a>
+<div class='input'>## As you have seen, line plot displays the patterns associated with the codebook matrix. If multple colors are given, the points are also plotted. When the pattern involves both positive and negative values, zero horizental line is also shown.
+
+<a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="bars")
+</div>
+<a href="javascript:newWin('Sardar-60.png', 'Sardar-60.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Sardar-60.png', width="400" /></a>
+<div class='input'>## As you have seen, bar plot displays the patterns associated with the codebook matrix. When the pattern involves both positive and negative values, the zero horizental line is in the middle of the hexagon; otherwise at the top of the hexagon for all negative values, and at the bottom for all positive values.
+
+# (IV) Perform partitioning operation on the map to obtain continuous clusters (i.e. cell type meta-clusters) as they are different from cell type clusters in an individual map node
+sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
+<a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase)
+</div>
+<a href="javascript:newWin('Sardar-62.png', 'Sardar-62.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Sardar-62.png', width="400" /></a>
+<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="Output_base_Sardar_PIU.txt")
+## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output txt file <a href="Output_base_Sardar_PIU.txt">Output_base_Sardar_PIU.txt</a>. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. cell type clusters), and 3rd column for the cluster bases (i.e. cell type meta-clusters). You can also force the input data to be output.
+<a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="Output_base_Sardar_PIU_2.txt", keep.data=T)
+
+output <- <a href='visDmatHeatmap.html' target=visDmatHeatmap>visDmatHeatmap</a>(sMap, data, sBase, base.separated.arg=list(col="black"), base.legend.location="bottomleft", colormap="jet", KeyValueName="PIU z-score", labRow=NA, keep.data=T, srtCol=20, cexCol=0.8)
+</div>
+<a href="javascript:newWin('Sardar-64.png', 'Sardar-64.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Sardar-64.png', width="400" /></a>
+<div class='input'>## As you have seen, heatmap is used to visualise patterns seen in cell types within each meta-cluster/base. Row side bar indicates the cell type meta-clusters/bases. The returned variable "output" (NOT a txt file) has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. cell type clusters), and 3rd column for the cluster bases (i.e. cell type meta-clusters). Note: it has rows in the same order as visualised in the heatmap
+
+# (V) Reorder the taxonomy-specific components of the map to delineate relationships between taxonomy
+sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap, metric="euclidean")
+</div>
+<strong class='message'>Start at 2015-02-12 17:21:04</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid (2015-02-12 17:21:04)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (40 X 13) using 'linear' initialisation, given a topology and input data (2015-02-12 17:21:04)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-02-12 17:21:04)...</strong>
+<strong class='message'>	1 out of 403 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	41 out of 403 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	82 out of 403 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	123 out of 403 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	164 out of 403 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	205 out of 403 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	246 out of 403 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	287 out of 403 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	328 out of 403 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	369 out of 403 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	403 out of 403 (2015-02-12 17:21:04)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-02-12 17:21:04)...</strong>
+<strong class='message'>	1 out of 1612 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	162 out of 1612 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	324 out of 1612 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	486 out of 1612 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	648 out of 1612 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	810 out of 1612 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	972 out of 1612 (2015-02-12 17:21:04)</strong>
+<strong class='message'>	1134 out of 1612 (2015-02-12 17:21:05)</strong>
+<strong class='message'>	1296 out of 1612 (2015-02-12 17:21:05)</strong>
+<strong class='message'>	1458 out of 1612 (2015-02-12 17:21:05)</strong>
+<strong class='message'>	1612 out of 1612 (2015-02-12 17:21:05)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-02-12 17:21:05)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-02-12 17:21:05)...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 13x13
+   xy-dimension of map grid: xdim=10, ydim=4
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 40x2
+   initialisation method: linear
+   dimension of codebook matrix: 40x13
+   mean quantization error: 23.4740407770882
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 31 at rough stage; 124 at finetune stage
+   radius (at rough stage): from 2 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2015-02-12 17:21:05</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong>
+<div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap, sReorder, title.rotate=5, title.xy=c(0.25,1), gp=grid::gpar(cex=0.6),zlim=c(-2,2), colormap="jet")
+</div>
+<a href="javascript:newWin('Sardar-104.png', 'Sardar-104.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Sardar-104.png', width="400" /></a>
+<div class='input'>## As you have seen, reordered components of trained map is displayed. Each component illustrates a taxonomy-specific map and is placed within a two-dimensional rectangular lattice. Across components/taxonomy, cell types with similar patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/taxonomy, that is, taxonomy with the similar profiles are placed closer to each other.
+
+# (VI) Build and visualise the bootstrapped tree
+tree_bs <- <a href='visTreeBootstrap.html' target=visTreeBootstrap>visTreeBootstrap</a>(t(data), nodelabels.arg=list(cex=0.6))
+</div>
+<strong class='message'>Start at 2015-02-12 17:21:06</strong>
+<strong class='message'></strong>
+<strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (13 by 492)...</strong>
+<strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
+<strong class='message'>Finally, visualise the bootstrapped tree...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2015-02-12 17:21:06</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<a href="javascript:newWin('Sardar-114.png', 'Sardar-114.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Sardar-114.png', width="400" /></a>
+<div class='input'>## As you have seen, neighbour-joining tree is constructed based on pairwise euclidean distance matrices between samples. The robustness of tree branching is evaluated using bootstraping. In internal nodes (also color-coded), the number represents the proportion of bootstrapped trees that support the observed internal branching. The higher the number, the more robust the tree branching. 100 means that the internal branching is always observed by resampling characters.</div>
+      </pre>
+    </div>
+
+  <div class="span4">
+
+    <h2>Source demo</h2>
+    <a href="javascript:newWin('demo/Sardar.r', 'demo/Sardar.r', '1200', '1200')" title="Click to view"><B><code>Sardar.r</code></B></a>
+    
+    <h2>Functions used in this demo</h2>
+    <ul>
+      <li><a href="sPipeline.html">sPipeline</a></li>
+      <li><a href="visHexMulComp.html">visHexMulComp</a></li>
+      <li><a href="sWriteData.html">sWriteData</a></li>
+      <li><a href="visHexMapping.html">visHexMapping</a></li>
+      <li><a href="visHexPattern.html">visHexPattern</a></li>
+      <li><a href="sDmatCluster.html">sDmatCluster</a></li>
+      <li><a href="visDmatCluster.html">visDmatCluster</a></li>
+      <li><a href="visDmatHeatmap.html">visDmatHeatmap</a></li>
+      <li><a href="sCompReorder.html">sCompReorder</a></li>
+      <li><a href="visCompReorder.html">visCompReorder</a></li>
+      <li><a href="visTreeBootstrap.html">visTreeBootstrap</a></li>
+    </ul>
+    
+    <!--
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/supraHex">http://supfam.org/supraHex</a></li>
+    </ul>
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    -->
+    
+  </div>
+
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>
