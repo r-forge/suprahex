@@ -133,7 +133,7 @@ Notes:
       <pre>
       <div class='input'># This is a demo for human cell type evolutionary profile dataset from Sardar et al
 # 
-# This dataset (available from <a href="http://www.ncbi.nlm.nih.gov/pubmed/24692656" target="24692656">http://www.ncbi.nlm.nih.gov/pubmed/24692656</a>) contains protein innovation usage (PIU) evolutionary profiles for 492 unique cell types, cell lines and tissues (in short, 492 cell types) over the human evolutionary lineage (13 key phyletic divisions in the NCBI taxonomy). These 13  are (from human towards cellular organisms): "Human", "Theria (Live birth Mammals)", "Mammalia (Placental mammals, Marsupials and Monotremes)", "Amniota (Four limbed vertebrates with terrestrial eggs)", "Euteleostomi (Bony vertebrates)", "Chordata (Have a notochord/spinal column)", "Deuterostomia (Mouth comes second, after anus)", "Coelomata (Body cavity forming)", "Bilateria (Bilateral symmetry forming)", "Eumetazoa (True tissue forming animals)", "Opisthokonta (Animal-like and Fungi-like)", "Eukaryota", and "Cellular organisms".
+# This dataset (available from <a href="http://www.ncbi.nlm.nih.gov/pubmed/24692656" target="24692656">http://www.ncbi.nlm.nih.gov/pubmed/24692656</a>) contains protein innovation usage (PIU) evolutionary profiles for 492 unique cell types, cell lines and tissues (in short, 492 cell types) over the human evolutionary lineage (13 key phyletic divisions in the NCBI taxonomy). These 13 taxonomy/divisions are (from human towards cellular organisms): "Human", "Theria (Live birth Mammals)", "Mammalia (Placental mammals, Marsupials and Monotremes)", "Amniota (Four limbed vertebrates with terrestrial eggs)", "Euteleostomi (Bony vertebrates)", "Chordata (Have a notochord/spinal column)", "Deuterostomia (Mouth comes second, after anus)", "Coelomata (Body cavity forming)", "Bilateria (Bilateral symmetry forming)", "Eumetazoa (True tissue forming animals)", "Opisthokonta (Animal-like and Fungi-like)", "Eukaryota", and "Cellular organisms".
 #
 # The dataset is stored in a form of matrix of 492 cell types X 13 taxonomy/divisions.
 # The purpose of this demo is to group/cluster cell types with similar evolutionary profiles (over human ancestry) using self-organising algorithm.
@@ -170,42 +170,42 @@ dim(data)
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2015-02-12 17:20:53</strong>
+<strong class='message'>Start at 2015-02-12 17:55:38</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-02-12 17:20:53)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (127 X 13) using 'linear' initialisation, given a topology and input data (2015-02-12 17:20:53)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-02-12 17:20:53)...</strong>
-<strong class='message'>	1 out of 3 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>	2 out of 3 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>	3 out of 3 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-02-12 17:20:53)...</strong>
-<strong class='message'>	1 out of 11 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>	2 out of 11 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>	3 out of 11 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>	4 out of 11 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>	5 out of 11 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>	6 out of 11 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>	7 out of 11 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>	8 out of 11 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>	9 out of 11 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>	10 out of 11 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>	11 out of 11 (2015-02-12 17:20:53)</strong>
-<strong class='message'>	updated (2015-02-12 17:20:53)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-02-12 17:20:53)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-02-12 17:20:53)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-02-12 17:55:38)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (127 X 13) using 'linear' initialisation, given a topology and input data (2015-02-12 17:55:38)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-02-12 17:55:38)...</strong>
+<strong class='message'>	1 out of 3 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>	2 out of 3 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>	3 out of 3 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-02-12 17:55:38)...</strong>
+<strong class='message'>	1 out of 11 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>	2 out of 11 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>	3 out of 11 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>	4 out of 11 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>	5 out of 11 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>	6 out of 11 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>	7 out of 11 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>	8 out of 11 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>	9 out of 11 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>	10 out of 11 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>	11 out of 11 (2015-02-12 17:55:38)</strong>
+<strong class='message'>	updated (2015-02-12 17:55:38)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-02-12 17:55:38)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-02-12 17:55:38)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 492x13
@@ -225,7 +225,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2015-02-12 17:20:53</strong>
+<strong class='message'>End at 2015-02-12 17:55:38</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap, title.rotate=5, title.xy=c(0.25,1), gp=grid::gpar(cex=0.6), zlim=c(-2,2), colormap="jet")
@@ -278,36 +278,36 @@ output <- <a href='visDmatHeatmap.html' target=visDmatHeatmap>visDmatHeatmap</a>
 # (V) Reorder the taxonomy-specific components of the map to delineate relationships between taxonomy
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap, metric="euclidean")
 </div>
-<strong class='message'>Start at 2015-02-12 17:21:04</strong>
+<strong class='message'>Start at 2015-02-12 17:55:50</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-02-12 17:21:04)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (40 X 13) using 'linear' initialisation, given a topology and input data (2015-02-12 17:21:04)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-02-12 17:21:04)...</strong>
-<strong class='message'>	1 out of 403 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	41 out of 403 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	82 out of 403 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	123 out of 403 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	164 out of 403 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	205 out of 403 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	246 out of 403 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	287 out of 403 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	328 out of 403 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	369 out of 403 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	403 out of 403 (2015-02-12 17:21:04)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-02-12 17:21:04)...</strong>
-<strong class='message'>	1 out of 1612 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	162 out of 1612 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	324 out of 1612 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	486 out of 1612 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	648 out of 1612 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	810 out of 1612 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	972 out of 1612 (2015-02-12 17:21:04)</strong>
-<strong class='message'>	1134 out of 1612 (2015-02-12 17:21:05)</strong>
-<strong class='message'>	1296 out of 1612 (2015-02-12 17:21:05)</strong>
-<strong class='message'>	1458 out of 1612 (2015-02-12 17:21:05)</strong>
-<strong class='message'>	1612 out of 1612 (2015-02-12 17:21:05)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-02-12 17:21:05)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-02-12 17:21:05)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-02-12 17:55:50)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (40 X 13) using 'linear' initialisation, given a topology and input data (2015-02-12 17:55:50)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-02-12 17:55:50)...</strong>
+<strong class='message'>	1 out of 403 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	41 out of 403 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	82 out of 403 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	123 out of 403 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	164 out of 403 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	205 out of 403 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	246 out of 403 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	287 out of 403 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	328 out of 403 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	369 out of 403 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	403 out of 403 (2015-02-12 17:55:50)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-02-12 17:55:50)...</strong>
+<strong class='message'>	1 out of 1612 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	162 out of 1612 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	324 out of 1612 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	486 out of 1612 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	648 out of 1612 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	810 out of 1612 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	972 out of 1612 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	1134 out of 1612 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	1296 out of 1612 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	1458 out of 1612 (2015-02-12 17:55:50)</strong>
+<strong class='message'>	1612 out of 1612 (2015-02-12 17:55:50)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-02-12 17:55:50)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-02-12 17:55:50)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 13x13
@@ -327,8 +327,8 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2015-02-12 17:21:05</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>End at 2015-02-12 17:55:50</strong>
+<strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap, sReorder, title.rotate=5, title.xy=c(0.25,1), gp=grid::gpar(cex=0.6),zlim=c(-2,2), colormap="jet")
 </div>
@@ -338,14 +338,14 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
 # (VI) Build and visualise the bootstrapped tree
 tree_bs <- <a href='visTreeBootstrap.html' target=visTreeBootstrap>visTreeBootstrap</a>(t(data), nodelabels.arg=list(cex=0.6))
 </div>
-<strong class='message'>Start at 2015-02-12 17:21:06</strong>
+<strong class='message'>Start at 2015-02-12 17:55:51</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (13 by 492)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-02-12 17:21:06</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>Finish at 2015-02-12 17:55:52</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <a href="javascript:newWin('Sardar-114.png', 'Sardar-114.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Sardar-114.png', width="400" /></a>
 <div class='input'>## As you have seen, neighbour-joining tree is constructed based on pairwise euclidean distance matrices between samples. The robustness of tree branching is evaluated using bootstraping. In internal nodes (also color-coded), the number represents the proportion of bootstrapped trees that support the observed internal branching. The higher the number, the more robust the tree branching. 100 means that the internal branching is always observed by resampling characters.</div>
