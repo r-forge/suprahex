@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Demo for postprocessing cellular prevalence of mutations in clonal populations (inferred by PyClone) @ supraHex 1.5.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.5.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:5dmiiel8qeq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Demo for postprocessing cellular prevalence of mutations in clonal populations (inferred by PyClone)</h2>
+
+Notes:
+<li> All results are based on supraHex (version 1.5.1). </li>
+<li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
+<li> Images displayed below may be distorted, but should be normal in your screen. </li>
+<li> Functions contained in supraHex 1.5.1 are hyperlinked in-place and also listed on the right side. </li>
+
+<div class="row">
+    <div class="span8">
+      <pre>
+      <div class='input'># This is a demo for postprocessing cellular prevalence of mutations in clonal populations (inferred by PyClone)
+# 
+# The PyClone-inferred cellular prevalence dataset (containing 133 mutations across 4 samples) can be output following <a href="https://bitbucket.org/aroth85/pyclone/wiki/Tutorial" target="PyClone">PyClone tutorial</a>. In brief, PyClone takes as inputs both Allelic count data and the copy number information, and uses a hierarchical Bayes statistical model to infer the cellular prevalence for each mutation in each sample. Put it in a simple way, a sample is supposed to be a mixture of several cellular populations (clones), and for a mutation, PyClone is able to estimate cellular frequency with that mutation. Using the command 'PyClone build_table', you can produce a table-like file containing the mean/std cellular prevalence across each sample and the cluster id for each mutation.
+#
+# The dataset (<a href="PyClone_cellular_prevalence.txt">PyClone_cellular_prevalence.txt</a>) is stored in a form of matrix of 133 mutations X 9 columns (including 4 samples with the mean and std for each, plus the cluster id at 9th column).
+# The purpose of this demo is to provide a global view of sample relationships in terms of cellular prevalence of mutations. This kind of postprocessing is particularly useful if input samples are derived from the same subject but with different conditions (e.g the disease progression, the treatment).
+# Notes, mutations are clustered according to the similar cellular prevalence patterns across samples using self-organising algorithm.
+###############################################################################
+
+# (I) Load the package and import data
+library(supraHex)
+## import data file <a href="PyClone_cellular_prevalence.txt">PyClone_cellular_prevalence.txt</a>
+input <- read.table(file="http://supfam.org/supraHex/PyClone_cellular_prevalence.txt", header=T, row.names=1, sep="\t", check.names=F)
+## extract the mean cellular prevalence of 133 mutations X 4 samples
+odd_indexes <- seq(1,ncol(input)-1,2) # only odd indexes (excluding the last column)
+data <- input[,odd_indexes]
+## check data dimensions and types
+dim(data)
+</div>
+<div class='output'>[1] 133   4
+</div>
+<div class='input'>str(data)
+</div>
+<div class='output'>'data.frame':	133 obs. of  4 variables:
+ $ SRR385938: num  0.0107 0.0107 0.0107 0.0107 0.0107 ...
+ $ SRR385939: num  0.035 0.0352 0.0351 0.0352 0.0352 ...
+ $ SRR385940: num  0.13 0.13 0.13 0.13 0.13 ...
+ $ SRR385941: num  0.665 0.667 0.666 0.667 0.667 ...
+</div>
+<div class='input'>## get familar with data (looking at the first few rows of matrix)
+head(data)
+</div>
+<div class='output'>                           SRR385938  SRR385939 SRR385940 SRR385941
+NA12156:AB:chr13:32906729 0.01066397 0.03503814 0.1301507 0.6648223
+NA12156:AB:chr19:55494651 0.01066032 0.03515291 0.1301125 0.6666196
+NA12156:AB:chr22:32587302 0.01066006 0.03512943 0.1301255 0.6664570
+NA12156:AB:chr2:26699003  0.01068375 0.03518987 0.1300451 0.6671418
+NA12156:AB:chr2:33487873  0.01068963 0.03519847 0.1300282 0.6672862
+NA12156:AB:chr3:37053568  0.01068845 0.03519755 0.1300316 0.6673183
+</div>
+<div class='input'>## As you have seen, names in row are for mutations and names in column for 4 samples (i.e. 'SRR385938', 'SRR385939', 'SRR385940', 'SRR385941'). Cellular frequencies for each mutation are in [0 1] range.
+
+# (II) Train the supra-hexagonal map with input data only
+sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
+</div>
+<strong class='message'>Start at 2015-03-06 17:08:29</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid (2015-03-06 17:08:29)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (61 X 4) using 'linear' initialisation, given a topology and input data (2015-03-06 17:08:29)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-03-06 17:08:29)...</strong>
+<strong class='message'>	1 out of 5 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	2 out of 5 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	3 out of 5 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	4 out of 5 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	5 out of 5 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-03-06 17:08:29)...</strong>
+<strong class='message'>	1 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	2 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	3 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	4 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	5 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	6 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	7 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	8 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	9 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	10 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	11 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	12 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	13 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	14 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	15 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	16 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	17 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	18 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>	19 out of 19 (2015-03-06 17:08:29)</strong>
+<strong class='message'>	updated (2015-03-06 17:08:29)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-03-06 17:08:29)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-03-06 17:08:29)...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 133x4
+   xy-dimension of map grid: xdim=9, ydim=9
+   grid lattice: hexa
+   grid shape: suprahex
+   dimension of grid coord: 61x2
+   initialisation method: linear
+   dimension of codebook matrix: 61x4
+   mean quantization error: 0.00070752268441815
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: batch
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 5 at rough stage; 19 at finetune stage
+   radius (at rough stage): from 3 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2015-03-06 17:08:29</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap, title.rotate=10, zlim=c(0,1), colormap="darkgreen-lightgreen-lightpink-darkred")
+</div>
+<a href="javascript:newWin('PyClone-72.png', 'PyClone-72.png', '1200', '960')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='PyClone-72.png', width="400" /></a>
+<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="PyClone_cellular_prevalence.supraHex.txt")
+## As you have seen, a figure displays the multiple components of trained map in a sample-specific manner. You also see that a txt file <a href="PyClone_cellular_prevalence.supraHex.txt">PyClone_cellular_prevalence.supraHex.txt</a> has been saved in your disk. The output file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. mutation clusters). You can also force the input data to be output (see below).
+<a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="PyClone_cellular_prevalence.supraHex_2.txt", keep.data=T)
+
+# (III) Visualise the map, including built-in indexes, data hits/distributions, distance between map nodes, and codebook matrix
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="indexes")
+</div>
+<a href="javascript:newWin('PyClone-74.png', 'PyClone-74.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='PyClone-74.png', width="400" /></a>
+<div class='input'>## As you have seen, the smaller hexagons in the supra-hexagonal map are indexed as follows: start from the center, and then expand circularly outwards, and for each circle increase in an anti-clock order.
+
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="hits")
+</div>
+<a href="javascript:newWin('PyClone-76.png', 'PyClone-76.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='PyClone-76.png', width="400" /></a>
+<div class='input'>## As you have seen, the number represents how many input data vectors (mutations) are hitting each hexagon, the size of which is proportional to the number of hits.
+
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="dist")
+</div>
+<a href="javascript:newWin('PyClone-78.png', 'PyClone-78.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='PyClone-78.png', width="400" /></a>
+<div class='input'>## As you have seen, map distance tells how far each hexagon is away from its neighbors, and the size of each hexagon is proportional to this distance.
+
+<a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="lines")
+</div>
+<a href="javascript:newWin('PyClone-80.png', 'PyClone-80.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='PyClone-80.png', width="400" /></a>
+<div class='input'>## As you have seen, line plot displays the patterns associated with the codebook matrix. If multple colors are given, the points are also plotted. When the pattern involves both positive and negative values, zero horizental line is also shown.
+
+<a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="bars")
+</div>
+<a href="javascript:newWin('PyClone-82.png', 'PyClone-82.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='PyClone-82.png', width="400" /></a>
+<div class='input'>## As you have seen, bar plot displays the patterns associated with the codebook matrix. When the pattern involves both positive and negative values, the zero horizental line is in the middle of the hexagon; otherwise at the top of the hexagon for all negative values, and at the bottom for all positive values.
+
+# (IV) Perform partitioning operation on the map to obtain continuous clusters (i.e. mutation meta-clusters) as they are different from mutation clusters in an individual map node
+sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
+<a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase)
+</div>
+<a href="javascript:newWin('PyClone-84.png', 'PyClone-84.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='PyClone-84.png', width="400" /></a>
+<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="PyClone_cellular_prevalence.supraHex_base.txt")
+## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output txt file <a href="PyClone_cellular_prevalence.supraHex_base.txt">PyClone_cellular_prevalence.supraHex_base.txt</a>. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. mutation clusters), and 3rd column for the cluster bases (i.e. mutation meta-clusters). You can also force the input data to be output.
+<a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="PyClone_cellular_prevalence.supraHex_base_2.txt", keep.data=T)
+
+output <- <a href='visDmatHeatmap.html' target=visDmatHeatmap>visDmatHeatmap</a>(sMap, data, sBase, base.separated.arg=list(col="black"), base.legend.location="bottomleft", colormap="darkgreen-lightgreen-lightpink-darkred", KeyValueName="Cellular prevalence", labRow=NA, keep.data=T, srtCol=20)
+</div>
+<a href="javascript:newWin('PyClone-86.png', 'PyClone-86.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='PyClone-86.png', width="400" /></a>
+<div class='input'>## As you have seen, heatmap is used to visualise cellular prevalence patterns seen within each meta-cluster/base. Row side bar indicates the mutation meta-clusters/bases. The returned variable "output" (NOT a txt file) has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. mutation clusters), and 3rd column for the cluster bases (i.e. mutation meta-clusters). Note: it has rows in the same order as visualised in the heatmap
+
+# (V) Reorder the taxonomy-specific components of the map to delineate relationships between taxonomy
+sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap, metric="euclidean")
+</div>
+<strong class='message'>Start at 2015-03-06 17:08:34</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid (2015-03-06 17:08:34)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (12 X 4) using 'linear' initialisation, given a topology and input data (2015-03-06 17:08:34)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-03-06 17:08:34)...</strong>
+<strong class='message'>	1 out of 120 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	12 out of 120 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	24 out of 120 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	36 out of 120 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	48 out of 120 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	60 out of 120 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	72 out of 120 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	84 out of 120 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	96 out of 120 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	108 out of 120 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	120 out of 120 (2015-03-06 17:08:34)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-03-06 17:08:34)...</strong>
+<strong class='message'>	1 out of 480 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	48 out of 480 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	96 out of 480 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	144 out of 480 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	192 out of 480 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	240 out of 480 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	288 out of 480 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	336 out of 480 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	384 out of 480 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	432 out of 480 (2015-03-06 17:08:34)</strong>
+<strong class='message'>	480 out of 480 (2015-03-06 17:08:34)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-03-06 17:08:34)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-03-06 17:08:34)...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 4x4
+   xy-dimension of map grid: xdim=4, ydim=3
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 12x2
+   initialisation method: linear
+   dimension of codebook matrix: 12x4
+   mean quantization error: 1.14495176661807
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 30 at rough stage; 120 at finetune stage
+   radius (at rough stage): from 1 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2015-03-06 17:08:34</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap, sReorder, title.rotate=10, zlim=c(0,1), colormap="darkgreen-lightgreen-lightpink-darkred")
+</div>
+<a href="javascript:newWin('PyClone-126.png', 'PyClone-126.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='PyClone-126.png', width="400" /></a>
+<div class='input'>## As you have seen, reordered components of trained map is displayed. Each component illustrates a sample-specific map and is placed within a two-dimensional rectangular lattice. Across components/samples, mutations with similar cellular prevalence patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/samples, that is, samples with the similar cellular prevalence profiles are placed closer to each other.
+
+# (VI) Build and visualise the bootstrapped tree
+tree_bs <- <a href='visTreeBootstrap.html' target=visTreeBootstrap>visTreeBootstrap</a>(t(data))
+</div>
+<strong class='message'>Start at 2015-03-06 17:08:35</strong>
+<strong class='message'></strong>
+<strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (4 by 133)...</strong>
+<strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
+<strong class='message'>Finally, visualise the bootstrapped tree...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2015-03-06 17:08:36</strong>
+<strong class='message'>Runtime in total is: 1 secs
+</strong>
+<a href="javascript:newWin('PyClone-136.png', 'PyClone-136.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='PyClone-136.png', width="400" /></a>
+<div class='input'>## As you have seen, neighbour-joining tree is constructed based on pairwise euclidean distance matrices between samples. The robustness of tree branching is evaluated using bootstraping. In internal nodes (also color-coded), the number represents the proportion of bootstrapped trees that support the observed internal branching. The higher the number, the more robust the tree branching. 100 means that the internal branching is always observed by resampling characters.</div>
+      </pre>
+    </div>
+
+  <div class="span4">
+
+    <h2>Source demo</h2>
+    <a href="javascript:newWin('demo/PyClone.r', 'demo/PyClone.r', '1200', '1200')" title="Click to view"><B><code>PyClone.r</code></B></a>
+    
+    <h2>Functions used in this demo</h2>
+    <ul>
+      <li><a href="sPipeline.html">sPipeline</a></li>
+      <li><a href="visHexMulComp.html">visHexMulComp</a></li>
+      <li><a href="sWriteData.html">sWriteData</a></li>
+      <li><a href="visHexMapping.html">visHexMapping</a></li>
+      <li><a href="visHexPattern.html">visHexPattern</a></li>
+      <li><a href="sDmatCluster.html">sDmatCluster</a></li>
+      <li><a href="visDmatCluster.html">visDmatCluster</a></li>
+      <li><a href="visDmatHeatmap.html">visDmatHeatmap</a></li>
+      <li><a href="sCompReorder.html">sCompReorder</a></li>
+      <li><a href="visCompReorder.html">visCompReorder</a></li>
+      <li><a href="visTreeBootstrap.html">visTreeBootstrap</a></li>
+    </ul>
+    
+    <!--
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/supraHex">http://supfam.org/supraHex</a></li>
+    </ul>
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    -->
+    
+  </div>
+
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

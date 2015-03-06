@@ -3,3 +3,5 @@ Golub   Demo for leukemia patient dataset from Golub et al
 Fang    Demo for human embryo dataset from Fang et al
 Xiang   Demo for arabidopsis embryo dataset from Xiang et al
 ISMB2014   Demo for for the artwork in ISMB 2014
+Sardar    Demo for human cell type evolutionary profile dataset from Sardar et al
+PyClone    Demo for postprocessing cellular prevalence of mutations in clonal populations (inferred by PyClone)

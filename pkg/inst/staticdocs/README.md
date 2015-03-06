@@ -3,7 +3,10 @@
 <B><h4>An open-source R/Bioconductor package for tabular omics data analysis using `a supra-hexagonal map`</h4></B>
 
 ## News
-The artwork called <a href="Best_Artwork_Award_ISMB2014.pdf" target="artwork" style="font-size: 12px; color: #F87217; text-decoration: overline; border-bottom: 1px solid #F87217">supraHex</a> has won <a href="http://www.iscb.org/ismb2014-general-info/2234-ismb2014-award-winners#art" target="ISMB2014" >The Best Artwork Award in ISMB 2014</a>. This artwork is automatically done and is reproducible <a href="demo-ISMB2014.html" target="ISMB2014">here</a>.
+
+* The artwork called <a href="Best_Artwork_Award_ISMB2014.pdf" target="artwork" style="font-size: 12px; color: #F87217; text-decoration: overline; border-bottom: 1px solid #F87217">supraHex</a> has won <a href="http://www.iscb.org/ismb2014-general-info/2234-ismb2014-award-winners#art" target="ISMB2014" >The Best Artwork Award in ISMB 2014</a>. This artwork is automatically done and is reproducible <a href="demo-ISMB2014.html" target="ISMB2014">here</a>.
+* Demonstrated in a variety of genome-wide datasets such as <a href="demo-Golub.html" target="slides" style="font-size: 12px; color: #0000FF; text-decoration: overline; border-bottom: 1px solid #0000FF">leukemia patient transcriptome</a>, <a href="demo-Xiang.html" target="slides" style="font-size: 12px; color: #0000FF; text-decoration: overline; border-bottom: 1px solid #0000FF">time-course transcriptome</a>, <a href="demo-Hiratani.html" target="slides" style="font-size: 12px; color: #0000FF; text-decoration: overline; border-bottom: 1px solid #0000FF">DNA replication timing</a>, <a href="demo-Sardar.html" target="slides" style="font-size: 12px; color: #0000FF; text-decoration: overline; border-bottom: 1px solid #0000FF">cell type evolution</a>, and <a href="demo-PyClone.html" target="slides" style="font-size: 12px; color: #0000FF; text-decoration: overline; border-bottom: 1px solid #0000FF">clonal population structure</a>.
+
 
 ## Introduction
 
@@ -26,8 +29,9 @@ For more, see <a href="slides_supraHex.pdf" target="slides" style="font-size: 12
 * Sample correlation on 2D sample landscape;
 * Overlaying additional data onto the trained map for exploring relationships between input and additional data;
 * Support for heatmap and tree building and visualisations;
-* Used by the package [dnet](http://dnet.r-forge.r-project.org) for network-based sample classifications;
+* Used by the package [dnet](http://supfam.org/dnet) for network-based sample classifications;
 * This package can run on `Windows`, `Mac` and `Linux`.
+
 
 ## Workflow
 
