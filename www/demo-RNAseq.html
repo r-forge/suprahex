@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Demo for analysing RNA-seq dataset (along with edgeR) @ supraHex 1.5.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Hai Fang and Julian Gough">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.5.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:5dmiiel8qeq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Demo for analysing RNA-seq dataset (along with edgeR)</h2>
+
+Notes:
+<li> All results are based on supraHex (version 1.5.1). </li>
+<li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
+<li> Images displayed below may be distorted, but should be normal in your screen. </li>
+<li> Functions contained in supraHex 1.5.1 are hyperlinked in-place and also listed on the right side. </li>
+
+<div class="row">
+    <div class="span8">
+      <pre>
+      <div class='input'># This is a demo for analysing RNA-seq dataset (along with edgeR)
+#
+# The dataset (<a href="RNAseq_counts.txt">RNAseq_counts.txt</a>) contains the RNA-seq counts for all human 62757 genes across 6 samples. These 6 samples have paired experimental design with 3 pairs (i.e. 3 cell lines 'AB', 'ATC', 'D'), each with before and after treatments (i.e. the control 'Con', and the Dex treatment 'D'). 
+# Also provided is the file (<a href="RNAseq_geneinfo.txt">RNAseq_geneinfo.txt</a>) detailing 6 gene information, including 'EnsemblGeneID', 'GeneType', 'GeneName', 'Description', 'EntrezGeneID' and 'GeneLength'. 
+#
+# The first aim is to use the package 'edgeR' for identifying differential expressed genes between the Dex treatment and the control, taking into account the paired design for cell lines.
+# The second aim is to analyse/visualise differentially expressed genes using the package 'supraHex'.
+###############################################################################
+
+# Load or install packages (i.e. edgeR) specifically used in this demo
+for(pkg in c("edgeR","limma")){
+    if(!require(pkg, character.only=T)){
+        source("http://bioconductor.org/biocLite.R")
+        biocLite(pkg)
+        lapply(pkg, library, character.only=T)
+    }
+}
+
+# Import data
+## import RNA-seq counts data file <a href="RNAseq_counts.txt">RNAseq_counts.txt</a>
+RNAseq_counts <- read.delim(file="http://supfam.org/supraHex/RNAseq_counts.txt", header=T, row.names=1) # a matrix of 62757 genes X 6 samples.
+## import RNA-seq counts data file <a href="RNAseq_geneinfo.txt">RNAseq_geneinfo.txt</a>
+RNAseq_geneinfo <- read.delim(file="http://supfam.org/supraHex/RNAseq_geneinfo.txt", header=T, row.names=1) # a matrix of 62757 genes X 5 gene information columns (plus the row names).
+
+
+#---------------------------------------------------------------------------
+#---------------------------------------------------------------------------
+# Identify differential expressed genes using the package 'edgeR'
+#---------------------------------------------------------------------------
+#---------------------------------------------------------------------------
+
+# (I) Create a DGEList object (edgeR's container for RNA-seq count data)
+d_obj <- DGEList(counts=RNAseq_counts, genes=RNAseq_geneinfo)
+
+## In edgeR, it is recommended to remove genes/features without at least 1 read/count per million (known as 'cpm') in n of the samples, where n is the size of the smallest group of replicates. In this case, n=3 but we set it to be 6 as the strictest filtering
+cpms <- edgeR::cpm(d_obj$counts)
+keep <- rowSums(cpms>=1) >= 6
+d <- d_obj[keep,]
+
+## Reset the library sizes
+d$samples$lib.size <- colSums(d$counts)
+
+## Estimate normalization factors using:
+d <- calcNormFactors(d)
+
+## Define the design matrix
+cnames <- colnames(d)
+cellline <- gsub("_.*", "", cnames, perl=T)
+treatment <- gsub(".*_", "", cnames, perl=T)
+targets <- data.frame(sample=cnames, cellline=cellline, treatment=treatment)
+design <- model.matrix(~cellline+treatment, targets)
+#rownames(design) <- cnames
+
+## Inspect the relationships between samples using a multidimensional scaling (MDS) plot to show the relationship between all pairs of samples
+plotMDS(d, labels=colnames(d), col=c("red","darkgreen","blue")[factor(targets$cellline)])
+</div>
+<a href="javascript:newWin('RNAseq-2.png', 'RNAseq-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-2.png', width="400" /></a>
+<div class='input'>
+# (II) Do dispersion estiation and GLM fitting
+# Estimate the overall dispersion to get an idea of the overall level of biological variablility
+d <- estimateGLMCommonDisp(d, design, verbose=T)
+</div>
+<div class='output'>Disp = 0.0048 , BCV = 0.0693 
+</div>
+<div class='input'>
+## Estimate dispersion values, relative to the design matrix, using the Cox-Reid (CR)-adjusted likelihood:
+d2 <- estimateGLMTrendedDisp(d, design)
+d2 <- estimateGLMTagwiseDisp(d2, design)
+
+## Given the design matrix and dispersion estimates, fit a GLM to each feature:
+f <- glmFit(d2, design)
+
+# (III) Perform a likelihood ratio test
+## Specify the difference of interest: D vs Con
+contrasts <- rbind(c(0,0,0,1))
+
+## Prepare the results
+logFC <- matrix(nrow=nrow(d2), ncol=1)
+PValue <- matrix(nrow=nrow(d2), ncol=1)
+FDR <- matrix(nrow=nrow(d2), ncol=1)
+tmp <- c("D_Con")
+colnames(logFC) <- paste(tmp, '_logFC', sep='')
+colnames(PValue) <- paste(tmp, '_PValue', sep='')
+colnames(FDR) <- paste(tmp, '_FDR', sep='')
+rownames(logFC) <- rownames(PValue) <- rownames(FDR) <- rownames(d2)
+
+## Perform the test
+for(i in 1:nrow(contrasts)){   
+    lrt <- glmLRT(f, contrast=contrasts[i,])
+    tt <- topTags(lrt, n=nrow(d2), adjust.method="BH", sort.by="none")
+    logFC[,i] <- tt$table$logFC
+    PValue[,i] <- tt$table$PValue
+    FDR[,i] <- tt$table$FDR
+}
+
+## MA plots for RNA-seq data
+lrt <- glmLRT(f, contrast=contrasts[1,])
+#lrt <- glmLRT(f, coef=4)
+summary(de <- decideTestsDGE(lrt, adjust.method="BH", p.value=0.05))
+</div>
+<div class='output'>   [,1] 
+-1  1073
+0  11311
+1   1203
+</div>
+<div class='input'>detags <- rownames(d2)[as.logical(de)]
+plotSmear(lrt, de.tags=detags)
+</div>
+<a href="javascript:newWin('RNAseq-8.png', 'RNAseq-8.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-8.png', width="400" /></a>
+<div class='input'>### As you have seen, it plots the log-fold change (i.e., the log ratio of normalized expression levels between two experimental conditions (i.e. D vs Con) against the log counts per million (CPM). Those genes selected as differentially expressed (with a 5% false discovery rate) are highlighted as red dots
+
+# (IV) Output edgeR results
+## log counts per million (CPM) for each sample
+cpms <- edgeR::cpm(d2,log=T,prior.count=2)
+colnames(cpms) <- paste(colnames(d2), '_CPM', sep='')
+
+## log ratio between the treatment vs the control (for each cell line)
+odd_indexes <- seq(1,ncol(cpms),2)
+even_indexes <- seq(2,ncol(cpms),2)
+logFC_cpm <- cpms[,even_indexes] - cpms[,odd_indexes]
+colnames(logFC_cpm) <- gsub("_CPM", "_CPM_logFC", colnames(logFC_cpm), perl=T)
+
+## write into the file 'RNAseq_edgeR.txt'
+out <- data.frame(EnsemblGeneID=rownames(d2$genes), d2$genes, cpms, logFC_cpm, logFC, PValue, FDR)
+write.table(out, file="RNAseq_edgeR.txt", col.names=T, row.names=F, sep="\t", quote=F)
+
+
+#---------------------------------------------------------------------------
+#---------------------------------------------------------------------------
+# Analyse differentially expressed genes using the package 'supraHex'
+#---------------------------------------------------------------------------
+#---------------------------------------------------------------------------
+
+# (I) Load the package and select differentially expressed genes identified by edgeR data
+library(supraHex)
+select_flag <- FDR<0.05
+data <- logFC_cpm[select_flag, ]
+
+# (II) Train the supra-hexagonal map with input data only
+sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
+</div>
+<strong class='message'>Start at 2015-03-09 19:25:28</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid (2015-03-09 19:25:28)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (271 X 3) using 'linear' initialisation, given a topology and input data (2015-03-09 19:25:28)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-03-09 19:25:28)...</strong>
+<strong class='message'>	1 out of 2 (2015-03-09 19:25:28)</strong>
+<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
+<strong class='message'>	2 out of 2 (2015-03-09 19:25:29)</strong>
+<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-03-09 19:25:29)...</strong>
+<strong class='message'>	1 out of 5 (2015-03-09 19:25:29)</strong>
+<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
+<strong class='message'>	2 out of 5 (2015-03-09 19:25:29)</strong>
+<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
+<strong class='message'>	3 out of 5 (2015-03-09 19:25:29)</strong>
+<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
+<strong class='message'>	4 out of 5 (2015-03-09 19:25:29)</strong>
+<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
+<strong class='message'>	5 out of 5 (2015-03-09 19:25:29)</strong>
+<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-03-09 19:25:29)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-03-09 19:25:30)...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 2276x3
+   xy-dimension of map grid: xdim=19, ydim=19
+   grid lattice: hexa
+   grid shape: suprahex
+   dimension of grid coord: 271x2
+   initialisation method: linear
+   dimension of codebook matrix: 271x3
+   mean quantization error: 0.0648887002919504
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: batch
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 2 at rough stage; 5 at finetune stage
+   radius (at rough stage): from 5 to 1.25
+   radius (at finetune stage): from 1.25 to 1
+</strong>
+<strong class='message'>End at 2015-03-09 19:25:30</strong>
+<strong class='message'>Runtime in total is: 2 secs
+</strong>
+<div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap, title.rotate=10, colormap="darkgreen-lightgreen-lightpink-darkred")
+</div>
+<a href="javascript:newWin('RNAseq-40.png', 'RNAseq-40.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-40.png', width="400" /></a>
+<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="RNAseq_edgeR.supraHex.txt")
+## As you have seen, a figure displays the multiple components of trained map in a sample-specific manner. You also see that a txt file <a href="RNAseq_edgeR.supraHex.txt">RNAseq_edgeR.supraHex.txt</a> has been saved in your disk. The output file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters). You can also force the input data to be output (see below).
+<a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="RNAseq_edgeR.supraHex_2.txt", keep.data=T)
+
+# (III) Visualise the map, including built-in indexes, data hits/distributions, distance between map nodes, and codebook matrix
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="indexes")
+</div>
+<a href="javascript:newWin('RNAseq-42.png', 'RNAseq-42.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-42.png', width="400" /></a>
+<div class='input'>## As you have seen, the smaller hexagons in the supra-hexagonal map are indexed as follows: start from the center, and then expand circularly outwards, and for each circle increase in an anti-clock order.
+
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="hits")
+</div>
+<a href="javascript:newWin('RNAseq-44.png', 'RNAseq-44.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-44.png', width="400" /></a>
+<div class='input'>## As you have seen, the number represents how many input data vectors (mutations) are hitting each hexagon, the size of which is proportional to the number of hits.
+
+<a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="dist")
+</div>
+<a href="javascript:newWin('RNAseq-46.png', 'RNAseq-46.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-46.png', width="400" /></a>
+<div class='input'>## As you have seen, map distance tells how far each hexagon is away from its neighbors, and the size of each hexagon is proportional to this distance.
+
+<a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="lines")
+</div>
+<a href="javascript:newWin('RNAseq-48.png', 'RNAseq-48.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-48.png', width="400" /></a>
+<div class='input'>## As you have seen, line plot displays the patterns associated with the codebook matrix. If multple colors are given, the points are also plotted. When the pattern involves both positive and negative values, zero horizental line is also shown.
+
+<a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="bars")
+</div>
+<a href="javascript:newWin('RNAseq-50.png', 'RNAseq-50.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-50.png', width="400" /></a>
+<div class='input'>## As you have seen, bar plot displays the patterns associated with the codebook matrix. When the pattern involves both positive and negative values, the zero horizental line is in the middle of the hexagon; otherwise at the top of the hexagon for all negative values, and at the bottom for all positive values.
+
+# (IV) Perform partitioning operation on the map to obtain continuous clusters (i.e. gene meta-clusters) as they are different from gene clusters in an individual map node
+sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
+myColor <- c("transparent", "black")
+border.color <- myColor[sBase$bases%%2 + 1] ## the hexagon frame according to mete-clusters
+<a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap,sBase, gp=grid::gpar(cex=1.5, font=2, col="blue"), colormap="PapayaWhip-pink-Tomato", area.size=0.95, border.color=border.color)
+</div>
+<a href="javascript:newWin('RNAseq-52.png', 'RNAseq-52.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-52.png', width="400" /></a>
+<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="RNAseq_edgeR.supraHex_base.txt")
+## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output txt file <a href="RNAseq_edgeR.supraHex_base.txt">RNAseq_edgeR.supraHex_base.txt</a>. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. mutation clusters), and 3rd column for the cluster bases (i.e. mutation meta-clusters). You can also force the input data to be output.
+<a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="RNAseq_edgeR.supraHex_base_2.txt", keep.data=T)
+
+output <- <a href='visDmatHeatmap.html' target=visDmatHeatmap>visDmatHeatmap</a>(sMap, data, sBase, base.separated.arg=list(col="black"), base.legend.location="bottomleft", colormap="darkgreen-lightgreen-lightpink-darkred", KeyValueName="Log2(Ratio)", labRow=NA, keep.data=T, srtCol=20, cexCol=1.5)
+</div>
+<a href="javascript:newWin('RNAseq-54.png', 'RNAseq-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-54.png', width="400" /></a>
+<div class='input'>## As you have seen, heatmap is used to visualise gene expression patterns seen within each meta-cluster/base. Row side bar indicates the gene meta-clusters/bases. The returned variable "output" (NOT a txt file) has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). Note: it has rows in the same order as visualised in the heatmap
+
+# (V) Reorder the sample-specific components of the map to delineate relationships between taxonomy
+sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap, metric="euclidean")
+</div>
+<strong class='message'>Start at 2015-03-09 19:25:52</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid (2015-03-09 19:25:52)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (9 X 3) using 'linear' initialisation, given a topology and input data (2015-03-09 19:25:52)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-03-09 19:25:52)...</strong>
+<strong class='message'>	1 out of 90 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	9 out of 90 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	18 out of 90 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	27 out of 90 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	36 out of 90 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	45 out of 90 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	54 out of 90 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	63 out of 90 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	72 out of 90 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	81 out of 90 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	90 out of 90 (2015-03-09 19:25:52)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-03-09 19:25:52)...</strong>
+<strong class='message'>	1 out of 360 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	36 out of 360 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	72 out of 360 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	108 out of 360 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	144 out of 360 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	180 out of 360 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	216 out of 360 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	252 out of 360 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	288 out of 360 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	324 out of 360 (2015-03-09 19:25:52)</strong>
+<strong class='message'>	360 out of 360 (2015-03-09 19:25:52)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-03-09 19:25:52)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-03-09 19:25:52)...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 3x3
+   xy-dimension of map grid: xdim=3, ydim=3
+   grid lattice: rect
+   grid shape: sheet
+   dimension of grid coord: 9x2
+   initialisation method: linear
+   dimension of codebook matrix: 9x3
+   mean quantization error: 0.29756526943334
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: sequential
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 30 at rough stage; 120 at finetune stage
+   radius (at rough stage): from 1 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2015-03-09 19:25:52</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap, sReorder, title.rotate=10, colormap="darkgreen-lightgreen-lightpink-darkred")
+</div>
+<a href="javascript:newWin('RNAseq-94.png', 'RNAseq-94.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-94.png', width="400" /></a>
+<div class='input'>## As you have seen, reordered components of trained map is displayed. Each component illustrates a sample-specific map and is placed within a two-dimensional rectangular lattice. Across components/samples, genes with similar expression patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/samples, that is, samples with the similar gene expression profiles are placed closer to each other.</div>
+      </pre>
+    </div>
+
+  <div class="span4">
+
+    <h2>Source demo</h2>
+    <a href="javascript:newWin('demo/RNAseq.r', 'demo/RNAseq.r', '1200', '1200')" title="Click to view"><B><code>RNAseq.r</code></B></a>
+    
+    <h2>Functions used in this demo</h2>
+    <ul>
+      <li><a href="sPipeline.html">sPipeline</a></li>
+      <li><a href="visHexMulComp.html">visHexMulComp</a></li>
+      <li><a href="sWriteData.html">sWriteData</a></li>
+      <li><a href="visHexMapping.html">visHexMapping</a></li>
+      <li><a href="visHexPattern.html">visHexPattern</a></li>
+      <li><a href="sDmatCluster.html">sDmatCluster</a></li>
+      <li><a href="visDmatCluster.html">visDmatCluster</a></li>
+      <li><a href="visDmatHeatmap.html">visDmatHeatmap</a></li>
+      <li><a href="sCompReorder.html">sCompReorder</a></li>
+      <li><a href="visCompReorder.html">visCompReorder</a></li>
+    </ul>
+    
+    <!--
+    
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://supfam.org/supraHex">http://supfam.org/supraHex</a></li>
+    </ul>
+    
+    <h2>Author</h2>
+    Hai Fang and Julian Gough
+    
+    -->
+    
+  </div>
+
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>
