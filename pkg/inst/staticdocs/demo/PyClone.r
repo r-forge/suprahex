@@ -46,9 +46,11 @@ visHexPattern(sMap, plotType="bars")
 
 # (IV) Perform partitioning operation on the map to obtain continuous clusters (i.e. mutation meta-clusters) as they are different from mutation clusters in an individual map node
 sBase <- sDmatCluster(sMap)
-visDmatCluster(sMap, sBase)
+myColor <- c("transparent", "black")
+border.color <- myColor[sBase$bases%%2 + 1] ## the hexagon frame according to mete-clusters
+visDmatCluster(sMap,sBase, gp=grid::gpar(cex=1.5, font=2, col="blue"), colormap="PapayaWhip-pink-Tomato", area.size=0.95, border.color=border.color)
 sWriteData(sMap, data, sBase, filename="PyClone_cellular_prevalence.supraHex_base.txt")
-## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command visDmatCluster(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output txt file <a href="PyClone_cellular_prevalence.supraHex_base.txt">PyClone_cellular_prevalence.supraHex_base.txt</a>. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. mutation clusters), and 3rd column for the cluster bases (i.e. mutation meta-clusters). You can also force the input data to be output.
+## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. An output txt file <a href="PyClone_cellular_prevalence.supraHex_base.txt">PyClone_cellular_prevalence.supraHex_base.txt</a>. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. mutation clusters), and 3rd column for the cluster bases (i.e. mutation meta-clusters). You can also force the input data to be output.
 sWriteData(sMap, data, sBase, filename="PyClone_cellular_prevalence.supraHex_base_2.txt", keep.data=T)
 
 output <- visDmatHeatmap(sMap, data, sBase, base.separated.arg=list(col="black"), base.legend.location="bottomleft", colormap="darkgreen-lightgreen-lightpink-darkred", KeyValueName="Cellular prevalence", labRow=NA, keep.data=T, srtCol=20)

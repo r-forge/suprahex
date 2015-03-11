@@ -187,7 +187,7 @@ design <- model.matrix(~cellline+treatment, targets)
 ## Inspect the relationships between samples using a multidimensional scaling (MDS) plot to show the relationship between all pairs of samples
 plotMDS(d, labels=colnames(d), col=c("red","darkgreen","blue")[factor(targets$cellline)])
 </div>
-<a href="javascript:newWin('RNAseq-2.png', 'RNAseq-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-2.png', width="400" /></a>
+<a href="javascript:newWin('RNAseq-2.png', 'RNAseq-2.png', '1200', '720')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-2.png', width="400" /></a>
 <div class='input'>
 # (II) Do dispersion estiation and GLM fitting
 # Estimate the overall dispersion to get an idea of the overall level of biological variablility
@@ -270,55 +270,63 @@ select_flag <- FDR<0.05
 data <- logFC_cpm[select_flag, ]
 
 # (II) Train the supra-hexagonal map with input data only
-sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
+sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data, xdim=8, algorithm="sequential")
 </div>
-<strong class='message'>Start at 2015-03-09 19:25:28</strong>
+<strong class='message'>Start at 2015-03-11 12:08:21</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-03-09 19:25:28)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (271 X 3) using 'linear' initialisation, given a topology and input data (2015-03-09 19:25:28)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-03-09 19:25:28)...</strong>
-<strong class='message'>	1 out of 2 (2015-03-09 19:25:28)</strong>
-<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
-<strong class='message'>	2 out of 2 (2015-03-09 19:25:29)</strong>
-<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-03-09 19:25:29)...</strong>
-<strong class='message'>	1 out of 5 (2015-03-09 19:25:29)</strong>
-<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
-<strong class='message'>	2 out of 5 (2015-03-09 19:25:29)</strong>
-<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
-<strong class='message'>	3 out of 5 (2015-03-09 19:25:29)</strong>
-<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
-<strong class='message'>	4 out of 5 (2015-03-09 19:25:29)</strong>
-<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
-<strong class='message'>	5 out of 5 (2015-03-09 19:25:29)</strong>
-<strong class='message'>	updated (2015-03-09 19:25:29)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-03-09 19:25:29)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-03-09 19:25:30)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-03-11 12:08:21)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (61 X 3) using 'linear' initialisation, given a topology and input data (2015-03-11 12:08:21)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-03-11 12:08:21)...</strong>
+<strong class='message'>	1 out of 2276 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	228 out of 2276 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	456 out of 2276 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	684 out of 2276 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	912 out of 2276 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	1140 out of 2276 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	1368 out of 2276 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	1596 out of 2276 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	1824 out of 2276 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	2052 out of 2276 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	2276 out of 2276 (2015-03-11 12:08:21)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-03-11 12:08:21)...</strong>
+<strong class='message'>	1 out of 4552 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	456 out of 4552 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	912 out of 4552 (2015-03-11 12:08:21)</strong>
+<strong class='message'>	1368 out of 4552 (2015-03-11 12:08:22)</strong>
+<strong class='message'>	1824 out of 4552 (2015-03-11 12:08:22)</strong>
+<strong class='message'>	2280 out of 4552 (2015-03-11 12:08:22)</strong>
+<strong class='message'>	2736 out of 4552 (2015-03-11 12:08:22)</strong>
+<strong class='message'>	3192 out of 4552 (2015-03-11 12:08:22)</strong>
+<strong class='message'>	3648 out of 4552 (2015-03-11 12:08:22)</strong>
+<strong class='message'>	4104 out of 4552 (2015-03-11 12:08:22)</strong>
+<strong class='message'>	4552 out of 4552 (2015-03-11 12:08:22)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-03-11 12:08:22)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-03-11 12:08:22)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 2276x3
-   xy-dimension of map grid: xdim=19, ydim=19
+   xy-dimension of map grid: xdim=9, ydim=9
    grid lattice: hexa
    grid shape: suprahex
-   dimension of grid coord: 271x2
+   dimension of grid coord: 61x2
    initialisation method: linear
-   dimension of codebook matrix: 271x3
-   mean quantization error: 0.0648887002919504
+   dimension of codebook matrix: 61x3
+   mean quantization error: 0.148236509445458
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
-<strong class='message'>   training algorithm: batch
+<strong class='message'>   training algorithm: sequential
    alpha type: invert
    training neighborhood kernel: gaussian
-   trainlength (x input data length): 2 at rough stage; 5 at finetune stage
-   radius (at rough stage): from 5 to 1.25
-   radius (at finetune stage): from 1.25 to 1
+   trainlength (x input data length): 1 at rough stage; 2 at finetune stage
+   radius (at rough stage): from 3 to 1
+   radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2015-03-09 19:25:30</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>End at 2015-03-11 12:08:22</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap, title.rotate=10, colormap="darkgreen-lightgreen-lightpink-darkred")
 </div>
-<a href="javascript:newWin('RNAseq-40.png', 'RNAseq-40.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-40.png', width="400" /></a>
+<a href="javascript:newWin('RNAseq-48.png', 'RNAseq-48.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-48.png', width="400" /></a>
 <div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="RNAseq_edgeR.supraHex.txt")
 ## As you have seen, a figure displays the multiple components of trained map in a sample-specific manner. You also see that a txt file <a href="RNAseq_edgeR.supraHex.txt">RNAseq_edgeR.supraHex.txt</a> has been saved in your disk. The output file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters). You can also force the input data to be output (see below).
 <a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="RNAseq_edgeR.supraHex_2.txt", keep.data=T)
@@ -326,27 +334,27 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 # (III) Visualise the map, including built-in indexes, data hits/distributions, distance between map nodes, and codebook matrix
 <a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="indexes")
 </div>
-<a href="javascript:newWin('RNAseq-42.png', 'RNAseq-42.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-42.png', width="400" /></a>
+<a href="javascript:newWin('RNAseq-50.png', 'RNAseq-50.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-50.png', width="400" /></a>
 <div class='input'>## As you have seen, the smaller hexagons in the supra-hexagonal map are indexed as follows: start from the center, and then expand circularly outwards, and for each circle increase in an anti-clock order.
 
 <a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="hits")
 </div>
-<a href="javascript:newWin('RNAseq-44.png', 'RNAseq-44.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-44.png', width="400" /></a>
+<a href="javascript:newWin('RNAseq-52.png', 'RNAseq-52.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-52.png', width="400" /></a>
 <div class='input'>## As you have seen, the number represents how many input data vectors (mutations) are hitting each hexagon, the size of which is proportional to the number of hits.
 
 <a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="dist")
 </div>
-<a href="javascript:newWin('RNAseq-46.png', 'RNAseq-46.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-46.png', width="400" /></a>
+<a href="javascript:newWin('RNAseq-54.png', 'RNAseq-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-54.png', width="400" /></a>
 <div class='input'>## As you have seen, map distance tells how far each hexagon is away from its neighbors, and the size of each hexagon is proportional to this distance.
 
 <a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="lines")
 </div>
-<a href="javascript:newWin('RNAseq-48.png', 'RNAseq-48.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-48.png', width="400" /></a>
+<a href="javascript:newWin('RNAseq-56.png', 'RNAseq-56.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-56.png', width="400" /></a>
 <div class='input'>## As you have seen, line plot displays the patterns associated with the codebook matrix. If multple colors are given, the points are also plotted. When the pattern involves both positive and negative values, zero horizental line is also shown.
 
 <a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="bars")
 </div>
-<a href="javascript:newWin('RNAseq-50.png', 'RNAseq-50.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-50.png', width="400" /></a>
+<a href="javascript:newWin('RNAseq-58.png', 'RNAseq-58.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-58.png', width="400" /></a>
 <div class='input'>## As you have seen, bar plot displays the patterns associated with the codebook matrix. When the pattern involves both positive and negative values, the zero horizental line is in the middle of the hexagon; otherwise at the top of the hexagon for all negative values, and at the bottom for all positive values.
 
 # (IV) Perform partitioning operation on the map to obtain continuous clusters (i.e. gene meta-clusters) as they are different from gene clusters in an individual map node
@@ -355,74 +363,73 @@ myColor <- c("transparent", "black")
 border.color <- myColor[sBase$bases%%2 + 1] ## the hexagon frame according to mete-clusters
 <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap,sBase, gp=grid::gpar(cex=1.5, font=2, col="blue"), colormap="PapayaWhip-pink-Tomato", area.size=0.95, border.color=border.color)
 </div>
-<a href="javascript:newWin('RNAseq-52.png', 'RNAseq-52.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-52.png', width="400" /></a>
+<a href="javascript:newWin('RNAseq-60.png', 'RNAseq-60.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-60.png', width="400" /></a>
 <div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="RNAseq_edgeR.supraHex_base.txt")
-## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output txt file <a href="RNAseq_edgeR.supraHex_base.txt">RNAseq_edgeR.supraHex_base.txt</a>. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. mutation clusters), and 3rd column for the cluster bases (i.e. mutation meta-clusters). You can also force the input data to be output.
+## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. An output txt file <a href="RNAseq_edgeR.supraHex_base.txt">RNAseq_edgeR.supraHex_base.txt</a>. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. mutation clusters), and 3rd column for the cluster bases (i.e. mutation meta-clusters). You can also force the input data to be output.
 <a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="RNAseq_edgeR.supraHex_base_2.txt", keep.data=T)
 
 output <- <a href='visDmatHeatmap.html' target=visDmatHeatmap>visDmatHeatmap</a>(sMap, data, sBase, base.separated.arg=list(col="black"), base.legend.location="bottomleft", colormap="darkgreen-lightgreen-lightpink-darkred", KeyValueName="Log2(Ratio)", labRow=NA, keep.data=T, srtCol=20, cexCol=1.5)
 </div>
-<a href="javascript:newWin('RNAseq-54.png', 'RNAseq-54.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-54.png', width="400" /></a>
+<a href="javascript:newWin('RNAseq-62.png', 'RNAseq-62.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-62.png', width="400" /></a>
 <div class='input'>## As you have seen, heatmap is used to visualise gene expression patterns seen within each meta-cluster/base. Row side bar indicates the gene meta-clusters/bases. The returned variable "output" (NOT a txt file) has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). Note: it has rows in the same order as visualised in the heatmap
 
 # (V) Reorder the sample-specific components of the map to delineate relationships between taxonomy
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap, metric="euclidean")
 </div>
-<strong class='message'>Start at 2015-03-09 19:25:52</strong>
+<strong class='message'>Start at 2015-03-11 12:08:29</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-03-09 19:25:52)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (9 X 3) using 'linear' initialisation, given a topology and input data (2015-03-09 19:25:52)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-03-09 19:25:52)...</strong>
-<strong class='message'>	1 out of 90 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	9 out of 90 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	18 out of 90 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	27 out of 90 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	36 out of 90 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	45 out of 90 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	54 out of 90 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	63 out of 90 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	72 out of 90 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	81 out of 90 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	90 out of 90 (2015-03-09 19:25:52)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-03-09 19:25:52)...</strong>
-<strong class='message'>	1 out of 360 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	36 out of 360 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	72 out of 360 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	108 out of 360 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	144 out of 360 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	180 out of 360 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	216 out of 360 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	252 out of 360 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	288 out of 360 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	324 out of 360 (2015-03-09 19:25:52)</strong>
-<strong class='message'>	360 out of 360 (2015-03-09 19:25:52)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-03-09 19:25:52)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-03-09 19:25:52)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-03-11 12:08:29)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (8 X 3) using 'linear' initialisation, given a topology and input data (2015-03-11 12:08:29)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-03-11 12:08:29)...</strong>
+<strong class='message'>	1 out of 81 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	9 out of 81 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	18 out of 81 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	27 out of 81 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	36 out of 81 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	45 out of 81 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	54 out of 81 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	63 out of 81 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	72 out of 81 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	81 out of 81 (2015-03-11 12:08:29)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-03-11 12:08:29)...</strong>
+<strong class='message'>	1 out of 321 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	33 out of 321 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	66 out of 321 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	99 out of 321 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	132 out of 321 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	165 out of 321 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	198 out of 321 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	231 out of 321 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	264 out of 321 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	297 out of 321 (2015-03-11 12:08:29)</strong>
+<strong class='message'>	321 out of 321 (2015-03-11 12:08:29)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-03-11 12:08:29)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-03-11 12:08:29)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 3x3
-   xy-dimension of map grid: xdim=3, ydim=3
+   xy-dimension of map grid: xdim=4, ydim=2
    grid lattice: rect
    grid shape: sheet
-   dimension of grid coord: 9x2
+   dimension of grid coord: 8x2
    initialisation method: linear
-   dimension of codebook matrix: 9x3
-   mean quantization error: 0.29756526943334
+   dimension of codebook matrix: 8x3
+   mean quantization error: 0.0386044771959701
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
    alpha type: invert
    training neighborhood kernel: gaussian
-   trainlength (x input data length): 30 at rough stage; 120 at finetune stage
+   trainlength (x input data length): 27 at rough stage; 107 at finetune stage
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2015-03-09 19:25:52</strong>
+<strong class='message'>End at 2015-03-11 12:08:29</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap, sReorder, title.rotate=10, colormap="darkgreen-lightgreen-lightpink-darkred")
 </div>
-<a href="javascript:newWin('RNAseq-94.png', 'RNAseq-94.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-94.png', width="400" /></a>
+<a href="javascript:newWin('RNAseq-101.png', 'RNAseq-101.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='RNAseq-101.png', width="400" /></a>
 <div class='input'>## As you have seen, reordered components of trained map is displayed. Each component illustrates a sample-specific map and is placed within a two-dimensional rectangular lattice. Across components/samples, genes with similar expression patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/samples, that is, samples with the similar gene expression profiles are placed closer to each other.</div>
       </pre>
     </div>
