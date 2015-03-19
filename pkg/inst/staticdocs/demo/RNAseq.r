@@ -1,14 +1,14 @@
 # This is a demo for analysing RNA-seq dataset (along with edgeR)
 #
-# The dataset (<a href="RNAseq_counts.txt">RNAseq_counts.txt</a>) contains the RNA-seq counts for all human 62757 genes across 6 samples. These 6 samples have paired experimental design with 3 pairs (i.e. 3 cell lines 'AB', 'ATC', 'D'), each with before and after treatments (i.e. the control 'Con', and the Dex treatment 'D'). 
+# The dataset (<a href="RNAseq_counts.txt">RNAseq_counts.txt</a>) contains the RNA-seq counts for all human 62757 genes across 6 samples. These 6 samples have paired experimental design with 3 pairs (i.e. 3 cell lines 'cellline1', 'cellline2', 'cellline3'), each with before and after treatments (i.e. the control 'CON', and the Dex treatment 'DEX'). This paired design is able to reduce the effects of cell lines (e.g. cell line variances), and thus to increase the statistical power.
 # Also provided is the file (<a href="RNAseq_geneinfo.txt">RNAseq_geneinfo.txt</a>) detailing 6 gene information, including 'EnsemblGeneID', 'GeneType', 'GeneName', 'Description', 'EntrezGeneID' and 'GeneLength'. 
 #
-# The first aim is to use the package 'edgeR' for identifying differential expressed genes between the Dex treatment and the control, taking into account the paired design for cell lines.
+# The first aim is to use the package 'edgeR' for identifying differentially expressed genes between the Dex treatment and the control, taking into account the paired design for cell lines.
 # The second aim is to analyse/visualise differentially expressed genes using the package 'supraHex'.
 ###############################################################################
 
-# Load or install packages (i.e. edgeR) specifically used in this demo
-for(pkg in c("edgeR","limma")){
+# Load or install packages (i.e. edgeR, supraHex) specifically used in this demo
+for(pkg in c("edgeR","supraHex")){
     if(!require(pkg, character.only=T)){
         source("http://bioconductor.org/biocLite.R")
         biocLite(pkg)
@@ -25,7 +25,7 @@ RNAseq_geneinfo <- read.delim(file="http://supfam.org/supraHex/RNAseq_geneinfo.t
 
 #---------------------------------------------------------------------------
 #---------------------------------------------------------------------------
-# Identify differential expressed genes using the package 'edgeR'
+# Identify differentially expressed genes using the package 'edgeR'
 #---------------------------------------------------------------------------
 #---------------------------------------------------------------------------
 
@@ -49,12 +49,13 @@ cellline <- gsub("_.*", "", cnames, perl=T)
 treatment <- gsub(".*_", "", cnames, perl=T)
 targets <- data.frame(sample=cnames, cellline=cellline, treatment=treatment)
 design <- model.matrix(~cellline+treatment, targets)
-#rownames(design) <- cnames
+design
 
 ## Inspect the relationships between samples using a multidimensional scaling (MDS) plot to show the relationship between all pairs of samples
-plotMDS(d, labels=colnames(d), col=c("red","darkgreen","blue")[factor(targets$cellline)])
+plotMDS(d, labels=colnames(d), col=c("red","darkgreen","blue")[factor(targets$cellline)], xlim=c(-2,2), ylim=c(-2,2))
+### Note: this inspection clearly shows the variances between cell lines, calling for paired design test.
 
-# (II) Do dispersion estiation and GLM fitting
+# (II) Do dispersion estimation and GLM (Generalized Linear Model) fitting
 # Estimate the overall dispersion to get an idea of the overall level of biological variablility
 d <- estimateGLMCommonDisp(d, design, verbose=T)
 
@@ -66,20 +67,20 @@ d2 <- estimateGLMTagwiseDisp(d2, design)
 f <- glmFit(d2, design)
 
 # (III) Perform a likelihood ratio test
-## Specify the difference of interest: D vs Con
+## Specify the difference of interest: DEX vs CON
 contrasts <- rbind(c(0,0,0,1))
 
 ## Prepare the results
 logFC <- matrix(nrow=nrow(d2), ncol=1)
 PValue <- matrix(nrow=nrow(d2), ncol=1)
 FDR <- matrix(nrow=nrow(d2), ncol=1)
-tmp <- c("D_Con")
+tmp <- c("DEX_CON")
 colnames(logFC) <- paste(tmp, '_logFC', sep='')
 colnames(PValue) <- paste(tmp, '_PValue', sep='')
 colnames(FDR) <- paste(tmp, '_FDR', sep='')
 rownames(logFC) <- rownames(PValue) <- rownames(FDR) <- rownames(d2)
 
-## Perform the test
+## Perform the test, calculating P-values and FDR (false discovery rate)
 for(i in 1:nrow(contrasts)){   
     lrt <- glmLRT(f, contrast=contrasts[i,])
     tt <- topTags(lrt, n=nrow(d2), adjust.method="BH", sort.by="none")
@@ -94,7 +95,7 @@ lrt <- glmLRT(f, contrast=contrasts[1,])
 summary(de <- decideTestsDGE(lrt, adjust.method="BH", p.value=0.05))
 detags <- rownames(d2)[as.logical(de)]
 plotSmear(lrt, de.tags=detags)
-### As you have seen, it plots the log-fold change (i.e., the log ratio of normalized expression levels between two experimental conditions (i.e. D vs Con) against the log counts per million (CPM). Those genes selected as differentially expressed (with a 5% false discovery rate) are highlighted as red dots
+### As you have seen, it plots the log-fold change (i.e., the log ratio of normalized expression levels between two experimental conditions (i.e. DEX vs CON) against the log counts per million (CPM). Those genes selected as differentially expressed (with a 5% false discovery rate) are highlighted as red dots
 
 # (IV) Output edgeR results
 ## log counts per million (CPM) for each sample
@@ -122,10 +123,12 @@ write.table(out, file="RNAseq_edgeR.txt", col.names=T, row.names=F, sep="\t", qu
 library(supraHex)
 select_flag <- FDR<0.05
 data <- logFC_cpm[select_flag, ]
+## check the data dimension: how many genes are called significant
+dim(data)
 
 # (II) Train the supra-hexagonal map with input data only
 sMap <- sPipeline(data, xdim=8, algorithm="sequential")
-visHexMulComp(sMap, title.rotate=10, colormap="darkgreen-lightgreen-lightpink-darkred")
+visHexMulComp(sMap, title.rotate=5, colormap="darkgreen-lightgreen-lightpink-darkred")
 sWriteData(sMap, data, filename="RNAseq_edgeR.supraHex.txt")
 ## As you have seen, a figure displays the multiple components of trained map in a sample-specific manner. You also see that a txt file <a href="RNAseq_edgeR.supraHex.txt">RNAseq_edgeR.supraHex.txt</a> has been saved in your disk. The output file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters). You can also force the input data to be output (see below).
 sWriteData(sMap, data, filename="RNAseq_edgeR.supraHex_2.txt", keep.data=T)
@@ -160,5 +163,5 @@ output <- visDmatHeatmap(sMap, data, sBase, base.separated.arg=list(col="black")
 
 # (V) Reorder the sample-specific components of the map to delineate relationships between taxonomy
 sReorder <- sCompReorder(sMap, metric="euclidean")
-visCompReorder(sMap, sReorder, title.rotate=10, colormap="darkgreen-lightgreen-lightpink-darkred")
+visCompReorder(sMap, sReorder, title.rotate=5, colormap="darkgreen-lightgreen-lightpink-darkred")
 ## As you have seen, reordered components of trained map is displayed. Each component illustrates a sample-specific map and is placed within a two-dimensional rectangular lattice. Across components/samples, genes with similar expression patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/samples, that is, samples with the similar gene expression profiles are placed closer to each other.
