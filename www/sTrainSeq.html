@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>sTrainSeq @ supraHex 1.5.1</title>
+<title>sTrainSeq @ supraHex 1.7.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.5.1</a>
+      <a class="brand" href="index.html">supraHex 1.7.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -270,17 +270,17 @@ stage="rough")
 # 5) training at "rough" stage
 sM_rough <- sTrainSeq(sMap=sI, data=data, sTrain=sT_rough)
 </div>
-<strong class='message'>	1 out of 700 (2014-11-25 10:32:16)</strong>
-<strong class='message'>	70 out of 700 (2014-11-25 10:32:16)</strong>
-<strong class='message'>	140 out of 700 (2014-11-25 10:32:16)</strong>
-<strong class='message'>	210 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	280 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	350 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	420 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	490 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	560 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	630 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	700 out of 700 (2014-11-25 10:32:17)</strong>
+<strong class='message'>	1 out of 700 (2015-06-04 10:45:29)</strong>
+<strong class='message'>	70 out of 700 (2015-06-04 10:45:29)</strong>
+<strong class='message'>	140 out of 700 (2015-06-04 10:45:29)</strong>
+<strong class='message'>	210 out of 700 (2015-06-04 10:45:29)</strong>
+<strong class='message'>	280 out of 700 (2015-06-04 10:45:29)</strong>
+<strong class='message'>	350 out of 700 (2015-06-04 10:45:29)</strong>
+<strong class='message'>	420 out of 700 (2015-06-04 10:45:29)</strong>
+<strong class='message'>	490 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	560 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	630 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	700 out of 700 (2015-06-04 10:45:30)</strong>
 <div class='input'>
 # 6) define trainology at "finetune" stage
 sT_finetune <- sTrainology(sMap=sI, data=data, algorithm="sequential",
@@ -289,17 +289,17 @@ stage="finetune")
 # 7) training at "finetune" stage
 sM_finetune <- sTrainSeq(sMap=sM_rough, data=data, sTrain=sT_rough)
 </div>
-<strong class='message'>	1 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	70 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	140 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	210 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	280 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	350 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	420 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	490 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	560 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	630 out of 700 (2014-11-25 10:32:17)</strong>
-<strong class='message'>	700 out of 700 (2014-11-25 10:32:17)</strong></pre>
+<strong class='message'>	1 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	70 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	140 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	210 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	280 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	350 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	420 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	490 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	560 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	630 out of 700 (2015-06-04 10:45:30)</strong>
+<strong class='message'>	700 out of 700 (2015-06-04 10:45:30)</strong></pre>
   </div>
   
   <div class="span4">
@@ -328,13 +328,13 @@ sM_finetune <- sTrainSeq(sMap=sM_rough, data=data, sTrain=sT_rough)
     <!--
 
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+    <p>Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/supraHex">http://supfam.org/supraHex</a></li>
+      <li><a href="http://suprahex.r-forge.r-project.org">http://suprahex.r-forge.r-project.org</a></li>
     </ul>
     
     
@@ -347,7 +347,7 @@ sM_finetune <- sTrainSeq(sMap=sM_rough, data=data, sTrain=sT_rough)
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

@@ -60,7 +60,7 @@ raiselinks,plainpages,pdftex]{hyperref}
 
 
 \title{\Rpackage{supraHex}: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map}
-\author{Hai Fang\footnote{\href{mailto:hfang@cs.bris.ac.uk}{hfang@cs.bris.ac.uk}} , Julian Gough \\ Department of Computer Science \\ University of Bristol, UK}
+\author{Hai Fang\footnote{\href{mailto:hfang@well.ox.ac.uk}{hfang@well.ox.ac.uk}} , Julian Gough \\ Department of Computer Science \\ University of Bristol, UK}
 \date{}
 \maketitle
 %------------------------------------------------------------
@@ -68,7 +68,7 @@ raiselinks,plainpages,pdftex]{hyperref}
 %\setlength{\parskip}{0pt}
 \vspace{12pt}
 \begin{abstract}
-\noindent We introduce an R/Bioconductor package called \Rpackage{supraHex}\footnote{\url{http://supfam.org/supraHex}}. It names after a supra-hexagon that is a giant hexagon on a 2-dimensional (2D) map grid seamlessly consisting of smaller hexagons. This 2D giant hexagon is intended to train, analyse and visualise a high-dimensional omics data, which usually involves a large number of genomic coordinates (e.g. genes) but a much smaller number of samples. The resulting supra-hexagon ensembles the structure of the input data in a topology-preserving fashion. With the supraHex, users are able to easily and intuitively carry out integrated tasks such as: simultaneous analysis of gene clustering and sample correlation, and the overlaying of additional data (if any) onto the map for multilayer omics data comparisons. In this vignette/guide, we give a tutorial-style introduction into how the functions contained in the package \Rpackage{supraHex} can be used to better understand the input omics data. This vignette assumes some basic familiarity with the \texttt{R} language and environment. It only provides a task-oriented description of the package functionality, and compliments the accompanying manual 'supraHex-manual.pdf' that gives a full description of all functions.
+\noindent We introduce an R/Bioconductor package called \Rpackage{supraHex}\footnote{\url{http://suprahex.r-forge.r-project.org}}. It names after a supra-hexagon that is a giant hexagon on a 2-dimensional (2D) map grid seamlessly consisting of smaller hexagons. This 2D giant hexagon is intended to train, analyse and visualise a high-dimensional omics data, which usually involves a large number of genomic coordinates (e.g. genes) but a much smaller number of samples. The resulting supra-hexagon ensembles the structure of the input data in a topology-preserving fashion. With the supraHex, users are able to easily and intuitively carry out integrated tasks such as: simultaneous analysis of gene clustering and sample correlation, and the overlaying of additional data (if any) onto the map for multilayer omics data comparisons. In this vignette/guide, we give a tutorial-style introduction into how the functions contained in the package \Rpackage{supraHex} can be used to better understand the input omics data. This vignette assumes some basic familiarity with the \texttt{R} language and environment. It only provides a task-oriented description of the package functionality, and compliments the accompanying manual 'supraHex-manual.pdf' that gives a full description of all functions.
 \end{abstract}
 
 \newpage
@@ -123,7 +123,7 @@ As a result of training, similar input data are mapped onto neighboring regions 
 \label{sec:inst}
 %------------------------------------------------------------
 
-\Rpackage{supraHex} is a package for the R computing environment and it is assumed that you have already installed the latest version of R (>=3.0.2). You can install the package following step-by-step guidelines in \url{http://supfam.org/supraHex}. Briefly, you can install it from Bioconductor (or R-Forge):
+\Rpackage{supraHex} is a package for the R computing environment and it is assumed that you have already installed the latest version of R (>=3.0.2). You can install the package following step-by-step guidelines in \url{http://suprahex.r-forge.r-project.org}. Briefly, you can install it from Bioconductor (or R-Forge):
 
 Using the release version\footnote{\url{http://bioconductor.org/packages/release/bioc/html/supraHex.html}} (officially released on 15-10-2013):
 <<eval=F, echo=T>>=

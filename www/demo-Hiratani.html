@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for multilayer omics dataset from Hiratani et al @ supraHex 1.5.1</title>
+<title>Demo for multilayer omics dataset from Hiratani et al @ supraHex 1.7.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.5.1</a>
+      <a class="brand" href="index.html">supraHex 1.7.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -123,10 +123,10 @@
       <h2>Demo for multilayer omics dataset from Hiratani et al</h2>
 
 Notes:
-<li> All results are based on supraHex (version 1.5.1). </li>
+<li> All results are based on supraHex (version 1.7.1). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in supraHex 1.5.1 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in supraHex 1.7.1 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -155,22 +155,22 @@ ls() # you should see three variables: 'RT', 'CpG' and 'EX'
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2014-11-25 14:14:27</strong>
+<strong class='message'>Start at 2015-06-04 10:39:29</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2014-11-25 14:14:27)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (721 X 22) using 'linear' initialisation, given a topology and input data (2014-11-25 14:14:27)...</strong>
-<strong class='message'>Third, get training at the rough stage (2014-11-25 14:14:27)...</strong>
-<strong class='message'>	1 out of 2 (2014-11-25 14:14:27)</strong>
-<strong class='message'>	updated (2014-11-25 14:14:30)</strong>
-<strong class='message'>	2 out of 2 (2014-11-25 14:14:30)</strong>
-<strong class='message'>	updated (2014-11-25 14:14:33)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2014-11-25 14:14:33)...</strong>
-<strong class='message'>	1 out of 2 (2014-11-25 14:14:33)</strong>
-<strong class='message'>	updated (2014-11-25 14:14:36)</strong>
-<strong class='message'>	2 out of 2 (2014-11-25 14:14:36)</strong>
-<strong class='message'>	updated (2014-11-25 14:14:38)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2014-11-25 14:14:38)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2014-11-25 14:14:40)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-06-04 10:39:29)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (721 X 22) using 'linear' initialisation, given a topology and input data (2015-06-04 10:39:29)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-06-04 10:39:29)...</strong>
+<strong class='message'>	1 out of 2 (2015-06-04 10:39:30)</strong>
+<strong class='message'>	updated (2015-06-04 10:39:32)</strong>
+<strong class='message'>	2 out of 2 (2015-06-04 10:39:32)</strong>
+<strong class='message'>	updated (2015-06-04 10:39:34)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-06-04 10:39:34)...</strong>
+<strong class='message'>	1 out of 2 (2015-06-04 10:39:34)</strong>
+<strong class='message'>	updated (2015-06-04 10:39:36)</strong>
+<strong class='message'>	2 out of 2 (2015-06-04 10:39:36)</strong>
+<strong class='message'>	updated (2015-06-04 10:39:38)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-06-04 10:39:38)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-06-04 10:39:40)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 17292x22
@@ -190,8 +190,8 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 8 to 2
    radius (at finetune stage): from 2 to 1
 </strong>
-<strong class='message'>End at 2014-11-25 14:14:40</strong>
-<strong class='message'>Runtime in total is: 13 secs
+<strong class='message'>End at 2015-06-04 10:39:40</strong>
+<strong class='message'>Runtime in total is: 11 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap, title.rotate=5, gp=grid::gpar(cex=0.8), zlim=c(-2,2), colormap="darkblue-white-darkorange")
 </div>
@@ -236,36 +236,36 @@ sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap, metric="mi")
 </div>
-<strong class='message'>Start at 2014-11-25 14:16:14</strong>
+<strong class='message'>Start at 2015-06-04 10:41:12</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2014-11-25 14:16:14)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (63 X 22) using 'linear' initialisation, given a topology and input data (2014-11-25 14:16:14)...</strong>
-<strong class='message'>Third, get training at the rough stage (2014-11-25 14:16:14)...</strong>
-<strong class='message'>	1 out of 638 (2014-11-25 14:16:14)</strong>
-<strong class='message'>	64 out of 638 (2014-11-25 14:16:14)</strong>
-<strong class='message'>	128 out of 638 (2014-11-25 14:16:14)</strong>
-<strong class='message'>	192 out of 638 (2014-11-25 14:16:14)</strong>
-<strong class='message'>	256 out of 638 (2014-11-25 14:16:14)</strong>
-<strong class='message'>	320 out of 638 (2014-11-25 14:16:14)</strong>
-<strong class='message'>	384 out of 638 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	448 out of 638 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	512 out of 638 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	576 out of 638 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	638 out of 638 (2014-11-25 14:16:15)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2014-11-25 14:16:15)...</strong>
-<strong class='message'>	1 out of 2530 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	253 out of 2530 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	506 out of 2530 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	759 out of 2530 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	1012 out of 2530 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	1265 out of 2530 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	1518 out of 2530 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	1771 out of 2530 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	2024 out of 2530 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	2277 out of 2530 (2014-11-25 14:16:15)</strong>
-<strong class='message'>	2530 out of 2530 (2014-11-25 14:16:16)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2014-11-25 14:16:16)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2014-11-25 14:16:16)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-06-04 10:41:12)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (63 X 22) using 'linear' initialisation, given a topology and input data (2015-06-04 10:41:12)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-06-04 10:41:12)...</strong>
+<strong class='message'>	1 out of 638 (2015-06-04 10:41:12)</strong>
+<strong class='message'>	64 out of 638 (2015-06-04 10:41:12)</strong>
+<strong class='message'>	128 out of 638 (2015-06-04 10:41:12)</strong>
+<strong class='message'>	192 out of 638 (2015-06-04 10:41:12)</strong>
+<strong class='message'>	256 out of 638 (2015-06-04 10:41:12)</strong>
+<strong class='message'>	320 out of 638 (2015-06-04 10:41:12)</strong>
+<strong class='message'>	384 out of 638 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	448 out of 638 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	512 out of 638 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	576 out of 638 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	638 out of 638 (2015-06-04 10:41:13)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-06-04 10:41:13)...</strong>
+<strong class='message'>	1 out of 2530 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	253 out of 2530 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	506 out of 2530 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	759 out of 2530 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	1012 out of 2530 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	1265 out of 2530 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	1518 out of 2530 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	1771 out of 2530 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	2024 out of 2530 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	2277 out of 2530 (2015-06-04 10:41:13)</strong>
+<strong class='message'>	2530 out of 2530 (2015-06-04 10:41:14)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-06-04 10:41:14)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-06-04 10:41:14)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 22x22
@@ -285,7 +285,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMa
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-11-25 14:16:16</strong>
+<strong class='message'>End at 2015-06-04 10:41:14</strong>
 <strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap, sReorder, title.rotate=10, gp=grid::gpar(cex=0.6,font=2),zlim=c(-2,2), colormap="darkblue-white-darkorange")
@@ -307,36 +307,36 @@ sOverlay <- <a href='sMapOverlay.html' target=sMapOverlay>sMapOverlay</a>(sMap=s
 sOverlay <- <a href='sMapOverlay.html' target=sMapOverlay>sMapOverlay</a>(sMap=sMap, data=data, additional=EX)
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sOverlay, metric="none") # here reorder samples based on overlaid distribution data rather than expression data
 </div>
-<strong class='message'>Start at 2014-11-25 14:16:22</strong>
+<strong class='message'>Start at 2015-06-04 10:41:20</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2014-11-25 14:16:22)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (25 X 721) using 'linear' initialisation, given a topology and input data (2014-11-25 14:16:22)...</strong>
-<strong class='message'>Third, get training at the rough stage (2014-11-25 14:16:22)...</strong>
-<strong class='message'>	1 out of 256 (2014-11-25 14:16:22)</strong>
-<strong class='message'>	26 out of 256 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	52 out of 256 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	78 out of 256 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	104 out of 256 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	130 out of 256 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	156 out of 256 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	182 out of 256 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	208 out of 256 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	234 out of 256 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	256 out of 256 (2014-11-25 14:16:23)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2014-11-25 14:16:23)...</strong>
-<strong class='message'>	1 out of 1000 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	100 out of 1000 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	200 out of 1000 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	300 out of 1000 (2014-11-25 14:16:23)</strong>
-<strong class='message'>	400 out of 1000 (2014-11-25 14:16:24)</strong>
-<strong class='message'>	500 out of 1000 (2014-11-25 14:16:24)</strong>
-<strong class='message'>	600 out of 1000 (2014-11-25 14:16:24)</strong>
-<strong class='message'>	700 out of 1000 (2014-11-25 14:16:24)</strong>
-<strong class='message'>	800 out of 1000 (2014-11-25 14:16:24)</strong>
-<strong class='message'>	900 out of 1000 (2014-11-25 14:16:25)</strong>
-<strong class='message'>	1000 out of 1000 (2014-11-25 14:16:25)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2014-11-25 14:16:25)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2014-11-25 14:16:25)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-06-04 10:41:20)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (25 X 721) using 'linear' initialisation, given a topology and input data (2015-06-04 10:41:20)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-06-04 10:41:20)...</strong>
+<strong class='message'>	1 out of 256 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	26 out of 256 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	52 out of 256 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	78 out of 256 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	104 out of 256 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	130 out of 256 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	156 out of 256 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	182 out of 256 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	208 out of 256 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	234 out of 256 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	256 out of 256 (2015-06-04 10:41:20)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-06-04 10:41:20)...</strong>
+<strong class='message'>	1 out of 1000 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	100 out of 1000 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	200 out of 1000 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	300 out of 1000 (2015-06-04 10:41:20)</strong>
+<strong class='message'>	400 out of 1000 (2015-06-04 10:41:21)</strong>
+<strong class='message'>	500 out of 1000 (2015-06-04 10:41:21)</strong>
+<strong class='message'>	600 out of 1000 (2015-06-04 10:41:21)</strong>
+<strong class='message'>	700 out of 1000 (2015-06-04 10:41:21)</strong>
+<strong class='message'>	800 out of 1000 (2015-06-04 10:41:21)</strong>
+<strong class='message'>	900 out of 1000 (2015-06-04 10:41:21)</strong>
+<strong class='message'>	1000 out of 1000 (2015-06-04 10:41:22)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-06-04 10:41:22)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-06-04 10:41:22)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 8x721
@@ -356,8 +356,8 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sOv
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2014-11-25 14:16:25</strong>
-<strong class='message'>Runtime in total is: 3 secs
+<strong class='message'>End at 2015-06-04 10:41:22</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sOverlay, sReorder, title.rotate=10, colormap="darkgreen-lightgreen-lightpink-darkred")
 </div>
@@ -387,14 +387,14 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sOv
     <!--
     
     <h2>Citation</h2>
-    <p>Fang H, Gough J. (2014) <a href="http://mail.elsevier-alerts.com/go.asp?/bESJ001/mIMVC2EF/qI4ML2EF/u2ZWFR3F/xR1CF2EF/cutf%2D8">supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map</a>. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+    <p>Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
 
     
 
     
     <h2>URL</h2>
     <ul>
-      <li><a href="http://supfam.org/supraHex">http://supfam.org/supraHex</a></li>
+      <li><a href="http://suprahex.r-forge.r-project.org">http://suprahex.r-forge.r-project.org</a></li>
     </ul>
     
     <h2>Author</h2>
@@ -409,7 +409,7 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sOv
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@cs.bris.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

@@ -60,7 +60,7 @@ raiselinks,plainpages,pdftex]{hyperref}
 
 
 \title{\Rpackage{supraHex}: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map}
-\author{Hai Fang\footnote{\href{mailto:hfang@cs.bris.ac.uk}{hfang@cs.bris.ac.uk}} , Julian Gough \\ Department of Computer Science \\ University of Bristol, UK}
+\author{Hai Fang\footnote{\href{mailto:hfang@well.ox.ac.uk}{hfang@well.ox.ac.uk}} , Julian Gough \\ Department of Computer Science \\ University of Bristol, UK}
 \date{}
 \maketitle
 %------------------------------------------------------------
