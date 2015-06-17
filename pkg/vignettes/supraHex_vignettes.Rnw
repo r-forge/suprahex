@@ -170,7 +170,7 @@ Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics da
 The functions in the package \Rpackage{supraHex} are divided into two categories: one for training and analysis (see Table~\ref{tab:train}), the other for visualisation (see Table~\ref{tab:visual}). 
 
 
-\begin{table}[!Hb]
+\begin{table}[!b]
 \begin{center}
 \caption{\texttt{A summary of functions used for training and analysis}}\label{tab:train}
 \vspace*{8pt}
@@ -204,7 +204,7 @@ Function & Description \\
 
 \pagebreak
 
-\begin{table}[!Ht]
+\begin{table}[!t]
 \begin{center}
 \caption{\texttt{A summary of functions used for visualisation}}\label{tab:visual}
 \vspace*{8pt}
