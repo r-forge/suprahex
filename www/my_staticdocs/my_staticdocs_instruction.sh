@@ -1,5 +1,6 @@
 source("http://bioconductor.org/biocLite.R")
-biocLite(c("whisker","highlight","markdown","devtools","testthat"))
+biocLite(c("whisker","highlight","markdown","devtools","testthat","crayon"))
+
 
 cd ~/Sites/SVN/R-Forge/suprahex/www/my_staticdocs
 R CMD install staticdocs

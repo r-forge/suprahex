@@ -6,8 +6,11 @@
 ## Fang.sampleinfo: a matrix of 18 X 3 containing sample information.
 ###############################################################################
 
-# Load or install packages used in this demo
-for(pkg in c("hexbin","ape","supraHex","graph","Rgraphviz","igraph","Biobase","limma","dnet")){
+# Load the package 'supraHex'
+library(supraHex)
+
+# Load and/or install packages used in this demo
+for(pkg in c("Biobase","limma")){
     if(!require(pkg, character.only=T)){
         source("http://bioconductor.org/biocLite.R")
         biocLite(pkg)
@@ -76,7 +79,16 @@ design <- sapply(level_sorted, function(x) as.numeric(all==x)) # Convert a facto
 ## a linear model is fitted for every gene by the function lmFit
 fit <- lmFit(exprs(esetGene), design)
 ## define a contrast matrix
-contrasts <- dContrast(level_sorted, contrast.type="average")
+### contrast against the average
+tmp_all <- paste(level_sorted, collapse="+")
+tmp_ave <- paste("(",tmp_all,")/",length(level_sorted), sep="")
+tmp_each <- sapply(level_sorted, function(x){
+	paste(x,"-",tmp_ave, sep="")
+})
+name_contrast <- sapply(level_sorted, function(x){
+	paste(x, sep="")
+})
+contrasts <- list(each = tmp_each,name = name_contrast)
 contrast.matrix <- makeContrasts(contrasts=contrasts$each, levels=design)
 colnames(contrast.matrix) <- contrasts$name
 ## computes moderated t-statistics and log-odds of differential expression by empirical Bayes shrinkage of the standard errors towards a common value

@@ -324,7 +324,7 @@ build_vignettes <- function(package) {
   title <- vapply(path, FUN.VALUE = character(1), function(x) {
     contents <- str_c(readLines(x), collapse = "\n")
     str_match(contents, "\\\\VignetteIndexEntry\\{(.*?)\\}")[2]
-  })  
+  })
   
   list(vignette = unname(apply(cbind(filename_pdf,filename_Rnw,title), 1, as.list)))
 }

@@ -29,8 +29,6 @@ visKernels <-function (newpage=T)
     }
     
     par(mfrow=c(1,2), cex.axis=1.2, cex.lab=1.2, cex.main=1.5)
-    
-    ## mgp – A numeric vector of length 3, which sets the axis label locations relative to the edge of the inner plot window. The first value represents the location the labels (i.e. xlab and ylab in plot), the second the tick-mark labels, and third the tick marks. The default is c(3, 1, 0)
     par(mgp=c(2.5, 1, 0)) # In addition to changing the margin size of your charts, you may also want to change the way axes and labels are spatially arranged. One method of doing so is the mgp parameter option. The mgp setting is defined by a three item vector wherein the first value represents the distance of the axis labels or titles from the axes, the second value is the distance of the tick mark labels from the axes, and the third is the distance of the tick mark symbols from the axes
     
     cl <- rainbow(5)

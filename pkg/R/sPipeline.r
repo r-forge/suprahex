@@ -42,7 +42,6 @@
 #' @include sPipeline.r
 #' @references
 #' Hai Fang and Julian Gough. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. \emph{Biochemical and Biophysical Research Communications}, 443(1), 285-289. DOI: \url{http://dx.doi.org/10.1016/j.bbrc.2013.11.103}, PMID: \url{http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102}
-#' @author Hai Fang \email{hfang@@cs.bris.ac.uk}
 #' @examples
 #' # 1) generate an iid normal random matrix of 100x10 
 #' data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10) 

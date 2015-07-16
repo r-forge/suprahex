@@ -55,14 +55,14 @@
 #' # 4) prepare colors for the column sidebar
 #' # color for stages (S1-S3)
 #' stages <- sub("_.*","",colnames(data))
-#' lvs <- unique(stages)
-#' lvs_color <- visColormap(colormap="rainbow")(length(lvs))
-#' col_stages <- sapply(stages, function(x) lvs_color[x==lvs])
+#' sta_lvs <- unique(stages)
+#' sta_color <- visColormap(colormap="rainbow")(length(sta_lvs))
+#' col_stages <- sapply(stages, function(x) sta_color[x==sta_lvs])
 #' # color for replicates (R1-R3)
 #' replicates <- sub(".*_","",colnames(data))
-#' lvs <- unique(replicates)
-#' lvs_color <- visColormap(colormap="rainbow")(length(lvs))
-#' col_replicates <- sapply(replicates, function(x) lvs_color[x==lvs])
+#' rep_lvs <- unique(replicates)
+#' rep_color <- visColormap(colormap="rainbow")(length(rep_lvs))
+#' col_replicates <- sapply(replicates, function(x) rep_color[x==rep_lvs])
 #' # combine both color vectors
 #' ColSideColors <- cbind(col_stages,col_replicates)
 #' colnames(ColSideColors) <- c("Stages","Replicates")
@@ -71,6 +71,10 @@
 #' visHeatmapAdv(data, Rowv=FALSE, Colv=FALSE, colormap="gbr", zlim=c(-2,2), 
 #' density.info="density", tracecol="yellow", ColSideColors=ColSideColors, 
 #' ColSideHeight=0.5, ColSideLabelLocation="right")
+#'
+#' # 6) legends
+#' legend(0,0.8, legend=rep_lvs, col=rep_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=FALSE)
+#' legend(0,0.6, legend=sta_lvs, col=sta_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=FALSE)
 
 visHeatmapAdv <- function (data, scale=c("none","row","column"), Rowv=T, Colv=T, dendrogram=c("both","row","column","none"), dist.metric=c("euclidean","pearson","spearman","kendall","manhattan","cos","mi"), linkage.method=c("complete","ward","single","average","mcquitty","median","centroid"), 
 colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=64, zlim=NULL, RowSideColors=NULL, row.cutree=NULL, row.colormap=c("jet"), ColSideColors=NULL, column.cutree=NULL, column.colormap=c("jet"), ...)

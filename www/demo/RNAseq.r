@@ -7,8 +7,10 @@
 # The second aim is to analyse/visualise differentially expressed genes using the package 'supraHex'.
 ###############################################################################
 
-# Load or install packages (i.e. edgeR, supraHex) specifically used in this demo
-for(pkg in c("edgeR","supraHex")){
+library(supraHex)
+
+# Load or install packages (i.e. edgeR) specifically used in this demo
+for(pkg in c("edgeR")){
     if(!require(pkg, character.only=T)){
         source("http://bioconductor.org/biocLite.R")
         biocLite(pkg)

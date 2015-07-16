@@ -18,7 +18,8 @@ Depends:
     devtools (>= 0.8),
     digest,
     grid,
-    devtools
+    devtools,
+    crayon
 Collate:
     'replay-html.r'
     'package.r'

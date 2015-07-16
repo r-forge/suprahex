@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visHeatmapAdv @ supraHex 1.7.1</title>
+<title>visHeatmapAdv @ supraHex 1.7.2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.7.1</a>
+      <a class="brand" href="index.html">supraHex 1.7.2</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -318,14 +318,14 @@ row.cutree=2, row.colormap="jet", labRow=NA)
 # 4) prepare colors for the column sidebar
 # color for stages (S1-S3)
 stages <- sub("_.*","",colnames(data))
-lvs <- unique(stages)
-lvs_color <- visColormap(colormap="rainbow")(length(lvs))
-col_stages <- sapply(stages, function(x) lvs_color[x==lvs])
+sta_lvs <- unique(stages)
+sta_color <- visColormap(colormap="rainbow")(length(sta_lvs))
+col_stages <- sapply(stages, function(x) sta_color[x==sta_lvs])
 # color for replicates (R1-R3)
 replicates <- sub(".*_","",colnames(data))
-lvs <- unique(replicates)
-lvs_color <- visColormap(colormap="rainbow")(length(lvs))
-col_replicates <- sapply(replicates, function(x) lvs_color[x==lvs])
+rep_lvs <- unique(replicates)
+rep_color <- visColormap(colormap="rainbow")(length(rep_lvs))
+col_replicates <- sapply(replicates, function(x) rep_color[x==rep_lvs])
 # combine both color vectors
 ColSideColors <- cbind(col_stages,col_replicates)
 colnames(ColSideColors) <- c("Stages","Replicates")
@@ -336,7 +336,17 @@ zlim=c(-2,2),
 density.info="density", tracecol="yellow", ColSideColors=ColSideColors,
 ColSideHeight=0.5, ColSideLabelLocation="right")
 </div>
-<a href="javascript:newWin('visHeatmapAdv-10.png', 'visHeatmapAdv-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHeatmapAdv-10.png', width="400" /></a></pre>
+<a href="javascript:newWin('visHeatmapAdv-10.png', 'visHeatmapAdv-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHeatmapAdv-10.png', width="400" /></a>
+<div class='input'>
+# 6) legends
+legend(0,0.8, legend=rep_lvs, col=rep_color, lty=1, lwd=5, cex=0.6,
+box.col="transparent", horiz=FALSE)
+</div>
+<a href="javascript:newWin('visHeatmapAdv-12.png', 'visHeatmapAdv-12.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHeatmapAdv-12.png', width="400" /></a>
+<div class='input'>legend(0,0.6, legend=sta_lvs, col=sta_color, lty=1, lwd=5, cex=0.6,
+box.col="transparent", horiz=FALSE)
+</div>
+<a href="javascript:newWin('visHeatmapAdv-14.png', 'visHeatmapAdv-14.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHeatmapAdv-14.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">

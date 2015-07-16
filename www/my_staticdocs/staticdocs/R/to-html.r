@@ -203,22 +203,28 @@ to_html.deqn <- function(x, ...) {
   str_c("<pre class = 'eq'>", to_html.TEXT(ascii_rep, ...), "</code>")
 }
 
+#############################################################################
+
 # Links ----------------------------------------------------------------------
 #' @S3method to_html url
 to_html.url <- function(x, ...) {
   stopifnot(length(x) == 1)
-  str_c("<a href = '", x[[1]], "'>", x[[1]], "</a>")
+  #str_c("<a href = '", x[[1]], "'>", x[[1]], "</a>")
+  str_c("<a href = '", to_html.TEXT(x[[1]]), "'>", to_html.TEXT(x[[1]]), "</a>")
 }
+
+
 #' @S3method to_html href
 to_html.href <- function(x, ...) {
   stopifnot(length(x) == 2)
   str_c("<a href = '", to_html.TEXT(x[[1]]), "'>", to_html.TEXT(x[[2]]),
     "</a>")
 }
+
 #' @S3method to_html email
 to_html.email <- function(x, ...) {
   stopifnot(length(x) %in% c(1L, 2L))
-  str_c("<a href='mailto:", x[[1]], "'>", x[[length(x)]], "</a>")
+  str_c("<a href='mailto:", to_html.TEXT(x[[1]]), "'>", x[[length(x)]], "</a>")
 }
 
 
@@ -253,7 +259,7 @@ to_html.link <- function(x, package, ...) {
   if (is.null(loc)) {
     message("Can't find help topic ", topic)
     return(topic)
-  }  
+  }
 
   make_link(loc, label, package)
 }
@@ -266,6 +272,9 @@ make_link <- function(loc, label, package = NULL) {
       loc$topic, "'>", label, "</a>")
   }
 }
+
+
+#############################################################################
 
 # Miscellaneous --------------------------------------------------------------
 

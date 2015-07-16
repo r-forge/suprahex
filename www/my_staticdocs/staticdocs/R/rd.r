@@ -107,7 +107,7 @@ as.list.Rd <- function(x, ...) {
 
 #' @S3method print Rd
 print.Rd <- function(x, ..., indent = 0) {
-  cat(str_dup(" ", indent), "\\- ", colourise(tag(x), "blue"), 
+  cat(str_dup(" ", indent), "\\- ", colourise(tag(x), "passed"), 
     " (", length(x), ")\n", sep = "")
   
   lapply(x, print, indent = indent + 2)    
@@ -126,7 +126,19 @@ print.COMMENT <- function(x, ..., indent = 0) block(x, indent, "%")
 block <- function(x, indent = 0, prefix = "'") {
   x <- str_trim(x)
 
-  start <- str_c(str_dup(" ", indent), colourise(prefix, "blue"), " ")
-  cat(start, str_sub(x, 0, getOption("width") - str_length(start)), "\n", 
-    sep = "")  
+  start <- str_c(str_dup(" ", indent), colourise(prefix, "passed"), " ")
+  cat(start, str_sub(x, 0, getOption("width") - str_length(start)), "\n", sep = "")  
+}
+
+#' @importFrom crayon green yellow red
+testthat_colours <- list(
+  passed = green,
+  skipped = yellow,
+  error = red
+)
+colourise <- function(text, as = c("passed", "skipped", "error")) {
+  colour_config <- getOption("testthat.use_colours", TRUE)
+  if (!isTRUE(colour_config)) return(text)
+  as <- match.arg(as)
+  testthat_colours[[as]](text)
 }
