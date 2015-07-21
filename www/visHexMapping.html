@@ -227,32 +227,32 @@ colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2015-07-16 20:17:06</strong>
+<strong class='message'>Start at 2015-07-21 18:23:38</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-07-16 20:17:06)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (169 X 9) using 'linear' initialisation, given a topology and input data (2015-07-16 20:17:06)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-07-16 20:17:06)...</strong>
-<strong class='message'>	1 out of 2 (2015-07-16 20:17:06)</strong>
-<strong class='message'>	updated (2015-07-16 20:17:06)</strong>
-<strong class='message'>	2 out of 2 (2015-07-16 20:17:06)</strong>
-<strong class='message'>	updated (2015-07-16 20:17:06)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-07-16 20:17:06)...</strong>
-<strong class='message'>	1 out of 7 (2015-07-16 20:17:06)</strong>
-<strong class='message'>	updated (2015-07-16 20:17:06)</strong>
-<strong class='message'>	2 out of 7 (2015-07-16 20:17:06)</strong>
-<strong class='message'>	updated (2015-07-16 20:17:06)</strong>
-<strong class='message'>	3 out of 7 (2015-07-16 20:17:06)</strong>
-<strong class='message'>	updated (2015-07-16 20:17:06)</strong>
-<strong class='message'>	4 out of 7 (2015-07-16 20:17:06)</strong>
-<strong class='message'>	updated (2015-07-16 20:17:06)</strong>
-<strong class='message'>	5 out of 7 (2015-07-16 20:17:06)</strong>
-<strong class='message'>	updated (2015-07-16 20:17:06)</strong>
-<strong class='message'>	6 out of 7 (2015-07-16 20:17:06)</strong>
-<strong class='message'>	updated (2015-07-16 20:17:06)</strong>
-<strong class='message'>	7 out of 7 (2015-07-16 20:17:06)</strong>
-<strong class='message'>	updated (2015-07-16 20:17:06)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-07-16 20:17:06)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-07-16 20:17:06)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-07-21 18:23:38)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (169 X 9) using 'linear' initialisation, given a topology and input data (2015-07-21 18:23:38)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-07-21 18:23:38)...</strong>
+<strong class='message'>	1 out of 2 (2015-07-21 18:23:38)</strong>
+<strong class='message'>	updated (2015-07-21 18:23:38)</strong>
+<strong class='message'>	2 out of 2 (2015-07-21 18:23:38)</strong>
+<strong class='message'>	updated (2015-07-21 18:23:38)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-07-21 18:23:38)...</strong>
+<strong class='message'>	1 out of 7 (2015-07-21 18:23:38)</strong>
+<strong class='message'>	updated (2015-07-21 18:23:38)</strong>
+<strong class='message'>	2 out of 7 (2015-07-21 18:23:38)</strong>
+<strong class='message'>	updated (2015-07-21 18:23:38)</strong>
+<strong class='message'>	3 out of 7 (2015-07-21 18:23:38)</strong>
+<strong class='message'>	updated (2015-07-21 18:23:38)</strong>
+<strong class='message'>	4 out of 7 (2015-07-21 18:23:38)</strong>
+<strong class='message'>	updated (2015-07-21 18:23:38)</strong>
+<strong class='message'>	5 out of 7 (2015-07-21 18:23:38)</strong>
+<strong class='message'>	updated (2015-07-21 18:23:38)</strong>
+<strong class='message'>	6 out of 7 (2015-07-21 18:23:38)</strong>
+<strong class='message'>	updated (2015-07-21 18:23:38)</strong>
+<strong class='message'>	7 out of 7 (2015-07-21 18:23:38)</strong>
+<strong class='message'>	updated (2015-07-21 18:23:38)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-07-21 18:23:38)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-07-21 18:23:38)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 1000x9
@@ -272,20 +272,27 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2015-07-16 20:17:06</strong>
+<strong class='message'>End at 2015-07-21 18:23:38</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
 # 3) visualise supported mapping items within a supra-hexagonal grid
 # 3a) for indexes of hexagons
 visHexMapping(sMap,mappingType="indexes")
-# 3b) for the number of input data vectors hitting the hexagons
+</div>
+<a href="javascript:newWin('visHexMapping-36.png', 'visHexMapping-36.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHexMapping-36.png', width="400" /></a>
+<div class='input'># 3b) for the number of input data vectors hitting the hexagons
 visHexMapping(sMap,mappingType="hits")
-# 3c) for distance (in high-dimensional input space) to neighbors (defined in 2D output space)
+</div>
+<a href="javascript:newWin('visHexMapping-38.png', 'visHexMapping-38.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHexMapping-38.png', width="400" /></a>
+<div class='input'># 3c) for distance (in high-dimensional input space) to neighbors (defined in 2D output space)
 visHexMapping(sMap,mappingType="dist")
-# 3d) for clusters/bases partitioned from the sMap
+</div>
+<a href="javascript:newWin('visHexMapping-40.png', 'visHexMapping-40.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHexMapping-40.png', width="400" /></a>
+<div class='input'># 3d) for clusters/bases partitioned from the sMap
 visHexMapping(sMap,mappingType="bases")
-</div></pre>
+</div>
+<a href="javascript:newWin('visHexMapping-42.png', 'visHexMapping-42.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visHexMapping-42.png', width="400" /></a></pre>
   </div>
   
   <div class="span4">

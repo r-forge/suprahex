@@ -163,10 +163,12 @@ to_html.examples <- function(x, package, topic = "unknown", env = new.env(parent
 
   # First element of examples tag is always empty
   text <- to_html.TEXT(x[-1], ...)
-  expr <- evaluate(text, env)
+  # expr <- evaluate(text, env)
+  expr <- evaluate(text, env, new_device=T)
   
   replay_html(expr, package = package, name = str_c(topic, "-"))
 }
+
 
 # Arguments ------------------------------------------------------------------
 

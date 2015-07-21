@@ -1,6 +1,8 @@
 source("http://bioconductor.org/biocLite.R")
 biocLite(c("whisker","highlight","markdown","devtools","testthat","crayon"))
 
+wget https://cran.rstudio.com/src/contrib/Archive/evaluate/evaluate_0.5.5.tar.gz
+R CMD install evaluate_0.5.5.tar.gz
 
 cd ~/Sites/SVN/R-Forge/suprahex/www/my_staticdocs
 R CMD install staticdocs

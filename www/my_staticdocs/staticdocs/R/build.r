@@ -389,8 +389,9 @@ build_demos <- function(package, flag_demos) {
         message("\t", title[i])
         
         demo_code <- readLines(file.path(demo_dir, in_path[i]))
-        demo_expr <- evaluate(demo_code, new.env(parent = globalenv()))
-
+        #demo_expr <- evaluate(demo_code, new.env(parent = globalenv()))
+        demo_expr <- my_evaluate(demo_code, new.env(parent = globalenv()))
+		
         package$demo <- replay_html(demo_expr, package = package, name = str_c(pieces[i], "-"))
         
         ########################################################
@@ -565,3 +566,50 @@ build_faqs <- function(package, flag_faqs) {
   list(faq = unname(apply(cbind(filename, title), 1, as.list)))
 }
 
+
+
+my_evaluate <- function (input, envir = parent.frame(), enclos = NULL, debug = FALSE, 
+    stop_on_error = 0L, keep_warning = TRUE, keep_message = TRUE, 
+    new_device = TRUE, output_handler = default_output_handler) 
+{
+    parsed <- parse_all(input)
+    stop_on_error <- as.integer(stop_on_error)
+    stopifnot(length(stop_on_error) == 1)
+    if (is.null(enclos)) {
+        enclos <- if (is.list(envir) || is.pairlist(envir)) 
+            parent.frame()
+        else baseenv()
+    }
+    if (new_device) {
+        if (identical(grDevices::pdf, getOption("device"))) {
+            dev.new(file = NULL)
+        }
+        else dev.new()
+        dev.control(displaylist = "enable")
+        dev <- dev.cur()
+        on.exit(dev.off(dev))
+    }
+    on.exit(assign("last_plot", NULL, envir = environment(plot_snapshot)), 
+        add = TRUE)
+    out <- vector("list", nrow(parsed))
+    for (i in seq_along(out)) {
+        expr <- parsed$expr[[i]]
+        if (!is.null(expr)){
+        	#expr <- paste(expr, "\n", sep='')
+            expr <- as.expression(expr)
+        }
+        out[[i]] <- evaluate_call(expr, parsed$src[[i]], envir = envir, 
+            enclos = enclos, debug = debug, last = i == length(out), 
+            use_try = stop_on_error != 2L, keep_warning = keep_warning, 
+            keep_message = keep_message, output_handler = output_handler)
+        if (stop_on_error > 0L) {
+            errs <- vapply(out[[i]], is.error, logical(1))
+            if (!any(errs)) 
+                next
+            if (stop_on_error == 1L) 
+                break
+        }
+    }
+    unlist(out, recursive = FALSE, use.names = FALSE)
+}
+environment(my_evaluate) <- asNamespace('evaluate')
