@@ -3,7 +3,7 @@
 #' \code{visHexMulComp} is supposed to visualise multiple component planes of a supra-hexagonal grid
 #'
 #' @param sMap an object of class "sMap"
-#' @param which.components an integer vector specifying which compopnets will be visualised. By default, it is NA meaning all components will be visualised
+#' @param which.components an integer vector specifying which compopnets will be visualised. By default, it is NULL meaning all components will be visualised
 #' @param margin margins as units of length 4 or 1
 #' @param height a numeric value specifying the height of device
 #' @param title.rotate the rotation of the title
@@ -32,7 +32,7 @@
 #' # 3) visualise multiple component planes of a supra-hexagonal grid
 #' visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=0.8))
 
-visHexMulComp <-function(sMap, which.components=NA, margin=rep(0.1,4), height=7, title.rotate=0, title.xy=c(0.45, 1), colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, border.color="transparent", gp=grid::gpar())
+visHexMulComp <-function(sMap, which.components=NULL, margin=rep(0.1,4), height=7, title.rotate=0, title.xy=c(0.45, 1), colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, border.color="transparent", gp=grid::gpar())
 {
     
     #colormap <- match.arg(colormap)
@@ -46,7 +46,7 @@ visHexMulComp <-function(sMap, which.components=NA, margin=rep(0.1,4), height=7,
         cnames <- seq(1,ncol(codebook))
     }
    	
-	if(all(!is.na(which.components))){
+	if(all(!is.null(which.components))){
 		which.components <- as.integer(which.components)
 		if(all(which.components>=1 & which.components<=length(cnames))){
 			codebook <- matrix(codebook[,which.components], ncol=length(which.components))

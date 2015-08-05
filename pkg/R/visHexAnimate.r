@@ -3,10 +3,10 @@
 #' \code{visHexAnimate} is supposed to animate multiple component planes of a supra-hexagonal grid. The output can be a pdf file containing a list of frames/images, a mp4 video file or a gif file. To support video output file, the software 'ffmpeg' must be first installed (also put its path into the system PATH variable; see Note). To support gif output file, the software 'ImageMagick' must be first installed (also put its path into the system PATH variable; see Note).
 #'
 #' @param sMap an object of class "sMap"
+#' @param which.components an integer vector specifying which compopnets will be visualised. By default, it is NULL meaning all components will be visualised
 #' @param filename the without-extension part of the name of the output file. By default, it is 'visHexAnimate'
 #' @param filetype the type of the output file, i.e. the extension of the output file name. It can be one of either 'pdf' for the pdf file, 'mp4' for the mp4 video file, 'gif' for the gif file
 #' @param image.type the type of the image files temporarily generated. It can be one of either 'jpg' or 'png'. These temporary image files are used for producing mp4/gif output file. The reason doing so is to accommodate that sometimes only one of image types is supported so that you can choose the right one
-#' @param num.frame a numeric value specifying the number of frames/images. By default, it sets to the number of columns in the codebook matrix
 #' @param sec_per_frame a numeric value specifying how long (seconds) it takes to stream a frame/image. This argument only works when producing mp4 video or gif file.
 #' @param margin margins as units of length 4 or 1
 #' @param height a numeric value specifying the height of device
@@ -67,13 +67,27 @@
 #' visHexAnimate(sMap, filename="visHexAnimate", filetype="gif")
 #' }
 
-visHexAnimate <- function(sMap, filename="visHexAnimate", filetype=c("pdf", "mp4", "gif"), image.type=c("jpg","png"), num.frame=ncol(sMap$codebook), sec_per_frame=1, margin=rep(0.1,4), height=7, title.rotate=0, title.xy=c(0.45, 1), colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, border.color="transparent", gp=grid::gpar())
+visHexAnimate <- function(sMap, which.components=NULL, filename="visHexAnimate", filetype=c("pdf", "mp4", "gif"), image.type=c("jpg","png"), sec_per_frame=1, margin=rep(0.1,4), height=7, title.rotate=0, title.xy=c(0.45, 1), colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, border.color="transparent", gp=grid::gpar())
 {
 
-    ## check input graph
     if (class(sMap) != "sMap"){
         stop("The funciton must apply to 'sMap' object.\n")
     }
+    codebook <- sMap$codebook
+    cnames <- colnames(codebook)
+    if(is.null(cnames)){
+        cnames <- seq(1,ncol(codebook))
+    }
+	if(all(!is.null(which.components))){
+		which.components <- as.integer(which.components)
+		if(all(which.components>=1 & which.components<=length(cnames))){
+			codebook <- matrix(codebook[,which.components], ncol=length(which.components))
+			cnames <- cnames[which.components]
+			colnames(codebook) <- cnames
+			sMap$codebook <- codebook
+		}
+	}
+    
     
     filetype <- match.arg(filetype)
     if(is.null(filename)){
@@ -88,7 +102,7 @@ visHexAnimate <- function(sMap, filename="visHexAnimate", filetype=c("pdf", "mp4
 	# Using functions 'recordPlot' and 'replayPlot' to save the current plot in an R variable, and to replay it
 	n <- 0
 	rplots <- list()
-    for(t in seq(from=1, to=ncol(sMap$codebook), length.out=num.frame)){
+    for(t in seq(from=1, to=ncol(sMap$codebook), length.out=ncol(sMap$codebook))){
         	
     	k <- floor(t)
         sMap_part$codebook <- matrix(sMap$codebook[,k], ncol=1)

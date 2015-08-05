@@ -4,9 +4,9 @@
 \alias{visHexAnimate}
 \title{Function to animate multiple component planes of a supra-hexagonal grid}
 \usage{
-visHexAnimate(sMap, filename = "visHexAnimate", filetype = c("pdf",
-"mp4",
-"gif"), image.type = c("jpg", "png"), num.frame = ncol(sMap$codebook),
+visHexAnimate(sMap, which.components = NULL, filename =
+"visHexAnimate",
+filetype = c("pdf", "mp4", "gif"), image.type = c("jpg", "png"),
 sec_per_frame = 1, margin = rep(0.1, 4), height = 7, title.rotate = 0,
 title.xy = c(0.45, 1), colormap = c("bwr", "jet", "gbr", "wyr", "br",
 "yr", "rainbow", "wb"), ncolors = 40, zlim = NULL,
@@ -14,6 +14,10 @@ border.color = "transparent", gp = grid::gpar())
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}
+
+\item{which.components}{an integer vector specifying which compopnets
+will be visualised. By default, it is NULL meaning all components will
+be visualised}
 
 \item{filename}{the without-extension part of the name of the output
 file. By default, it is 'visHexAnimate'}
@@ -27,10 +31,6 @@ can be one of either 'jpg' or 'png'. These temporary image files are
 used for producing mp4/gif output file. The reason doing so is to
 accommodate that sometimes only one of image types is supported so that
 you can choose the right one}
-
-\item{num.frame}{a numeric value specifying the number of
-frames/images. By default, it sets to the number of columns in the
-codebook matrix}
 
 \item{sec_per_frame}{a numeric value specifying how long (seconds) it
 takes to stream a frame/image. This argument only works when producing
