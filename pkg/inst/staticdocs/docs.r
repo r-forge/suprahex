@@ -39,6 +39,7 @@ list(
                 "visColorbar",
                 "visVp",
                 "visHexMulComp",
+                "visHexAnimate",
                 "visCompReorder", 
                 "visDmatCluster",
                 "visDmatHeatmap",

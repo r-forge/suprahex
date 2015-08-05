@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>visHexAnimate @ supraHex 1.7.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.7.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:5dmiiel8qeq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to animate multiple component planes of a supra-hexagonal grid</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>visHexAnimate</code> is supposed to animate multiple component planes
+of a supra-hexagonal grid. The output can be a pdf file containing a
+list of frames/images, a mp4 video file or a gif file. To support video
+output file, the software 'ffmpeg' must be first installed (also put
+its path into the system PATH variable; see Note). To support gif
+output file, the software 'ImageMagick' must be first installed (also
+put its path into the system PATH variable; see Note).</p>
+  
+    <h3>Usage</h3>
+    <pre>visHexAnimate(sMap, filename = "visHexAnimate", filetype = c("pdf", "mp4", "gif"), 
+  image.type = c("jpg", "png"), num.frame = ncol(sMap$codebook), sec_per_frame = 1, 
+      margin = rep(0.1, 4), height = 7, title.rotate = 0, title.xy = c(0.45, 1), colormap = c("bwr", 
+          "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"), ncolors = 40, zlim = NULL, 
+      border.color = "transparent", gp = grid::gpar())</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>sMap</dt>
+      <dd>an object of class "sMap"</dd>
+      <dt>filename</dt>
+      <dd>the without-extension part of the name of the output
+file. By default, it is 'visHexAnimate'</dd>
+      <dt>filetype</dt>
+      <dd>the type of the output file, i.e. the extension of the
+output file name. It can be one of either 'pdf' for the pdf file, 'mp4'
+for the mp4 video file, 'gif' for the gif file</dd>
+      <dt>image.type</dt>
+      <dd>the type of the image files temporarily generated. It
+can be one of either 'jpg' or 'png'. These temporary image files are
+used for producing mp4/gif output file. The reason doing so is to
+accommodate that sometimes only one of image types is supported so that
+you can choose the right one</dd>
+      <dt>num.frame</dt>
+      <dd>a numeric value specifying the number of
+frames/images. By default, it sets to the number of columns in the
+codebook matrix</dd>
+      <dt>sec_per_frame</dt>
+      <dd>a numeric value specifying how long (seconds) it
+takes to stream a frame/image. This argument only works when producing
+mp4 video or gif file.</dd>
+      <dt>margin</dt>
+      <dd>margins as units of length 4 or 1</dd>
+      <dt>height</dt>
+      <dd>a numeric value specifying the height of device</dd>
+      <dt>title.rotate</dt>
+      <dd>the rotation of the title</dd>
+      <dt>title.xy</dt>
+      <dd>the coordinates of the title</dd>
+      <dt>colormap</dt>
+      <dd>short name for the colormap. It can be one of "jet"
+(jet colormap), "bwr" (blue-white-red colormap), "gbr" (green-black-red
+colormap), "wyr" (white-yellow-red colormap), "br" (black-red
+colormap), "yr" (yellow-red colormap), "wb" (white-black colormap), and
+"rainbow" (rainbow colormap, that is,
+red-yellow-green-cyan-blue-magenta). Alternatively, any
+hyphen-separated HTML color names, e.g. "blue-black-yellow",
+"royalblue-white-sandybrown", "darkgreen-white-darkviolet". A list of
+standard color names can be found in
+<a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a></dd>
+      <dt>ncolors</dt>
+      <dd>the number of colors specified</dd>
+      <dt>zlim</dt>
+      <dd>the minimum and maximum z values for which colors should be
+plotted, defaulting to the range of the finite values of z. Each of the
+given colors will be used to color an equispaced interval of this
+range. The midpoints of the intervals cover the range, so that values
+just outside the range will be plotted</dd>
+      <dt>border.color</dt>
+      <dd>the border color for each hexagon</dd>
+      <dt>gp</dt>
+      <dd>an object of class gpar, typically the output from a call to
+the function gpar (i.e., a list of graphical parameter settings)</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <!-- 
+    <div class="Value">
+    -->
+      <h3>Value</h3>
+      
+      <p>If specifying the output file name (see argument 'filename' above), the
+output file is either 'filename.pdf' or 'filename.mp4' or
+'filename.gif' in the current working directory. If no output file name
+specified, by default the output file is either 'visHexAnimate.pdf' or
+'visHexAnimate.mp4' or 'visHexAnimate.gif'</p>
+    <!-- 
+    </div>
+    -->
+    <!-- 
+    <div class="Note">
+    -->
+      <h3>Note</h3>
+      
+      <p>When producing mp4 video, this function requires the installation of
+the software 'ffmpeg' at <a href = 'https://www.ffmpeg.org'>https://www.ffmpeg.org</a>. Shell command
+lines for ffmpeg installation in Terminal (for both Linux and Mac) are:
+<ul>
+<li>1) <code>wget -O ffmpeg.tar.gz
+http://www.ffmpeg.org/releases/ffmpeg-2.7.1.tar.gz</code>
+</li>
+<li>2) <code>mkdir ~/ffmpeg | tar xvfz ffmpeg.tar.gz -C ~/ffmpeg
+--strip-components=1</code>
+</li>
+<li>3) <code>cd ffmpeg</code>
+</li>
+<li>4a) # Assuming you want installation with a ROOT (sudo)
+privilege: <code>./configure --disable-yasm</code>
+</li>
+<li>4b) # Assuming you want local installation without ROOT (sudo)
+privilege: <code>./configure --disable-yasm --prefix=$HOME/ffmpeg</code>
+</li>
+<li>5) <code>make</code>
+</li>
+<li>6) <code>make install</code>
+</li>
+<li>7) # add the system PATH variable to your ~/.bash_profile file if
+you follow 4b) route: <code>export PATH=$HOME/ffmpeg:$PATH</code>
+</li>
+<li>8) # make sure ffmpeg has been installed successfully:
+<code>ffmpeg -h</code>
+</li>
+</ul></p>
+      <p>When producing gif file, this function requires the installation of the
+software 'ImageMagick' at <a href = 'http://www.imagemagick.org'>http://www.imagemagick.org</a>. Shell
+command lines for ImageMagick installation in Terminal are:
+<ul>
+<li>1) <code>wget
+http://www.imagemagick.org/download/ImageMagick.tar.gz</code>
+</li>
+<li>2) <code>mkdir ~/ImageMagick | tar xvzf ImageMagick.tar.gz -C
+~/ImageMagick --strip-components=1</code>
+</li>
+<li>3) <code>cd ImageMagick</code>
+</li>
+<li>4) <code>./configure --prefix=$HOME/ImageMagick</code>
+</li>
+<li>5) <code>make</code>
+</li>
+<li>6) <code>make install</code>
+</li>
+<li>7) # add the system PATH variable to your ~/.bash_profile file.
+ For Linux: <code>export MAGICK_HOME=$HOME/ImageMagick</code>
+<code>export PATH=$MAGICK_HOME/bin:$PATH</code> <code>export
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$MAGICK_HOME/lib</code>
+ For Mac: <code>export MAGICK_HOME=$HOME/ImageMagick</code>
+<code>export PATH=$MAGICK_HOME/bin:$PATH</code> <code>export
+DYLD_LIBRARY_PATH=$MAGICK_HOME/lib/</code>
+</li>
+<li>8a) # check configuration: <code>convert -list configure</code>
+</li>
+<li>8b) # check image format supported: <code>identify -list
+format</code>
+</li>
+<li>Tips:  Prior to 4), please make sure <code>libjpeg</code> and
+<code>libpng</code> are installed. If NOT, for Mac try this: <code>brew
+install libjpeg libpng</code>  To check whether ImageMagick does work,
+please get additional information from: <code>identify -list format</code>
+<code>convert -list configure</code>  On details, please refer to
+<a href = 'http://www.imagemagick.org/script/advanced-unix-installation.php'>http://www.imagemagick.org/script/advanced-unix-installation.php</a>
+</li>
+</ul></p>
+      <p></p>
+    <!-- 
+    </div>
+    -->
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate data with an iid matrix of 1000 x 3
+data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3),
+matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3),
+matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
+colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
+
+# 2) sMap resulted from using by default setup
+sMap <- sPipeline(data=data)
+</div>
+<strong class='message'>Start at 2015-08-05 17:41:05</strong>
+<strong class='message'></strong>
+<strong class='message'>First, define topology of a map grid (2015-08-05 17:41:05)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (169 X 9) using 'linear' initialisation, given a topology and input data (2015-08-05 17:41:05)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-08-05 17:41:05)...</strong>
+<strong class='message'>	1 out of 2 (2015-08-05 17:41:05)</strong>
+<strong class='message'>	updated (2015-08-05 17:41:05)</strong>
+<strong class='message'>	2 out of 2 (2015-08-05 17:41:05)</strong>
+<strong class='message'>	updated (2015-08-05 17:41:05)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-08-05 17:41:05)...</strong>
+<strong class='message'>	1 out of 7 (2015-08-05 17:41:05)</strong>
+<strong class='message'>	updated (2015-08-05 17:41:05)</strong>
+<strong class='message'>	2 out of 7 (2015-08-05 17:41:05)</strong>
+<strong class='message'>	updated (2015-08-05 17:41:05)</strong>
+<strong class='message'>	3 out of 7 (2015-08-05 17:41:05)</strong>
+<strong class='message'>	updated (2015-08-05 17:41:05)</strong>
+<strong class='message'>	4 out of 7 (2015-08-05 17:41:05)</strong>
+<strong class='message'>	updated (2015-08-05 17:41:05)</strong>
+<strong class='message'>	5 out of 7 (2015-08-05 17:41:05)</strong>
+<strong class='message'>	updated (2015-08-05 17:41:05)</strong>
+<strong class='message'>	6 out of 7 (2015-08-05 17:41:05)</strong>
+<strong class='message'>	updated (2015-08-05 17:41:05)</strong>
+<strong class='message'>	7 out of 7 (2015-08-05 17:41:05)</strong>
+<strong class='message'>	updated (2015-08-05 17:41:05)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-08-05 17:41:05)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-08-05 17:41:05)...</strong>
+<strong class='message'></strong>
+<strong class='message'>Below are the summaries of the training results:</strong>
+<strong class='message'>   dimension of input data: 1000x9
+   xy-dimension of map grid: xdim=15, ydim=15
+   grid lattice: hexa
+   grid shape: suprahex
+   dimension of grid coord: 169x2
+   initialisation method: linear
+   dimension of codebook matrix: 169x9
+   mean quantization error: 4.20946606456718
+</strong>
+<strong class='message'>Below are the details of trainology:</strong>
+<strong class='message'>   training algorithm: batch
+   alpha type: invert
+   training neighborhood kernel: gaussian
+   trainlength (x input data length): 2 at rough stage; 7 at finetune stage
+   radius (at rough stage): from 4 to 1
+   radius (at finetune stage): from 1 to 1
+</strong>
+<strong class='message'>End at 2015-08-05 17:41:05</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<div class='input'>
+# 3) animate sMap
+# output as a <a href="visHexAnimate.pdf">pdf</a> file
+visHexAnimate(sMap, filename="visHexAnimate", filetype="pdf")
+</div>
+<strong class='message'>Congratulations! A file 'visHexAnimate.pdf' (in the directory /Users/hfang/Sites/SUPERFAMILY/supraHex) has been created!</strong>
+<div class='input'># output as a <a href="visHexAnimate.mp4">mp4</a> file
+visHexAnimate(sMap, filename="visHexAnimate", filetype="mp4")
+</div>
+<strong class='message'>Executing this command: 'ffmpeg -y -v quiet -r 1 -i /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpnRl2HG/Rplot%06d.jpg -q:v 1 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpnRl2HG/visHexAnimate.mp4'
+</strong>
+<strong class='message'>Congratulations! A file 'visHexAnimate.mp4' (in the directory /Users/hfang/Sites/SUPERFAMILY/supraHex) has been created!</strong>
+<div class='input'># output as a <a href="visHexAnimate.gif">gif</a> file
+visHexAnimate(sMap, filename="visHexAnimate", filetype="gif")
+</div>
+<strong class='message'>Executing this command: 'convert -delay 100 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpnRl2HG/Rplot*.jpg /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpnRl2HG/visHexAnimate.gif'
+</strong>
+<strong class='message'>Congratulations! A file 'visHexAnimate.gif' (in the directory /Users/hfang/Sites/SUPERFAMILY/supraHex) has been created!</strong></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>visHexAnimate</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+    
+    <h2>Source code</h2>
+    <a href="javascript:newWin('R/visHexAnimate.r', 'R/visHexAnimate.r', '1200', '1200')" title="Click to view"><B><code>visHexAnimate.r</code></B></a>
+    
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/visHexAnimate.txt', 'man/visHexAnimate.txt', '1200', '1200')" title="Click to view"><B><code>visHexAnimate.Rd</code></B></a>
+    
+    <a href="javascript:newWin('man/visHexAnimate.pdf', 'man/visHexAnimate.pdf', '1200', '1200')" title="Click to view"><B><code>visHexAnimate.pdf</code></B></a>
+    
+    <h2>See also</h2>
+    
+<code><a href='visHexMulComp.html'>visHexMulComp</a></code>
+
+    <!--
+
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://suprahex.r-forge.r-project.org">http://suprahex.r-forge.r-project.org</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

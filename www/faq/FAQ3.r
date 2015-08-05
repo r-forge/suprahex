@@ -5,7 +5,7 @@
 # In order to save the output as a file, below is a universal solution of how to save an image shown in the screen into a file (eg a png file).
 
 ## First, install and load the package 'evaluate'
-install.packages("evaluate",repos="http://cran.r-project.org",type="source")
+# install.packages("evaluate",repos="http://cran.r-project.org",type="source")
 library(evaluate)
 
 ## Then, produce an image in the screen

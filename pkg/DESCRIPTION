@@ -2,7 +2,7 @@ Package: supraHex
 Type: Package
 Title: A Supra-Hexagonal Map for Analysing Tabular Omics Data
 Version: 1.7.2
-Date: 2015-7-16
+Date: 2015-8-5
 Author: Hai Fang and Julian Gough
 Maintainer: Hai Fang <hfang@well.ox.ac.uk>
 Depends: R (>= 3.0.2), hexbin
@@ -36,6 +36,7 @@ Collate:
     visColorbar.r 
     visVp.r
     visHexMulComp.r 
+    visHexAnimate.r
     visCompReorder.r
     visDmatCluster.r
     visKernels.r 
