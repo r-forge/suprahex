@@ -4,13 +4,18 @@
 \alias{visHexMulComp}
 \title{Function to visualise multiple component planes of a supra-hexagonal grid}
 \usage{
-visHexMulComp(sMap, margin = rep(0.1, 4), height = 7, title.rotate = 0,
-title.xy = c(0.45, 1), colormap = c("bwr", "jet", "gbr", "wyr", "br",
-"yr", "rainbow", "wb"), ncolors = 40, zlim = NULL,
-border.color = "transparent", gp = grid::gpar())
+visHexMulComp(sMap, which.components = NA, margin = rep(0.1, 4),
+height = 7, title.rotate = 0, title.xy = c(0.45, 1),
+colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"),
+ncolors = 40, zlim = NULL, border.color = "transparent",
+gp = grid::gpar())
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}
+
+\item{which.components}{an integer vector specifying which compopnets
+will be visualised. By default, it is NA meaning all components will be
+visualised}
 
 \item{margin}{margins as units of length 4 or 1}
 

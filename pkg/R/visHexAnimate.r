@@ -67,7 +67,7 @@
 #' visHexAnimate(sMap, filename="visHexAnimate", filetype="gif")
 #' }
 
-visHexAnimate <- function (sMap, filename="visHexAnimate", filetype=c("pdf", "mp4", "gif"), image.type=c("jpg","png"), num.frame=ncol(sMap$codebook), sec_per_frame=1, margin=rep(0.1,4), height=7, title.rotate=0, title.xy=c(0.45, 1), colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, border.color="transparent", gp=grid::gpar())
+visHexAnimate <- function(sMap, filename="visHexAnimate", filetype=c("pdf", "mp4", "gif"), image.type=c("jpg","png"), num.frame=ncol(sMap$codebook), sec_per_frame=1, margin=rep(0.1,4), height=7, title.rotate=0, title.xy=c(0.45, 1), colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, border.color="transparent", gp=grid::gpar())
 {
 
     ## check input graph
@@ -102,9 +102,6 @@ visHexAnimate <- function (sMap, filename="visHexAnimate", filetype=c("pdf", "mp
     }
 
     if(filetype=="pdf"){
-        
-        cnames <- colnames(sMap$codebook)
-        sMap_part <- sMap
         
         if(height>100){
             height <- ceiling(height/100)
@@ -155,10 +152,14 @@ visHexAnimate <- function (sMap, filename="visHexAnimate", filetype=c("pdf", "mp
         	grDevices::jpeg(image_files, width=height, height=height)
         }
         
-		for (rplot in rplots) {
+        n <- 0
+		for(rplot in rplots){
+			n <- n+1
+			image_file <- gsub("%06d", sprintf("%06d",n), image_files, perl=T)
+			grDevices::jpeg(image_file, width=height, height=height)
     		grDevices::replayPlot(rplot)
+    		grDevices::graphics.off()
 		}
-		grDevices::graphics.off()
         
         if(filetype=="mp4"){
 			ffmpeg1 <- paste("ffmpeg -y -v quiet -r", frame_per_sec, "-i", image_files, "-q:v 1", file.path(tdir, outputfile))
