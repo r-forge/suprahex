@@ -9,7 +9,8 @@ NULL,
 height = 7, margin = rep(0.1, 4), colormap = c("customized", "bwr",
 "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"), customized.color =
 "red",
-zeropattern.color = "gray", legend.cex = 0.8, newpage = T)
+zeropattern.color = "gray", legend = T, legend.cex = 0.8,
+legend.label = NULL, newpage = T)
 }
 \arguments{
 \item{sObj}{an object of class "sMap" or "sTopol" or "sInit"}
@@ -42,8 +43,14 @@ found in \url{http://html-color-codes.info/color-names}}
 
 \item{zeropattern.color}{the color for zero horizental line}
 
+\item{legend}{logical to indicate whether to add the legend}
+
 \item{legend.cex}{a numerical value giving the amount by which legend
 text should be magnified relative to the default (i.e., 1)}
+
+\item{legend.label}{a vector specifying the legend label. By default,
+it is NULL for using column names of the codebook matrix (or the matrix
+given by the parameter 'pattern')}
 
 \item{newpage}{logical to indicate whether to open a new page. By
 default, it sets to true for opening a new page}
@@ -100,9 +107,13 @@ customized.color="red", zeropattern.color="gray")
 # 4c) for bar plot
 visHexPattern(sMap, plotType="bars", pattern=pattern,
 customized.color=rep(c("red","green"),each=3))
+visHexPattern(sMap, plotType="bars", pattern=pattern,
+customized.color=rep(c("red","green"),each=3), legend.label=c("S","T"))
 # 4d) for radar plot
 visHexPattern(sMap, plotType="radars", pattern=pattern,
 customized.color=rep(c("red","green"),each=3))
+visHexPattern(sMap, plotType="radars", pattern=pattern,
+customized.color=rep(c("red","green"),each=3), legend.label=c("S","T"))
 }
 \seealso{
 \code{\link{sPipeline}}, \code{\link{visColormap}}
