@@ -130,14 +130,18 @@
 of a supra-hexagonal grid</p>
   
     <h3>Usage</h3>
-    <pre>visHexMulComp(sMap, margin = rep(0.1, 4), height = 7, title.rotate = 0, title.xy = c(0.45, 
-  1), colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"), ncolors = 40, 
-      zlim = NULL, border.color = "transparent", gp = grid::gpar())</pre>
+    <pre>visHexMulComp(sMap, which.components = NULL, margin = rep(0.1, 4), height = 7, title.rotate = 0, 
+  title.xy = c(0.45, 1), colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", 
+          "wb"), ncolors = 40, zlim = NULL, border.color = "transparent", gp = grid::gpar())</pre>
     
     <h3>Arguments</h3>
     <dl>
       <dt>sMap</dt>
       <dd>an object of class "sMap"</dd>
+      <dt>which.components</dt>
+      <dd>an integer vector specifying which compopnets
+will be visualised. By default, it is NULL meaning all components will
+be visualised</dd>
       <dt>margin</dt>
       <dd>margins as units of length 4 or 1</dd>
       <dt>height</dt>
@@ -203,32 +207,32 @@ colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2015-08-05 17:41:33</strong>
+<strong class='message'>Start at 2015-08-06 13:13:08</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-08-05 17:41:33)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (169 X 9) using 'linear' initialisation, given a topology and input data (2015-08-05 17:41:33)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-08-05 17:41:33)...</strong>
-<strong class='message'>	1 out of 2 (2015-08-05 17:41:33)</strong>
-<strong class='message'>	updated (2015-08-05 17:41:33)</strong>
-<strong class='message'>	2 out of 2 (2015-08-05 17:41:33)</strong>
-<strong class='message'>	updated (2015-08-05 17:41:33)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-08-05 17:41:33)...</strong>
-<strong class='message'>	1 out of 7 (2015-08-05 17:41:33)</strong>
-<strong class='message'>	updated (2015-08-05 17:41:33)</strong>
-<strong class='message'>	2 out of 7 (2015-08-05 17:41:33)</strong>
-<strong class='message'>	updated (2015-08-05 17:41:33)</strong>
-<strong class='message'>	3 out of 7 (2015-08-05 17:41:33)</strong>
-<strong class='message'>	updated (2015-08-05 17:41:33)</strong>
-<strong class='message'>	4 out of 7 (2015-08-05 17:41:33)</strong>
-<strong class='message'>	updated (2015-08-05 17:41:33)</strong>
-<strong class='message'>	5 out of 7 (2015-08-05 17:41:33)</strong>
-<strong class='message'>	updated (2015-08-05 17:41:33)</strong>
-<strong class='message'>	6 out of 7 (2015-08-05 17:41:33)</strong>
-<strong class='message'>	updated (2015-08-05 17:41:33)</strong>
-<strong class='message'>	7 out of 7 (2015-08-05 17:41:33)</strong>
-<strong class='message'>	updated (2015-08-05 17:41:33)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-08-05 17:41:33)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-08-05 17:41:33)...</strong>
+<strong class='message'>First, define topology of a map grid (2015-08-06 13:13:08)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (169 X 9) using 'linear' initialisation, given a topology and input data (2015-08-06 13:13:08)...</strong>
+<strong class='message'>Third, get training at the rough stage (2015-08-06 13:13:08)...</strong>
+<strong class='message'>	1 out of 2 (2015-08-06 13:13:08)</strong>
+<strong class='message'>	updated (2015-08-06 13:13:08)</strong>
+<strong class='message'>	2 out of 2 (2015-08-06 13:13:08)</strong>
+<strong class='message'>	updated (2015-08-06 13:13:08)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2015-08-06 13:13:08)...</strong>
+<strong class='message'>	1 out of 7 (2015-08-06 13:13:08)</strong>
+<strong class='message'>	updated (2015-08-06 13:13:08)</strong>
+<strong class='message'>	2 out of 7 (2015-08-06 13:13:08)</strong>
+<strong class='message'>	updated (2015-08-06 13:13:08)</strong>
+<strong class='message'>	3 out of 7 (2015-08-06 13:13:08)</strong>
+<strong class='message'>	updated (2015-08-06 13:13:08)</strong>
+<strong class='message'>	4 out of 7 (2015-08-06 13:13:08)</strong>
+<strong class='message'>	updated (2015-08-06 13:13:08)</strong>
+<strong class='message'>	5 out of 7 (2015-08-06 13:13:08)</strong>
+<strong class='message'>	updated (2015-08-06 13:13:08)</strong>
+<strong class='message'>	6 out of 7 (2015-08-06 13:13:08)</strong>
+<strong class='message'>	updated (2015-08-06 13:13:08)</strong>
+<strong class='message'>	7 out of 7 (2015-08-06 13:13:08)</strong>
+<strong class='message'>	updated (2015-08-06 13:13:08)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-08-06 13:13:08)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-08-06 13:13:08)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 1000x9
@@ -248,7 +252,7 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2015-08-05 17:41:33</strong>
+<strong class='message'>End at 2015-08-06 13:13:08</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
