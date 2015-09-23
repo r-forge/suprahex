@@ -4,6 +4,7 @@
 #'
 #' @param sMap an object of class "sMap"
 #' @param which.components an integer vector specifying which compopnets will be visualised. By default, it is NULL meaning all components will be visualised
+#' @param rect.grid a vector specifying the number of rows and columns for a rectangle grid wherein the component planes are placed. By defaul, it is NULL (decided on according to the number of component planes that will be visualised)
 #' @param margin margins as units of length 4 or 1
 #' @param height a numeric value specifying the height of device
 #' @param title.rotate the rotation of the title
@@ -31,8 +32,12 @@
 #'
 #' # 3) visualise multiple component planes of a supra-hexagonal grid
 #' visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=0.8))
+#' # 3a) visualise only the first 6 component planes
+#' visHexMulComp(sMap, which.components=1:6, colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=0.8))
+#' # 3b) visualise only the first 6 component planes within the rectangle grid of 3 X 2
+#' visHexMulComp(sMap, which.components=1:6, rect.grid=c(3,2), colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=0.8))
 
-visHexMulComp <-function(sMap, which.components=NULL, margin=rep(0.1,4), height=7, title.rotate=0, title.xy=c(0.45, 1), colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, border.color="transparent", gp=grid::gpar())
+visHexMulComp <-function(sMap, which.components=NULL, rect.grid=NULL, margin=rep(0.1,4), height=7, title.rotate=0, title.xy=c(0.45, 1), colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, border.color="transparent", gp=grid::gpar())
 {
     
     #colormap <- match.arg(colormap)
@@ -75,10 +80,19 @@ visHexMulComp <-function(sMap, which.components=NULL, margin=rep(0.1,4), height=
     ydim <- sMap$ydim
     aspect <- ceiling(ydim/xdim)
     
-    #rowNum <- ceiling(sqrt(length(cnames)/aspect)) +1
-    #colNum <- ceiling((length(cnames)+1)/rowNum) +1
-    colNum <- ceiling(sqrt(length(cnames)/aspect)) + 1
-    rowNum <- ceiling((length(cnames)+1)/colNum) + 1
+    tmp_colNum <- ceiling(sqrt(length(cnames)/aspect))
+    #tmp_rowNum <- ceiling((length(cnames)+1)/tmp_colNum)
+    tmp_rowNum <- ceiling((length(cnames))/tmp_colNum)
+    if(all(!is.null(rect.grid))){
+		rect.grid[1] <- as.integer(rect.grid[1])
+		rect.grid[2] <- as.integer(rect.grid[2])
+		if(rect.grid[1]>0 & rect.grid[2]>0){
+			tmp_colNum <- rect.grid[2]
+			tmp_rowNum <- rect.grid[1]
+		}
+	}
+	colNum <- tmp_colNum+1
+    rowNum <- tmp_rowNum+1
     tolNum <- colNum*rowNum
     if(tolNum < length(cnames)+colNum+rowNum-1){
         rowNum <- rowNum+1
@@ -89,7 +103,7 @@ visHexMulComp <-function(sMap, which.components=NULL, margin=rep(0.1,4), height=
     ## current.vpTree(all=T)
     t <- 0
     for (k in 1:length(vpnames)) {
-      
+    
         grid::seekViewport(vpnames[k])
         ## grid.rect(gp=grid::gpar(col="gray"))
         grid::current.vpTree(FALSE)

@@ -1,3 +1,11 @@
+CHANGES IN VERSION 1.7.3
+-----------------------
+
+NEW FEATURES
+
+    o Allow the function "visHexMulComp" to have user-input the number of rows and columns for a rectangle grid wherein the planes are placed
+    
+    
 CHANGES IN VERSION 1.7.2
 -----------------------
 

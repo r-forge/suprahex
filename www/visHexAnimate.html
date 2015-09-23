@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visHexAnimate @ supraHex 1.7.2</title>
+<title>visHexAnimate @ supraHex 1.7.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.7.2</a>
+      <a class="brand" href="index.html">supraHex 1.7.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -294,81 +294,25 @@ please get additional information from: <code>identify -list format</code>
     -->
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate data with an iid matrix of 1000 x 3
-data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3),
-matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3),
-matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
-colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
-
-# 2) sMap resulted from using by default setup
-sMap <- sPipeline(data=data)
-</div>
-<strong class='message'>Start at 2015-08-06 13:12:40</strong>
-<strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-08-06 13:12:40)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (169 X 9) using 'linear' initialisation, given a topology and input data (2015-08-06 13:12:40)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-08-06 13:12:40)...</strong>
-<strong class='message'>	1 out of 2 (2015-08-06 13:12:40)</strong>
-<strong class='message'>	updated (2015-08-06 13:12:40)</strong>
-<strong class='message'>	2 out of 2 (2015-08-06 13:12:40)</strong>
-<strong class='message'>	updated (2015-08-06 13:12:40)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-08-06 13:12:40)...</strong>
-<strong class='message'>	1 out of 7 (2015-08-06 13:12:40)</strong>
-<strong class='message'>	updated (2015-08-06 13:12:40)</strong>
-<strong class='message'>	2 out of 7 (2015-08-06 13:12:40)</strong>
-<strong class='message'>	updated (2015-08-06 13:12:40)</strong>
-<strong class='message'>	3 out of 7 (2015-08-06 13:12:40)</strong>
-<strong class='message'>	updated (2015-08-06 13:12:40)</strong>
-<strong class='message'>	4 out of 7 (2015-08-06 13:12:40)</strong>
-<strong class='message'>	updated (2015-08-06 13:12:40)</strong>
-<strong class='message'>	5 out of 7 (2015-08-06 13:12:40)</strong>
-<strong class='message'>	updated (2015-08-06 13:12:40)</strong>
-<strong class='message'>	6 out of 7 (2015-08-06 13:12:40)</strong>
-<strong class='message'>	updated (2015-08-06 13:12:40)</strong>
-<strong class='message'>	7 out of 7 (2015-08-06 13:12:40)</strong>
-<strong class='message'>	updated (2015-08-06 13:12:40)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-08-06 13:12:40)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-08-06 13:12:40)...</strong>
-<strong class='message'></strong>
-<strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 1000x9
-   xy-dimension of map grid: xdim=15, ydim=15
-   grid lattice: hexa
-   grid shape: suprahex
-   dimension of grid coord: 169x2
-   initialisation method: linear
-   dimension of codebook matrix: 169x9
-   mean quantization error: 4.20946606456718
-</strong>
-<strong class='message'>Below are the details of trainology:</strong>
-<strong class='message'>   training algorithm: batch
-   alpha type: invert
-   training neighborhood kernel: gaussian
-   trainlength (x input data length): 2 at rough stage; 7 at finetune stage
-   radius (at rough stage): from 4 to 1
-   radius (at finetune stage): from 1 to 1
-</strong>
-<strong class='message'>End at 2015-08-06 13:12:40</strong>
-<strong class='message'>Runtime in total is: 0 secs
-</strong>
-<div class='input'>
-# 3) animate sMap
-# output as a <a href="visHexAnimate.pdf">pdf</a> file
-visHexAnimate(sMap, filename="visHexAnimate", filetype="pdf")
-</div>
-<strong class='message'>Congratulations! A file 'visHexAnimate.pdf' (in the directory /Users/hfang/Sites/SUPERFAMILY/supraHex) has been created!</strong>
-<div class='input'># output as a <a href="visHexAnimate.mp4">mp4</a> file
-visHexAnimate(sMap, filename="visHexAnimate", filetype="mp4")
-</div>
-<strong class='message'>Executing this command: 'ffmpeg -y -v quiet -r 1 -i /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpYdOVb6/Rplot%06d.jpg -q:v 1 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpYdOVb6/visHexAnimate.mp4'
-</strong>
-<strong class='message'>Congratulations! A file 'visHexAnimate.mp4' (in the directory /Users/hfang/Sites/SUPERFAMILY/supraHex) has been created!</strong>
-<div class='input'># output as a <a href="visHexAnimate.gif">gif</a> file
-visHexAnimate(sMap, filename="visHexAnimate", filetype="gif")
-</div>
-<strong class='message'>Executing this command: 'convert -delay 100 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpYdOVb6/Rplot*.jpg /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpYdOVb6/visHexAnimate.gif'
-</strong>
-<strong class='message'>Congratulations! A file 'visHexAnimate.gif' (in the directory /Users/hfang/Sites/SUPERFAMILY/supraHex) has been created!</strong></pre>
+    <pre class="examples"><div class='input'>## <strong>Not run</strong>: 
+# # 1) generate data with an iid matrix of 1000 x 3
+# data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3),
+# matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3),
+# matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
+# colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
+# 
+# # 2) sMap resulted from using by default setup
+# sMap <- sPipeline(data=data)
+# 
+# # 3) animate sMap
+# # output as a <a href="visHexAnimate.pdf">pdf</a> file
+# visHexAnimate(sMap, filename="visHexAnimate", filetype="pdf")
+# # output as a <a href="visHexAnimate.mp4">mp4</a> file
+# visHexAnimate(sMap, filename="visHexAnimate", filetype="mp4")
+# # output as a <a href="visHexAnimate.gif">gif</a> file
+# visHexAnimate(sMap, filename="visHexAnimate", filetype="gif")
+# ## <strong>End(Not run)</strong>
+</div></pre>
   </div>
   
   <div class="span4">

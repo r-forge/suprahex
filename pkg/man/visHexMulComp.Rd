@@ -4,9 +4,10 @@
 \alias{visHexMulComp}
 \title{Function to visualise multiple component planes of a supra-hexagonal grid}
 \usage{
-visHexMulComp(sMap, which.components = NULL, margin = rep(0.1, 4),
-height = 7, title.rotate = 0, title.xy = c(0.45, 1),
-colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"),
+visHexMulComp(sMap, which.components = NULL, rect.grid = NULL,
+margin = rep(0.1, 4), height = 7, title.rotate = 0, title.xy = c(0.45,
+1), colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow",
+"wb"),
 ncolors = 40, zlim = NULL, border.color = "transparent",
 gp = grid::gpar())
 }
@@ -16,6 +17,11 @@ gp = grid::gpar())
 \item{which.components}{an integer vector specifying which compopnets
 will be visualised. By default, it is NULL meaning all components will
 be visualised}
+
+\item{rect.grid}{a vector specifying the number of rows and columns for
+a rectangle grid wherein the component planes are placed. By defaul, it
+is NULL (decided on according to the number of component planes that
+will be visualised)}
 
 \item{margin}{margins as units of length 4 or 1}
 
@@ -72,6 +78,12 @@ sMap <- sPipeline(data=data)
 # 3) visualise multiple component planes of a supra-hexagonal grid
 visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1),
 gp=grid::gpar(cex=0.8))
+# 3a) visualise only the first 6 component planes
+visHexMulComp(sMap, which.components=1:6, colormap="jet", ncolors=20,
+zlim=c(-1,1), gp=grid::gpar(cex=0.8))
+# 3b) visualise only the first 6 component planes within the rectangle grid of 3 X 2
+visHexMulComp(sMap, which.components=1:6, rect.grid=c(3,2),
+colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=0.8))
 }
 \seealso{
 \code{\link{visVp}}, \code{\link{visHexComp}},
