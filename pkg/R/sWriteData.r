@@ -59,6 +59,8 @@ sWriteData <- function(sMap, data, sBase=NULL, filename=NULL, keep.data=F)
     colnames(bmh) <- "Hexagon_index"
     data_output$bmh <- bmh
     
+    output <- as.data.frame(data_output, stringsAsFactors=F)
+    
     ## The column for "Cluster_base" (if sBase is given)
     if(!is.null(sBase)){
         if(class(sBase) == "sBase"){
@@ -66,6 +68,7 @@ sWriteData <- function(sMap, data, sBase=NULL, filename=NULL, keep.data=F)
                 bases <- as.matrix(sBase$bases[bmh])
                 colnames(bases) <- "Cluster_base"
                 data_output$bases <- bases
+                output <- cbind(output, bases)
             }
         }
     }
@@ -73,10 +76,11 @@ sWriteData <- function(sMap, data, sBase=NULL, filename=NULL, keep.data=F)
     ## The next columns for data itself (if keep.data is true)
     if(keep.data){
         data_output$data <- data
+        output <- cbind(output, data)
     }
     
-    ## convert into a datga frame called 'output'
-    output <- as.data.frame(data_output)
+    ## convert into a data frame called 'output'
+    #output <- as.data.frame(data_output, stringsAsFactors=F)
     
     ## If the filename is given, output data is written into a tab-delimited text file
     if(!is.null(filename)){

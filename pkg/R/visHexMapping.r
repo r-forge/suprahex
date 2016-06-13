@@ -51,7 +51,7 @@
 #' # 3d) for clusters/bases partitioned from the sMap
 #' visHexMapping(sMap,mappingType="bases")
 
-visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist","bases","customized"), labels=NULL, height=7, margin=rep(0.1,4), area.size=1, gp=grid::gpar(cex=0.7, font=1, col="black"),  border.color="black", fill.color="transparent", lty=1, lwd=1, lineend="round", linejoin="round", clip=c("on","inherit","off"), newpage=T)
+visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist","bases","customized"), labels=NULL, height=7, margin=rep(0.1,4), area.size=1, gp=grid::gpar(cex=0.7, font=1, col="black"),  border.color=NULL, fill.color="transparent", lty=1, lwd=1, lineend="round", linejoin="round", clip=c("on","inherit","off"), newpage=T)
 {
     
     mappingType <- match.arg(mappingType)
@@ -106,9 +106,13 @@ visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist
         }
         labels <- sObj$hits
         
-        area.size <- log2(labels)
-        area.size[!is.finite(area.size)] <- 0
-        border.color <- "#888888"
+        if(is.null(area.size)){
+			area.size <- log2(labels)
+			area.size[!is.finite(area.size)] <- 0
+		}
+        if(is.null(border.color)){
+        	border.color <- "#888888"
+        }
         
     }else if(mappingType == "dist" | mappingType == "antidist"){
         if (class(sObj) != "sMap"){
@@ -121,7 +125,9 @@ visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist
             area.size <- -1*area.size
         }
         area.size[!is.finite(area.size)] <- 0
-        border.color <- "#888888"
+        if(is.null(border.color)){
+        	border.color <- "#888888"
+        }
         
     }else if(mappingType == "bases"){
     
@@ -140,7 +146,9 @@ visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist
         #area.size <- log2(dMat)
         area.size <- dMat
         area.size[!is.finite(area.size)] <- 0
-        border.color <- "#888888"
+        if(is.null(border.color)){
+        	border.color <- "#888888"
+        }
         
     }else if(mappingType == "customized"){
         if(is.null(labels) | length(labels) != nHex){

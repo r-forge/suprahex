@@ -13,6 +13,7 @@
 #' @param zlim the minimum and maximum z values for which colors should be plotted, defaulting to the range of the finite values of z. Each of the given colors will be used to color an equispaced interval of this range. The midpoints of the intervals cover the range, so that values just outside the range will be plotted
 #' @param border.color the border color for each hexagon
 #' @param gp an object of class "gpar". It is the output from a call to the function "gpar" (i.e., a list of graphical parameter settings)
+#' @param newpage logical to indicate whether to open a new page. By default, it sets to true for opening a new page
 #' @return 
 #' invisible
 #' @note none
@@ -37,7 +38,7 @@
 #' title.rotate=0, title.xy=c(0.45, 1), colormap="gbr", ncolors=10, zlim=c(-1,1), 
 #' border.color="transparent")
 
-visCompReorder <-function (sMap, sReorder, margin=rep(0.1,4), height=7, title.rotate=0, title.xy=c(0.45, 1), colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, border.color="transparent", gp=grid::gpar())
+visCompReorder <-function (sMap, sReorder, margin=rep(0.1,4), height=7, title.rotate=0, title.xy=c(0.45, 1), colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, border.color="transparent", gp=grid::gpar(), newpage=T)
 {
     
     #colormap <- match.arg(colormap)
@@ -77,7 +78,7 @@ visCompReorder <-function (sMap, sReorder, margin=rep(0.1,4), height=7, title.ro
     rowNum <- sReorder$ydim +1 # top row for additional one
     colNum <- sReorder$xdim +1 # right-most column for additional one
 
-    vpnames <- visVp(height=height, xdim=xdim, ydim=ydim, colNum=colNum, rowNum=rowNum, gp=grid::gpar(col="transparent", fill="transparent"))
+    vpnames <- visVp(height=height, xdim=xdim, ydim=ydim, colNum=colNum, rowNum=rowNum, gp=grid::gpar(col="transparent", fill="transparent"), newpage=newpage)
 
     ## current.vpTree(all=T)
     for (k in 1:length(cnames)) {

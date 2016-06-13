@@ -154,7 +154,7 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
         if(consensus.majority>=50 & consensus.majority<=100){
             consensus.majority <- consensus.majority/100
         }
-        if(consensus.majority<0.5 | consensus.majority>1){
+        if(consensus.majority<0 | consensus.majority>1){
             consensus.majority <- 0.5
         }
         

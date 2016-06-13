@@ -9,7 +9,7 @@ visHexMapping(sObj, mappingType = c("indexes", "hits", "dist",
 "bases", "customized"), labels = NULL, height = 7, margin = rep(0.1,
 4),
 area.size = 1, gp = grid::gpar(cex = 0.7, font = 1, col = "black"),
-border.color = "black", fill.color = "transparent", lty = 1, lwd = 1,
+border.color = NULL, fill.color = "transparent", lty = 1, lwd = 1,
 lineend = "round", linejoin = "round", clip = c("on", "inherit",
 "off"),
 newpage = T)

@@ -9,8 +9,9 @@ NULL,
 height = 7, margin = rep(0.1, 4), colormap = c("customized", "bwr",
 "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"), customized.color =
 "red",
-zeropattern.color = "gray", legend = T, legend.cex = 0.8,
-legend.label = NULL, newpage = T)
+alterntive.color = c("transparent", "gray"), zeropattern.color =
+"gray",
+legend = T, legend.cex = 0.8, legend.label = NULL, newpage = T)
 }
 \arguments{
 \item{sObj}{an object of class "sMap" or "sTopol" or "sInit"}
@@ -40,6 +41,9 @@ Alternatively, any hyphen-separated HTML color names, e.g.
 found in \url{http://html-color-codes.info/color-names}}
 
 \item{customized.color}{the customized color for pattern visualisation}
+
+\item{alterntive.color}{the alterntive color used to indicate the
+hexagon layout}
 
 \item{zeropattern.color}{the color for zero horizental line}
 

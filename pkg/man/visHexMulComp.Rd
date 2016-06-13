@@ -9,7 +9,7 @@ margin = rep(0.1, 4), height = 7, title.rotate = 0, title.xy = c(0.45,
 1), colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow",
 "wb"),
 ncolors = 40, zlim = NULL, border.color = "transparent",
-gp = grid::gpar())
+gp = grid::gpar(), newpage = T)
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}
@@ -54,6 +54,9 @@ just outside the range will be plotted}
 
 \item{gp}{an object of class gpar, typically the output from a call to
 the function gpar (i.e., a list of graphical parameter settings)}
+
+\item{newpage}{logical to indicate whether to open a new page. By
+default, it sets to true for opening a new page}
 }
 \value{
 invisible
