@@ -218,7 +218,9 @@ heatmap.2 <- function(x,
                       offsetCol = 0, # Number of character-width spaces to place between column labels and the edge of the plotting region
                       adjRow = c(0,NA), # 2-element vector giving the (left-right, top-bottom) justification of row/column labels (relative to the text orientation)
                       adjCol = c(NA,0), # 2-element vector giving the (left-right, top-bottom) justification of row/column labels (relative to the text orientation)
-                      
+                      colRow = NULL,
+           			  colCol = NULL,
+           
                       # color key + density info
                       ## logical indicating whether a color-key should be shown
                       key = TRUE,
@@ -393,6 +395,15 @@ heatmap.2 <- function(x,
             (1:nc)[colInd]
         else colnames(x)
     else labCol <- labCol[colInd]
+    
+    # row or column label colors
+    if(!is.null(colRow)){
+    	colRow <- colRow[rowInd]
+    }
+    if(!is.null(colCol)){
+    	colCol <- colCol[colInd]
+    }
+    
     if (scale == "row") {
         retval$rowMeans <- rm <- rowMeans(x, na.rm = na.rm)
         x <- sweep(x, 1, rm)
@@ -576,7 +587,7 @@ heatmap.2 <- function(x,
     if (is.null(srtCol)) 
         axis(1, 1:nc, labels = labCol, las = 2, line = -0.5 + 
             offsetCol, tick = 0, cex.axis = cexCol, hadj = adjCol[1], 
-            padj = adjCol[2])
+            padj = adjCol[2], col.axis=colCol)
     else {
         if (is.numeric(srtCol)) {
             if (missing(adjCol) || is.null(adjCol)) 
@@ -587,7 +598,7 @@ heatmap.2 <- function(x,
                 tick = 0)
             text(x = xpos, y = par("usr")[3] - (1 + offsetCol) * 
                 strheight("M"), labels = labCol, adj = adjCol, 
-                cex = cexCol, srt = srtCol)
+                cex = cexCol, srt = srtCol, col=colCol)
             par(xpd = xpd.orig)
         }
         else warning("Invalid value for srtCol ignored.")
@@ -599,7 +610,7 @@ heatmap.2 <- function(x,
     ############ Add srtRow, offsetRow and adjRow according to heatmap.2 from gplots
     if (is.null(srtRow)) {
         axis(4, iy, labels = labRow, las = 2, line = -0.5 + offsetRow, 
-            tick = 0, cex.axis = cexRow, hadj = adjRow[1], padj = adjRow[2])
+            tick = 0, cex.axis = cexRow, hadj = adjRow[1], padj = adjRow[2], col.axis=colRow)
     }
     else {
         if (is.numeric(srtRow)) {
@@ -609,7 +620,7 @@ heatmap.2 <- function(x,
                 line = -0.5, tick = 0)
             text(x = par("usr")[2] + (1 + offsetRow) * strwidth("M"), 
                 y = ypos, labels = labRow, adj = adjRow, cex = cexRow, 
-                srt = srtRow)
+                srt = srtRow, col=colRow)
             par(xpd = xpd.orig)
         }
         else warning("Invalid value for srtRow ignored.")

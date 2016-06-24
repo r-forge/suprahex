@@ -5,7 +5,7 @@
 \title{Function to create viewports for multiple supra-hexagonal grids}
 \usage{
 visVp(height = 7, xdim = 1, ydim = 1, colNum = 1, rowNum = 1,
-gp = grid::gpar())
+gp = grid::gpar(), newpage = T)
 }
 \arguments{
 \item{height}{a numeric value specifying the height of device}
@@ -20,6 +20,9 @@ gp = grid::gpar())
 
 \item{gp}{an object of class gpar, typically the output from a call to
 the function gpar (i.e., a list of graphical parameter settings)}
+
+\item{newpage}{logical to indicate whether to open a new page. By
+default, it sets to true for opening a new page}
 }
 \value{
 \item{vpnames}{an R object of "viewport" class}

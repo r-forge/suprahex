@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Demo for leukemia patient dataset from Golub et al @ supraHex 1.7.2</title>
+<title>Demo for leukemia patient dataset from Golub et al @ supraHex 1.10.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.7.2</a>
+      <a class="brand" href="index.html">supraHex 1.10.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -123,10 +123,10 @@
       <h2>Demo for leukemia patient dataset from Golub et al</h2>
 
 Notes:
-<li> All results are based on supraHex (version 1.7.2). </li>
+<li> All results are based on supraHex (version 1.10.1). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light cyan, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in supraHex 1.7.2 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in supraHex 1.10.1 are hyperlinked in-place and also listed on the right side. </li>
 
 <div class="row">
     <div class="span8">
@@ -144,28 +144,28 @@ data <- Golub # a matrix of 3,051 genes expressed in 38 samples
 # (II) Train the supra-hexagonal map with input data only
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
 </div>
-<strong class='message'>Start at 2015-07-21 18:19:55</strong>
+<strong class='message'>Start at 2016-06-24 11:45:40</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-07-21 18:19:55)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (331 X 38) using 'linear' initialisation, given a topology and input data (2015-07-21 18:19:55)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-07-21 18:19:55)...</strong>
-<strong class='message'>	1 out of 2 (2015-07-21 18:19:55)</strong>
-<strong class='message'>	updated (2015-07-21 18:19:56)</strong>
-<strong class='message'>	2 out of 2 (2015-07-21 18:19:56)</strong>
-<strong class='message'>	updated (2015-07-21 18:19:56)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-07-21 18:19:56)...</strong>
-<strong class='message'>	1 out of 5 (2015-07-21 18:19:56)</strong>
-<strong class='message'>	updated (2015-07-21 18:19:56)</strong>
-<strong class='message'>	2 out of 5 (2015-07-21 18:19:56)</strong>
-<strong class='message'>	updated (2015-07-21 18:19:56)</strong>
-<strong class='message'>	3 out of 5 (2015-07-21 18:19:56)</strong>
-<strong class='message'>	updated (2015-07-21 18:19:57)</strong>
-<strong class='message'>	4 out of 5 (2015-07-21 18:19:57)</strong>
-<strong class='message'>	updated (2015-07-21 18:19:57)</strong>
-<strong class='message'>	5 out of 5 (2015-07-21 18:19:57)</strong>
-<strong class='message'>	updated (2015-07-21 18:19:57)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-07-21 18:19:57)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-07-21 18:19:57)...</strong>
+<strong class='message'>First, define topology of a map grid (2016-06-24 11:45:40)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (331 X 38) using 'linear' initialisation, given a topology and input data (2016-06-24 11:45:40)...</strong>
+<strong class='message'>Third, get training at the rough stage (2016-06-24 11:45:40)...</strong>
+<strong class='message'>	1 out of 2 (2016-06-24 11:45:40)</strong>
+<strong class='message'>	updated (2016-06-24 11:45:40)</strong>
+<strong class='message'>	2 out of 2 (2016-06-24 11:45:40)</strong>
+<strong class='message'>	updated (2016-06-24 11:45:40)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2016-06-24 11:45:40)...</strong>
+<strong class='message'>	1 out of 5 (2016-06-24 11:45:40)</strong>
+<strong class='message'>	updated (2016-06-24 11:45:40)</strong>
+<strong class='message'>	2 out of 5 (2016-06-24 11:45:40)</strong>
+<strong class='message'>	updated (2016-06-24 11:45:40)</strong>
+<strong class='message'>	3 out of 5 (2016-06-24 11:45:40)</strong>
+<strong class='message'>	updated (2016-06-24 11:45:41)</strong>
+<strong class='message'>	4 out of 5 (2016-06-24 11:45:41)</strong>
+<strong class='message'>	updated (2016-06-24 11:45:41)</strong>
+<strong class='message'>	5 out of 5 (2016-06-24 11:45:41)</strong>
+<strong class='message'>	updated (2016-06-24 11:45:41)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2016-06-24 11:45:41)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2016-06-24 11:45:41)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 3051x38
@@ -185,82 +185,74 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data)
    radius (at rough stage): from 6 to 1.5
    radius (at finetune stage): from 1.5 to 1
 </strong>
-<strong class='message'>End at 2015-07-21 18:19:57</strong>
-<strong class='message'>Runtime in total is: 2 secs
+<strong class='message'>End at 2016-06-24 11:45:41</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'><a href='visHexMulComp.html' target=visHexMulComp>visHexMulComp</a>(sMap,title.rotate=10,colormap="darkgreen-lightgreen-lightpink-darkred")
+<a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="Output_Golub.txt")
 </div>
 <a href="javascript:newWin('Golub-32.png', 'Golub-32.png', '1200', '857.142857142857')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-32.png', width="400" /></a>
-<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, filename="Output_Golub.txt")
-## As you have seen, a figure displays the multiple components of trained map in a sample-specific manner. You also see that a .txt file has been saved in your disk. The output file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters). You can also force the input data to be output; type ?<a href='sWriteData.html' target=sWriteData>sWriteData</a> for details.
+<div class='input'>## As you have seen, a figure displays the multiple components of trained map in a sample-specific manner. You also see that a .txt file has been saved in your disk. The output file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters). You can also force the input data to be output; type ?<a href='sWriteData.html' target=sWriteData>sWriteData</a> for details.
 
 # (III) Visualise the map, including built-in indexes, data hits/distributions, distance between map nodes, and codebook matrix
 <a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="indexes")
-</div>
-<a href="javascript:newWin('Golub-34.png', 'Golub-34.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-34.png', width="400" /></a>
-<div class='input'>## As you have seen, the smaller hexagons in the supra-hexagonal map are indexed as follows: start from the center, and then expand circularly outwards, and for each circle increase in an anti-clock order.
+## As you have seen, the smaller hexagons in the supra-hexagonal map are indexed as follows: start from the center, and then expand circularly outwards, and for each circle increase in an anti-clock order.
 
 <a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="hits")
-</div>
-<a href="javascript:newWin('Golub-36.png', 'Golub-36.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-36.png', width="400" /></a>
-<div class='input'>## As you have seen, the number represents how many input data vectors are hitting each hexagon, the size of which is proportional to the number of hits.
+## As you have seen, the number represents how many input data vectors are hitting each hexagon, the size of which is proportional to the number of hits.
 
 <a href='visHexMapping.html' target=visHexMapping>visHexMapping</a>(sMap, mappingType="dist")
-</div>
-<a href="javascript:newWin('Golub-38.png', 'Golub-38.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-38.png', width="400" /></a>
-<div class='input'>## As you have seen, map distance tells how far each hexagon is away from its neighbors, and the size of each hexagon is proportional to this distance.
+## As you have seen, map distance tells how far each hexagon is away from its neighbors, and the size of each hexagon is proportional to this distance.
 
 <a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="lines")
-</div>
-<a href="javascript:newWin('Golub-40.png', 'Golub-40.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-40.png', width="400" /></a>
-<div class='input'>## As you have seen, line plot displays the patterns associated with the codebook matrix. If multple colors are given, the points are also plotted. When the pattern involves both positive and negative values, zero horizental line is also shown.
+## As you have seen, line plot displays the patterns associated with the codebook matrix. If multple colors are given, the points are also plotted. When the pattern involves both positive and negative values, zero horizental line is also shown.
 
 <a href='visHexPattern.html' target=visHexPattern>visHexPattern</a>(sMap, plotType="bars")
-</div>
-<a href="javascript:newWin('Golub-42.png', 'Golub-42.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-42.png', width="400" /></a>
-<div class='input'>## As you have seen, bar plot displays the patterns associated with the codebook matrix. When the pattern involves both positive and negative values, the zero horizental line is in the middle of the hexagon; otherwise at the top of the hexagon for all negative values, and at the bottom for all positive values.
+## As you have seen, bar plot displays the patterns associated with the codebook matrix. When the pattern involves both positive and negative values, the zero horizental line is in the middle of the hexagon; otherwise at the top of the hexagon for all negative values, and at the bottom for all positive values.
 
 # (IV) Perform partitioning operation on the map to obtain continuous clusters (i.e. gene meta-clusters) as they are different from gene clusters in an individual map node
 sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap)
-<a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase)
 </div>
-<a href="javascript:newWin('Golub-44.png', 'Golub-44.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-44.png', width="400" /></a>
-<div class='input'><a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="Output_base_Golub.txt")
-## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output .txt file has been saved in your disk. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). You can also force the input data to be output; type ?sWriteData for details.
+<a href="javascript:newWin('Golub-34.png', 'Golub-34.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-34.png', width="400" /></a>
+<div class='input'><a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase)
+<a href='sWriteData.html' target=sWriteData>sWriteData</a>(sMap, data, sBase, filename="Output_base_Golub.txt")
+</div>
+<a href="javascript:newWin('Golub-36.png', 'Golub-36.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-36.png', width="400" /></a>
+<div class='input'>## As you have seen, each cluster is filled with the same continuous color, and the cluster index is marked in the seed node. Although different clusters are coded using different colors (randomly generated), it is unavoidable to have very similar colors filling in neighbouring clusters. In other words, neighbouring clusters are visually indiscernible. In this confusing situation, you can rerun the command <a href='visDmatCluster.html' target=visDmatCluster>visDmatCluster</a>(sMap, sBase) until neighbouring clusters are indeed filled with very different colors. An output .txt file has been saved in your disk. This file has 1st column for your input data ID (an integer; otherwise the row names of input data matrix), and 2nd column for the corresponding index of best-matching hexagons (i.e. gene clusters), and 3rd column for the cluster bases (i.e. gene meta-clusters). You can also force the input data to be output; type ?sWriteData for details.
 
 # (V) Reorder the sample-specific components of the map to delineate relationships between samples
 sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(data,metric="pearson") # see Figure 8
 </div>
-<strong class='message'>Start at 2015-07-21 18:20:20</strong>
+<strong class='message'>Start at 2016-06-24 11:45:47</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2015-07-21 18:20:20)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (117 X 38) using 'linear' initialisation, given a topology and input data (2015-07-21 18:20:20)...</strong>
-<strong class='message'>Third, get training at the rough stage (2015-07-21 18:20:20)...</strong>
-<strong class='message'>	1 out of 1178 (2015-07-21 18:20:20)</strong>
-<strong class='message'>	118 out of 1178 (2015-07-21 18:20:20)</strong>
-<strong class='message'>	236 out of 1178 (2015-07-21 18:20:20)</strong>
-<strong class='message'>	354 out of 1178 (2015-07-21 18:20:21)</strong>
-<strong class='message'>	472 out of 1178 (2015-07-21 18:20:21)</strong>
-<strong class='message'>	590 out of 1178 (2015-07-21 18:20:21)</strong>
-<strong class='message'>	708 out of 1178 (2015-07-21 18:20:21)</strong>
-<strong class='message'>	826 out of 1178 (2015-07-21 18:20:21)</strong>
-<strong class='message'>	944 out of 1178 (2015-07-21 18:20:21)</strong>
-<strong class='message'>	1062 out of 1178 (2015-07-21 18:20:21)</strong>
-<strong class='message'>	1178 out of 1178 (2015-07-21 18:20:21)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2015-07-21 18:20:21)...</strong>
-<strong class='message'>	1 out of 4712 (2015-07-21 18:20:21)</strong>
-<strong class='message'>	472 out of 4712 (2015-07-21 18:20:21)</strong>
-<strong class='message'>	944 out of 4712 (2015-07-21 18:20:22)</strong>
-<strong class='message'>	1416 out of 4712 (2015-07-21 18:20:22)</strong>
-<strong class='message'>	1888 out of 4712 (2015-07-21 18:20:22)</strong>
-<strong class='message'>	2360 out of 4712 (2015-07-21 18:20:23)</strong>
-<strong class='message'>	2832 out of 4712 (2015-07-21 18:20:23)</strong>
-<strong class='message'>	3304 out of 4712 (2015-07-21 18:20:23)</strong>
-<strong class='message'>	3776 out of 4712 (2015-07-21 18:20:24)</strong>
-<strong class='message'>	4248 out of 4712 (2015-07-21 18:20:24)</strong>
-<strong class='message'>	4712 out of 4712 (2015-07-21 18:20:24)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2015-07-21 18:20:24)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2015-07-21 18:20:24)...</strong>
+<strong class='message'>First, define topology of a map grid (2016-06-24 11:45:47)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (117 X 38) using 'linear' initialisation, given a topology and input data (2016-06-24 11:45:47)...</strong>
+<strong class='message'>Third, get training at the rough stage (2016-06-24 11:45:47)...</strong>
+<strong class='message'>	1 out of 1178 (2016-06-24 11:45:47)</strong>
+<strong class='message'>	118 out of 1178 (2016-06-24 11:45:47)</strong>
+<strong class='message'>	236 out of 1178 (2016-06-24 11:45:47)</strong>
+<strong class='message'>	354 out of 1178 (2016-06-24 11:45:47)</strong>
+<strong class='message'>	472 out of 1178 (2016-06-24 11:45:47)</strong>
+<strong class='message'>	590 out of 1178 (2016-06-24 11:45:47)</strong>
+<strong class='message'>	708 out of 1178 (2016-06-24 11:45:47)</strong>
+<strong class='message'>	826 out of 1178 (2016-06-24 11:45:47)</strong>
+<strong class='message'>	944 out of 1178 (2016-06-24 11:45:47)</strong>
+<strong class='message'>	1062 out of 1178 (2016-06-24 11:45:47)</strong>
+<strong class='message'>	1178 out of 1178 (2016-06-24 11:45:47)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2016-06-24 11:45:47)...</strong>
+<strong class='message'>	1 out of 4712 (2016-06-24 11:45:47)</strong>
+<strong class='message'>	472 out of 4712 (2016-06-24 11:45:48)</strong>
+<strong class='message'>	944 out of 4712 (2016-06-24 11:45:48)</strong>
+<strong class='message'>	1416 out of 4712 (2016-06-24 11:45:48)</strong>
+<strong class='message'>	1888 out of 4712 (2016-06-24 11:45:49)</strong>
+<strong class='message'>	2360 out of 4712 (2016-06-24 11:45:49)</strong>
+<strong class='message'>	2832 out of 4712 (2016-06-24 11:45:49)</strong>
+<strong class='message'>	3304 out of 4712 (2016-06-24 11:45:50)</strong>
+<strong class='message'>	3776 out of 4712 (2016-06-24 11:45:50)</strong>
+<strong class='message'>	4248 out of 4712 (2016-06-24 11:45:50)</strong>
+<strong class='message'>	4712 out of 4712 (2016-06-24 11:45:51)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2016-06-24 11:45:51)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2016-06-24 11:45:51)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 38x38
@@ -280,29 +272,29 @@ sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(dat
    radius (at rough stage): from 2 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2015-07-21 18:20:24</strong>
+<strong class='message'>End at 2016-06-24 11:45:51</strong>
 <strong class='message'>Runtime in total is: 4 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap,sReorder,title.rotate=15,colormap="darkgreen-lightgreen-lightpink-darkred")
-</div>
-<a href="javascript:newWin('Golub-84.png', 'Golub-84.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-84.png', width="400" /></a>
-<div class='input'>## As you have seen, reordered components of trained map is displayed. Each component illustrates a sample-specific map and is placed within a two-dimensional rectangular lattice. Across components/samples, genes with similar expression patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/samples, that is, samples with the similar expression profiles are placed closer to each other.
+## As you have seen, reordered components of trained map is displayed. Each component illustrates a sample-specific map and is placed within a two-dimensional rectangular lattice. Across components/samples, genes with similar expression patterns are mapped onto the same position of the map. Geometric locations of components delineate relationships between components/samples, that is, samples with the similar expression profiles are placed closer to each other.
 
 # (VI) Build and visualise the bootstrapped tree
 D <- t(data)
-rownames(D) <- paste(rownames(D), 1:nrow(D), sep=".") # temporally make sure the row names are unique
+</div>
+<a href="javascript:newWin('Golub-76.png', 'Golub-76.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-76.png', width="400" /></a>
+<div class='input'>rownames(D) <- paste(rownames(D), 1:nrow(D), sep=".") # temporally make sure the row names are unique
 tree_bs <- <a href='visTreeBootstrap.html' target=visTreeBootstrap>visTreeBootstrap</a>(D, nodelabels.arg=list(cex=0.7))
 </div>
-<strong class='message'>Start at 2015-07-21 18:20:27</strong>
+<strong class='message'>Start at 2016-06-24 11:45:51</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (38 by 3051)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2015-07-21 18:20:28</strong>
-<strong class='message'>Runtime in total is: 1 secs
+<strong class='message'>Finish at 2016-06-24 11:45:53</strong>
+<strong class='message'>Runtime in total is: 2 secs
 </strong>
-<a href="javascript:newWin('Golub-94.png', 'Golub-94.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-94.png', width="400" /></a>
+<a href="javascript:newWin('Golub-86.png', 'Golub-86.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-86.png', width="400" /></a>
 <div class='input'>## As you have seen, neighbour-joining tree is constructed based on pairwise euclidean distance matrices between samples. The robustness of tree branching is evaluated using bootstraping. In internal nodes (also color-coded), the number represents the proportion of bootstrapped trees that support the observed internal branching. The higher the number, the more robust the tree branching. 100 means that the internal branching is always observed by resampling characters/genes. 
 
 # (VII) Visualise the matrix using heatmap
@@ -326,7 +318,7 @@ ColSideColors <- cbind(col_subtypes,col_types)
 colnames(ColSideColors) <- c("ALL subtypes", "AML/ALL types")
 # heatmap embeded with sidebars annotating samples
 <a href='visHeatmapAdv.html' target=visHeatmapAdv>visHeatmapAdv</a>(t(D), Rowv=T, Colv=F, dendrogram="none", colormap="darkgreen-lightgreen-lightpink-darkred", ColSideColors=ColSideColors, ColSideHeight=0.4, ColSideLabelLocation="left", labRow=NA)</div>
-<a href="javascript:newWin('Golub-96.png', 'Golub-96.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-96.png', width="400" /></a>
+<a href="javascript:newWin('Golub-88.png', 'Golub-88.png', '1200', '1050')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='Golub-88.png', width="400" /></a>
       </pre>
     </div>
 

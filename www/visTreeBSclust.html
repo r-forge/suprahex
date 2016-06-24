@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>visTreeBSclust @ supraHex 1.10.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.10.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:5dmiiel8qeq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to obtain clusters from a bootstrapped tree</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>visTreeBSclust</code> is supposed to otbain clusters from a
+bootstrapped tree.</p>
+  
+    <h3>Usage</h3>
+    <pre>visTreeBSclust(tree_bs, bootstrap.cutoff = 80, max.fraction = 1, min.size = 3, visTree = T, 
+  plot.phylo.arg = NULL, nodelabels.arg = NULL, verbose = T, ...)</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>tree_bs</dt>
+      <dd>an "phylo" object storing a bootstrapped tree</dd>
+      <dt>bootstrap.cutoff</dt>
+      <dd>an integer specifying bootstrap-derived
+clusters</dd>
+      <dt>max.fraction</dt>
+      <dd>the maximum fraction of leaves contained in a
+cluster</dd>
+      <dt>min.size</dt>
+      <dd>the minumum number of leaves contained in a cluster</dd>
+      <dt>visTree</dt>
+      <dd>logical to indicate whether the tree will be visualised.
+By default, it sets to true for display</dd>
+      <dt>plot.phylo.arg</dt>
+      <dd>a list of main parameters used in the function
+"ape::plot.phylo"
+<a href = 'http://www.inside-r.org/packages/cran/ape/docs/plot.phylo'>http://www.inside-r.org/packages/cran/ape/docs/plot.phylo</a>. See
+'Note' below for details on the parameters</dd>
+      <dt>nodelabels.arg</dt>
+      <dd>a list of main parameters used in the function
+"ape::nodelabels"
+<a href = 'http://www.inside-r.org/packages/cran/ape/docs/nodelabels'>http://www.inside-r.org/packages/cran/ape/docs/nodelabels</a>. See
+'Note' below for details on the parameters</dd>
+      <dt>verbose</dt>
+      <dd>logical to indicate whether the messages will be
+displayed in the screen. By default, it sets to true for display</dd>
+      <dt>...</dt>
+      <dd>additional "ape::plot.phylo" parameters</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <!-- 
+    <div class="Value">
+    -->
+      <h3>Value</h3>
+      
+      <p>a data frame following components:
+<ul>
+<li><code>Samples</code>: the labels for tip nodes (samples)
+</li>
+<li><code>Clusters</code>: the clusters each tip node belongs to;
+unassigned tip nodes will be the cluster called 'C0'
+</li>
+<li><code>Clans</code>: the internal node id for each cluster
+</li>
+</ul></p>
+      <p></p>
+    <!-- 
+    </div>
+    -->
+    <!-- 
+    <div class="Note">
+    -->
+      <h3>Note</h3>
+      
+      <p>A list of main parameters used in the function "ape::plot.phylo":
+<ul>
+<li>"type": a character string specifying the type of phylogeny to be
+drawn; it must be one of "phylogram" (the default), "cladogram", "fan",
+"unrooted", "radial" or any unambiguous abbreviation of these
+</li>
+<li>"direction": a character string specifying the direction of the
+tree. Four values are possible: "rightwards" (the default),
+"leftwards", "upwards", and "downwards"
+</li>
+<li>"lab4ut": (= labels for unrooted trees) a character string
+specifying the display of tip labels for unrooted trees: either
+"horizontal" where all labels are horizontal (the default), or "axial"
+where the labels are displayed in the axis of the corresponding
+terminal branches. This option has an effect only if type = "unrooted"
+</li>
+<li>"edge.color": a vector of mode character giving the colours used
+to draw the branches of the plotted phylogeny. These are taken to be in
+the same order than the component edge of phy. If fewer colours are
+given than the length of edge, then the colours are recycled
+</li>
+<li>"edge.width": a numeric vector giving the width of the branches
+of the plotted phylogeny. These are taken to be in the same order than
+the component edge of phy. If fewer widths are given than the length of
+edge, then these are recycled
+</li>
+<li>"edge.lty": same than the previous argument but for line types;
+1: plain, 2: dashed, 3: dotted, 4: dotdash, 5: longdash, 6: twodash
+</li>
+<li>"font": an integer specifying the type of font for the labels: 1
+(plain text), 2 (bold), 3 (italic, the default), or 4 (bold italic)
+</li>
+<li>"cex": a numeric value giving the factor scaling of the tip and
+node labels (Character EXpansion). The default is to take the current
+value from the graphical parameters
+</li>
+<li>"adj": a numeric specifying the justification of the text strings
+of the labels: 0 (left-justification), 0.5 (centering), or 1
+(right-justification). This option has no effect if type="unrooted". If
+NULL (the default) the value is set with respect of direction (see
+details)
+</li>
+<li>"srt": a numeric giving how much the labels are rotated in
+degrees (negative values are allowed resulting in clock-like rotation);
+the value has an effect respectively to the value of direction (see
+Examples). This option has no effect if type="unrooted"
+</li>
+<li>"no.margin": a logical. If TRUE, the margins are set to zero and
+the plot uses all the space of the device
+</li>
+<li>"label.offset": a numeric giving the space between the nodes and
+the tips of the phylogeny and their corresponding labels. This option
+has no effect if type="unrooted"
+</li>
+<li>"rotate.tree": for "fan", "unrooted", or "radial" trees: the
+rotation of the whole tree in degrees (negative values are accepted
+</li>
+</ul></p>
+      <p>A list of main parameters used in the function "ape::nodelabels":
+<ul>
+<li>"text": a vector of mode character giving the text to be printed.
+By default, the labels for internal nodes (see "node.label"), that is,
+the bootstrap values associated with internal nodes
+</li>
+<li>"node": a vector of mode numeric giving the numbers of the nodes
+where the text or the symbols are to be printed. By default, indexes
+for internal nodes, that is, (<code class = 'eq'>Ntip</code>+1):(<code class = 'eq'>Ntip</code>+<code class = 'eq'>Nnode</code>),
+where <code class = 'eq'>Ntip</code> is the number of tip nodes and <code class = 'eq'>Nnode</code> for the
+number of internal nodes
+</li>
+<li>"adj": one or two numeric values specifying the horizontal and
+vertical, respectively, justification of the text or symbols. By
+default, the text is centered horizontally and vertically. If a single
+value is given, this alters only the horizontal position of the text
+</li>
+<li>"frame": a character string specifying the kind of frame to be
+printed around the text. This must be one of "rect" (the default),
+"circle", "none", or any unambiguous abbreviation of these
+</li>
+<li>"cex": a numeric value giving the factor scaling of the tip and
+node labels (Character EXpansion). The default is to take the current
+value from the graphical parameters
+</li>
+<li>"font": an integer specifying the type of font for the labels: 1
+(plain text), 2 (bold), 3 (italic, the default), or 4 (bold italic)
+</li>
+<li>"col": a character string giving the color to be used for the
+text or the plotting symbols; this is eventually recycled
+</li>
+<li>"bg": a character string giving the color to be used for the
+background of the text frames or of the plotting symbols if it applies;
+this is eventually recycled. It can be one of "jet" (jet colormap),
+"bwr" (blue-white-red colormap), "gbr" (green-black-red colormap),
+"wyr" (white-yellow-red colormap), "br" (black-red colormap), "yr"
+(yellow-red colormap), "wb" (white-black colormap), and "rainbow"
+(rainbow colormap, that is, red-yellow-green-cyan-blue-magenta).
+Alternatively, any hyphen-separated HTML color names, e.g.
+"blue-black-yellow", "royalblue-white-sandybrown",
+"darkgreen-white-darkviolet". A list of standard color names can be
+found in <a href = 'http://html-color-codes.info/color-names'>http://html-color-codes.info/color-names</a>
+</li>
+</ul></p>
+      <p></p>
+    <!-- 
+    </div>
+    -->
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
+data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
+colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
+data <- t(data)
+
+# 2) build neighbor-joining tree with bootstrap values and visualise it by default
+tree_bs <- visTreeBootstrap(data)
+</div>
+<strong class='message'>Start at 2016-06-24 11:47:29</strong>
+<strong class='message'></strong>
+<strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
+<strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
+<strong class='message'>Finally, visualise the bootstrapped tree...</strong>
+<strong class='message'></strong>
+<strong class='message'>Finish at 2016-06-24 11:47:29</strong>
+<strong class='message'>Runtime in total is: 0 secs
+</strong>
+<a href="javascript:newWin('visTreeBSclust-10.png', 'visTreeBSclust-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visTreeBSclust-10.png', width="400" /></a>
+<div class='input'>
+# 3) obtain clusters from a bootstrapped tree
+res <- visTreeBSclust(tree_bs, bootstrap.cutoff=80)
+</div>
+<strong class='message'>1 internal nodes with >= 80 bootstrap value</strong>
+<strong class='message'>1 internal nodes each with <= 10 leaves</strong>
+<strong class='message'>1 internal nodes each with >= 3 leaves</strong>
+<strong class='message'>As a result, 1 clusters are found</strong>
+<a href="javascript:newWin('visTreeBSclust-16.png', 'visTreeBSclust-16.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visTreeBSclust-16.png', width="400" /></a>
+<div class='input'>## hide tip labels and modify the font of internal node labels
+res <- visTreeBSclust(tree_bs, bootstrap.cutoff=80,
+nodelabels.arg=list(cex=0.4), show.tip.label=FALSE)
+</div>
+<strong class='message'>1 internal nodes with >= 80 bootstrap value</strong>
+<strong class='message'>1 internal nodes each with <= 10 leaves</strong>
+<strong class='message'>1 internal nodes each with >= 3 leaves</strong>
+<strong class='message'>As a result, 1 clusters are found</strong>
+<a href="javascript:newWin('visTreeBSclust-22.png', 'visTreeBSclust-22.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visTreeBSclust-22.png', width="400" /></a></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>visTreeBSclust</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+    
+    <h2>Source code</h2>
+    <a href="javascript:newWin('R/visTreeBSclust.r', 'R/visTreeBSclust.r', '1200', '1200')" title="Click to view"><B><code>visTreeBSclust.r</code></B></a>
+    
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/visTreeBSclust.txt', 'man/visTreeBSclust.txt', '1200', '1200')" title="Click to view"><B><code>visTreeBSclust.Rd</code></B></a>
+    
+    <a href="javascript:newWin('man/visTreeBSclust.pdf', 'man/visTreeBSclust.pdf', '1200', '1200')" title="Click to view"><B><code>visTreeBSclust.pdf</code></B></a>
+    
+    <h2>See also</h2>
+    
+<code><a href='visTreeBootstrap.html'>visTreeBootstrap</a></code>
+
+    <!--
+
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://suprahex.r-forge.r-project.org">http://suprahex.r-forge.r-project.org</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

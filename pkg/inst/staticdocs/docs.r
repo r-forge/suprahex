@@ -46,7 +46,8 @@ list(
                 "visKernels",
                 "visHeatmap",
                 "visHeatmapAdv",
-                "visTreeBootstrap"
+                "visTreeBootstrap",
+                "visTreeBSclust"
             )
         ),
         sd_section("Built-in datasets",

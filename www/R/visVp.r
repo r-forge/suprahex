@@ -8,6 +8,7 @@
 #' @param colNum an integer specifying the number of columns
 #' @param rowNum an integer specifying the number of rows
 #' @param gp an object of class gpar, typically the output from a call to the function gpar (i.e., a list of graphical parameter settings)
+#' @param newpage logical to indicate whether to open a new page. By default, it sets to true for opening a new page
 #' @return 
 #'  \item{vpnames}{an R object of "viewport" class}
 #' @note none
@@ -21,13 +22,15 @@
 #' # 2) look at names of these viewports
 #' vpnames
 
-visVp <-function (height=7, xdim=1, ydim=1, colNum=1, rowNum=1, gp=grid::gpar()) 
+visVp <-function (height=7, xdim=1, ydim=1, colNum=1, rowNum=1, gp=grid::gpar(), newpage=T) 
 {
     
     unitWidth <- (1/colNum)
     unitHeight <- (1/rowNum)
     
-    dev.new(width=height*xdim/ydim*colNum/rowNum, height=height)
+    if (newpage){
+    	dev.new(width=height*xdim/ydim*colNum/rowNum, height=height)
+    }
     
     grid::grid.newpage()
     grid::grid.rect(gp=gp)

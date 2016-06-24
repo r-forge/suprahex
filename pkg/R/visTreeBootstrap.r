@@ -20,7 +20,7 @@
 #' \itemize{
 #'  \item{\code{Nnode}: the number of internal nodes}
 #'  \item{\code{node.label}: the labels for internal nodes. Here, each internal node is associated with the bootstrap value}
-#'  \item{\code{tip.label}: the lables for tip nodes. Tip labels come from the row names of the input matrix, but are not necessarily the same order as they appear in the input matrix}
+#'  \item{\code{tip.label}: the labels for tip nodes. Tip labels come from the row names of the input matrix, but are not necessarily the same order as they appear in the input matrix}
 #'  \item{\code{edge}: a two-column matrix describing the links between tree nodes (including internal and tip nodes)}
 #'  \item{\code{edge.length}: a vector indicating the edge length in the 'edge'}
 #'  \item{Note: the tree structure is indexed with 1:Ntip for tip nodes, and (\eqn{Ntip}+1):(\eqn{Ntip}+\eqn{Nnode}) for internal nodes, where \eqn{Ntip} is the number of tip nodes and \eqn{Nnode} for the number of internal nodes. Moreover, \eqn{nrow(data)=Ntip=Nnode-2}.}

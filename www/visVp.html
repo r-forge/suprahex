@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visVp @ supraHex 1.7.3</title>
+<title>visVp @ supraHex 1.10.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.7.3</a>
+      <a class="brand" href="index.html">supraHex 1.10.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -131,7 +131,8 @@ rectangular regions on a graphics device and define a number of
 coordinate systems for each of supra-hexagonal grids.</p>
   
     <h3>Usage</h3>
-    <pre>visVp(height = 7, xdim = 1, ydim = 1, colNum = 1, rowNum = 1, gp = grid::gpar())</pre>
+    <pre>visVp(height = 7, xdim = 1, ydim = 1, colNum = 1, rowNum = 1, gp = grid::gpar(), 
+  newpage = T)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -148,6 +149,9 @@ coordinate systems for each of supra-hexagonal grids.</p>
       <dt>gp</dt>
       <dd>an object of class gpar, typically the output from a call to
 the function gpar (i.e., a list of graphical parameter settings)</dd>
+      <dt>newpage</dt>
+      <dd>logical to indicate whether to open a new page. By
+default, it sets to true for opening a new page</dd>
     </dl>
     <!-- 
     -->
@@ -174,12 +178,11 @@ the function gpar (i.e., a list of graphical parameter settings)</dd>
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># 1) create 5x5 viewports
 vpnames <- visVp(colNum=5, rowNum=5)
-</div>
-<a href="javascript:newWin('visVp-2.png', 'visVp-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visVp-2.png', width="400" /></a>
-<div class='input'>
+
 # 2) look at names of these viewports
 vpnames
 </div>
+<a href="javascript:newWin('visVp-2.png', 'visVp-2.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visVp-2.png', width="400" /></a>
 <div class='output'> [1] "R0C1"       "R0C2"       "R0C3"       "R0C4"       "R0C5"      
  [6] "R4C1"       "R4C2"       "R4C3"       "R4C4"       "R3C1"      
 [11] "R3C2"       "R3C3"       "R3C4"       "R2C1"       "R2C2"      

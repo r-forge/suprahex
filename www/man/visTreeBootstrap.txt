@@ -74,7 +74,7 @@ When a bootstrapped tree is returned (also visualised by default), the
 \item{\code{Nnode}: the number of internal nodes}
 \item{\code{node.label}: the labels for internal nodes. Here, each
 internal node is associated with the bootstrap value}
-\item{\code{tip.label}: the lables for tip nodes. Tip labels come from
+\item{\code{tip.label}: the labels for tip nodes. Tip labels come from
 the row names of the input matrix, but are not necessarily the same
 order as they appear in the input matrix}
 \item{\code{edge}: a two-column matrix describing the links between
