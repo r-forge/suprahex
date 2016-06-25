@@ -2,7 +2,7 @@
 
 R (http://www.r-project.org) is a language and environment for statistical computing and graphics. We assume R version (>= 3.0.2) has been installed in your local machine. The current version can be installed following quick instructions below for different platforms (Windows, Mac, and Linux).
 
-* Quick link for `Windows`: [Download R for Windows](http://cran.r-project.org/bin/windows/base/R-3.2.1-win.exe).
+* Quick link for `Windows`: [Download R for Windows](http://cran.r-project.org/bin/windows/base).
 * Quick link for `Mac`: [Download R for Mac OS X 10.6 (Snow Leopard or higher)](http://cran.r-project.org/bin/macosx).
 
 * Below are shell command lines for R installation in Terminal (for `Linux`):
