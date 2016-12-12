@@ -7,7 +7,7 @@
 #' @param ydim an integer specifying y-dimension of the grid
 #' @param nHex the number of hexagons/rectangles in the grid
 #' @param lattice the grid lattice, either "hexa" for a hexagon or "rect" for a rectangle
-#' @param shape the grid shape, either "suprahex" for a supra-hexagonal grid or "sheet" for a hexagonal/rectangle sheet
+#' @param shape the grid shape, either "suprahex" for the suprahex itself, or its variants (including "triangle" for the triangle-shaped variant, "diamond" for the diamond-shaped variant, "hourglass" for the hourglass-shaped variant, "trefoil" for the trefoil-shaped variant, "ladder" for the ladder-shaped variant, and "butterfly" for the butterfly-shaped variant)
 #' @param init an initialisation method. It can be one of "uniform", "sample" and "linear" initialisation methods
 #' @param algorithm the training algorithm. It can be one of "sequential" and "batch" algorithm. By default, it uses 'batch' algorithm purely because of its fast computations (probably also without the compromise of accuracy). However, it is highly recommended not to use 'batch' algorithm if the input data contain lots of zeros; it is because matrix multiplication used in the 'batch' algorithm can be problematic in this context. If much computation resource is at hand, it is alwasy safe to use the 'sequential' algorithm  
 #' @param alphaType the alpha type. It can be one of "invert", "linear" and "power" alpha types
@@ -23,6 +23,7 @@
 #'  \item{\code{lattice}: the grid lattice}
 #'  \item{\code{shape}: the grid shape}
 #'  \item{\code{coord}: a matrix of nHex x 2, with rows corresponding to the coordinates of all hexagons/rectangles in the 2D map grid}
+#'  \item{\code{polygon}: a data frame of three columns ('x','y','id') storing polygon location per hexagon in the 2D map grid}
 #'  \item{\code{init}: an initialisation method}
 #'  \item{\code{neighKernel}: the training neighborhood kernel}
 #'  \item{\code{codebook}: a codebook matrix of nHex x ncol(data), with rows corresponding to prototype vectors in input high-dimensional space}
@@ -41,7 +42,7 @@
 #' @seealso \code{\link{sTopology}}, \code{\link{sInitial}}, \code{\link{sTrainology}}, \code{\link{sTrainSeq}}, \code{\link{sTrainBatch}}, \code{\link{sBMH}}, \code{\link{visHexMulComp}}
 #' @include sPipeline.r
 #' @references
-#' Hai Fang and Julian Gough. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. \emph{Biochemical and Biophysical Research Communications}, 443(1), 285-289. DOI: \url{http://dx.doi.org/10.1016/j.bbrc.2013.11.103}, PMID: \url{http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102}
+#' Hai Fang and Julian Gough. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. \emph{Biochemical and Biophysical Research Communications}, 443(1), 285-289.
 #' @examples
 #' # 1) generate an iid normal random matrix of 100x10 
 #' data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10) 
@@ -61,8 +62,12 @@
 #' 
 #' # 3) visualise multiple component planes of a supra-hexagonal grid
 #' visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=0.8))
+#' 
+#' # 4) get trained using by default setup but using the shape "butterfly"
+#' sMap <- sPipeline(data=data, shape="trefoil", algorithm=c("batch","sequential")[2])
+#' visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=0.8))
 
-sPipeline <- function(data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("hexa","rect"), shape=c("suprahex","sheet"), init=c("linear","uniform","sample"), algorithm=c("batch","sequential"), alphaType=c("invert","linear","power"), neighKernel=c("gaussian","bubble","cutgaussian","ep","gamma"), finetuneSustain=F, verbose=T)
+sPipeline <- function(data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("hexa","rect"), shape=c("suprahex","sheet","triangle", "diamond", "hourglass", "trefoil", "ladder", "butterfly"), init=c("linear","uniform","sample"), algorithm=c("batch","sequential"), alphaType=c("invert","linear","power"), neighKernel=c("gaussian","bubble","cutgaussian","ep","gamma"), finetuneSustain=F, verbose=T)
 {
 
     startT <- Sys.time()
@@ -181,12 +186,18 @@ sPipeline <- function(data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("hex
     ## for hits
     hits <- sapply(seq(1,sM_final$nHex), function(x) sum(response$bmh==x))
     
+    ##################
+    ## for df_polygons
+    df_polygon <- sHexPolygon(sM_final, area.size=1)
+    ##################
+        
     sMap <- list(  nHex = sM_final$nHex, 
                    xdim = sM_final$xdim, 
                    ydim = sM_final$ydim,
                    lattice = sM_final$lattice,
                    shape = sM_final$shape,
                    coord = sM_final$coord,
+                   polygon = df_polygon,
                    init = sM_final$init,
                    neighKernel = sM_final$neighKernel,
                    codebook = sM_final$codebook,

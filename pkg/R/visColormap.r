@@ -29,7 +29,7 @@
 #' # 2) use the return function "palette.name" to generate 10 colors spanning "bwr"
 #' palette.name(10)
 
-visColormap <- function(colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"))
+visColormap <- function(colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb","ggplot2"))
 {
     if(length(colormap)>1){
         colormap <- colormap[1]
@@ -38,35 +38,39 @@ visColormap <- function(colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","
     if(length(grep("-", colormap)) >= 1){
         palette.name <- colorRampPalette(unlist(strsplit(colormap,"-")))
     }else{
-        #colormap <- match.arg(colormap, several.ok=T)
-        colormap <- match.arg(colormap)
-        
-        jet.colors <-colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
-        bwr.colors<-colorRampPalette(c("blue", "white", "red"))
-        gbr.colors<-colorRampPalette(c("green", "black", "red"))
-        wyr.colors<-colorRampPalette(c("white", "yellow", "red"))
-        br.colors<-colorRampPalette(c("black", "red"))
-        yr.colors<-colorRampPalette(c("yellow", "red"))
-        rainbow.colors <- colorRampPalette(c("red", "yellow", "green", "cyan", "blue", "magenta"))
-        wb.colors <- colorRampPalette(c("white", "black"))
-    
-        if(colormap == "jet"){
-            palette.name <- jet.colors
-        }else if(colormap == "bwr"){
-            palette.name <- bwr.colors
-        }else if(colormap == "gbr"){
-            palette.name <- gbr.colors
-        }else if(colormap == "wyr"){
-            palette.name <- wyr.colors
-        }else if(colormap == "br"){
-            palette.name <- br.colors
-        }else if(colormap == "yr"){
-            palette.name <- yr.colors
-        }else if(colormap == "rainbow"){
-            palette.name <- rainbow.colors
-        }else if(colormap == "wb"){
-            palette.name <- wb.colors
-        }
+    	if(colormap=='ggplot2'){
+    		palette.name <- scales::hue_pal(h=c(0,360)+15, c=100, l=65, h.start=0, direction=1)
+    	}else{
+			#colormap <- match.arg(colormap, several.ok=T)
+			colormap <- match.arg(colormap)
+		
+			jet.colors <-colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
+			bwr.colors<-colorRampPalette(c("blue", "white", "red"))
+			gbr.colors<-colorRampPalette(c("green", "black", "red"))
+			wyr.colors<-colorRampPalette(c("white", "yellow", "red"))
+			br.colors<-colorRampPalette(c("black", "red"))
+			yr.colors<-colorRampPalette(c("yellow", "red"))
+			rainbow.colors <- colorRampPalette(c("red", "yellow", "green", "cyan", "blue", "magenta"))
+			wb.colors <- colorRampPalette(c("white", "black"))
+	
+			if(colormap == "jet"){
+				palette.name <- jet.colors
+			}else if(colormap == "bwr"){
+				palette.name <- bwr.colors
+			}else if(colormap == "gbr"){
+				palette.name <- gbr.colors
+			}else if(colormap == "wyr"){
+				palette.name <- wyr.colors
+			}else if(colormap == "br"){
+				palette.name <- br.colors
+			}else if(colormap == "yr"){
+				palette.name <- yr.colors
+			}else if(colormap == "rainbow"){
+				palette.name <- rainbow.colors
+			}else if(colormap == "wb"){
+				palette.name <- wb.colors
+			}
+		}
     }
 
     invisible(palette.name)

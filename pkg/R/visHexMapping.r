@@ -43,15 +43,15 @@
 #'
 #' # 3) visualise supported mapping items within a supra-hexagonal grid
 #' # 3a) for indexes of hexagons
-#' visHexMapping(sMap,mappingType="indexes")
+#' visHexMapping(sMap, mappingType="indexes", fill.color="transparent")
 #' # 3b) for the number of input data vectors hitting the hexagons
-#' visHexMapping(sMap,mappingType="hits")
+#' visHexMapping(sMap, mappingType="hits", fill.color=NULL)
 #' # 3c) for distance (in high-dimensional input space) to neighbors (defined in 2D output space)
-#' visHexMapping(sMap,mappingType="dist")
+#' visHexMapping(sMap, mappingType="dist")
 #' # 3d) for clusters/bases partitioned from the sMap
-#' visHexMapping(sMap,mappingType="bases")
+#' visHexMapping(sMap, mappingType="bases")
 
-visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist","bases","customized"), labels=NULL, height=7, margin=rep(0.1,4), area.size=1, gp=grid::gpar(cex=0.7, font=1, col="black"),  border.color=NULL, fill.color="transparent", lty=1, lwd=1, lineend="round", linejoin="round", clip=c("on","inherit","off"), newpage=T)
+visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist","bases","customized"), labels=NULL, height=7, margin=rep(0.1,4), area.size=1, gp=grid::gpar(cex=0.7,font=1,col="black"),  border.color=NULL, fill.color="transparent", lty=1, lwd=1, lineend="round", linejoin="round", clip=c("on","inherit","off"), newpage=T)
 {
     
     mappingType <- match.arg(mappingType)
@@ -86,32 +86,44 @@ visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist
     xy$x <- dat$x
     xy$y <- dat$y
     
+    
+    ##############
+    shape <- sObj$shape
+	if(shape != "sheet"){
+		sHex <- sHexGridVariant(r=NULL, nHex=nHex, shape=shape)
+		stepCentroid <- sHex$stepCentroid
+        myColor <- c("#FFFFFF", "#AAAAAA")
+        my.fill.color <- myColor[stepCentroid%%2 + 1]
+    }
+    ##############
+    
     if(mappingType == "indexes"){
-        shape <- sObj$shape
         if(shape == "sheet"){
             labels <- 1:nrow(dat)
-        }else if(shape=="suprahex"){
-            r <- (xdim+1)/2
-            nHex <- 1+6*r*(r-1)/2
-            stepCentroid <- vector()
-            stepCentroid[1] <- 1
-            stepCentroid[2:nHex] <- unlist(sapply(2:r, function(x) (c( (1+6*x*(x-1)/2-6*(x-1)+1) : (1+6*x*(x-1)/2) )>=1)*x ))
-            myColor <- c("#FFFFFF", "#888888")
-            fill.color <- myColor[stepCentroid%%2 + 1]
+        }else if(shape!="suprahex"){
+			if(is.null(border.color)){
+				border.color <- "#888888"
+			}
+			if(is.null(fill.color)){
+				fill.color <- my.fill.color
+			}
             labels <- 1:nrow(dat)
         }
+        
     }else if(mappingType == "hits"){
         if (class(sObj) != "sMap"){
             stop("The funciton with type 'hits' must apply to 'sMap' object.\n")
         }
         labels <- sObj$hits
-        
         if(is.null(area.size)){
 			area.size <- log2(labels)
 			area.size[!is.finite(area.size)] <- 0
 		}
         if(is.null(border.color)){
         	border.color <- "#888888"
+        }
+        if(is.null(fill.color)){
+        	fill.color <- my.fill.color
         }
         
     }else if(mappingType == "dist" | mappingType == "antidist"){
@@ -127,6 +139,9 @@ visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist
         area.size[!is.finite(area.size)] <- 0
         if(is.null(border.color)){
         	border.color <- "#888888"
+        }
+        if(is.null(fill.color)){
+        	fill.color <- my.fill.color
         }
         
     }else if(mappingType == "bases"){
@@ -152,8 +167,14 @@ visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist
         
     }else if(mappingType == "customized"){
         if(is.null(labels) | length(labels) != nHex){
-            stop("The input for customized labels are wrong, please check the manual.\n")
+            #stop("The customised labels are not provided, please check the manual.\n")
         }
+        if(is.null(border.color)){
+        	border.color <- "#888888"
+        }
+		if(is.null(fill.color)){
+			fill.color <- my.fill.color
+		}
         
     }
     

@@ -106,7 +106,7 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             if(shape == "sheet"){
                 radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
                 radiusFinal <- max(1,radiusInitial/4)
-            }else if(shape == "suprahex"){
+            }else if(shape != "sheet"){
                 r <- (xdim+1)/2
                 radiusInitial <- max(1,ceiling(r/2))
                 radiusFinal <- max(1,radiusInitial/4)
@@ -121,7 +121,7 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             if(shape == "sheet"){
                 radiusInitial <- max(1,ceiling(max(xdim,ydim)/32)) # i.e., radiusFinal at rough stage
                 radiusFinal <- 1
-            }else if(shape == "suprahex"){
+            }else if(shape != "sheet"){
                 r <- (xdim+1)/2
                 radiusInitial <- max(1,ceiling(r/2))
                 radiusInitial <- max(1,radiusInitial/4) # i.e., radiusFinal at rough stage
@@ -137,7 +137,7 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             if(shape == "sheet"){
                 radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
                 radiusFinal <- 1
-            }else if(shape == "suprahex"){
+            }else if(shape != "sheet"){
                 r <- (xdim+1)/2
                 radiusInitial <- max(1,ceiling(r/2))
                 radiusFinal <- 1
@@ -154,7 +154,7 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             if(shape == "sheet"){
                 radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
                 radiusFinal <- max(1,radiusInitial/4)
-            }else if(shape == "suprahex"){
+            }else if(shape != "sheet"){
                 r <- (xdim+1)/2
                 radiusInitial <- max(1,ceiling(r/2))
                 radiusFinal <- max(1,radiusInitial/4)
@@ -169,7 +169,7 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             if(shape == "sheet"){
                 radiusInitial <- max(1,ceiling(max(xdim,ydim)/32)) # i.e., radiusFinal at rough stage
                 radiusFinal <- 1
-            }else if(shape == "suprahex"){
+            }else if(shape != "sheet"){
                 r <- (xdim+1)/2
                 radiusInitial <- max(1,ceiling(r/2))
                 radiusInitial <- max(1,radiusInitial/4) # i.e., radiusFinal at rough stage
@@ -185,7 +185,7 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             if(shape == "sheet"){
                 radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
                 radiusFinal <- 1
-            }else if(shape == "suprahex"){
+            }else if(shape != "sheet"){
                 r <- (xdim+1)/2
                 radiusInitial <- max(1,ceiling(r/2))
                 radiusFinal <- 1

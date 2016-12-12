@@ -28,7 +28,7 @@
 #' colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 #'
 #' # 2) sMap resulted from using by default setup
-#' sMap <- sPipeline(data=data)
+#' sMap <- sPipeline(data=data, shape=c("suprahex","trefoil")[2])
 #'
 #' # 3) reorder component planes
 #' sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="none")

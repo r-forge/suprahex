@@ -7,7 +7,7 @@
 #' @param ydim an integer specifying y-dimension of the grid
 #' @param nHex the number of hexagons/rectangles in the grid
 #' @param lattice the grid lattice, either "hexa" for a hexagon or "rect" for a rectangle
-#' @param shape the grid shape, either "suprahex" for a supra-hexagonal grid or "sheet" for a hexagonal/rectangle sheet
+#' @param shape the grid shape, either "suprahex" for a supra-hexagonal grid or "sheet" for a hexagonal/rectangle sheet. Also supported are suprahex's variants (including "triangle" for the triangle-shaped variant, "diamond" for the diamond-shaped variant, "hourglass" for the hourglass-shaped variant, "trefoil" for the trefoil-shaped variant, "ladder" for the ladder-shaped variant, and "butterfly" for the butterfly-shaped variant)
 #' @return 
 #' an object of class "sTopol", a list with following components:
 #' \itemize{
@@ -57,18 +57,27 @@
 #' data <- matrix(rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10) 
 #' # 2) from this input matrix, determine nHex=5*sqrt(nrow(data))=50, 
 #' # but it returns nHex=61, via "sHexGrid(nHex=50)", to make sure a supra-hexagonal grid
-#' sTopol <- sTopology(data=data, lattice="hexa", shape="suprahex") 
-#' 
-#' # visualise a supre-hexagonal grid
+#' sTopol <- sTopology(data=data, lattice="hexa", shape="suprahex")
+#' # sTopol <- sTopology(data=data, lattice="hexa", shape="trefoil")
+#'
+#' # do visualisation
 #' visHexMapping(sTopol,mappingType="indexes")
+#'
+#' \dontrun{
+#' library(ggplot2)
+#' # another way to do visualisation
+#' df_polygon <- sHexPolygon(sTopol)
+#' df_coord <- data.frame(sTopol$coord, index=1:nrow(sTopol$coord))
+#' gp <- ggplot(data=df_polygon, aes(x,y,group=index)) + geom_polygon(aes(fill=factor(stepCentroid%%2))) + coord_fixed(ratio=1) + theme_void() + theme(legend.position="none") + geom_text(data=df_coord, aes(x,y,label=index), color="white")
+#' }
 
-sTopology <- function (data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("hexa","rect"), shape=c("suprahex", "sheet"))
+sTopology <- function (data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("hexa","rect"), shape=c("suprahex", "sheet", "triangle", "diamond", "hourglass", "trefoil", "ladder", "butterfly"))
 {
     lattice <- match.arg(lattice)
     shape <- match.arg(shape)
     
-    if (lattice == "rect" & shape == "suprahex"){
-        stop("The suprahex shape grid only allows for hexagonal lattice.\n")
+    if (lattice == "rect" & shape != "sheet"){
+        stop("The suprahex (or its variants) shape grid only allows for hexagonal lattice.\n")
     }
     
     if (is.vector(data)){
@@ -90,7 +99,7 @@ sTopology <- function (data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("he
         
         if(!is.null(nHex)){
 
-            if(shape == "suprahex"){
+            if(shape != "sheet"){
                 nHex <- nHex
             }else if(shape == "sheet"){
             
@@ -156,23 +165,67 @@ sTopology <- function (data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("he
             coord[, 2L] <- sqrt(0.75) * coord[, 2L]        
         }
     
-    }else if(shape == "suprahex"){
+    }else{
         
-        r <- NULL
-        if(!is.null(xdim) & !is.null(ydim)){
-            r <- ceiling((min(xdim, ydim)+1)/2)
-        }else if(is.null(xdim) & !is.null(ydim)){
-            r <- ceiling((ydim+1)/2)
-        }else if(is.null(ydim) & !is.null(xdim)){
-            r <- ceiling((xdim+1)/2)
+        if(shape=="suprahex" | shape=="trefoil" | shape=="butterfly"){
+			r <- NULL
+			if(!is.null(xdim) & !is.null(ydim)){
+				r <- ceiling((min(xdim, ydim)+1)/2)
+			}else if(is.null(xdim) & !is.null(ydim)){
+				r <- ceiling((ydim+1)/2)
+			}else if(is.null(ydim) & !is.null(xdim)){
+				r <- ceiling((xdim+1)/2)
+			}
+        
+        }else if(shape=="diamond" | shape=="hourglass"){
+			r <- NULL
+			if(!is.null(xdim) & !is.null(ydim)){
+				r <- ceiling((min(xdim*2-1, ydim)+1)/2)
+			}else if(is.null(xdim) & !is.null(ydim)){
+				r <- ceiling((ydim+1)/2)
+			}else if(is.null(ydim) & !is.null(xdim)){
+				r <- ceiling(xdim)
+			}
+			
+        }else if(shape=="ladder"){
+			r <- NULL
+			if(!is.null(xdim) & !is.null(ydim)){
+				r <- ceiling((min(xdim, ydim*2-1)+1)/2)
+			}else if(is.null(xdim) & !is.null(ydim)){
+				r <- ceiling(ydim)
+			}else if(is.null(ydim) & !is.null(xdim)){
+				r <- ceiling((xdim+1)/2)
+			}
+			
+        }else if(shape=="triangle"){
+			r <- NULL
+			if(!is.null(xdim) & !is.null(ydim)){
+				r <- ceiling(min(xdim, ydim))
+			}else if(is.null(xdim) & !is.null(ydim)){
+				r <- ceiling(ydim)
+			}else if(is.null(ydim) & !is.null(xdim)){
+				r <- ceiling(xdim)
+			}
+			
         }
         
-        res <- sHexGrid(r=r, nHex=nHex)
-        
-        ## relations between xdim (or ydim) and r: xdim <- 2*r-1
-        xdim <- ydim <- 2*res$r-1
-        nHex <- res$nHex
-        coord <-res$coord
+        sHex <- sHexGridVariant(r=r, nHex=nHex, shape=shape)
+        nHex <- sHex$nHex
+        coord <- sHex$coord
+
+        ## relations between xdim (or ydim) and r
+        r <- sHex$r
+        if(shape=="suprahex" | shape=="trefoil" | shape=="butterfly"){
+			xdim <- ydim <- 2*r-1
+        }else if(shape=="diamond" | shape=="hourglass"){
+			xdim <- r
+			ydim <- 2*r-1
+        }else if(shape=="ladder"){
+			xdim <- 2*r-1
+			ydim <- r
+        }else if(shape=="triangle"){
+			xdim <- ydim <- r
+        }
         
     }
 

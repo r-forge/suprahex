@@ -1,8 +1,8 @@
 Package: supraHex
 Type: Package
-Title: A Supra-Hexagonal Map for Analysing Tabular Omics Data
-Version: 1.11.1
-Date: 2016-6-25
+Title: supraHex: a supra-hexagonal map for analysing tabular omics data
+Version: 1.13.1
+Date: 2016-12-12
 Author: Hai Fang and Julian Gough
 Maintainer: Hai Fang <hfang@well.ox.ac.uk>
 Depends: R (>= 3.0.2), hexbin
@@ -47,6 +47,8 @@ Collate:
     visTreeBSclust.r
     visDmatHeatmap.r
     visHexBarplot.r
+    sHexPolygon.r
+    sHexGridVariant.r
 License: GPL-2
-biocViews: Bioinformatics, Clustering, Visualization, GeneExpression
+biocViews: Software, Clustering, Visualization, GeneExpression
 

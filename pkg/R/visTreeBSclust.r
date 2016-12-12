@@ -1,6 +1,6 @@
 #' Function to obtain clusters from a bootstrapped tree
 #'
-#' \code{visTreeBSclust} is supposed to otbain clusters from a bootstrapped tree. 
+#' \code{visTreeBSclust} is supposed to obtain clusters from a bootstrapped tree. 
 #'
 #' @param tree_bs an "phylo" object storing a bootstrapped tree
 #' @param bootstrap.cutoff an integer specifying bootstrap-derived clusters

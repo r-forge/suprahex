@@ -6,9 +6,9 @@ citEntry(entry="Article",
     number = "1",
     year = "2014", 
     pages = "285-289",
-    url = "http://dx.doi.org/10.1016/j.bbrc.2013.11.103",
+    url = "http://www.sciencedirect.com/science/article/pii/S0006291X13020056",
     textVersion = paste(
                 "Fang H, Gough J.",
                 "supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map.",
-                "Biochemical and Biophysical Research Communications, 443(1):285-289, 2014. http://dx.doi.org/10.1016/j.bbrc.2013.11.103")
+                "Biochemical and Biophysical Research Communications, 443(1):285-289, 2014.")
 )

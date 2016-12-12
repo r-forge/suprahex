@@ -4,6 +4,7 @@
 #'
 #' @param sObj an object of class "sMap" or "sTopol" or "sInit"
 #' @param which.hexagon the integer specifying which hexagon to display. If NULL, all hexagons will be visualised
+#' @param which.hexagon.highlight an integer vector specifying which hexagons are labelled. If NULL, all hexagons will be labelled
 #' @param height a numeric value specifying the height of device
 #' @param margin margins as units of length 4 or 1
 #' @param colormap short name for the predifined colormap, and "customized" for custom input (see the next 'customized.color'). The predifined colormap can be one of "jet" (jet colormap), "bwr" (blue-white-red colormap), "gbr" (green-black-red colormap), "wyr" (white-yellow-red colormap), "br" (black-red colormap), "yr" (yellow-red colormap), "wb" (white-black colormap), and "rainbow" (rainbow colormap, that is, red-yellow-green-cyan-blue-magenta). Alternatively, any hyphen-separated HTML color names, e.g. "blue-black-yellow", "royalblue-white-sandybrown", "darkgreen-white-darkviolet". A list of standard color names can be found in \url{http://html-color-codes.info/color-names}
@@ -35,7 +36,7 @@
 #' # 3b) only for the first hexagon
 #' visHexBarplot(sMap, which.hexagon=1)
 
-visHexBarplot <- function (sObj, which.hexagon=NULL, height=7, margin=rep(0.1,4), colormap=c("customized","bwr","jet","gbr","wyr","br","yr","rainbow","wb"), customized.color="red", zeropattern.color="gray", gp=grid::gpar(cex=0.7,font=1,col="black"), bar.text.cex=0.8, bar.text.srt=90, newpage=T)
+visHexBarplot <- function (sObj, which.hexagon=NULL, which.hexagon.highlight=NULL, height=7, margin=rep(0.1,4), colormap=c("customized","bwr","jet","gbr","wyr","br","yr","rainbow","wb"), customized.color="red", zeropattern.color="gray", gp=grid::gpar(cex=0.7,font=1,col="black"), bar.text.cex=0.8, bar.text.srt=90, newpage=T)
 {
     
     if(length(colormap)>1){
@@ -65,8 +66,12 @@ visHexBarplot <- function (sObj, which.hexagon=NULL, height=7, margin=rep(0.1,4)
     }
     
     if(is.null(which.hexagon)){
-		visHexPattern(sObj, plotType="bars", colormap=colormap, alterntive.color=c("transparent","transparent"), legend=F, newpage=F)
+		visHexPattern(sObj, plotType="bars", colormap=colormap, customized.color=customized.color, alterntive.color=c("transparent","transparent"), legend=F, newpage=F)
 		labels <- paste(sObj$hits, '@', 1:length(sObj$hits), sep='')
+		if(!is.null(which.hexagon.highlight)){
+			ind <- match(1:length(sObj$hits), which.hexagon.highlight)
+			labels[is.na(ind)] <- ''
+		}
 		visHexMapping(sObj, mappingType="customized", labels=labels, border.color="transparent", gp=gp, newpage=F)
     }else{
 
@@ -74,7 +79,7 @@ visHexBarplot <- function (sObj, which.hexagon=NULL, height=7, margin=rep(0.1,4)
 		xlim <- c(0, max(dat$x) + min(dat$x))
 		ylim <- c(max(dat$y) + min(dat$y), 0)
 		MASS::eqscplot(xlim, ylim, axes=F, type="n")
-
+		
         ncomp <- length(pattern)
 
         ## define the pattern colors

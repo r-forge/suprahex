@@ -39,7 +39,7 @@ sHexDist <- function(sObj)
     shape <- sObj$shape
     lattice <- sObj$lattice
     
-    if(shape == "sheet" | shape == "suprahex"){
+    if(shape == "sheet" | shape != "sheet"){
         if(lattice == "hexa"){
             dist <- as.matrix(stats::dist(coord))
         }else if(lattice == "rect"){
