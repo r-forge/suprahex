@@ -86,6 +86,7 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
     dlen <- nrow(data) ## dlen is the number of rows of input data
     xdim <- sMap$xdim
     ydim <- sMap$ydim
+    r <- sMap$r
     shape <- sMap$shape
     nHex <- sMap$nHex
     
@@ -104,10 +105,10 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             alphaInitial <- 0.5
             
             if(shape == "sheet"){
-                radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
+                #radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
+                radiusInitial <- max(1,ceiling(r/4))
                 radiusFinal <- max(1,radiusInitial/4)
             }else if(shape != "sheet"){
-                r <- (xdim+1)/2
                 radiusInitial <- max(1,ceiling(r/2))
                 radiusFinal <- max(1,radiusInitial/4)
             }
@@ -119,12 +120,11 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             alphaInitial <- 0.05
             
             if(shape == "sheet"){
-                radiusInitial <- max(1,ceiling(max(xdim,ydim)/32)) # i.e., radiusFinal at rough stage
+                #radiusInitial <- max(1,ceiling(max(xdim,ydim)/32)) # i.e., radiusFinal at rough stage
+                radiusInitial <- max(1,ceiling(r/16)) # i.e., radiusFinal at rough stage
                 radiusFinal <- 1
             }else if(shape != "sheet"){
-                r <- (xdim+1)/2
-                radiusInitial <- max(1,ceiling(r/2))
-                radiusInitial <- max(1,radiusInitial/4) # i.e., radiusFinal at rough stage
+                radiusInitial <- max(1,ceiling(r/8)) # i.e., radiusFinal at rough stage 
                 radiusFinal <- 1
             }
             
@@ -135,10 +135,10 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             alphaInitial <- 0.5
             
             if(shape == "sheet"){
-                radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
+                #radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
+                radiusInitial <- max(1,ceiling(r/4))
                 radiusFinal <- 1
             }else if(shape != "sheet"){
-                r <- (xdim+1)/2
                 radiusInitial <- max(1,ceiling(r/2))
                 radiusFinal <- 1
             }
@@ -152,10 +152,10 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             alphaInitial <- NA
             
             if(shape == "sheet"){
-                radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
+                #radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
+                radiusInitial <- max(1,ceiling(r/4))
                 radiusFinal <- max(1,radiusInitial/4)
             }else if(shape != "sheet"){
-                r <- (xdim+1)/2
                 radiusInitial <- max(1,ceiling(r/2))
                 radiusFinal <- max(1,radiusInitial/4)
             }
@@ -167,12 +167,11 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             alphaInitial <- NA
             
             if(shape == "sheet"){
-                radiusInitial <- max(1,ceiling(max(xdim,ydim)/32)) # i.e., radiusFinal at rough stage
+                #radiusInitial <- max(1,ceiling(max(xdim,ydim)/32)) # i.e., radiusFinal at rough stage
+                radiusInitial <- max(1,ceiling(r/16)) # i.e., radiusFinal at rough stage
                 radiusFinal <- 1
             }else if(shape != "sheet"){
-                r <- (xdim+1)/2
-                radiusInitial <- max(1,ceiling(r/2))
-                radiusInitial <- max(1,radiusInitial/4) # i.e., radiusFinal at rough stage
+                radiusInitial <- max(1,ceiling(r/8)) # i.e., radiusFinal at rough stage 
                 radiusFinal <- 1
             }
             
@@ -183,10 +182,10 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             alphaInitial <- NA
             
             if(shape == "sheet"){
-                radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
+                #radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
+                radiusInitial <- max(1,ceiling(r/4))
                 radiusFinal <- 1
             }else if(shape != "sheet"){
-                r <- (xdim+1)/2
                 radiusInitial <- max(1,ceiling(r/2))
                 radiusFinal <- 1
             }

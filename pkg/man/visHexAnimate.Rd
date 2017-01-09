@@ -136,13 +136,13 @@ please get additional information from: \cr\code{identify -list format}
 }
 }
 \examples{
-\dontrun{
 # 1) generate data with an iid matrix of 1000 x 3
 data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3),
 matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3),
 matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
 colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 
+\dontrun{
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 

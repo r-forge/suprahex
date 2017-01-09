@@ -29,7 +29,7 @@
 #' # 2) use the return function "palette.name" to generate 10 colors spanning "bwr"
 #' palette.name(10)
 
-visColormap <- function(colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb","ggplot2"))
+visColormap <- function(colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"))
 {
     if(length(colormap)>1){
         colormap <- colormap[1]
@@ -38,9 +38,7 @@ visColormap <- function(colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","
     if(length(grep("-", colormap)) >= 1){
         palette.name <- colorRampPalette(unlist(strsplit(colormap,"-")))
     }else{
-    	if(colormap=='ggplot2'){
-    		palette.name <- scales::hue_pal(h=c(0,360)+15, c=100, l=65, h.start=0, direction=1)
-    	}else{
+    	if(TRUE){
 			#colormap <- match.arg(colormap, several.ok=T)
 			colormap <- match.arg(colormap)
 		

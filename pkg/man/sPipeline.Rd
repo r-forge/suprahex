@@ -6,11 +6,12 @@
 \usage{
 sPipeline(data = NULL, xdim = NULL, ydim = NULL, nHex = NULL,
 lattice = c("hexa", "rect"), shape = c("suprahex", "sheet", "triangle",
-"diamond", "hourglass", "trefoil", "ladder", "butterfly"),
+"diamond", "hourglass", "trefoil", "ladder", "butterfly", "ring",
+"bridge"),
 init = c("linear", "uniform", "sample"), algorithm = c("batch",
 "sequential"), alphaType = c("invert", "linear", "power"),
 neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma"),
-finetuneSustain = F, verbose = T)
+finetuneSustain = FALSE, verbose = TRUE)
 }
 \arguments{
 \item{data}{a data frame or matrix of input data}
@@ -24,12 +25,14 @@ finetuneSustain = F, verbose = T)
 \item{lattice}{the grid lattice, either "hexa" for a hexagon or "rect"
 for a rectangle}
 
-\item{shape}{the grid shape, either "suprahex" for the suprahex itself,
-or its variants (including "triangle" for the triangle-shaped variant,
-"diamond" for the diamond-shaped variant, "hourglass" for the
+\item{shape}{the grid shape, either "suprahex" for a supra-hexagonal
+grid or "sheet" for a hexagonal/rectangle sheet. Also supported are
+suprahex's variants (including "triangle" for the triangle-shaped
+variant, "diamond" for the diamond-shaped variant, "hourglass" for the
 hourglass-shaped variant, "trefoil" for the trefoil-shaped variant,
-"ladder" for the ladder-shaped variant, and "butterfly" for the
-butterfly-shaped variant)}
+"ladder" for the ladder-shaped variant, "butterfly" for the
+butterfly-shaped variant, "ring" for the ring-shaped variant, and
+"bridge" for the bridge-shaped variant)}
 
 \item{init}{an initialisation method. It can be one of "uniform",
 "sample" and "linear" initialisation methods}
@@ -63,6 +66,7 @@ an object of class "sMap", a list with following components:
 \item{\code{nHex}: the total number of hexagons/rectanges in the grid}
 \item{\code{xdim}: x-dimension of the grid}
 \item{\code{ydim}: y-dimension of the grid}
+\item{\code{r}: the hypothetical radius of the grid}
 \item{\code{lattice}: the grid lattice}
 \item{\code{shape}: the grid shape}
 \item{\code{coord}: a matrix of nHex x 2, with rows corresponding to

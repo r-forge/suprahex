@@ -6,7 +6,8 @@
 \usage{
 sTopology(data = NULL, xdim = NULL, ydim = NULL, nHex = NULL,
 lattice = c("hexa", "rect"), shape = c("suprahex", "sheet", "triangle",
-"diamond", "hourglass", "trefoil", "ladder", "butterfly"))
+"diamond", "hourglass", "trefoil", "ladder", "butterfly", "ring",
+"bridge"))
 }
 \arguments{
 \item{data}{a data frame or matrix of input data}
@@ -25,8 +26,9 @@ grid or "sheet" for a hexagonal/rectangle sheet. Also supported are
 suprahex's variants (including "triangle" for the triangle-shaped
 variant, "diamond" for the diamond-shaped variant, "hourglass" for the
 hourglass-shaped variant, "trefoil" for the trefoil-shaped variant,
-"ladder" for the ladder-shaped variant, and "butterfly" for the
-butterfly-shaped variant)}
+"ladder" for the ladder-shaped variant, "butterfly" for the
+butterfly-shaped variant, "ring" for the ring-shaped variant, and
+"bridge" for the bridge-shaped variant)}
 }
 \value{
 an object of class "sTopol", a list with following components:
@@ -36,6 +38,7 @@ It is not always the same as the input nHex (if any); see "Note" below
 for the explaination}
 \item{\code{xdim}: x-dimension of the grid}
 \item{\code{ydim}: y-dimension of the grid}
+\item{\code{r}: the hypothetical radius of the grid}
 \item{\code{lattice}: the grid lattice}
 \item{\code{shape}: the grid shape}
 \item{\code{coord}: a matrix of nHex x 2, with each row corresponding

@@ -12,7 +12,7 @@ area.size = 1, gp = grid::gpar(cex = 0.7, font = 1, col = "black"),
 border.color = NULL, fill.color = "transparent", lty = 1, lwd = 1,
 lineend = "round", linejoin = "round", clip = c("on", "inherit",
 "off"),
-newpage = T)
+newpage = TRUE)
 }
 \arguments{
 \item{sObj}{an object of class "sMap" or "sInit" or "sTopol"}

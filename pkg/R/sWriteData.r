@@ -36,7 +36,7 @@
 #' # 5) write data's BMH and cluster bases
 #' output <- sWriteData(sMap=sMap, data=data, sBase=sBase, filename="sData_base_output.txt")
 
-sWriteData <- function(sMap, data, sBase=NULL, filename=NULL, keep.data=F)
+sWriteData <- function(sMap, data, sBase=NULL, filename=NULL, keep.data=FALSE)
 {
     
     response <- sBMH(sMap=sMap, data=data, which_bmh="best")    
@@ -59,7 +59,7 @@ sWriteData <- function(sMap, data, sBase=NULL, filename=NULL, keep.data=F)
     colnames(bmh) <- "Hexagon_index"
     data_output$bmh <- bmh
     
-    output <- as.data.frame(data_output, stringsAsFactors=F)
+    output <- as.data.frame(data_output, stringsAsFactors=FALSE)
     
     ## The column for "Cluster_base" (if sBase is given)
     if(!is.null(sBase)){
@@ -80,11 +80,11 @@ sWriteData <- function(sMap, data, sBase=NULL, filename=NULL, keep.data=F)
     }
     
     ## convert into a data frame called 'output'
-    #output <- as.data.frame(data_output, stringsAsFactors=F)
+    #output <- as.data.frame(data_output, stringsAsFactors=FALSE)
     
     ## If the filename is given, output data is written into a tab-delimited text file
     if(!is.null(filename)){
-        write.table(output, file=filename, quote=F, row.names=F, sep="\t")
+        write.table(output, file=filename, quote=FALSE, row.names=FALSE, sep="\t")
     }
 
     invisible(output)

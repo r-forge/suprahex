@@ -8,8 +8,8 @@ visTreeBootstrap(data, algorithm = c("nj", "fastme.ols", "fastme.bal"),
 metric = c("euclidean", "pearson", "spearman", "cos", "manhattan",
 "kendall", "mi"), num.bootstrap = 100, consensus = FALSE,
 consensus.majority = 0.5, reroot = "min.bootstrap",
-plot.phylo.arg = NULL, nodelabels.arg = NULL, visTree = T,
-verbose = T, ...)
+plot.phylo.arg = NULL, nodelabels.arg = NULL, visTree = TRUE,
+verbose = TRUE, ...)
 }
 \arguments{
 \item{data}{an input data matrix used to build the tree. The built tree
@@ -47,14 +47,12 @@ the number of internal nodes, the tree will be rerooted at the internal
 node with this index value}
 
 \item{plot.phylo.arg}{a list of main parameters used in the function
-"ape::plot.phylo"
-\url{http://www.inside-r.org/packages/cran/ape/docs/plot.phylo}. See
-'Note' below for details on the parameters}
+"ape::plot.phylo" \url{http://rdrr.io/cran/ape/man/plot.phylo.html}.
+See 'Note' below for details on the parameters}
 
 \item{nodelabels.arg}{a list of main parameters used in the function
-"ape::nodelabels"
-\url{http://www.inside-r.org/packages/cran/ape/docs/nodelabels}. See
-'Note' below for details on the parameters}
+"ape::nodelabels" \url{http://rdrr.io/cran/ape/man/nodelabels.html}.
+See 'Note' below for details on the parameters}
 
 \item{visTree}{logical to indicate whether the bootstrap tree will be
 visualised. By default, it sets to true for display. Note, the

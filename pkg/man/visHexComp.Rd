@@ -7,7 +7,7 @@
 visHexComp(sMap, comp, margin = rep(0.6, 4), area.size = 1,
 colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"),
 ncolors = 40, zlim = c(0, 1), border.color = "transparent",
-newpage = T)
+newpage = TRUE)
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}

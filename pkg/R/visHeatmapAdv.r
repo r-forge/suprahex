@@ -76,7 +76,7 @@
 #' legend(0,0.8, legend=rep_lvs, col=rep_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=FALSE)
 #' legend(0,0.6, legend=sta_lvs, col=sta_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=FALSE)
 
-visHeatmapAdv <- function (data, scale=c("none","row","column"), Rowv=T, Colv=T, dendrogram=c("both","row","column","none"), dist.metric=c("euclidean","pearson","spearman","kendall","manhattan","cos","mi"), linkage.method=c("complete","ward","single","average","mcquitty","median","centroid"), 
+visHeatmapAdv <- function (data, scale=c("none","row","column"), Rowv=TRUE, Colv=TRUE, dendrogram=c("both","row","column","none"), dist.metric=c("euclidean","pearson","spearman","kendall","manhattan","cos","mi"), linkage.method=c("complete","ward","single","average","mcquitty","median","centroid"), 
 colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=64, zlim=NULL, RowSideColors=NULL, row.cutree=NULL, row.colormap=c("jet"), ColSideColors=NULL, column.cutree=NULL, column.colormap=c("jet"), ...)
 {
 
@@ -485,7 +485,7 @@ heatmap.2 <- function(x,
                 if(RowSideBox==TRUE) box(lwd=1,col="black")
         } else {
             par(mar = c(margins[1], 0, 0, 0.5))
-            rsc = t(RowSideColors[,rowInd, drop=F])
+            rsc = t(RowSideColors[,rowInd, drop=FALSE])
             rsc.colors = matrix()
             rsc.names = names(table(rsc))
             rsc.i = 1
@@ -523,7 +523,7 @@ heatmap.2 <- function(x,
             if(ColSideBox==TRUE) box(lwd=1,col="black")
         } else {
             par(mar = c(0.5, 0, 0, margins[2]))
-            csc = ColSideColors[colInd, , drop=F]
+            csc = ColSideColors[colInd, , drop=FALSE]
             csc.colors = matrix()
             csc.names = names(table(csc))
             csc.i = 1

@@ -36,7 +36,7 @@
 #' # 3b) only for the first hexagon
 #' visHexBarplot(sMap, which.hexagon=1)
 
-visHexBarplot <- function (sObj, which.hexagon=NULL, which.hexagon.highlight=NULL, height=7, margin=rep(0.1,4), colormap=c("customized","bwr","jet","gbr","wyr","br","yr","rainbow","wb"), customized.color="red", zeropattern.color="gray", gp=grid::gpar(cex=0.7,font=1,col="black"), bar.text.cex=0.8, bar.text.srt=90, newpage=T)
+visHexBarplot <- function (sObj, which.hexagon=NULL, which.hexagon.highlight=NULL, height=7, margin=rep(0.1,4), colormap=c("customized","bwr","jet","gbr","wyr","br","yr","rainbow","wb"), customized.color="red", zeropattern.color="gray", gp=grid::gpar(cex=0.7,font=1,col="black"), bar.text.cex=0.8, bar.text.srt=90, newpage=TRUE)
 {
     
     if(length(colormap)>1){
@@ -66,19 +66,19 @@ visHexBarplot <- function (sObj, which.hexagon=NULL, which.hexagon.highlight=NUL
     }
     
     if(is.null(which.hexagon)){
-		visHexPattern(sObj, plotType="bars", colormap=colormap, customized.color=customized.color, alterntive.color=c("transparent","transparent"), legend=F, newpage=F)
+		visHexPattern(sObj, plotType="bars", colormap=colormap, customized.color=customized.color, alterntive.color=c("transparent","transparent"), legend=FALSE, newpage=FALSE)
 		labels <- paste(sObj$hits, '@', 1:length(sObj$hits), sep='')
 		if(!is.null(which.hexagon.highlight)){
 			ind <- match(1:length(sObj$hits), which.hexagon.highlight)
 			labels[is.na(ind)] <- ''
 		}
-		visHexMapping(sObj, mappingType="customized", labels=labels, border.color="transparent", gp=gp, newpage=F)
+		visHexMapping(sObj, mappingType="customized", labels=labels, border.color="transparent", gp=gp, newpage=FALSE)
     }else{
 
 		par(mar = margin)
 		xlim <- c(0, max(dat$x) + min(dat$x))
 		ylim <- c(max(dat$y) + min(dat$y), 0)
-		MASS::eqscplot(xlim, ylim, axes=F, type="n")
+		MASS::eqscplot(xlim, ylim, axes=FALSE, type="n")
 		
         ncomp <- length(pattern)
 

@@ -10,7 +10,7 @@ border.color = "transparent", fill.color = NULL, lty = 1, lwd = 1,
 lineend = "round", linejoin = "round", colormap = c("rainbow", "jet",
 "bwr", "gbr", "wyr", "br", "yr", "wb"), clip = c("on", "inherit",
 "off"),
-newpage = T)
+newpage = TRUE)
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}

@@ -38,7 +38,7 @@
 #' title.rotate=0, title.xy=c(0.45, 1), colormap="gbr", ncolors=10, zlim=c(-1,1), 
 #' border.color="transparent")
 
-visCompReorder <-function (sMap, sReorder, margin=rep(0.1,4), height=7, title.rotate=0, title.xy=c(0.45, 1), colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, border.color="transparent", gp=grid::gpar(), newpage=T)
+visCompReorder <-function (sMap, sReorder, margin=rep(0.1,4), height=7, title.rotate=0, title.xy=c(0.45, 1), colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=NULL, border.color="transparent", gp=grid::gpar(), newpage=TRUE)
 {
     
     #colormap <- match.arg(colormap)
@@ -80,7 +80,7 @@ visCompReorder <-function (sMap, sReorder, margin=rep(0.1,4), height=7, title.ro
 
     vpnames <- visVp(height=height, xdim=xdim, ydim=ydim, colNum=colNum, rowNum=rowNum, gp=grid::gpar(col="transparent", fill="transparent"), newpage=newpage)
 
-    ## current.vpTree(all=T)
+    ## current.vpTree(all=TRUE)
     for (k in 1:length(cnames)) {
         
         xy <- coord[k,]
@@ -91,7 +91,7 @@ visCompReorder <-function (sMap, sReorder, margin=rep(0.1,4), height=7, title.ro
         ## current.vpTree(FALSE)
         
         grid::grid.text(cnames[k], x=grid::unit(title.xy[1],"npc"), y=grid::unit(title.xy[2],"npc"), just=c("left","top"), rot=title.rotate, gp=gp)
-        visHexComp(sMap=sMap, comp=codebook[,k], margin=margin, area.size=1, colormap=colormap, ncolors=max(ncolors*5, 100), zlim=zlim, border.color=border.color, newpage=F)
+        visHexComp(sMap=sMap, comp=codebook[,k], margin=margin, area.size=1, colormap=colormap, ncolors=max(ncolors*5, 100), zlim=zlim, border.color=border.color, newpage=FALSE)
     }
     
     ## colorbar

@@ -7,8 +7,8 @@
 #' @param max.fraction the maximum fraction of leaves contained in a cluster
 #' @param min.size the minumum number of leaves contained in a cluster 
 #' @param visTree logical to indicate whether the tree will be visualised. By default, it sets to true for display
-#' @param plot.phylo.arg a list of main parameters used in the function "ape::plot.phylo" \url{http://www.inside-r.org/packages/cran/ape/docs/plot.phylo}. See 'Note' below for details on the parameters
-#' @param nodelabels.arg a list of main parameters used in the function "ape::nodelabels" \url{http://www.inside-r.org/packages/cran/ape/docs/nodelabels}. See 'Note' below for details on the parameters
+#' @param plot.phylo.arg a list of main parameters used in the function "ape::plot.phylo" \url{http://rdrr.io/cran/ape/man/plot.phylo.html}. See 'Note' below for details on the parameters
+#' @param nodelabels.arg a list of main parameters used in the function "ape::nodelabels" \url{http://rdrr.io/cran/ape/man/nodelabels.html}. See 'Note' below for details on the parameters
 #' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to true for display
 #' @param ... additional "ape::plot.phylo" parameters
 #' @return 
@@ -63,7 +63,7 @@
 #' ## hide tip labels and modify the font of internal node labels
 #' res <- visTreeBSclust(tree_bs, bootstrap.cutoff=80, nodelabels.arg=list(cex=0.4), show.tip.label=FALSE)
 
-visTreeBSclust <- function(tree_bs, bootstrap.cutoff=80, max.fraction=1, min.size=3, visTree=T, plot.phylo.arg=NULL, nodelabels.arg=NULL, verbose=T, ...)
+visTreeBSclust <- function(tree_bs, bootstrap.cutoff=80, max.fraction=1, min.size=3, visTree=TRUE, plot.phylo.arg=NULL, nodelabels.arg=NULL, verbose=TRUE, ...)
 {
 
     if (class(tree_bs) != "phylo"){
@@ -85,17 +85,17 @@ visTreeBSclust <- function(tree_bs, bootstrap.cutoff=80, max.fraction=1, min.siz
 	branchNames_highlight <- node_index[(bs>bootstrap.cutoff)]
 
     if(verbose){
-    	message(sprintf("%d internal nodes with >= %d bootstrap value", length(branchNames_highlight), bootstrap.cutoff), appendLF=T)
+    	message(sprintf("%d internal nodes with >= %d bootstrap value", length(branchNames_highlight), bootstrap.cutoff), appendLF=TRUE)
     }
 
 	## most recent common ancestor (MRCA) for each pair of tips and nodes
-    mrca_node <- ape::mrca(tree_bs, full=T)
+    mrca_node <- ape::mrca(tree_bs, full=TRUE)
     ## connectivity linking each ancestor to its all children
     ## matrix of Nnode by (Ntip+Nnode)
     connectivity <- array(0, c(Nnode,Ntip+Nnode))
     for(i in 1:Nnode){
     	node_tmp <- i+Ntip
-        child <- which(mrca_node[node_tmp,]==node_tmp, arr.ind=T)
+        child <- which(mrca_node[node_tmp,]==node_tmp, arr.ind=TRUE)
         connectivity[i,child] <- 1
         # exclude self
         connectivity[i,node_tmp] <- 0
@@ -117,7 +117,7 @@ visTreeBSclust <- function(tree_bs, bootstrap.cutoff=80, max.fraction=1, min.siz
 		}
 		
 		if(verbose){
-			message(sprintf("%d internal nodes each with <= %d leaves", length(branchNames_highlight_filter), as.integer(max.fraction*Ntip)), appendLF=T)
+			message(sprintf("%d internal nodes each with <= %d leaves", length(branchNames_highlight_filter), as.integer(max.fraction*Ntip)), appendLF=TRUE)
 		}
 		
 	}else{
@@ -143,10 +143,10 @@ visTreeBSclust <- function(tree_bs, bootstrap.cutoff=80, max.fraction=1, min.siz
         	}
     	}
 	}
-	branchNames_master <- sort(branchNames_master, decreasing=T)
+	branchNames_master <- sort(branchNames_master, decreasing=TRUE)
 	
 	if(verbose){
-		message(sprintf("%d internal nodes each with >= %d leaves", length(branchNames_master), min.size), appendLF=T)
+		message(sprintf("%d internal nodes each with >= %d leaves", length(branchNames_master), min.size), appendLF=TRUE)
 	}
 
 	## those highlighted not in master (cluster MRCA)
@@ -177,7 +177,7 @@ visTreeBSclust <- function(tree_bs, bootstrap.cutoff=80, max.fraction=1, min.siz
 	res <- output[nrow(output):1,]
 	
 	if(verbose){
-		message(sprintf("As a result, %d clusters are found", length(branchNames_master)), appendLF=T)
+		message(sprintf("As a result, %d clusters are found", length(branchNames_master)), appendLF=TRUE)
 	}
 	
     if(visTree==TRUE){
@@ -209,7 +209,7 @@ visTreeBSclust <- function(tree_bs, bootstrap.cutoff=80, max.fraction=1, min.siz
                     cex = 1,
                     adj = 0,
                     srt = 0,
-                    no.margin = T,
+                    no.margin = TRUE,
                     label.offset = 0,
                     rotate.tree = 0
                     )

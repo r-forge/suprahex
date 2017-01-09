@@ -4,7 +4,7 @@
 \alias{sTrainSeq}
 \title{Function to implement training via sequential algorithm}
 \usage{
-sTrainSeq(sMap, data, sTrain, verbose = T)
+sTrainSeq(sMap, data, sTrain, verbose = TRUE)
 }
 \arguments{
 \item{sMap}{an object of class "sMap" or "sInit"}
@@ -22,6 +22,7 @@ an object of class "sMap", a list with following components:
 \item{\code{nHex}: the total number of hexagons/rectanges in the grid}
 \item{\code{xdim}: x-dimension of the grid}
 \item{\code{ydim}: y-dimension of the grid}
+\item{\code{r}: the hypothetical radius of the grid}
 \item{\code{lattice}: the grid lattice}
 \item{\code{shape}: the grid shape}
 \item{\code{coord}: a matrix of nHex x 2, with each row corresponding

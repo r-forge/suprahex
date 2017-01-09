@@ -5,8 +5,8 @@
 \title{Function to obtain clusters from a bootstrapped tree}
 \usage{
 visTreeBSclust(tree_bs, bootstrap.cutoff = 80, max.fraction = 1,
-min.size = 3, visTree = T, plot.phylo.arg = NULL,
-nodelabels.arg = NULL, verbose = T, ...)
+min.size = 3, visTree = TRUE, plot.phylo.arg = NULL,
+nodelabels.arg = NULL, verbose = TRUE, ...)
 }
 \arguments{
 \item{tree_bs}{an "phylo" object storing a bootstrapped tree}
@@ -23,14 +23,12 @@ cluster}
 By default, it sets to true for display}
 
 \item{plot.phylo.arg}{a list of main parameters used in the function
-"ape::plot.phylo"
-\url{http://www.inside-r.org/packages/cran/ape/docs/plot.phylo}. See
-'Note' below for details on the parameters}
+"ape::plot.phylo" \url{http://rdrr.io/cran/ape/man/plot.phylo.html}.
+See 'Note' below for details on the parameters}
 
 \item{nodelabels.arg}{a list of main parameters used in the function
-"ape::nodelabels"
-\url{http://www.inside-r.org/packages/cran/ape/docs/nodelabels}. See
-'Note' below for details on the parameters}
+"ape::nodelabels" \url{http://rdrr.io/cran/ape/man/nodelabels.html}.
+See 'Note' below for details on the parameters}
 
 \item{verbose}{logical to indicate whether the messages will be
 displayed in the screen. By default, it sets to true for display}

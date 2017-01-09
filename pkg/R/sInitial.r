@@ -11,6 +11,7 @@
 #'  \item{\code{nHex}: the total number of hexagons/rectanges in the grid}
 #'  \item{\code{xdim}: x-dimension of the grid}
 #'  \item{\code{ydim}: y-dimension of the grid}
+#'  \item{\code{r}: the hypothetical radius of the grid}
 #'  \item{\code{lattice}: the grid lattice}
 #'  \item{\code{shape}: the grid shape}
 #'  \item{\code{coord}: a matrix of nHex x 2, with each row corresponding to the coordinates of a hexagon/rectangle in the 2D map grid}
@@ -83,7 +84,7 @@ sInitial <- function(data, sTopol, init=c("linear","uniform","sample"))
 
         ##################################  
         ## calculate 2 largest eigenvalues and their corresponding eigenvectors
-        data.center <- scale(data, center=T, scale=F)
+        data.center <- scale(data, center=TRUE, scale=FALSE)
         s<-svd(data.center)
         # d: a vector containing the singular values, i.e., the square roots of the non-zero eigenvalues of data %*% t(data)
         # u: a matrix whose columns contain the left singular vectors, i.e., eigenvectors of data %*% t(data)
@@ -114,7 +115,7 @@ sInitial <- function(data, sTopol, init=c("linear","uniform","sample"))
         Coords <- (Coords-0.5)*2
         
         tmpMean <- matrix(apply(data, 2, mean), nrow=1, ncol=ncol(data))        
-        codebook <- matrix(rep(tmpMean, nHex), nrow=nHex, ncol=length(tmpMean), byrow = T)
+        codebook <- matrix(rep(tmpMean, nHex), nrow=nHex, ncol=length(tmpMean), byrow=TRUE)
         for(i in 1:nHex){
             codebook[i,] <- codebook[i,] + Coords[i,] %*% t(V)
         }
@@ -127,6 +128,7 @@ sInitial <- function(data, sTopol, init=c("linear","uniform","sample"))
     sInit <- list(  nHex = nHex, 
                    xdim = xdim, 
                    ydim = ydim,
+                   r = sTopol$r,
                    lattice = sTopol$lattice,
                    shape = sTopol$shape,
                    coord = sTopol$coord,

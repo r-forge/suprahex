@@ -8,7 +8,8 @@ visDmatHeatmap(sMap, data, sBase, base.color = "rainbow",
 base.separated.arg = NULL, base.legend.location = c("none",
 "bottomleft",
 "bottomright", "bottom", "left", "topleft", "top", "topright", "right",
-"center"), reorderRow = c("none", "hclust", "svd"), keep.data = F, ...)
+"center"), reorderRow = c("none", "hclust", "svd"), keep.data = FALSE,
+...)
 }
 \arguments{
 \item{sMap}{an object of class "sMap" or a codebook matrix}

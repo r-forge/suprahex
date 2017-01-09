@@ -4,7 +4,7 @@
 \alias{visKernels}
 \title{Function to visualize neighborhood kernels}
 \usage{
-visKernels(newpage = T)
+visKernels(newpage = TRUE)
 }
 \arguments{
 \item{newpage}{logical to indicate whether to open a new page. By

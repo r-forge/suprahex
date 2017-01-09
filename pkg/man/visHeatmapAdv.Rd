@@ -4,8 +4,8 @@
 \alias{visHeatmapAdv}
 \title{Function to visualise input data matrix using advanced heatmap}
 \usage{
-visHeatmapAdv(data, scale = c("none", "row", "column"), Rowv = T,
-Colv = T, dendrogram = c("both", "row", "column", "none"),
+visHeatmapAdv(data, scale = c("none", "row", "column"), Rowv = TRUE,
+Colv = TRUE, dendrogram = c("both", "row", "column", "none"),
 dist.metric = c("euclidean", "pearson", "spearman", "kendall",
 "manhattan",
 "cos", "mi"), linkage.method = c("complete", "ward", "single",

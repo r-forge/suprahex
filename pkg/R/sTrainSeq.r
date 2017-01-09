@@ -12,6 +12,7 @@
 #'  \item{\code{nHex}: the total number of hexagons/rectanges in the grid}
 #'  \item{\code{xdim}: x-dimension of the grid}
 #'  \item{\code{ydim}: y-dimension of the grid}
+#'  \item{\code{r}: the hypothetical radius of the grid}
 #'  \item{\code{lattice}: the grid lattice}
 #'  \item{\code{shape}: the grid shape}
 #'  \item{\code{coord}: a matrix of nHex x 2, with each row corresponding to the coordinates of a hexagon/rectangle in the 2D map grid}
@@ -68,7 +69,7 @@
 #' # 7) training at "finetune" stage
 #' sM_finetune <- sTrainSeq(sMap=sM_rough, data=data, sTrain=sT_rough)
 
-sTrainSeq <- function(sMap, data, sTrain, verbose=T)
+sTrainSeq <- function(sMap, data, sTrain, verbose=TRUE)
 {
     
     if (class(sMap) != "sMap" & class(sMap) != "sInit"){
@@ -123,10 +124,10 @@ sTrainSeq <- function(sMap, data, sTrain, verbose=T)
     
     ########################################################
     ## A function to indicate the running progress
-    progress_indicate <- function(i, B, step, flag=F){
+    progress_indicate <- function(i, B, step, flag=FALSE){
         if(i %% ceiling(B/step) == 0 | i==B | i==1){
             if(flag & verbose){
-                message(sprintf("\t%d out of %d (%s)", i, B, as.character(Sys.time())), appendLF=T)
+                message(sprintf("\t%d out of %d (%s)", i, B, as.character(Sys.time())), appendLF=TRUE)
             }
         }
     }
@@ -138,7 +139,7 @@ sTrainSeq <- function(sMap, data, sTrain, verbose=T)
     set.seed(1234)
     for (t in 1:tlen){
         
-        progress_indicate(i=t, B=tlen, 10, flag=T)
+        progress_indicate(i=t, B=tlen, 10, flag=TRUE)
         
         ## For every updateStep: re-calculate sample index, neighborhood radius and learning rate
         ind <- t %% updateStep
@@ -171,7 +172,7 @@ sTrainSeq <- function(sMap, data, sTrain, verbose=T)
         ## pick up one sample vector
         x <- matrix(D[samples[ind],], nrow=1, ncol=ncol(D))
         ## codebook matrix minus the sample vector
-        Mx <- M - matrix(rep(x, nHex), nrow=nHex, ncol=ncol(M), byrow = T)
+        Mx <- M - matrix(rep(x, nHex), nrow=nHex, ncol=ncol(M), byrow=TRUE)
         ## Find best-matching hexagon/rectangle (BMH) according to minumum distance of codebook matrix from the sample vector
         tmpDist <- apply(Mx^2,1,sum)
         qerr <- min(tmpDist)
@@ -213,6 +214,7 @@ sTrainSeq <- function(sMap, data, sTrain, verbose=T)
     sMap <- list(  nHex = nHex, 
                    xdim = xdim, 
                    ydim = ydim,
+                   r = sMap$r,
                    lattice = sMap$lattice,
                    shape = sMap$shape,
                    coord = sMap$coord,

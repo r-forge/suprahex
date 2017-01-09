@@ -11,7 +11,7 @@ height = 7, margin = rep(0.1, 4), colormap = c("customized", "bwr",
 "red",
 alterntive.color = c("transparent", "gray"), zeropattern.color =
 "gray",
-legend = T, legend.cex = 0.8, legend.label = NULL, newpage = T)
+legend = TRUE, legend.cex = 0.8, legend.label = NULL, newpage = TRUE)
 }
 \arguments{
 \item{sObj}{an object of class "sMap" or "sTopol" or "sInit"}

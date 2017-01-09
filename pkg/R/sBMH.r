@@ -125,7 +125,7 @@ sBMH <- function(sMap, data, which_bmh=c("best", "worst", "all"))
             for (j in 1:ncol(tmp_dist)){
                 x=tmp_dist[,j]
                 
-                res <- sort.int(x, decreasing=F, index.return=T)
+                res <- sort.int(x, decreasing=FALSE, index.return=TRUE)
                 ## x: contain the sorted numbers
                 ## ix: contain the ordering index vector
                 

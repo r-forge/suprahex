@@ -78,7 +78,7 @@ sHexPolygon <- function (sObj, area.size=1)
     
 	## return location per hexagon
     index <- rep(1:nHex, each=6)
-    df_polygon <- data.frame(x=pltx, y=plty, index=index, stepCentroid=plts, angleCentroid=plta, stringsAsFactors=F)
+    df_polygon <- data.frame(x=pltx, y=plty, index=index, stepCentroid=plts, angleCentroid=plta, stringsAsFactors=FALSE)
     
     invisible(df_polygon)
 }

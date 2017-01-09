@@ -15,7 +15,6 @@
 #' invisible
 #' @note none
 #' @export
-#' @import hexbin
 #' @seealso \code{\link{visColormap}}, \code{\link{visHexGrid}}
 #' @include visHexComp.r
 #' @examples
@@ -29,7 +28,7 @@
 #' # 3) visualise the first component plane with a supra-hexagonal grid
 #' visHexComp(sMap, comp=sMap$codebook[,1], colormap="jet", ncolors=100, zlim=c(-1,1))
 
-visHexComp <-function (sMap, comp, margin=rep(0.6, 4), area.size=1, colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=c(0,1), border.color="transparent",newpage=T)
+visHexComp <-function (sMap, comp, margin=rep(0.6, 4), area.size=1, colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=40, zlim=c(0,1), border.color="transparent",newpage=TRUE)
 {
 
     #colormap <- match.arg(colormap)
