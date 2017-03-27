@@ -145,4 +145,3 @@ for tabular omics data analysis using a supra-hexagonal map.
 \code{\link{sTrainBatch}}, \code{\link{sBMH}},
 \code{\link{visHexMulComp}}
 }
-

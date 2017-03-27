@@ -120,4 +120,3 @@ geom_text(data=df_coord, aes(x,y,label=index), color="white")
 \seealso{
 \code{\link{sHexGrid}}, \code{\link{visHexMapping}}
 }
-

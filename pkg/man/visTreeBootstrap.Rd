@@ -217,4 +217,3 @@ tree_cons <- visTreeBootstrap(data, consensus=TRUE, num.bootstrap=10)
 \seealso{
 \code{\link{visTreeBootstrap}}
 }
-

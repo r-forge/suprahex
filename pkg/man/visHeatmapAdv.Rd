@@ -102,9 +102,9 @@ column groups (i.e. sidebar colors used to annotate the columns)}
 
 \item{...}{additional graphic parameters. For most parameters, please
 refer to
-\url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}. For
-example, the parameters "srtRow" and "srtCol" to control the angle of
-row/column labels (in degrees from horizontal: 45 degrees for the
+\url{https://www.rdocumentation.org/packages/gplots/topics/heatmap.2}.
+For example, the parameters "srtRow" and "srtCol" to control the angle
+of row/column labels (in degrees from horizontal: 45 degrees for the
 column, 0 degrees for the row, by default), i.e. string rotation. The
 parameters "offsetRow" and "offsetCol" to indicate the number of
 character-width spaces to place between row/column labels and the edge
@@ -197,4 +197,3 @@ box.col="transparent", horiz=FALSE)
 \seealso{
 \code{\link{visHeatmapAdv}}
 }
-

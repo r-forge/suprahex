@@ -129,4 +129,3 @@ labRow=NA)
 \seealso{
 \code{\link{visHeatmap}}
 }
-

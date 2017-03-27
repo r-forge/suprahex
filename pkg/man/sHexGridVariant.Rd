@@ -172,4 +172,3 @@ nrow=5, ncol=5)
 \seealso{
 \code{\link{sHexGrid}}
 }
-

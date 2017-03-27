@@ -150,4 +150,3 @@ nodelabels.arg=list(cex=0.4), show.tip.label=FALSE)
 \seealso{
 \code{\link{visTreeBootstrap}}
 }
-

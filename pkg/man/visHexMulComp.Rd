@@ -92,4 +92,3 @@ colormap="jet", ncolors=20, zlim=c(-1,1), gp=grid::gpar(cex=0.8))
 \code{\link{visVp}}, \code{\link{visHexComp}},
 \code{\link{visColorbar}}
 }
-

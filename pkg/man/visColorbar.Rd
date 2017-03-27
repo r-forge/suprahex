@@ -48,4 +48,3 @@ visColorbar(colormap="bwr")
 \code{\link{visColormap}}, \code{\link{visHexMulComp}},
 \code{\link{visCompReorder}}
 }
-

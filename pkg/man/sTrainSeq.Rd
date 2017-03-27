@@ -114,4 +114,3 @@ sM_finetune <- sTrainSeq(sMap=sM_rough, data=data, sTrain=sT_rough)
 \seealso{
 \code{\link{sTrainology}}, \code{\link{visKernels}}
 }
-

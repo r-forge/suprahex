@@ -52,4 +52,3 @@ palette.name(10)
 \seealso{
 \code{\link{visColoralpha}}
 }
-

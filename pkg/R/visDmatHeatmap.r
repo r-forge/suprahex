@@ -10,7 +10,7 @@
 #' @param base.legend.location location of legend to describe bases. If "none", this legend will not be displayed
 #' @param reorderRow the way to reorder the rows within a base. It can be "none" for rows within a base being reorded by the hexagon indexes, "hclust" for rows within a base being reorded according to hierarchical clustering of patterns seen, "svd" for rows within a base being reorded according to svd of patterns seen 
 #' @param keep.data logical to indicate whether or not to also write out the input data. By default, it sets to false for not keeping it. It is highly expensive to keep the large data sets
-#' @param ... additional graphic parameters used in "visHeatmapAdv". For most parameters, please refer to \url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}
+#' @param ... additional graphic parameters used in "visHeatmapAdv". For most parameters, please refer to \url{https://www.rdocumentation.org/packages/gplots/topics/heatmap.2}
 #' @return 
 #' a data frame with following components:
 #' \itemize{

@@ -83,4 +83,3 @@ border.color="transparent")
 \code{\link{visVp}}, \code{\link{visHexComp}},
 \code{\link{visColorbar}}, \code{\link{sCompReorder}}
 }
-

@@ -71,4 +71,3 @@ sI_uniform <- sInitial(data=data, sTopol=sTopol, init="uniform")
 \seealso{
 \code{\link{sTopology}}
 }
-

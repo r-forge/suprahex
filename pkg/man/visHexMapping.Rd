@@ -98,4 +98,3 @@ visHexMapping(sMap, mappingType="bases")
 \code{\link{sDmat}}, \code{\link{sDmatCluster}},
 \code{\link{visHexGrid}}
 }
-

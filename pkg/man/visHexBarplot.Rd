@@ -82,4 +82,3 @@ visHexBarplot(sMap, which.hexagon=1)
 \seealso{
 \code{\link{sPipeline}}, \code{\link{visColormap}}
 }
-

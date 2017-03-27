@@ -89,4 +89,3 @@ dist <- sDistance(data=data, metric="pearson")
 \seealso{
 \code{\link{sDmatCluster}}
 }
-

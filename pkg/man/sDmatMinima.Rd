@@ -51,4 +51,3 @@ minima <- sDmatMinima(sMap=sMap, which_neigh=1, distMeasure="median")
 \seealso{
 \code{\link{sDmat}}, \code{\link{sNeighAny}}
 }
-

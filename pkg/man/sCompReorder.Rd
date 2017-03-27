@@ -118,4 +118,3 @@ sReorder <- sCompReorder(sMap=data, amplifier=2, metric="pearson")
 \code{\link{sTopology}}, \code{\link{sPipeline}}, \code{\link{sBMH}},
 \code{\link{sDistance}}, \code{\link{visCompReorder}}
 }
-

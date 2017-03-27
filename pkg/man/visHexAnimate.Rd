@@ -158,4 +158,3 @@ visHexAnimate(sMap, filename="visHexAnimate", filetype="gif")
 \seealso{
 \code{\link{visHexMulComp}}
 }
-

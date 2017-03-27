@@ -47,7 +47,7 @@ highly expensive to keep the large data sets}
 
 \item{...}{additional graphic parameters used in "visHeatmapAdv". For
 most parameters, please refer to
-\url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}}
+\url{https://www.rdocumentation.org/packages/gplots/topics/heatmap.2}}
 }
 \value{
 a data frame with following components:
@@ -98,4 +98,3 @@ base.legend.location="bottomleft", labRow=NA)
 \seealso{
 \code{\link{sDmatCluster}}, \code{\link{visHeatmapAdv}}
 }
-

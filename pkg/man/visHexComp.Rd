@@ -68,4 +68,3 @@ zlim=c(-1,1))
 \seealso{
 \code{\link{visColormap}}, \code{\link{visHexGrid}}
 }
-

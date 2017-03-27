@@ -47,4 +47,3 @@ aNeigh <- sNeighAny(sObj=sTopol)
 \seealso{
 \code{\link{sNeighDirect}}
 }
-

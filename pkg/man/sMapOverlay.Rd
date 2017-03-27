@@ -71,4 +71,3 @@ visHexMulComp(sOverlay)
 \code{\link{sPipeline}}, \code{\link{sBMH}}, \code{\link{sHexDist}},
 \code{\link{visHexMulComp}}
 }
-

@@ -122,4 +122,3 @@ customized.color=rep(c("red","green"),each=3), legend.label=c("S","T"))
 \seealso{
 \code{\link{sPipeline}}, \code{\link{visColormap}}
 }
-

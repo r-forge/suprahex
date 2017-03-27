@@ -60,4 +60,3 @@ visHexGrid(hbin)
 \seealso{
 \code{\link{visHexComp}}
 }
-

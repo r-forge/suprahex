@@ -64,4 +64,3 @@ filename="sData_base_output.txt")
 \seealso{
 \code{\link{sBMH}}
 }
-

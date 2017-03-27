@@ -103,4 +103,3 @@ sT_complete <- sTrainology(sMap=sI, data=data, stage="complete")
 \seealso{
 \code{\link{sInitial}}
 }
-

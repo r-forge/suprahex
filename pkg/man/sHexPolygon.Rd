@@ -31,4 +31,3 @@ df_polygon <- sHexPolygon(sObj, area.size=1)
 \seealso{
 \code{\link{sHexGridVariant}}, \code{\link{sPipeline}}
 }
-

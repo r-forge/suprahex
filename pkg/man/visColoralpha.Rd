@@ -37,4 +37,3 @@ cols <- visColoralpha(col, alpha=0.5)
 \seealso{
 \code{\link{visColormap}}
 }
-

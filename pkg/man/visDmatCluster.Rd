@@ -104,4 +104,3 @@ border.color="black", lwd=2, area.size=-1*log2(dMat))
 \code{\link{sDmatCluster}}, \code{\link{sDmat}},
 \code{\link{visColormap}}, \code{\link{visHexGrid}}
 }
-

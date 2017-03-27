@@ -47,4 +47,3 @@ dNeigh <- sNeighDirect(sObj=sTopol)
 \seealso{
 \code{\link{sHexDist}}
 }
-

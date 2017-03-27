@@ -46,4 +46,3 @@ dist <- sHexDist(sObj=sI)
 \seealso{
 \code{\link{sTopology}}, \code{\link{sInitial}}
 }
-

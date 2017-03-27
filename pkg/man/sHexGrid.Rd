@@ -74,4 +74,3 @@ sHex <- sHexGrid()
 \seealso{
 \code{\link{sPipeline}}
 }
-

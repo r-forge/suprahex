@@ -45,4 +45,3 @@ vpnames
 \seealso{
 \code{\link{visHexMulComp}}, \code{\link{visCompReorder}}
 }
-

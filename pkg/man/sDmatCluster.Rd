@@ -76,4 +76,3 @@ visDmatCluster(sMap,sBase)
 \code{\link{sNeighDirect}}, \code{\link{sDistance}},
 \code{\link{visDmatCluster}}
 }
-

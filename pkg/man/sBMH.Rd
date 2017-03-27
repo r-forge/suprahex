@@ -65,4 +65,3 @@ response <- sBMH(sMap=sM_finetune, data=data, which_bmh="best")
 \seealso{
 \code{\link{sPipeline}}
 }
-

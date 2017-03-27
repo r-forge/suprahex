@@ -49,4 +49,3 @@ dMat <- sDmat(sMap=sMap, which_neigh=1, distMeasure="median")
 \seealso{
 \code{\link{sNeighAny}}
 }
-

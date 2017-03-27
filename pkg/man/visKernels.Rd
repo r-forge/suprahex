@@ -42,4 +42,3 @@ visKernels()
 \seealso{
 \code{\link{sTrainSeq}}, \code{\link{sTrainBatch}}
 }
-
