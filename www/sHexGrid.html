@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>sHexGrid @ supraHex 1.10.1</title>
+<title>sHexGrid @ supraHex 1.13.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.10.1</a>
+      <a class="brand" href="index.html">supraHex 1.13.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -155,7 +155,7 @@ coordinates of all hexagons in the grid.</p>
     -->
       <h3>Value</h3>
       
-      <p>a list with following components:
+      <p>an object of class "sHex", a list with following components:
 <ul>
 <li><code>r</code>: the grid radius
 </li>
@@ -170,6 +170,11 @@ how many steps a hexagon is awawy from the grid centroid ('1' for the
 centroid itself). Starting with the centroid, it orders outward. Also,
 for those hexagons of the same step, it orders from the rightmost in an
 anti-clock wise
+</li>
+<li><code>angleCentroid</code>: a vector with the length of nHex. It stores
+the angle a hexagon is in terms of the grid centroid ('0' for the
+centroid itself). For those hexagons of the same step, it orders from
+the rightmost in an anti-clock wise
 </li>
 <li><code>coord</code>: a matrix of nHex x 2 with each row specifying the
 2D coordinates of a hexagon in the grid. The order of rows is the same
@@ -206,18 +211,18 @@ as 'centroid' above
     
     <h3 id="examples">Examples</h3>
     <pre class="examples"><div class='input'># The supra-hexagonal grid is exactly determined by specifying the radius.
-res <- sHexGrid(r=2)
+sHex <- sHexGrid(r=2)
 
 # The grid is determined according to the number of input hexagons (after being adjusted).
 # The return res$nHex is always no less than the input one.
 # It ensures a supra-hexagonal grid is exactly formed.
-res <- sHexGrid(nHex=12)
+sHex <- sHexGrid(nHex=12)
 
 # Ignore input nHex if r is also given
-res <- sHexGrid(r=3, nHex=100)
+sHex <- sHexGrid(r=3, nHex=100)
 
 # By default, r=3 if no parameters are specified
-res <- sHexGrid()
+sHex <- sHexGrid()
 </div>
 <strong class='warning'>Warning message:
 Ignore the input parameters but use the default radius.
@@ -245,7 +250,7 @@ Ignore the input parameters but use the default radius.
     
     <h2>See also</h2>
     
-<code><a href='sTopology.html'>sTopology</a></code>
+<code><a href='sPipeline.html'>sPipeline</a></code>
 
     <!--
 
@@ -269,7 +274,7 @@ Ignore the input parameters but use the default radius.
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

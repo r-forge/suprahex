@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>sTrainBatch @ supraHex 1.10.1</title>
+<title>sTrainBatch @ supraHex 1.13.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.10.1</a>
+      <a class="brand" href="index.html">supraHex 1.13.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -137,7 +137,7 @@ via updating formula (see "Note" below for details). It returns an
 object of class "sMap".</p>
   
     <h3>Usage</h3>
-    <pre>sTrainBatch(sMap, data, sTrain, verbose = T)</pre>
+    <pre>sTrainBatch(sMap, data, sTrain, verbose = TRUE)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -166,6 +166,8 @@ displayed in the screen. By default, it sets to TRUE for display</dd>
 <li><code>xdim</code>: x-dimension of the grid
 </li>
 <li><code>ydim</code>: y-dimension of the grid
+</li>
+<li><code>r</code>: the hypothetical radius of the grid
 </li>
 <li><code>lattice</code>: the grid lattice
 </li>
@@ -237,10 +239,10 @@ at time <code class = 'eq'>t</code>. There are five kernels available:
     -->
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
+    <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10 
 data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 
-# 2) from this input matrix, determine nHex=5*sqrt(nrow(data))=50,
+# 2) from this input matrix, determine nHex=5*sqrt(nrow(data))=50, 
 # but it returns nHex=61, via "sHexGrid(nHex=50)", to make sure a supra-hexagonal grid
 sTopol <- sTopology(data=data, lattice="hexa", shape="suprahex")
 
@@ -253,20 +255,20 @@ sT_rough <- sTrainology(sMap=sI, data=data, stage="rough")
 # 5) training at "rough" stage
 sM_rough <- sTrainBatch(sMap=sI, data=data, sTrain=sT_rough)
 </div>
-<strong class='message'>	1 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
-<strong class='message'>	2 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
-<strong class='message'>	3 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
-<strong class='message'>	4 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
-<strong class='message'>	5 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
-<strong class='message'>	6 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
-<strong class='message'>	7 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
+<strong class='message'>	1 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
+<strong class='message'>	2 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
+<strong class='message'>	3 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
+<strong class='message'>	4 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
+<strong class='message'>	5 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
+<strong class='message'>	6 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
+<strong class='message'>	7 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
 <div class='input'>
 # 6) define trainology at "finetune" stage
 sT_finetune <- sTrainology(sMap=sI, data=data, stage="finetune")
@@ -274,20 +276,20 @@ sT_finetune <- sTrainology(sMap=sI, data=data, stage="finetune")
 # 7) training at "finetune" stage
 sM_finetune <- sTrainBatch(sMap=sM_rough, data=data, sTrain=sT_rough)
 </div>
-<strong class='message'>	1 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
-<strong class='message'>	2 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
-<strong class='message'>	3 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
-<strong class='message'>	4 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
-<strong class='message'>	5 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
-<strong class='message'>	6 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong>
-<strong class='message'>	7 out of 7 (2016-06-24 11:47:11)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:11)</strong></pre>
+<strong class='message'>	1 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
+<strong class='message'>	2 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
+<strong class='message'>	3 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
+<strong class='message'>	4 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
+<strong class='message'>	5 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
+<strong class='message'>	6 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong>
+<strong class='message'>	7 out of 7 (2017-03-27 18:55:02)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:02)</strong></pre>
   </div>
   
   <div class="span4">
@@ -335,7 +337,7 @@ sM_finetune <- sTrainBatch(sMap=sM_rough, data=data, sTrain=sT_rough)
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

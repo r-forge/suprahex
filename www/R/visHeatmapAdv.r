@@ -18,7 +18,7 @@
 #' @param ColSideColors NULL or a matrix of ncol(x) X "numColsidebars", where "numColsidebars" stands for the number of sidebars annotating the columns of x. This matrix contains the color names for horizontal sidebars. By default, it sets to NULL. In this case, sidebars in columns can still be enabled by cutting the column dendrogram into several clusters (see the next two parameters)
 #' @param column.cutree an integer scalar specifying the desired number of groups being cut from the column dendrogram. Note, this optional is only enabled when the column dengrogram is built
 #' @param column.colormap short name for the colormap to color-code the column groups (i.e. sidebar colors used to annotate the columns)
-#' @param ... additional graphic parameters. For most parameters, please refer to \url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}. For example, the parameters "srtRow" and "srtCol" to control the angle of row/column labels (in degrees from horizontal: 45 degrees for the column, 0 degrees for the row, by default), i.e. string rotation. The parameters "offsetRow" and "offsetCol" to indicate the number of character-width spaces to place between row/column labels and the edge of the plotting region. Unique to this function, there are two parameters "RowSideWidth" and RowSideLabelLocation, to respectively indicate the fraction of the row side width and the location (either bottom or top) of the row side labelling; the other two parameters "ColSideHeight" and "ColSideLabelLocation" for the column side height and the location (either left or right) of the column side labelling; and two parameters "RowSideBox" and "ColSideBox" to indicate whether there are boxes outside. 
+#' @param ... additional graphic parameters. For most parameters, please refer to \url{https://www.rdocumentation.org/packages/gplots/topics/heatmap.2}. For example, the parameters "srtRow" and "srtCol" to control the angle of row/column labels (in degrees from horizontal: 45 degrees for the column, 0 degrees for the row, by default), i.e. string rotation. The parameters "offsetRow" and "offsetCol" to indicate the number of character-width spaces to place between row/column labels and the edge of the plotting region. Unique to this function, there are two parameters "RowSideWidth" and RowSideLabelLocation, to respectively indicate the fraction of the row side width and the location (either bottom or top) of the row side labelling; the other two parameters "ColSideHeight" and "ColSideLabelLocation" for the column side height and the location (either left or right) of the column side labelling; and two parameters "RowSideBox" and "ColSideBox" to indicate whether there are boxes outside. 
 #' @return 
 #' invisible
 #' @note The clustering/linkage methods are provided:
@@ -76,7 +76,7 @@
 #' legend(0,0.8, legend=rep_lvs, col=rep_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=FALSE)
 #' legend(0,0.6, legend=sta_lvs, col=sta_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=FALSE)
 
-visHeatmapAdv <- function (data, scale=c("none","row","column"), Rowv=T, Colv=T, dendrogram=c("both","row","column","none"), dist.metric=c("euclidean","pearson","spearman","kendall","manhattan","cos","mi"), linkage.method=c("complete","ward","single","average","mcquitty","median","centroid"), 
+visHeatmapAdv <- function (data, scale=c("none","row","column"), Rowv=TRUE, Colv=TRUE, dendrogram=c("both","row","column","none"), dist.metric=c("euclidean","pearson","spearman","kendall","manhattan","cos","mi"), linkage.method=c("complete","ward","single","average","mcquitty","median","centroid"), 
 colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"), ncolors=64, zlim=NULL, RowSideColors=NULL, row.cutree=NULL, row.colormap=c("jet"), ColSideColors=NULL, column.cutree=NULL, column.colormap=c("jet"), ...)
 {
 
@@ -485,7 +485,7 @@ heatmap.2 <- function(x,
                 if(RowSideBox==TRUE) box(lwd=1,col="black")
         } else {
             par(mar = c(margins[1], 0, 0, 0.5))
-            rsc = t(RowSideColors[,rowInd, drop=F])
+            rsc = t(RowSideColors[,rowInd, drop=FALSE])
             rsc.colors = matrix()
             rsc.names = names(table(rsc))
             rsc.i = 1
@@ -523,7 +523,7 @@ heatmap.2 <- function(x,
             if(ColSideBox==TRUE) box(lwd=1,col="black")
         } else {
             par(mar = c(0.5, 0, 0, margins[2]))
-            csc = ColSideColors[colInd, , drop=F]
+            csc = ColSideColors[colInd, , drop=FALSE]
             csc.colors = matrix()
             csc.names = names(table(csc))
             csc.i = 1

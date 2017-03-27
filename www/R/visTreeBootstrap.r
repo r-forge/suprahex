@@ -9,8 +9,8 @@
 #' @param consensus logical to indicate whether to return the consensus tree. By default, it sets to false for not doing so. Note: if true, there will be no visualisation of the bootstrapped tree
 #' @param consensus.majority a numeric value between 0.5 and 1 (or between 50 and 100) giving the proportion for a clade to be represented in the consensus tree
 #' @param reroot determines if and how the bootstrapped tree should be rerooted. By default, it is "min.bootstrap", which implies that the bootstrapped tree will be rerooted at the internal node with the miminum bootstrap/confidence value. If it is an integer between 1 and the number of internal nodes, the tree will be rerooted at the internal node with this index value
-#' @param plot.phylo.arg a list of main parameters used in the function "ape::plot.phylo" \url{http://www.inside-r.org/packages/cran/ape/docs/plot.phylo}. See 'Note' below for details on the parameters
-#' @param nodelabels.arg a list of main parameters used in the function "ape::nodelabels" \url{http://www.inside-r.org/packages/cran/ape/docs/nodelabels}. See 'Note' below for details on the parameters
+#' @param plot.phylo.arg a list of main parameters used in the function "ape::plot.phylo" \url{http://rdrr.io/cran/ape/man/plot.phylo.html}. See 'Note' below for details on the parameters
+#' @param nodelabels.arg a list of main parameters used in the function "ape::nodelabels" \url{http://rdrr.io/cran/ape/man/nodelabels.html}. See 'Note' below for details on the parameters
 #' @param visTree logical to indicate whether the bootstrap tree will be visualised. By default, it sets to true for display. Note, the consensus tree can not be enabled for visualisation
 #' @param verbose logical to indicate whether the messages will be displayed in the screen. By default, it sets to true for display
 #' @param ... additional "ape::plot.phylo" parameters
@@ -60,7 +60,6 @@
 #' \item{"bg": a character string giving the color to be used for the background of the text frames or of the plotting symbols if it applies; this is eventually recycled. It can be one of "jet" (jet colormap), "bwr" (blue-white-red colormap), "gbr" (green-black-red colormap), "wyr" (white-yellow-red colormap), "br" (black-red colormap), "yr" (yellow-red colormap), "wb" (white-black colormap), and "rainbow" (rainbow colormap, that is, red-yellow-green-cyan-blue-magenta). Alternatively, any hyphen-separated HTML color names, e.g. "blue-black-yellow", "royalblue-white-sandybrown", "darkgreen-white-darkviolet". A list of standard color names can be found in \url{http://html-color-codes.info/color-names}}
 #' }
 #' @export
-#' @importFrom ape nj fastme.ols fastme.bal boot.phylo consensus is.rooted unroot root mrca write.tree read.tree plot.phylo nodelabels
 #' @seealso \code{\link{visTreeBootstrap}}
 #' @include visTreeBootstrap.r
 #' @examples    
@@ -91,14 +90,14 @@
 #' # 4) obtain the consensus tree
 #' tree_cons <- visTreeBootstrap(data, consensus=TRUE, num.bootstrap=10)
 
-visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), metric=c("euclidean","pearson","spearman","cos","manhattan","kendall","mi"), num.bootstrap=100, consensus=FALSE, consensus.majority=0.5, reroot="min.bootstrap", plot.phylo.arg=NULL, nodelabels.arg=NULL, visTree=T, verbose=T, ...)
+visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), metric=c("euclidean","pearson","spearman","cos","manhattan","kendall","mi"), num.bootstrap=100, consensus=FALSE, consensus.majority=0.5, reroot="min.bootstrap", plot.phylo.arg=NULL, nodelabels.arg=NULL, visTree=TRUE, verbose=TRUE, ...)
 {
 
 
     startT <- Sys.time()
     if(verbose){
-        message(paste(c("Start at ",as.character(startT)), collapse=""), appendLF=T)
-        message("", appendLF=T)
+        message(paste(c("Start at ",as.character(startT)), collapse=""), appendLF=TRUE)
+        message("", appendLF=TRUE)
     }
     ####################################################################################
     
@@ -123,7 +122,7 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
     rownames(data) <- paste(rownames(data), 1:nrow(data), sep=".")
     
     if(verbose){
-        message(sprintf("First, build the tree (using %s algorithm and %s distance) from input matrix (%d by %d)...", algorithm, metric, nrow(data), ncol(data)), appendLF=T)
+        message(sprintf("First, build the tree (using %s algorithm and %s distance) from input matrix (%d by %d)...", algorithm, metric, nrow(data), ncol(data)), appendLF=TRUE)
     }
     ## build the tree
     d <- as.dist(sDistance(data, metric=metric))
@@ -134,7 +133,7 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
     )
     
     if(verbose){
-        message(sprintf("Second, perform bootstrap analysis with %d replicates...", num.bootstrap), appendLF=T)
+        message(sprintf("Second, perform bootstrap analysis with %d replicates...", num.bootstrap), appendLF=TRUE)
     }
     ## perform bootstrap analysis
     f <- function(x) {
@@ -159,9 +158,9 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
         }
         
         if(verbose){
-            message(sprintf("Finally, obtain consensus tree based on %1.2f majority...", consensus.majority), appendLF=T)
+            message(sprintf("Finally, obtain consensus tree based on %1.2f majority...", consensus.majority), appendLF=TRUE)
         }
-        tree_cons <- ape::consensus(res$trees, p=consensus.majority, check.labels=T)
+        tree_cons <- ape::consensus(res$trees, p=consensus.majority, check.labels=TRUE)
         tree_cons$tip.label <- sub("\\.\\d+$", "", tree_cons$tip.label)
         
         #return(tree_cons)
@@ -175,7 +174,7 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
         tr$node.label <- bp
     
         if(verbose){
-            message(sprintf("Finally, visualise the bootstrapped tree..."), appendLF=T)
+            message(sprintf("Finally, visualise the bootstrapped tree..."), appendLF=TRUE)
         }
      
         ########################################################################
@@ -187,13 +186,13 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
         if(is.integer(reroot) & reroot>=1 & reroot<=length(tr$node.label)){
             ## miminum bootstrap value and the node index
             reroot_index_mrca <- reroot+length(tr$tip.label)
-            tree_bs <- ape::root(tr, node=reroot_index_mrca, resolve.root=F, interactive=F)
+            tree_bs <- ape::root(tr, node=reroot_index_mrca, resolve.root=FALSE, interactive=FALSE)
         }else if(reroot=="min.bootstrap"){
             ## miminum bootstrap value and the node index
             min_bs <- min(tmp_bs[!is.na(tmp_bs)])
             min_bs_index <- which(tmp_bs==min_bs)[1]
             reroot_index_mrca <- min_bs_index+length(tr$tip.label)
-            tree_bs <- ape::root(tr, node=reroot_index_mrca, resolve.root=F, interactive=F)
+            tree_bs <- ape::root(tr, node=reroot_index_mrca, resolve.root=FALSE, interactive=FALSE)
         }else{
             tree_bs <- tr
         }
@@ -216,22 +215,22 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
         
         if(0){
         ## most recent common ancestor (MRCA) for each pair of tips and nodes
-        mrca_node <- ape::mrca(tree_bs, full=T)
+        mrca_node <- ape::mrca(tree_bs, full=TRUE)
         
-        visHeatmapAdv(mrca_node, Rowv=F,Colv=F, zlim=c(Ntip+1,Ntip+Nnode), colormap="gray-black", add.expr=abline(v=c(1,Ntip+1,(ncol(mrca_node)+1))-0.5, h=c(1,Nnode+1,(ncol(mrca_node)+1))-0.5, col="white"), KeyValueName="MRCA index", lmat=rbind(c(4,3), c(2,1)), lhei=c(1,5), lwid=c(1,3))
+        visHeatmapAdv(mrca_node, Rowv=FALSE,Colv=FALSE, zlim=c(Ntip+1,Ntip+Nnode), colormap="gray-black", add.expr=abline(v=c(1,Ntip+1,(ncol(mrca_node)+1))-0.5, h=c(1,Nnode+1,(ncol(mrca_node)+1))-0.5, col="white"), KeyValueName="MRCA index", lmat=rbind(c(4,3), c(2,1)), lhei=c(1,5), lwid=c(1,3))
         
         ## connectivity linking each ancestor to its all children
         ## matrix of Nnode by (Ntip+Nnode)
         connectivity <- array(0, c(Nnode,Ntip+Nnode))
         for (i in 1:Nnode) {
             node_tmp <- i+Ntip
-            child <- which(mrca_node[node_tmp,]==node_tmp, arr.ind=T)
+            child <- which(mrca_node[node_tmp,]==node_tmp, arr.ind=TRUE)
             connectivity[i,child] <- 1
             # exclude self
             connectivity[i,node_tmp] <- 0
         }
         rownames(connectivity) <- node_index
-        visHeatmapAdv(connectivity, Rowv=F,Colv=F, zlim=c(0,1), colormap="gray-black", add.expr=abline(v=c(1,Ntip+1,(ncol(mrca_node)+1))-0.5, col="white"), key=F, cexRow=1,cexCol=1)
+        visHeatmapAdv(connectivity, Rowv=FALSE,Colv=FALSE, zlim=c(0,1), colormap="gray-black", add.expr=abline(v=c(1,Ntip+1,(ncol(mrca_node)+1))-0.5, col="white"), key=FALSE, cexRow=1,cexCol=1)
         }
         
         ########################################################################
@@ -262,7 +261,7 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
                     cex = 1,
                     adj = 0,
                     srt = 0,
-                    no.margin = T,
+                    no.margin = TRUE,
                     label.offset = 0,
                     rotate.tree = 0
                     )
@@ -322,12 +321,12 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
     ####################################################################################
     endT <- Sys.time()
     if(verbose){
-        message("", appendLF=T)
-        message(paste(c("Finish at ",as.character(endT)), collapse=""), appendLF=T)
+        message("", appendLF=TRUE)
+        message(paste(c("Finish at ",as.character(endT)), collapse=""), appendLF=TRUE)
     }
     
     runTime <- as.numeric(difftime(strptime(endT, "%Y-%m-%d %H:%M:%S"), strptime(startT, "%Y-%m-%d %H:%M:%S"), units="secs"))
-    message(paste(c("Runtime in total is: ",runTime," secs\n"), collapse=""), appendLF=T)
+    message(paste(c("Runtime in total is: ",runTime," secs\n"), collapse=""), appendLF=TRUE)
     
     if(consensus==TRUE){
         return(tree_cons)

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visTreeBootstrap @ supraHex 1.10.1</title>
+<title>visTreeBootstrap @ supraHex 1.13.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.10.1</a>
+      <a class="brand" href="index.html">supraHex 1.13.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -136,7 +136,7 @@ bootstrap/confidence value or at any customised internal node.</p>
     <pre>visTreeBootstrap(data, algorithm = c("nj", "fastme.ols", "fastme.bal"), metric = c("euclidean", 
   "pearson", "spearman", "cos", "manhattan", "kendall", "mi"), num.bootstrap = 100, 
       consensus = FALSE, consensus.majority = 0.5, reroot = "min.bootstrap", plot.phylo.arg = NULL, 
-      nodelabels.arg = NULL, visTree = T, verbose = T, ...)</pre>
+      nodelabels.arg = NULL, visTree = TRUE, verbose = TRUE, ...)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -176,14 +176,12 @@ the number of internal nodes, the tree will be rerooted at the internal
 node with this index value</dd>
       <dt>plot.phylo.arg</dt>
       <dd>a list of main parameters used in the function
-"ape::plot.phylo"
-<a href = 'http://www.inside-r.org/packages/cran/ape/docs/plot.phylo'>http://www.inside-r.org/packages/cran/ape/docs/plot.phylo</a>. See
-'Note' below for details on the parameters</dd>
+"ape::plot.phylo" <a href = 'http://rdrr.io/cran/ape/man/plot.phylo.html'>http://rdrr.io/cran/ape/man/plot.phylo.html</a>.
+See 'Note' below for details on the parameters</dd>
       <dt>nodelabels.arg</dt>
       <dd>a list of main parameters used in the function
-"ape::nodelabels"
-<a href = 'http://www.inside-r.org/packages/cran/ape/docs/nodelabels'>http://www.inside-r.org/packages/cran/ape/docs/nodelabels</a>. See
-'Note' below for details on the parameters</dd>
+"ape::nodelabels" <a href = 'http://rdrr.io/cran/ape/man/nodelabels.html'>http://rdrr.io/cran/ape/man/nodelabels.html</a>.
+See 'Note' below for details on the parameters</dd>
       <dt>visTree</dt>
       <dd>logical to indicate whether the bootstrap tree will be
 visualised. By default, it sets to true for display. Note, the
@@ -358,7 +356,8 @@ found in <a href = 'http://html-color-codes.info/color-names'>http://html-color-
     -->
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
+    <pre class="examples"><div class='input'>
+# 1) generate an iid normal random matrix of 100x10 
 data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 data <- t(data)
@@ -366,13 +365,13 @@ data <- t(data)
 # 2) build neighbor-joining tree with bootstrap values and visualise it by default
 visTreeBootstrap(data)
 </div>
-<strong class='message'>Start at 2016-06-24 11:47:28</strong>
+<strong class='message'>Start at 2017-03-27 18:55:39</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2016-06-24 11:47:28</strong>
+<strong class='message'>Finish at 2017-03-27 18:55:39</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <a href="javascript:newWin('visTreeBootstrap-10.png', 'visTreeBootstrap-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visTreeBootstrap-10.png', width="400" /></a>
@@ -380,9 +379,9 @@ visTreeBootstrap(data)
 Phylogenetic tree with 10 tips and 8 internal nodes.
 
 Tip labels:
-	S2, S6, S5, S7, S9, S3, ...
+	S2, S6, S5, S4, S8, S10, ...
 Node labels:
-	7, 100, 12, 17, 8, 14, ...
+	11, 100, 16, 26, 16, 32, ...
 
 Unrooted; includes branch lengths.
 </div>
@@ -391,20 +390,20 @@ Unrooted; includes branch lengths.
 # 3a) generate the bootstrapped tree (without visualisation)
 tree_bs <- visTreeBootstrap(data, visTree=FALSE)
 </div>
-<strong class='message'>Start at 2016-06-24 11:47:28</strong>
+<strong class='message'>Start at 2017-03-27 18:55:39</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2016-06-24 11:47:28</strong>
+<strong class='message'>Finish at 2017-03-27 18:55:39</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'># 3b) look at the bootstrap values and ordered row names of input matrix
 # the bootstrap values
 tree_bs$node.label
 </div>
-<div class='output'>[1] "7"   "100" "14"  "15"  "17"  "31"  "18"  "31" 
+<div class='output'>[1] "11"  "100" "14"  "18"  "14"  "34"  "15"  "34" 
 </div>
 <div class='input'># ordered row names of input matrix
 tree_bs$tip.label
@@ -419,13 +418,13 @@ text <- tree_bs$node.label[flag]
 node <- Ntip + (1:Nnode)[flag]
 visTreeBootstrap(data, nodelabels.arg=list(text=text,node=node))
 </div>
-<strong class='message'>Start at 2016-06-24 11:47:28</strong>
+<strong class='message'>Start at 2017-03-27 18:55:39</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2016-06-24 11:47:28</strong>
+<strong class='message'>Finish at 2017-03-27 18:55:39</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <a href="javascript:newWin('visTreeBootstrap-34.png', 'visTreeBootstrap-34.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visTreeBootstrap-34.png', width="400" /></a>
@@ -435,7 +434,7 @@ Phylogenetic tree with 10 tips and 8 internal nodes.
 Tip labels:
 	S2, S6, S5, S4, S8, S10, ...
 Node labels:
-	7, 100, 13, 18, 12, 30, ...
+	10, 100, 11, 13, 10, 27, ...
 
 Unrooted; includes branch lengths.
 </div>
@@ -443,13 +442,13 @@ Unrooted; includes branch lengths.
 # 4) obtain the consensus tree
 tree_cons <- visTreeBootstrap(data, consensus=TRUE, num.bootstrap=10)
 </div>
-<strong class='message'>Start at 2016-06-24 11:47:28</strong>
+<strong class='message'>Start at 2017-03-27 18:55:39</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 10 replicates...</strong>
 <strong class='message'>Finally, obtain consensus tree based on 0.50 majority...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2016-06-24 11:47:28</strong>
+<strong class='message'>Finish at 2017-03-27 18:55:39</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong></pre>
   </div>
@@ -499,7 +498,7 @@ tree_cons <- visTreeBootstrap(data, consensus=TRUE, num.bootstrap=10)
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

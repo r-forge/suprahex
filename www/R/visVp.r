@@ -22,7 +22,7 @@
 #' # 2) look at names of these viewports
 #' vpnames
 
-visVp <-function (height=7, xdim=1, ydim=1, colNum=1, rowNum=1, gp=grid::gpar(), newpage=T) 
+visVp <-function (height=7, xdim=1, ydim=1, colNum=1, rowNum=1, gp=grid::gpar(), newpage=TRUE) 
 {
     
     unitWidth <- (1/colNum)

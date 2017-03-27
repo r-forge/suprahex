@@ -59,7 +59,7 @@
 #' visHexPattern(sMap, plotType="radars", pattern=pattern, customized.color=rep(c("red","green"),each=3))
 #' visHexPattern(sMap, plotType="radars", pattern=pattern, customized.color=rep(c("red","green"),each=3), legend.label=c("S","T"))
 
-visHexPattern <- function (sObj, plotType=c("lines","bars","radars"), pattern=NULL, height=7, margin=rep(0.1,4), colormap=c("customized","bwr","jet","gbr","wyr","br","yr","rainbow","wb"), customized.color="red", alterntive.color=c("transparent","gray"), zeropattern.color="gray", legend=T, legend.cex=0.8, legend.label=NULL, newpage=T)
+visHexPattern <- function (sObj, plotType=c("lines","bars","radars"), pattern=NULL, height=7, margin=rep(0.1,4), colormap=c("customized","bwr","jet","gbr","wyr","br","yr","rainbow","wb"), customized.color="red", alterntive.color=c("transparent","gray"), zeropattern.color="gray", legend=TRUE, legend.cex=0.8, legend.label=NULL, newpage=TRUE)
 {
     
     plotType <- match.arg(plotType)
@@ -93,7 +93,7 @@ visHexPattern <- function (sObj, plotType=c("lines","bars","radars"), pattern=NU
     par(mar = margin)
     xlim <- c(0, max(dat$x) + min(dat$x))
     ylim <- c(max(dat$y) + min(dat$y), 0)
-    MASS::eqscplot(xlim, ylim, axes=F, type="n")
+    MASS::eqscplot(xlim, ylim, axes=FALSE, type="n")
     
     myBorderColor <- "transparent"
     if(shape == "suprahex"){
@@ -109,7 +109,7 @@ visHexPattern <- function (sObj, plotType=c("lines","bars","radars"), pattern=NU
         }
         myBorderColor <- tmpColor[stepCentroid%%2 + 1]
     }
-    symbols(dat$x, dat$y, circles=rep(0.5, nrow(dat)), inches=F, add=TRUE, fg=myBorderColor, bg="transparent")
+    symbols(dat$x, dat$y, circles=rep(0.5, nrow(dat)), inches=FALSE, add=TRUE, fg=myBorderColor, bg="transparent")
     
     if(nrow(pattern) !=nHex | ncol(pattern) == 1){
         stop("Please check your pattern input.\n")
@@ -134,11 +134,11 @@ visHexPattern <- function (sObj, plotType=c("lines","bars","radars"), pattern=NU
             if(is.null(legend.label)){
 				tmpData <- pattern
 				tmpData[tmpData!=0] <- 0
-				stars(tmpData, locations=dat, labels=NULL, len=0.5, add=T, col.segments=myPatternColor, draw.segments=T, key.loc=key.loc, cex=legend.cex)
+				stars(tmpData, locations=dat, labels=NULL, len=0.5, add=TRUE, col.segments=myPatternColor, draw.segments=TRUE, key.loc=key.loc, cex=legend.cex)
 			}else{
 				tmpData <- matrix(0, nrow=nrow(dat), ncol=length(legend.label))
 				colnames(tmpData) <- legend.label
-				stars(tmpData, locations=dat, labels=NULL, len=0.5, add=T, col.segments=unique(myPatternColor), draw.segments=T, key.loc=key.loc, cex=legend.cex)
+				stars(tmpData, locations=dat, labels=NULL, len=0.5, add=TRUE, col.segments=unique(myPatternColor), draw.segments=TRUE, key.loc=key.loc, cex=legend.cex)
 			}   
         }
         
@@ -219,9 +219,9 @@ visHexPattern <- function (sObj, plotType=c("lines","bars","radars"), pattern=NU
             
             ## shift data in relative to minimum of each column
             minCol <- apply(pattern, 2, min)
-            pattern_shift <- pattern - matrix(rep(minCol,nHex), nrow=nHex, ncol=ncomp, byrow=T)
+            pattern_shift <- pattern - matrix(rep(minCol,nHex), nrow=nHex, ncol=ncomp, byrow=TRUE)
             
-            stars(pattern_shift, locations=dat, labels=NULL, len=sWidth/2, add=T, col.segments=myPatternColor, draw.segments=T, key.loc=NULL)
+            stars(pattern_shift, locations=dat, labels=NULL, len=sWidth/2, add=TRUE, col.segments=myPatternColor, draw.segments=TRUE, key.loc=NULL)
             
         }
         

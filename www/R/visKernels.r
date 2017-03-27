@@ -21,7 +21,7 @@
 #' # visualise currently supported five kernels
 #' visKernels()
 
-visKernels <-function (newpage=T) 
+visKernels <-function (newpage=TRUE) 
 {
 
     if (newpage){

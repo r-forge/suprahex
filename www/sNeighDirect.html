@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>sNeighDirect @ supraHex 1.10.1</title>
+<title>sNeighDirect @ supraHex 1.13.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.10.1</a>
+      <a class="brand" href="index.html">supraHex 1.13.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -170,10 +170,10 @@ matrix of the input object does.</p>
     -->
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
+    <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10 
 data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 
-# 2) from this input matrix, determine nHex=5*sqrt(nrow(data))=50,
+# 2) from this input matrix, determine nHex=5*sqrt(nrow(data))=50, 
 # but it returns nHex=61, via "sHexGrid(nHex=50)", to make sure a supra-hexagonal grid
 sTopol <- sTopology(data=data, lattice="hexa", shape="suprahex")
 
@@ -233,7 +233,7 @@ dNeigh <- sNeighDirect(sObj=sTopol)
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

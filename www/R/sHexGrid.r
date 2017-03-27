@@ -5,12 +5,13 @@
 #' @param r an integer specifying the radius in a supra-hexagonal grid
 #' @param nHex the number of input hexagons in the grid
 #' @return 
-#' a list with following components:
+#' an object of class "sHex", a list with following components:
 #' \itemize{
 #'  \item{\code{r}: the grid radius}
 #'  \item{\code{nHex}: the total number of hexagons in the grid. It may differ from the input value; actually it is always no less than the input one to ensure a supra-hexagonal grid exactly formed}
 #'  \item{\code{centroid}: the 2D coordinates of the grid centroid}
 #'  \item{\code{stepCentroid}: a vector with the length of nHex. It stores how many steps a hexagon is awawy from the grid centroid ('1' for the centroid itself). Starting with the centroid, it orders outward. Also, for those hexagons of the same step, it orders from the rightmost in an anti-clock wise}
+#'  \item{\code{angleCentroid}: a vector with the length of nHex. It stores the angle a hexagon is in terms of  the grid centroid ('0' for the centroid itself). For those hexagons of the same step, it orders from the rightmost in an anti-clock wise}
 #'  \item{\code{coord}: a matrix of nHex x 2 with each row specifying the 2D coordinates of a hexagon in the grid. The order of rows is the same as 'centroid' above}
 #'  \item{\code{call}: the call that produced this result}
 #' }
@@ -22,22 +23,22 @@
 #' \item{\eqn{stepCentroid[2:nHex] = unlist(sapply(2:r, function(x) (c( (1+6*x*(x-1)/2-6*(x-1)+1) : (1+6*x*(x-1)/2) )>=1)*x ))}}
 #' }
 #' @export
-#' @seealso \code{\link{sTopology}}
+#' @seealso \code{\link{sPipeline}}
 #' @include sHexGrid.r
 #' @examples
 #' # The supra-hexagonal grid is exactly determined by specifying the radius.
-#' res <- sHexGrid(r=2)
+#' sHex <- sHexGrid(r=2)
 #'
 #' # The grid is determined according to the number of input hexagons (after being adjusted).
 #' # The return res$nHex is always no less than the input one.
 #' # It ensures a supra-hexagonal grid is exactly formed.
-#' res <- sHexGrid(nHex=12)
+#' sHex <- sHexGrid(nHex=12)
 #'
 #' # Ignore input nHex if r is also given
-#' res <- sHexGrid(r=3, nHex=100)
+#' sHex <- sHexGrid(r=3, nHex=100)
 #'
 #' # By default, r=3 if no parameters are specified
-#' res <- sHexGrid()
+#' sHex <- sHexGrid()
 
 sHexGrid <- function(r=NULL, nHex=NULL)
 {
@@ -171,20 +172,26 @@ sHexGrid <- function(r=NULL, nHex=NULL)
         }
     
     }
+    angle_centroid[is.na(angle_centroid)] <- 0
     
     step_angle <- cbind(step_centroid, angle_centroid)
     order_inds <- order(step_angle[,1],step_angle[,2])
     
     coord <- coord[order_inds,]
     stepCentroid  <- step_angle[order_inds, 1]
+    angleCentroid  <- step_angle[order_inds, 2]
     
-    res <- list(r = r,
+    sHex <- list(r = r,
                 nHex = sum(tol),
                 centroid = centroid, 
                 coord = coord,
                 stepCentroid = stepCentroid,
+                angleCentroid = angleCentroid,
                 call = match.call(),
                 method = "suprahex")
-    invisible(res)
+                
+    class(sHex) <- "sHex"
+    
+    invisible(sHex)
     
 }

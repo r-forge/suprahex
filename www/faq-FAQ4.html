@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Does visDmatCluster serve as a gene cluster legend to the samples visualised by visCompReorder? @ supraHex 1.10.1</title>
+<title>Does visDmatCluster serve as a gene cluster legend to the samples visualised by visCompReorder? @ supraHex 1.13.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Hai Fang and Julian Gough">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.10.1</a>
+      <a class="brand" href="index.html">supraHex 1.13.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -123,10 +123,10 @@
       <h2>Does visDmatCluster serve as a gene cluster legend to the samples visualised by visCompReorder?</h2>
 
 Notes:
-<li> All results are based on supraHex (version 1.10.1). </li>
+<li> All results are based on supraHex (version 1.13.3). </li>
 <li> R scripts (i.e. R expressions) plus necessary comments are highlighted in light-cyan background, and the rest are outputs in the screen. </li>
 <li> Images displayed below may be distorted, but should be normal in your screen. </li>
-<li> Functions contained in supraHex 1.10.1 are hyperlinked in-place and also listed on the right side. </li>
+<li> Functions contained in supraHex 1.13.3 are hyperlinked in-place and also listed on the right side. </li>
 <li> Key texts are underlined, in bold and in pumpkin-orange color. </li>
 
 <div class="row">
@@ -142,82 +142,82 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 colnames(data) <- paste('S', seq(1:10), sep="")
 sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
 </div>
-<strong class='message'>Start at 2016-06-24 11:46:54</strong>
+<strong class='message'>Start at 2017-03-27 18:59:40</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2016-06-24 11:46:54)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (61 X 10) using 'linear' initialisation, given a topology and input data (2016-06-24 11:46:54)...</strong>
-<strong class='message'>Third, get training at the rough stage (2016-06-24 11:46:54)...</strong>
-<strong class='message'>	1 out of 7 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	2 out of 7 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	3 out of 7 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	4 out of 7 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	5 out of 7 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	6 out of 7 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	7 out of 7 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2016-06-24 11:46:54)...</strong>
-<strong class='message'>	1 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	2 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	3 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	4 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	5 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	6 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	7 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	8 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	9 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	10 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	11 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	12 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	13 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	14 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	15 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	16 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	17 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	18 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	19 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	20 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	21 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	22 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	23 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	24 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>	25 out of 25 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	updated (2016-06-24 11:46:54)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2016-06-24 11:46:54)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2016-06-24 11:46:54)...</strong>
+<strong class='message'>First, define topology of a map grid (2017-03-27 18:59:40)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (61 X 10) using 'linear' initialisation, given a topology and input data (2017-03-27 18:59:40)...</strong>
+<strong class='message'>Third, get training at the rough stage (2017-03-27 18:59:40)...</strong>
+<strong class='message'>	1 out of 7 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	2 out of 7 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	3 out of 7 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	4 out of 7 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	5 out of 7 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	6 out of 7 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	7 out of 7 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2017-03-27 18:59:40)...</strong>
+<strong class='message'>	1 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	2 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	3 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	4 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	5 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	6 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	7 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	8 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	9 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	10 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	11 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	12 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	13 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	14 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	15 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	16 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	17 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	18 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	19 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	20 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	21 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	22 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	23 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	24 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>	25 out of 25 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	updated (2017-03-27 18:59:40)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2017-03-27 18:59:40)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2017-03-27 18:59:40)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 100x10
-   xy-dimension of map grid: xdim=9, ydim=9
+   xy-dimension of map grid: xdim=9, ydim=9, r=5
    grid lattice: hexa
    grid shape: suprahex
    dimension of grid coord: 61x2
@@ -233,45 +233,45 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
    radius (at rough stage): from 3 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2016-06-24 11:46:54</strong>
+<strong class='message'>End at 2017-03-27 18:59:40</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>sReorder <- <a href='sCompReorder.html' target=sCompReorder>sCompReorder</a>(sMap=sMap)
 </div>
-<strong class='message'>Start at 2016-06-24 11:46:54</strong>
+<strong class='message'>Start at 2017-03-27 18:59:40</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2016-06-24 11:46:54)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (30 X 61) using 'linear' initialisation, given a topology and input data (2016-06-24 11:46:54)...</strong>
-<strong class='message'>Third, get training at the rough stage (2016-06-24 11:46:54)...</strong>
-<strong class='message'>	1 out of 300 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	30 out of 300 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	60 out of 300 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	90 out of 300 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	120 out of 300 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	150 out of 300 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	180 out of 300 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	210 out of 300 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	240 out of 300 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	270 out of 300 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	300 out of 300 (2016-06-24 11:46:54)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2016-06-24 11:46:54)...</strong>
-<strong class='message'>	1 out of 1200 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	120 out of 1200 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	240 out of 1200 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	360 out of 1200 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	480 out of 1200 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	600 out of 1200 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	720 out of 1200 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	840 out of 1200 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	960 out of 1200 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	1080 out of 1200 (2016-06-24 11:46:54)</strong>
-<strong class='message'>	1200 out of 1200 (2016-06-24 11:46:54)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2016-06-24 11:46:54)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2016-06-24 11:46:54)...</strong>
+<strong class='message'>First, define topology of a map grid (2017-03-27 18:59:40)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (30 X 61) using 'linear' initialisation, given a topology and input data (2017-03-27 18:59:40)...</strong>
+<strong class='message'>Third, get training at the rough stage (2017-03-27 18:59:40)...</strong>
+<strong class='message'>	1 out of 300 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	30 out of 300 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	60 out of 300 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	90 out of 300 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	120 out of 300 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	150 out of 300 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	180 out of 300 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	210 out of 300 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	240 out of 300 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	270 out of 300 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	300 out of 300 (2017-03-27 18:59:40)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2017-03-27 18:59:40)...</strong>
+<strong class='message'>	1 out of 1200 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	120 out of 1200 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	240 out of 1200 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	360 out of 1200 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	480 out of 1200 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	600 out of 1200 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	720 out of 1200 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	840 out of 1200 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	960 out of 1200 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	1080 out of 1200 (2017-03-27 18:59:40)</strong>
+<strong class='message'>	1200 out of 1200 (2017-03-27 18:59:40)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2017-03-27 18:59:40)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2017-03-27 18:59:40)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 10x61
-   xy-dimension of map grid: xdim=6, ydim=5
+   xy-dimension of map grid: xdim=6, ydim=5, r=3
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 30x2
@@ -287,7 +287,7 @@ sMap <- <a href='sPipeline.html' target=sPipeline>sPipeline</a>(data=data)
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2016-06-24 11:46:54</strong>
+<strong class='message'>End at 2017-03-27 18:59:40</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'><a href='visCompReorder.html' target=visCompReorder>visCompReorder</a>(sMap=sMap, sReorder=sReorder)
@@ -336,7 +336,7 @@ sBase <- <a href='sDmatCluster.html' target=sDmatCluster>sDmatCluster</a>(sMap=s
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

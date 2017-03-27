@@ -29,6 +29,6 @@ acute lymphoblastic leukemia (ALL) which can be further subtyped into
 Golub et al. (1999). Molecular classification of cancer: class
 discovery and class prediction by gene expression monitoring,
 \emph{Science}, Vol. 286:531-537.
-\url{http://www-genome.wi.mit.edu/MPR/}\cr}
+}
 
 \keyword{datasets}

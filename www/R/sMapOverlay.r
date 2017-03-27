@@ -11,6 +11,7 @@
 #'  \item{\code{nHex}: the total number of hexagons/rectanges in the grid}
 #'  \item{\code{xdim}: x-dimension of the grid}
 #'  \item{\code{ydim}: y-dimension of the grid}
+#'  \item{\code{r}: the hypothetical radius of the grid}
 #'  \item{\code{lattice}: the grid lattice}
 #'  \item{\code{shape}: the grid shape}
 #'  \item{\code{coord}: a matrix of nHex x 2, with rows corresponding to the coordinates of all hexagons/rectangles in the 2D map grid}
@@ -62,21 +63,21 @@ sMapOverlay <- function(sMap, data, additional)
     dlen <- nrow(data)
 
     ## checking additional    
-    failed <- F
+    failed <- FALSE
     if (is.vector(additional)){
         if(length(additional)==dlen){
             additional <- matrix(additional, nrow=length(additional), ncol=1)
         }else{
-            failed <- T
+            failed <- TRUE
         }
     }else if(is.matrix(additional) | is.data.frame(additional)){
         if(nrow(additional)==dlen){
             additional <- as.matrix(additional)
         }else{
-            failed <- T
+            failed <- TRUE
         }
     }else if(is.null(additional)){
-        failed <- T
+        failed <- TRUE
     }
     if(failed){
         stop("The input 'additional' must have the same rows/length as the input 'data'.\n")
@@ -131,6 +132,7 @@ sMapOverlay <- function(sMap, data, additional)
     sOverlay <- list(  nHex = sMap$nHex, 
                    xdim = sMap$xdim, 
                    ydim = sMap$ydim,
+                   r = sMap$r,
                    lattice = sMap$lattice,
                    shape = sMap$shape,
                    coord = sMap$coord,

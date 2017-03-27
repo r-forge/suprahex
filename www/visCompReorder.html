@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visCompReorder @ supraHex 1.10.1</title>
+<title>visCompReorder @ supraHex 1.13.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.10.1</a>
+      <a class="brand" href="index.html">supraHex 1.13.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -133,7 +133,7 @@ planes reorded within a sheet-shape rectangle grid</p>
     <pre>visCompReorder(sMap, sReorder, margin = rep(0.1, 4), height = 7, title.rotate = 0, 
   title.xy = c(0.45, 1), colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", 
           "wb"), ncolors = 40, zlim = NULL, border.color = "transparent", gp = grid::gpar(), 
-      newpage = T)</pre>
+      newpage = TRUE)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -207,100 +207,100 @@ matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
 colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 
 # 2) sMap resulted from using by default setup
-sMap <- sPipeline(data=data)
+sMap <- sPipeline(data=data, shape=c("suprahex","trefoil")[2])
 </div>
-<strong class='message'>Start at 2016-06-24 11:47:13</strong>
+<strong class='message'>Start at 2017-03-27 18:55:05</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2016-06-24 11:47:13)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (169 X 9) using 'linear' initialisation, given a topology and input data (2016-06-24 11:47:13)...</strong>
-<strong class='message'>Third, get training at the rough stage (2016-06-24 11:47:13)...</strong>
-<strong class='message'>	1 out of 2 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:13)</strong>
-<strong class='message'>	2 out of 2 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:13)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2016-06-24 11:47:13)...</strong>
-<strong class='message'>	1 out of 7 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:13)</strong>
-<strong class='message'>	2 out of 7 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:13)</strong>
-<strong class='message'>	3 out of 7 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:13)</strong>
-<strong class='message'>	4 out of 7 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:13)</strong>
-<strong class='message'>	5 out of 7 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:13)</strong>
-<strong class='message'>	6 out of 7 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:13)</strong>
-<strong class='message'>	7 out of 7 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:13)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2016-06-24 11:47:13)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2016-06-24 11:47:13)...</strong>
+<strong class='message'>First, define topology of a map grid (2017-03-27 18:55:05)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (163 X 9) using 'linear' initialisation, given a topology and input data (2017-03-27 18:55:05)...</strong>
+<strong class='message'>Third, get training at the rough stage (2017-03-27 18:55:05)...</strong>
+<strong class='message'>	1 out of 2 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:05)</strong>
+<strong class='message'>	2 out of 2 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:05)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2017-03-27 18:55:05)...</strong>
+<strong class='message'>	1 out of 7 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:05)</strong>
+<strong class='message'>	2 out of 7 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:05)</strong>
+<strong class='message'>	3 out of 7 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:05)</strong>
+<strong class='message'>	4 out of 7 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:05)</strong>
+<strong class='message'>	5 out of 7 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:05)</strong>
+<strong class='message'>	6 out of 7 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:05)</strong>
+<strong class='message'>	7 out of 7 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:05)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2017-03-27 18:55:05)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2017-03-27 18:55:05)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 1000x9
-   xy-dimension of map grid: xdim=15, ydim=15
+   xy-dimension of map grid: xdim=19, ydim=19, r=10
    grid lattice: hexa
-   grid shape: suprahex
-   dimension of grid coord: 169x2
+   grid shape: trefoil
+   dimension of grid coord: 163x2
    initialisation method: linear
-   dimension of codebook matrix: 169x9
-   mean quantization error: 4.23734077574819
+   dimension of codebook matrix: 163x9
+   mean quantization error: 4.26156886077175
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: batch
    alpha type: invert
    training neighborhood kernel: gaussian
    trainlength (x input data length): 2 at rough stage; 7 at finetune stage
-   radius (at rough stage): from 4 to 1
-   radius (at finetune stage): from 1 to 1
+   radius (at rough stage): from 5 to 1.25
+   radius (at finetune stage): from 2 to 1
 </strong>
-<strong class='message'>End at 2016-06-24 11:47:13</strong>
+<strong class='message'>End at 2017-03-27 18:55:05</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
 # 3) reorder component planes
 sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="none")
 </div>
-<strong class='message'>Start at 2016-06-24 11:47:13</strong>
+<strong class='message'>Start at 2017-03-27 18:55:05</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2016-06-24 11:47:13)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (18 X 169) using 'linear' initialisation, given a topology and input data (2016-06-24 11:47:13)...</strong>
-<strong class='message'>Third, get training at the rough stage (2016-06-24 11:47:13)...</strong>
-<strong class='message'>	1 out of 180 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	18 out of 180 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	36 out of 180 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	54 out of 180 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	72 out of 180 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	90 out of 180 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	108 out of 180 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	126 out of 180 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	144 out of 180 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	162 out of 180 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	180 out of 180 (2016-06-24 11:47:13)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2016-06-24 11:47:13)...</strong>
-<strong class='message'>	1 out of 720 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	72 out of 720 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	144 out of 720 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	216 out of 720 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	288 out of 720 (2016-06-24 11:47:13)</strong>
-<strong class='message'>	360 out of 720 (2016-06-24 11:47:14)</strong>
-<strong class='message'>	432 out of 720 (2016-06-24 11:47:14)</strong>
-<strong class='message'>	504 out of 720 (2016-06-24 11:47:14)</strong>
-<strong class='message'>	576 out of 720 (2016-06-24 11:47:14)</strong>
-<strong class='message'>	648 out of 720 (2016-06-24 11:47:14)</strong>
-<strong class='message'>	720 out of 720 (2016-06-24 11:47:14)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2016-06-24 11:47:14)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2016-06-24 11:47:14)...</strong>
+<strong class='message'>First, define topology of a map grid (2017-03-27 18:55:05)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (18 X 163) using 'linear' initialisation, given a topology and input data (2017-03-27 18:55:05)...</strong>
+<strong class='message'>Third, get training at the rough stage (2017-03-27 18:55:05)...</strong>
+<strong class='message'>	1 out of 180 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	18 out of 180 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	36 out of 180 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	54 out of 180 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	72 out of 180 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	90 out of 180 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	108 out of 180 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	126 out of 180 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	144 out of 180 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	162 out of 180 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	180 out of 180 (2017-03-27 18:55:05)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2017-03-27 18:55:05)...</strong>
+<strong class='message'>	1 out of 720 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	72 out of 720 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	144 out of 720 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	216 out of 720 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	288 out of 720 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	360 out of 720 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	432 out of 720 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	504 out of 720 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	576 out of 720 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	648 out of 720 (2017-03-27 18:55:05)</strong>
+<strong class='message'>	720 out of 720 (2017-03-27 18:55:06)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2017-03-27 18:55:06)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2017-03-27 18:55:06)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
-<strong class='message'>   dimension of input data: 9x169
-   xy-dimension of map grid: xdim=6, ydim=3
+<strong class='message'>   dimension of input data: 9x163
+   xy-dimension of map grid: xdim=6, ydim=3, r=3
    grid lattice: rect
    grid shape: sheet
    dimension of grid coord: 18x2
    initialisation method: linear
-   dimension of codebook matrix: 18x169
-   mean quantization error: 31.3740925548076
+   dimension of codebook matrix: 18x163
+   mean quantization error: 32.521897311002
 </strong>
 <strong class='message'>Below are the details of trainology:</strong>
 <strong class='message'>   training algorithm: sequential
@@ -310,7 +310,7 @@ sReorder <- sCompReorder(sMap=sMap, amplifier=2, metric="none")
    radius (at rough stage): from 1 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2016-06-24 11:47:14</strong>
+<strong class='message'>End at 2017-03-27 18:55:06</strong>
 <strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
@@ -369,7 +369,7 @@ border.color="transparent")
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

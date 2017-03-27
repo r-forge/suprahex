@@ -49,7 +49,7 @@
 #' # also, the area size is inversely proportional to the map distance
 #' visDmatCluster(sMap,sBase, fill.color=my_color, lty=my_lty, border.color="black", lwd=2, area.size=-1*log2(dMat))
 
-visDmatCluster <- function (sMap, sBase, height=7, margin=rep(0.1,4), area.size=1, gp=grid::gpar(cex=0.8, font=2, col="black"),  border.color="transparent", fill.color=NULL, lty=1, lwd=1, lineend="round", linejoin="round", colormap=c("rainbow","jet","bwr","gbr","wyr","br","yr","wb"), clip=c("on","inherit","off"), newpage=T)
+visDmatCluster <- function (sMap, sBase, height=7, margin=rep(0.1,4), area.size=1, gp=grid::gpar(cex=0.8, font=2, col="black"),  border.color="transparent", fill.color=NULL, lty=1, lwd=1, lineend="round", linejoin="round", colormap=c("rainbow","jet","bwr","gbr","wyr","br","yr","wb"), clip=c("on","inherit","off"), newpage=TRUE)
 {
     
     #colormap <- match.arg(colormap)

@@ -48,13 +48,13 @@
 #' @seealso \code{\link{visHexMulComp}}
 #' @include visHexAnimate.r
 #' @examples
-#' \dontrun{
 #' # 1) generate data with an iid matrix of 1000 x 3
 #' data <- cbind(matrix(rnorm(1000*3,mean=0,sd=1), nrow=1000, ncol=3), 
 #' matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3), 
 #' matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
 #' colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 #'
+#' \dontrun{
 #' # 2) sMap resulted from using by default setup
 #' sMap <- sPipeline(data=data)
 #'
@@ -129,7 +129,7 @@ visHexAnimate <- function(sMap, which.components=NULL, filename="visHexAnimate",
 		grDevices::graphics.off()
         
         if(file.exists(file.path(getwd(), outputfile))){
-            message(sprintf("Congratulations! A file '%s' (in the directory %s) has been created!", outputfile, getwd()), appendLF=T)
+            message(sprintf("Congratulations! A file '%s' (in the directory %s) has been created!", outputfile, getwd()), appendLF=TRUE)
         }
         
         invisible()
@@ -148,13 +148,13 @@ visHexAnimate <- function(sMap, which.components=NULL, filename="visHexAnimate",
         if(image.type=='png'){
         	image_files <- file.path(tdir, "Rplot%06d.png")
         	## remove the existing temporary png files
-        	unlink(file.path(tdir, "Rplot*.png"), recursive=T, force=T)
+        	unlink(file.path(tdir, "Rplot*.png"), recursive=TRUE, force=TRUE)
         }else if(image.type=='jpg'){
         	image_files <- file.path(tdir, "Rplot%06d.jpg")
         	## remove the existing temporary jpg files
-        	unlink(file.path(tdir, "Rplot*.jpg"), recursive=T, force=T)
+        	unlink(file.path(tdir, "Rplot*.jpg"), recursive=TRUE, force=TRUE)
         }
-        unlink(file.path(tdir, outputfile), recursive=T, force=T)
+        unlink(file.path(tdir, outputfile), recursive=TRUE, force=TRUE)
         
         if(height<10){
             height <- ceiling(height*100)
@@ -169,7 +169,7 @@ visHexAnimate <- function(sMap, which.components=NULL, filename="visHexAnimate",
         n <- 0
 		for(rplot in rplots){
 			n <- n+1
-			image_file <- gsub("%06d", sprintf("%06d",n), image_files, perl=T)
+			image_file <- gsub("%06d", sprintf("%06d",n), image_files, perl=TRUE)
 			grDevices::jpeg(image_file, width=height, height=height)
     		grDevices::replayPlot(rplot)
     		grDevices::graphics.off()
@@ -184,7 +184,7 @@ visHexAnimate <- function(sMap, which.components=NULL, filename="visHexAnimate",
 				cmd <- try(system(ffmpeg_local[i]), silent=TRUE)
 				if(cmd==0){
 					cmd_flag <- 0
-					message(sprintf("Executing this command: '%s'\n", ffmpeg_local[i]), appendLF=T)
+					message(sprintf("Executing this command: '%s'\n", ffmpeg_local[i]), appendLF=TRUE)
 					break
 				}
 			}
@@ -205,7 +205,7 @@ visHexAnimate <- function(sMap, which.components=NULL, filename="visHexAnimate",
 				cmd <- try(system(convert_local[i]), silent=TRUE)
 				if(cmd==0){
 					cmd_flag <- 0
-					message(sprintf("Executing this command: '%s'\n", convert_local[i]), appendLF=T)
+					message(sprintf("Executing this command: '%s'\n", convert_local[i]), appendLF=TRUE)
 					break
 				}
 			}
@@ -214,8 +214,8 @@ visHexAnimate <- function(sMap, which.components=NULL, filename="visHexAnimate",
 		
         if(cmd_flag==0){
             if(file.exists(file.path(tdir, outputfile))){
-                file.copy(from=file.path(tdir, outputfile), to=outputfile, overwrite=T, recursive=F, copy.mode=T)
-                message(sprintf("Congratulations! A file '%s' (in the directory %s) has been created!", outputfile, getwd()), appendLF=T)
+                file.copy(from=file.path(tdir, outputfile), to=outputfile, overwrite=TRUE, recursive=FALSE, copy.mode=TRUE)
+                message(sprintf("Congratulations! A file '%s' (in the directory %s) has been created!", outputfile, getwd()), appendLF=TRUE)
             }
         }else{
             stop("Unfortunately, fail to produce the file. Please install ffmpeg or ImageMagick first. Also make sure its path being put into the system PATH variable (see Help). Alternatively, produce the pdf file instead\n")

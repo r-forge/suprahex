@@ -9,6 +9,8 @@ list(
             c(
                 "sPipeline",
                 "sHexGrid",
+                "sHexGridVariant",
+                "sHexPolygon",
                 "sTopology",
                 "sInitial",
                 "sTrainology",
@@ -33,6 +35,7 @@ list(
                 "visHexPattern",
                 "visHexGrid",
                 "visHexMapping", 
+                "visHexBarplot",
                 "visHexComp",
                 "visColormap",
                 "visColoralpha",

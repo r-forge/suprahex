@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>sHexGridVariant @ supraHex 1.13.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+
+<style type="text/css">
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #999999;
+}
+
+.navbar .brand:hover {
+  color: #F87217;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.navbar .nav > li > a:hover {
+  color: #F87217;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+</style>
+
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17338744-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<!-- Enlarge image -->
+<script type="text/javascript">
+    function newWin(url, name, width, height) { 
+       
+        var left = (screen.width/2)-(width/2);
+        var top = (screen.height/2)-(height/2); 
+        
+        window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
+    }
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">supraHex 1.13.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="docs.html"><i class="icon-book icon-white"></i> Documentations</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="install.html"><i class="icon-wrench icon-white"></i> Installation</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="demos.html"><i class="icon-play icon-white"></i> Demos</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="faqs.html"><i class="icon-question-sign icon-white"></i> FAQs</a></li>
+        </ul>
+        <ul class="nav">
+          <li><a href="cite.html"><i class="icon-pencil icon-white"></i> Citation</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var cx = '012094530736424854714:5dmiiel8qeq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<div><gcse:search></gcse:search></div>
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h2>Function to define a variant of a supra-hexagonal grid</h2>
+
+<div class="row">
+  <div class="span8">
+  
+    <h3>Description</h3>
+    <p><code>sHexGridVariant</code> is supposed to define a variant of a
+supra-hexagonal map grid. In essence, it is the subset of the
+supra-hexagon.</p>
+  
+    <h3>Usage</h3>
+    <pre>sHexGridVariant(r = NULL, nHex = NULL, shape = c("suprahex", "triangle", "diamond", 
+  "hourglass", "trefoil", "ladder", "butterfly", "ring", "bridge"))</pre>
+    
+    <h3>Arguments</h3>
+    <dl>
+      <dt>r</dt>
+      <dd>an integer specifying the radius in a supra-hexagonal grid</dd>
+      <dt>nHex</dt>
+      <dd>the number of input hexagons in the grid</dd>
+      <dt>shape</dt>
+      <dd>the grid shape, either "suprahex" for the suprahex itself,
+or its variants (including "triangle" for the triangle-shaped variant,
+"diamond" for the diamond-shaped variant, "hourglass" for the
+hourglass-shaped variant, "trefoil" for the trefoil-shaped variant,
+"ladder" for the ladder-shaped variant, "butterfly" for the
+butterfly-shaped variant, "ring" for the ring-shaped variant, and
+"bridge" for the bridge-shaped variant)</dd>
+    </dl>
+    <!-- 
+    -->
+    
+    <!-- 
+    <div class="Value">
+    -->
+      <h3>Value</h3>
+      
+      <p>an object of class "sHex", a list with following components:
+<ul>
+<li><code>r</code>: the grid radius
+</li>
+<li><code>nHex</code>: the total number of hexagons in the grid. It may
+differ from the input value; actually it is always no less than the
+input one to ensure a supra-hexagonal grid exactly formed
+</li>
+<li><code>centroid</code>: the 2D coordinates of the grid centroid
+</li>
+<li><code>stepCentroid</code>: a vector with the length of nHex. It stores
+how many steps a hexagon is awawy from the grid centroid ('1' for the
+centroid itself). Starting with the centroid, it orders outward. Also,
+for those hexagons of the same step, it orders from the rightmost in an
+anti-clock wise
+</li>
+<li><code>angleCentroid</code>: a vector with the length of nHex. It stores
+the angle a hexagon is in terms of the grid centroid ('0' for the
+centroid itself). For those hexagons of the same step, it orders from
+the rightmost in an anti-clock wise
+</li>
+<li><code>coord</code>: a matrix of nHex x 2 with each row specifying the
+2D coordinates of a hexagon in the grid. The order of rows is the same
+as 'centroid' above
+</li>
+<li><code>call</code>: the call that produced this result
+</li>
+</ul></p>
+      <p></p>
+    <!-- 
+    </div>
+    -->
+    <!-- 
+    <div class="Note">
+    -->
+      <h3>Note</h3>
+      
+      <p>none</p>
+    <!-- 
+    </div>
+    -->
+    
+    <h3 id="examples">Examples</h3>
+    <pre class="examples"><div class='input'># For "supraHex" shape itself
+sHex <- sHexGridVariant(r=6, shape="suprahex")
+
+library(ggplot2)
+</div>
+<strong class='message'>
+Attaching package: ‘ggplot2’
+</strong>
+<strong class='message'>The following object is masked from ‘package:crayon’:
+
+    %+%
+</strong>
+<div class='input'>
+#geom_polygon(color="black", fill=NA)
+
+# For "supraHex" shape itself
+sHex <- sHexGridVariant(r=6, shape="suprahex")
+df_polygon <- sHexPolygon(sHex)
+df_coord <- data.frame(sHex$coord, index=1:nrow(sHex$coord))
+gp_suprahex <- ggplot(data=df_polygon, aes(x,y,group=index)) +
+geom_polygon(aes(fill=factor(stepCentroid%%2))) +
+coord_fixed(ratio=1) + theme_void() + theme(legend.position="none") +
+geom_text(data=df_coord, aes(x,y,label=index), color="white", size=3) +
+labs(title="suprahex (r=6; xdim=ydim=11)") +
+theme(plot.title=element_text(hjust=0.5,size=8))
+
+# For "triangle" shape
+sHex <- sHexGridVariant(r=6, shape="triangle")
+df_polygon <- sHexPolygon(sHex)
+df_coord <- data.frame(sHex$coord, index=1:nrow(sHex$coord))
+gp_triangle <- ggplot(data=df_polygon, aes(x,y,group=index)) +
+geom_polygon(aes(fill=factor(stepCentroid%%2))) +
+coord_fixed(ratio=1) + theme_void() + theme(legend.position="none") +
+geom_text(data=df_coord, aes(x,y,label=index), color="white", size=3) +
+labs(title="triangle (r=6; xdim=ydim=6)") +
+theme(plot.title=element_text(hjust=0.5,size=8))
+
+# For "diamond" shape
+sHex <- sHexGridVariant(r=6, shape="diamond")
+df_polygon <- sHexPolygon(sHex)
+df_coord <- data.frame(sHex$coord, index=1:nrow(sHex$coord))
+gp_diamond <- ggplot(data=df_polygon, aes(x,y,group=index)) +
+geom_polygon(aes(fill=factor(stepCentroid%%2))) +
+coord_fixed(ratio=1) + theme_void() + theme(legend.position="none") +
+geom_text(data=df_coord, aes(x,y,label=index), color="white", size=3) +
+labs(title="diamond (r=6; xdim=6, ydim=11)") +
+theme(plot.title=element_text(hjust=0.5,size=8))
+
+# For "hourglass" shape
+sHex <- sHexGridVariant(r=6, shape="hourglass")
+df_polygon <- sHexPolygon(sHex)
+df_coord <- data.frame(sHex$coord, index=1:nrow(sHex$coord))
+gp_hourglass <- ggplot(data=df_polygon, aes(x,y,group=index)) +
+geom_polygon(aes(fill=factor(stepCentroid%%2))) +
+coord_fixed(ratio=1) + theme_void() + theme(legend.position="none") +
+geom_text(data=df_coord, aes(x,y,label=index), color="white", size=3) +
+labs(title="hourglass (r=6; xdim=6, ydim=11)") +
+theme(plot.title=element_text(hjust=0.5,size=8))
+
+# For "trefoil" shape
+sHex <- sHexGridVariant(r=6, shape="trefoil")
+df_polygon <- sHexPolygon(sHex)
+df_coord <- data.frame(sHex$coord, index=1:nrow(sHex$coord))
+gp_trefoil <- ggplot(data=df_polygon, aes(x,y,group=index)) +
+geom_polygon(aes(fill=factor(stepCentroid%%2))) +
+coord_fixed(ratio=1) + theme_void() + theme(legend.position="none") +
+geom_text(data=df_coord, aes(x,y,label=index), color="white", size=3) +
+labs(title="trefoil (r=6; xdim=ydim=11)") +
+theme(plot.title=element_text(hjust=0.5,size=8))
+
+# For "ladder" shape
+sHex <- sHexGridVariant(r=6, shape="ladder")
+df_polygon <- sHexPolygon(sHex)
+df_coord <- data.frame(sHex$coord, index=1:nrow(sHex$coord))
+gp_ladder <- ggplot(data=df_polygon, aes(x,y,group=index)) +
+geom_polygon(aes(fill=factor(stepCentroid%%2))) +
+coord_fixed(ratio=1) + theme_void() + theme(legend.position="none") +
+geom_text(data=df_coord, aes(x,y,label=index), color="white", size=3) +
+labs(title="ladder (r=6; xdim=11, ydim=6)") +
+theme(plot.title=element_text(hjust=0.5,size=8))
+
+# For "butterfly" shape
+sHex <- sHexGridVariant(r=6, shape="butterfly")
+df_polygon <- sHexPolygon(sHex)
+df_coord <- data.frame(sHex$coord, index=1:nrow(sHex$coord))
+gp_butterfly <- ggplot(data=df_polygon, aes(x,y,group=index)) +
+geom_polygon(aes(fill=factor(stepCentroid%%2))) +
+coord_fixed(ratio=1) + theme_void() + theme(legend.position="none") +
+geom_text(data=df_coord, aes(x,y,label=index), color="white", size=3) +
+labs(title="butterfly (r=6; xdim=ydim=11)") +
+theme(plot.title=element_text(hjust=0.5,size=8))
+
+# For "ring" shape
+sHex <- sHexGridVariant(r=6, shape="ring")
+df_polygon <- sHexPolygon(sHex)
+df_coord <- data.frame(sHex$coord, index=1:nrow(sHex$coord))
+gp_ring <- ggplot(data=df_polygon, aes(x,y,group=index)) +
+geom_polygon(aes(fill=factor(stepCentroid%%2))) +
+coord_fixed(ratio=1) + theme_void() + theme(legend.position="none") +
+geom_text(data=df_coord, aes(x,y,label=index), color="white", size=3) +
+labs(title="ring (r=6; xdim=ydim=11)") +
+theme(plot.title=element_text(hjust=0.5,size=8))
+
+# For "bridge" shape
+sHex <- sHexGridVariant(r=6, shape="bridge")
+df_polygon <- sHexPolygon(sHex)
+df_coord <- data.frame(sHex$coord, index=1:nrow(sHex$coord))
+gp_bridge <- ggplot(data=df_polygon, aes(x,y,group=index)) +
+geom_polygon(aes(fill=factor(stepCentroid%%2))) +
+coord_fixed(ratio=1) + theme_void() + theme(legend.position="none") +
+geom_text(data=df_coord, aes(x,y,label=index), color="white", size=3) +
+labs(title="bridge (r=6; xdim=11, ydim=6)") +
+theme(plot.title=element_text(hjust=0.5,size=8))
+
+# combined visuals
+library(gridExtra)
+grid.arrange(grobs=list(gp_suprahex, gp_ring, gp_diamond, gp_trefoil,
+gp_butterfly, gp_hourglass, gp_ladder, gp_bridge, gp_triangle),
+layout_matrix=rbind(c(1,1,2,2,3),c(1,1,2,2,3),c(4,4,5,5,6),c(4,4,5,5,6),c(7,7,8,8,9)),
+nrow=5, ncol=5)
+</div>
+<a href="javascript:newWin('sHexGridVariant-5.png', 'sHexGridVariant-5.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='sHexGridVariant-5.png', width="400" /></a></pre>
+  </div>
+  
+  <div class="span4">
+    
+    <!-- 
+    <ul>
+      <li>sHexGridVariant</li>
+    </ul>
+    <ul>
+      
+    </ul> 
+    -->
+    
+    <h2>Source code</h2>
+    <a href="javascript:newWin('R/sHexGridVariant.r', 'R/sHexGridVariant.r', '1200', '1200')" title="Click to view"><B><code>sHexGridVariant.r</code></B></a>
+    
+    <h2>Source man</h2>
+    <a href="javascript:newWin('man/sHexGridVariant.txt', 'man/sHexGridVariant.txt', '1200', '1200')" title="Click to view"><B><code>sHexGridVariant.Rd</code></B></a>
+    
+    <a href="javascript:newWin('man/sHexGridVariant.pdf', 'man/sHexGridVariant.pdf', '1200', '1200')" title="Click to view"><B><code>sHexGridVariant.pdf</code></B></a>
+    
+    <h2>See also</h2>
+    
+<code><a href='sHexGrid.html'>sHexGrid</a></code>
+
+    <!--
+
+    <h2>Citation</h2>
+    <p>Fang H, Gough J. (2014) supraHex: an R/Bioconductor package for tabular omics data analysis using a supra-hexagonal map. <I>Biochemical and Biophysical Research Communications</I>, 443(1), 285-289. <a href="http://dx.doi.org/10.1016/j.bbrc.2013.11.103">doi:10.1016/j.bbrc.2013.11.103</a>, PMID: <a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=24309102">24309102</a></p>
+
+    
+    
+    <h2>URL</h2>
+    <ul>
+      <li><a href="http://suprahex.r-forge.r-project.org">http://suprahex.r-forge.r-project.org</a></li>
+    </ul>
+    
+    
+    -->
+    
+  </div>
+  
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
+<p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
+
+
+      </footer>
+    </div>
+  </body>
+</html>

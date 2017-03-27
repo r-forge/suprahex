@@ -10,7 +10,7 @@
 #' @param base.legend.location location of legend to describe bases. If "none", this legend will not be displayed
 #' @param reorderRow the way to reorder the rows within a base. It can be "none" for rows within a base being reorded by the hexagon indexes, "hclust" for rows within a base being reorded according to hierarchical clustering of patterns seen, "svd" for rows within a base being reorded according to svd of patterns seen 
 #' @param keep.data logical to indicate whether or not to also write out the input data. By default, it sets to false for not keeping it. It is highly expensive to keep the large data sets
-#' @param ... additional graphic parameters used in "visHeatmapAdv". For most parameters, please refer to \url{http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2}
+#' @param ... additional graphic parameters used in "visHeatmapAdv". For most parameters, please refer to \url{https://www.rdocumentation.org/packages/gplots/topics/heatmap.2}
 #' @return 
 #' a data frame with following components:
 #' \itemize{
@@ -43,7 +43,7 @@
 #' # 4) heatmap visualisation
 #' output <- visDmatHeatmap(sMap, data, sBase, base.legend.location="bottomleft", labRow=NA)
 
-visDmatHeatmap <- function (sMap, data, sBase, base.color="rainbow", base.separated.arg=NULL, base.legend.location=c("none","bottomleft","bottomright","bottom","left","topleft","top","topright","right","center"), reorderRow=c("none","hclust","svd"), keep.data=F, ...)
+visDmatHeatmap <- function (sMap, data, sBase, base.color="rainbow", base.separated.arg=NULL, base.legend.location=c("none","bottomleft","bottomright","bottom","left","topleft","top","topright","right","center"), reorderRow=c("none","hclust","svd"), keep.data=FALSE, ...)
 {
     
     base.legend.location <- match.arg(base.legend.location)
@@ -82,7 +82,7 @@ visDmatHeatmap <- function (sMap, data, sBase, base.color="rainbow", base.separa
         for(i in 1:length(unique(base))){
             tmpD <- data[base==i,]
             if(sum(base==i) != 1){
-                sorted <- sort.int(tmpD %*% svd(data)$v[,1], decreasing=T, index.return=T)
+                sorted <- sort.int(tmpD %*% svd(data)$v[,1], decreasing=TRUE, index.return=TRUE)
                 svd_order[base==i] <- sorted$ix
             }
         }
@@ -134,12 +134,12 @@ visDmatHeatmap <- function (sMap, data, sBase, base.color="rainbow", base.separa
     ################################################
     
     ## heatmap embeded with sidebars annotating gene cluster memberships
-    visHeatmapAdv(D, Rowv=F, Colv=F, RowSideColors=RowSideColors, add.expr=abline(h=(basesep_index-0.5), lty=base.separated.arg.default$lty,lwd=base.separated.arg.default$lwd,col=base.separated.arg.default$col), ...)
+    visHeatmapAdv(D, Rowv=FALSE, Colv=FALSE, RowSideColors=RowSideColors, add.expr=abline(h=(basesep_index-0.5), lty=base.separated.arg.default$lty,lwd=base.separated.arg.default$lwd,col=base.separated.arg.default$col), ...)
     
     ## add legend
     if(base.legend.location!="none"){
         legend_txt <- paste(rep("Base",length(lvs)), lvs, sep=" ")
-        legend(base.legend.location, legend=legend_txt, col=lvs_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=F)
+        legend(base.legend.location, legend=legend_txt, col=lvs_color, lty=1, lwd=5, cex=0.6, box.col="transparent", horiz=FALSE)
     }
     
     ######################################################################################

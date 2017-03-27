@@ -53,7 +53,7 @@ sDistance <- function(data, metric=c("pearson","spearman","kendall","euclidean",
     }
     
     if(metric == "euclidean" | metric == "manhattan"){
-        res <- dist(x=data, method=metric, diag=FALSE, upper=T)
+        res <- dist(x=data, method=metric, diag=FALSE, upper=TRUE)
     }else if(metric == "pearson" | metric == "kendall" | metric == "spearman"){
         res <- cor(x=t(data), method=metric) ## column-wise
         res <- 1-res

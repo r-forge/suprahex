@@ -88,7 +88,7 @@ sCompReorder <- function(sMap, xdim=NULL, ydim=NULL, amplifier=NULL, metric=c("n
     sTopol <- sTopology(data=D, xdim=xdim, ydim=ydim, nHex=nHex, lattice="rect", shape="sheet")
     
     ## setup the pipeline for completing ab initio training given the input data
-    sM <- sPipeline(data=D, xdim=sTopol$ydim, ydim=sTopol$xdim, lattice="rect", shape="sheet", init=init, algorithm=algorithm, alphaType=alphaType, neighKernel=neighKernel, verbose=T)
+    sM <- sPipeline(data=D, xdim=sTopol$ydim, ydim=sTopol$xdim, lattice="rect", shape="sheet", init=init, algorithm=algorithm, alphaType=alphaType, neighKernel=neighKernel, verbose=TRUE)
     
     ## identify the best-matching hexagon/rectangle for the input data
     res <- sBMH(sMap=sM, data=D, which_bmh="all")

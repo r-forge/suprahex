@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visHeatmapAdv @ supraHex 1.10.1</title>
+<title>visHeatmapAdv @ supraHex 1.13.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.10.1</a>
+      <a class="brand" href="index.html">supraHex 1.13.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -133,13 +133,13 @@ cutting histogram into groups. Note: this heatmap displays matrix in a
 top-to-bottom direction</p>
   
     <h3>Usage</h3>
-    <pre>visHeatmapAdv(data, scale = c("none", "row", "column"), Rowv = T, Colv = T, dendrogram = c("both", 
-  "row", "column", "none"), dist.metric = c("euclidean", "pearson", "spearman", 
-      "kendall", "manhattan", "cos", "mi"), linkage.method = c("complete", "ward", 
-      "single", "average", "mcquitty", "median", "centroid"), colormap = c("bwr", "jet", 
-      "gbr", "wyr", "br", "yr", "rainbow", "wb"), ncolors = 64, zlim = NULL, RowSideColors = NULL, 
-      row.cutree = NULL, row.colormap = c("jet"), ColSideColors = NULL, column.cutree = NULL, 
-      column.colormap = c("jet"), ...)</pre>
+    <pre>visHeatmapAdv(data, scale = c("none", "row", "column"), Rowv = TRUE, Colv = TRUE, 
+  dendrogram = c("both", "row", "column", "none"), dist.metric = c("euclidean", 
+          "pearson", "spearman", "kendall", "manhattan", "cos", "mi"), linkage.method = c("complete", 
+          "ward", "single", "average", "mcquitty", "median", "centroid"), colormap = c("bwr", 
+          "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"), ncolors = 64, zlim = NULL, 
+      RowSideColors = NULL, row.cutree = NULL, row.colormap = c("jet"), ColSideColors = NULL, 
+      column.cutree = NULL, column.colormap = c("jet"), ...)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -228,9 +228,9 @@ column groups (i.e. sidebar colors used to annotate the columns)</dd>
       <dt>...</dt>
       <dd>additional graphic parameters. For most parameters, please
 refer to
-<a href = 'http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2'>http://www.inside-r.org/packages/cran/gplots/docs/heatmap.2</a>. For
-example, the parameters "srtRow" and "srtCol" to control the angle of
-row/column labels (in degrees from horizontal: 45 degrees for the
+<a href = 'https://www.rdocumentation.org/packages/gplots/topics/heatmap.2'>https://www.rdocumentation.org/packages/gplots/topics/heatmap.2</a>.
+For example, the parameters "srtRow" and "srtCol" to control the angle
+of row/column labels (in degrees from horizontal: 45 degrees for the
 column, 0 degrees for the row, by default), i.e. string rotation. The
 parameters "offsetRow" and "offsetCol" to indicate the number of
 character-width spaces to place between row/column labels and the edge
@@ -394,7 +394,7 @@ box.col="transparent", horiz=FALSE)
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

@@ -94,8 +94,8 @@ sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min
         
         while(1){
             ## find closest unclustered point k
-            #matched_inds <- which(Cd == min(Cd), arr.ind=T)
-            matched_inds <- which(CCd == min(CCd), arr.ind=T)
+            #matched_inds <- which(Cd == min(Cd), arr.ind=TRUE)
+            matched_inds <- which(CCd == min(CCd), arr.ind=TRUE)
             
             k <- matched_inds[1]
             c <- matched_inds[2]
@@ -185,7 +185,7 @@ sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min
     }else if(reindexSeed=="svd"){
         ## reordering via SVD
         D <- M[seed,]
-        sorted <- sort.int(D %*% svd(M)$v[,1], decreasing=T, index.return=T)
+        sorted <- sort.int(D %*% svd(M)$v[,1], decreasing=TRUE, index.return=TRUE)
         ordering <- sorted$ix
         
         ## reorder seed

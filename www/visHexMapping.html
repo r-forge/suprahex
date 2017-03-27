@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visHexMapping @ supraHex 1.10.1</title>
+<title>visHexMapping @ supraHex 1.13.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.10.1</a>
+      <a class="brand" href="index.html">supraHex 1.13.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -134,7 +134,7 @@ within a supra-hexagonal grid</p>
   "customized"), labels = NULL, height = 7, margin = rep(0.1, 4), area.size = 1, 
       gp = grid::gpar(cex = 0.7, font = 1, col = "black"), border.color = NULL, fill.color = "transparent", 
       lty = 1, lwd = 1, lineend = "round", linejoin = "round", clip = c("on", "inherit", 
-          "off"), newpage = T)</pre>
+          "off"), newpage = TRUE)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -227,36 +227,36 @@ colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2016-06-24 11:47:22</strong>
+<strong class='message'>Start at 2017-03-27 18:55:27</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2016-06-24 11:47:22)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (169 X 9) using 'linear' initialisation, given a topology and input data (2016-06-24 11:47:22)...</strong>
-<strong class='message'>Third, get training at the rough stage (2016-06-24 11:47:22)...</strong>
-<strong class='message'>	1 out of 2 (2016-06-24 11:47:22)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:22)</strong>
-<strong class='message'>	2 out of 2 (2016-06-24 11:47:22)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:22)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2016-06-24 11:47:22)...</strong>
-<strong class='message'>	1 out of 7 (2016-06-24 11:47:22)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:22)</strong>
-<strong class='message'>	2 out of 7 (2016-06-24 11:47:22)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:22)</strong>
-<strong class='message'>	3 out of 7 (2016-06-24 11:47:22)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:22)</strong>
-<strong class='message'>	4 out of 7 (2016-06-24 11:47:22)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:22)</strong>
-<strong class='message'>	5 out of 7 (2016-06-24 11:47:22)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:22)</strong>
-<strong class='message'>	6 out of 7 (2016-06-24 11:47:22)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:22)</strong>
-<strong class='message'>	7 out of 7 (2016-06-24 11:47:22)</strong>
-<strong class='message'>	updated (2016-06-24 11:47:22)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2016-06-24 11:47:22)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2016-06-24 11:47:22)...</strong>
+<strong class='message'>First, define topology of a map grid (2017-03-27 18:55:27)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (169 X 9) using 'linear' initialisation, given a topology and input data (2017-03-27 18:55:27)...</strong>
+<strong class='message'>Third, get training at the rough stage (2017-03-27 18:55:27)...</strong>
+<strong class='message'>	1 out of 2 (2017-03-27 18:55:27)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:27)</strong>
+<strong class='message'>	2 out of 2 (2017-03-27 18:55:27)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:27)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2017-03-27 18:55:27)...</strong>
+<strong class='message'>	1 out of 7 (2017-03-27 18:55:27)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:27)</strong>
+<strong class='message'>	2 out of 7 (2017-03-27 18:55:27)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:27)</strong>
+<strong class='message'>	3 out of 7 (2017-03-27 18:55:27)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:27)</strong>
+<strong class='message'>	4 out of 7 (2017-03-27 18:55:27)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:27)</strong>
+<strong class='message'>	5 out of 7 (2017-03-27 18:55:27)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:27)</strong>
+<strong class='message'>	6 out of 7 (2017-03-27 18:55:27)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:27)</strong>
+<strong class='message'>	7 out of 7 (2017-03-27 18:55:27)</strong>
+<strong class='message'>	updated (2017-03-27 18:55:27)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2017-03-27 18:55:27)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2017-03-27 18:55:27)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 1000x9
-   xy-dimension of map grid: xdim=15, ydim=15
+   xy-dimension of map grid: xdim=15, ydim=15, r=8
    grid lattice: hexa
    grid shape: suprahex
    dimension of grid coord: 169x2
@@ -272,19 +272,19 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2016-06-24 11:47:22</strong>
+<strong class='message'>End at 2017-03-27 18:55:27</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <div class='input'>
 # 3) visualise supported mapping items within a supra-hexagonal grid
 # 3a) for indexes of hexagons
-visHexMapping(sMap,mappingType="indexes")
+visHexMapping(sMap, mappingType="indexes", fill.color="transparent")
 # 3b) for the number of input data vectors hitting the hexagons
-visHexMapping(sMap,mappingType="hits")
+visHexMapping(sMap, mappingType="hits", fill.color=NULL)
 # 3c) for distance (in high-dimensional input space) to neighbors (defined in 2D output space)
-visHexMapping(sMap,mappingType="dist")
+visHexMapping(sMap, mappingType="dist")
 # 3d) for clusters/bases partitioned from the sMap
-visHexMapping(sMap,mappingType="bases")
+visHexMapping(sMap, mappingType="bases")
 </div></pre>
   </div>
   
@@ -334,7 +334,7 @@ visHexMapping(sMap,mappingType="bases")
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 

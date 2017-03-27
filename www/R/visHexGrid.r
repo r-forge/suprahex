@@ -34,7 +34,7 @@
 #' vp <- hexbin::hexViewport(hbin)
 #' visHexGrid(hbin)
 
-visHexGrid <- function (hbin, area.size=1, border.color=NULL, fill.color=NULL, lty=1, lwd=1, lineend="round", linejoin="round") 
+visHexGrid <- function(hbin, area.size=1, border.color=NULL, fill.color=NULL, lty=1, lwd=1, lineend="round", linejoin="round") 
 {
     if (class(hbin) != "hexbin"){
         stop("The funciton must apply to a 'hexbin' object.\n")

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>visTreeBSclust @ supraHex 1.10.1</title>
+<title>visTreeBSclust @ supraHex 1.13.3</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -75,7 +75,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="index.html">supraHex 1.10.1</a>
+      <a class="brand" href="index.html">supraHex 1.13.3</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Home</a></li>
@@ -126,12 +126,12 @@
   <div class="span8">
   
     <h3>Description</h3>
-    <p><code>visTreeBSclust</code> is supposed to otbain clusters from a
+    <p><code>visTreeBSclust</code> is supposed to obtain clusters from a
 bootstrapped tree.</p>
   
     <h3>Usage</h3>
-    <pre>visTreeBSclust(tree_bs, bootstrap.cutoff = 80, max.fraction = 1, min.size = 3, visTree = T, 
-  plot.phylo.arg = NULL, nodelabels.arg = NULL, verbose = T, ...)</pre>
+    <pre>visTreeBSclust(tree_bs, bootstrap.cutoff = 80, max.fraction = 1, min.size = 3, visTree = TRUE, 
+  plot.phylo.arg = NULL, nodelabels.arg = NULL, verbose = TRUE, ...)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -150,14 +150,12 @@ cluster</dd>
 By default, it sets to true for display</dd>
       <dt>plot.phylo.arg</dt>
       <dd>a list of main parameters used in the function
-"ape::plot.phylo"
-<a href = 'http://www.inside-r.org/packages/cran/ape/docs/plot.phylo'>http://www.inside-r.org/packages/cran/ape/docs/plot.phylo</a>. See
-'Note' below for details on the parameters</dd>
+"ape::plot.phylo" <a href = 'http://rdrr.io/cran/ape/man/plot.phylo.html'>http://rdrr.io/cran/ape/man/plot.phylo.html</a>.
+See 'Note' below for details on the parameters</dd>
       <dt>nodelabels.arg</dt>
       <dd>a list of main parameters used in the function
-"ape::nodelabels"
-<a href = 'http://www.inside-r.org/packages/cran/ape/docs/nodelabels'>http://www.inside-r.org/packages/cran/ape/docs/nodelabels</a>. See
-'Note' below for details on the parameters</dd>
+"ape::nodelabels" <a href = 'http://rdrr.io/cran/ape/man/nodelabels.html'>http://rdrr.io/cran/ape/man/nodelabels.html</a>.
+See 'Note' below for details on the parameters</dd>
       <dt>verbose</dt>
       <dd>logical to indicate whether the messages will be
 displayed in the screen. By default, it sets to true for display</dd>
@@ -299,7 +297,8 @@ found in <a href = 'http://html-color-codes.info/color-names'>http://html-color-
     -->
     
     <h3 id="examples">Examples</h3>
-    <pre class="examples"><div class='input'># 1) generate an iid normal random matrix of 100x10
+    <pre class="examples"><div class='input'>
+# 1) generate an iid normal random matrix of 100x10 
 data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 data <- t(data)
@@ -307,13 +306,13 @@ data <- t(data)
 # 2) build neighbor-joining tree with bootstrap values and visualise it by default
 tree_bs <- visTreeBootstrap(data)
 </div>
-<strong class='message'>Start at 2016-06-24 11:47:29</strong>
+<strong class='message'>Start at 2017-03-27 18:55:40</strong>
 <strong class='message'></strong>
 <strong class='message'>First, build the tree (using nj algorithm and euclidean distance) from input matrix (10 by 100)...</strong>
 <strong class='message'>Second, perform bootstrap analysis with 100 replicates...</strong>
 <strong class='message'>Finally, visualise the bootstrapped tree...</strong>
 <strong class='message'></strong>
-<strong class='message'>Finish at 2016-06-24 11:47:29</strong>
+<strong class='message'>Finish at 2017-03-27 18:55:40</strong>
 <strong class='message'>Runtime in total is: 0 secs
 </strong>
 <a href="javascript:newWin('visTreeBSclust-10.png', 'visTreeBSclust-10.png', '1200', '1200')" title="Click to enlarge"><img style="max-width:95%;border:1px solid #EEEEEE;box-shadow:5px 5px 2px #C0C0C0;" src='visTreeBSclust-10.png', width="400" /></a>
@@ -382,7 +381,7 @@ nodelabels.arg=list(cex=0.4), show.tip.label=FALSE)
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
 
-<p><a href="mailto:hfang@well.ox.ac.uk" title="Hai Fang">Hai Fang</a></p>
+<p><a href="mailto:hfang.shanghai@gmail.com" title="Hai Fang">Hai Fang</a></p>
 <p><a href="http://bioinformatics.bris.ac.uk">Computational Genomics Group, Department of Computer Science, University of Bristol, UK</a></p>
 
 
