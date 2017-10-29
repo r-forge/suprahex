@@ -7,7 +7,8 @@
 sTopology(data = NULL, xdim = NULL, ydim = NULL, nHex = NULL,
 lattice = c("hexa", "rect"), shape = c("suprahex", "sheet", "triangle",
 "diamond", "hourglass", "trefoil", "ladder", "butterfly", "ring",
-"bridge"))
+"bridge"),
+scale = 5)
 }
 \arguments{
 \item{data}{a data frame or matrix of input data}
@@ -29,6 +30,11 @@ hourglass-shaped variant, "trefoil" for the trefoil-shaped variant,
 "ladder" for the ladder-shaped variant, "butterfly" for the
 butterfly-shaped variant, "ring" for the ring-shaped variant, and
 "bridge" for the bridge-shaped variant)}
+
+\item{scale}{the scaling factor. Only used when automatically
+estimating the grid dimension from input data matrix. By default, it is
+5 (big map). Other suggested values: 1 for small map, and 3 for median
+map}
 }
 \value{
 an object of class "sTopol", a list with following components:
@@ -63,8 +69,9 @@ The output of nHex depends on the input arguments and grid shape:
 priority in the following order: "xdim & ydim" > "nHex" > "data"}
 \item{If both of xdim and ydim are given, \eqn{nHex=xdim*ydim} for the
 "sheet" shape, \eqn{r=(min(xdim,ydim)+1)/2} for the "suprahex" shape}
-\item{If only data is input, \eqn{nHex=5*sqrt(dlen)}, where dlen is the
-number of rows of the input data}
+\item{If only data is input, \eqn{nHex=scale*sqrt(dlen)}, where dlen is
+the number of rows of the input data, and scale can be 5 (big map), 3
+(median map) and 1 (normal map)}
 \item{With nHex in hand, it depends on the grid shape:}
 \itemize{
 \item{For "sheet" shape, xy-dimensions of sheet grid is determined
