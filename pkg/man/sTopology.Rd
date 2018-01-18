@@ -113,7 +113,6 @@ sTopol <- sTopology(data=data, lattice="hexa", shape="suprahex")
 # do visualisation
 visHexMapping(sTopol,mappingType="indexes")
 
-\dontrun{
 library(ggplot2)
 # another way to do visualisation
 df_polygon <- sHexPolygon(sTopol)
@@ -122,7 +121,6 @@ gp <- ggplot(data=df_polygon, aes(x,y,group=index)) +
 geom_polygon(aes(fill=factor(stepCentroid\%\%2))) +
 coord_fixed(ratio=1) + theme_void() + theme(legend.position="none") +
 geom_text(data=df_coord, aes(x,y,label=index), color="white")
-}
 }
 \seealso{
 \code{\link{sHexGrid}}, \code{\link{visHexMapping}}

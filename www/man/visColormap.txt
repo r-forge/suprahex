@@ -6,10 +6,11 @@
 \usage{
 visColormap(colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr",
 "rainbow",
-"wb"))
+"wb", "heat", "terrain", "topo", "cm"))
 }
 \arguments{
-\item{colormap}{short name for the colormap}
+\item{colormap}{short name for the colormap. It can also be a function
+of 'colorRampPalette'}
 }
 \value{
 \itemize{

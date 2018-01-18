@@ -8,10 +8,10 @@ sPipeline(data = NULL, xdim = NULL, ydim = NULL, nHex = NULL,
 lattice = c("hexa", "rect"), shape = c("suprahex", "sheet", "triangle",
 "diamond", "hourglass", "trefoil", "ladder", "butterfly", "ring",
 "bridge"),
-init = c("linear", "uniform", "sample"), algorithm = c("batch",
-"sequential"), alphaType = c("invert", "linear", "power"),
-neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma"),
-finetuneSustain = FALSE, verbose = TRUE)
+scale = 5, init = c("linear", "uniform", "sample"),
+algorithm = c("batch", "sequential"), alphaType = c("invert", "linear",
+"power"), neighKernel = c("gaussian", "bubble", "cutgaussian", "ep",
+"gamma"), finetuneSustain = FALSE, verbose = TRUE)
 }
 \arguments{
 \item{data}{a data frame or matrix of input data}
@@ -33,6 +33,11 @@ hourglass-shaped variant, "trefoil" for the trefoil-shaped variant,
 "ladder" for the ladder-shaped variant, "butterfly" for the
 butterfly-shaped variant, "ring" for the ring-shaped variant, and
 "bridge" for the bridge-shaped variant)}
+
+\item{scale}{the scaling factor. Only used when automatically
+estimating the grid dimension from input data matrix. By default, it is
+5 (big map). Other suggested values: 1 for small map, and 3 for median
+map}
 
 \item{init}{an initialisation method. It can be one of "uniform",
 "sample" and "linear" initialisation methods}

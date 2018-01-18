@@ -2,7 +2,7 @@
 #'
 #' \code{visColormap} is supposed to define a colormap. It returns a function, which will take an integer argument specifying how many colors interpolate the given colormap.
 #'
-#' @param colormap short name for the colormap
+#' @param colormap short name for the colormap. It can also be a function of 'colorRampPalette'
 #' @return 
 #' \itemize{
 #'  \item{\code{palette.name}: a function that takes an integer argument for generating that number of colors interpolating the given sequence}
@@ -29,47 +29,61 @@
 #' # 2) use the return function "palette.name" to generate 10 colors spanning "bwr"
 #' palette.name(10)
 
-visColormap <- function(colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb"))
+visColormap <- function(colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb","heat","terrain","topo","cm"))
 {
-    if(length(colormap)>1){
-        colormap <- colormap[1]
-    }
-    
-    if(length(grep("-", colormap)) >= 1){
-        palette.name <- colorRampPalette(unlist(strsplit(colormap,"-")))
-    }else{
-    	if(TRUE){
-			#colormap <- match.arg(colormap, several.ok=T)
-			colormap <- match.arg(colormap)
-		
-			jet.colors <-colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
-			bwr.colors<-colorRampPalette(c("blue", "white", "red"))
-			gbr.colors<-colorRampPalette(c("green", "black", "red"))
-			wyr.colors<-colorRampPalette(c("white", "yellow", "red"))
-			br.colors<-colorRampPalette(c("black", "red"))
-			yr.colors<-colorRampPalette(c("yellow", "red"))
-			rainbow.colors <- colorRampPalette(c("red", "yellow", "green", "cyan", "blue", "magenta"))
-			wb.colors <- colorRampPalette(c("white", "black"))
+
+	if(class(colormap)=='function'){
+		palette.name <- colormap
+	}else{
 	
-			if(colormap == "jet"){
-				palette.name <- jet.colors
-			}else if(colormap == "bwr"){
-				palette.name <- bwr.colors
-			}else if(colormap == "gbr"){
-				palette.name <- gbr.colors
-			}else if(colormap == "wyr"){
-				palette.name <- wyr.colors
-			}else if(colormap == "br"){
-				palette.name <- br.colors
-			}else if(colormap == "yr"){
-				palette.name <- yr.colors
-			}else if(colormap == "rainbow"){
-				palette.name <- rainbow.colors
-			}else if(colormap == "wb"){
-				palette.name <- wb.colors
+		if(length(colormap)>1){
+			colormap <- colormap[1]
+		}
+	
+		if(length(grep("-", colormap)) >= 1){
+			palette.name <- colorRampPalette(unlist(strsplit(colormap,"-")))
+		}else{
+			if(TRUE){
+				#colormap <- match.arg(colormap, several.ok=T)
+				#colormap <- match.arg(colormap)
+		
+				jet.colors <-colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
+				bwr.colors<-colorRampPalette(c("blue", "white", "red"))
+				gbr.colors<-colorRampPalette(c("green", "black", "red"))
+				wyr.colors<-colorRampPalette(c("white", "yellow", "red"))
+				br.colors<-colorRampPalette(c("black", "red"))
+				yr.colors<-colorRampPalette(c("yellow", "red"))
+				rainbow.colors <- colorRampPalette(c("red", "yellow", "green", "cyan", "blue", "magenta"))
+				wb.colors <- colorRampPalette(c("white", "black"))
+	
+				if(colormap == "jet"){
+					palette.name <- jet.colors
+				}else if(colormap == "bwr"){
+					palette.name <- bwr.colors
+				}else if(colormap == "gbr"){
+					palette.name <- gbr.colors
+				}else if(colormap == "wyr"){
+					palette.name <- wyr.colors
+				}else if(colormap == "br"){
+					palette.name <- br.colors
+				}else if(colormap == "yr"){
+					palette.name <- yr.colors
+				}else if(colormap == "rainbow"){
+					palette.name <- rainbow.colors
+				}else if(colormap == "wb"){
+					palette.name <- wb.colors
+				}else if(colormap == "heat"){
+					palette.name <- grDevices::heat.colors
+				}else if(colormap == "terrain"){
+					palette.name <- grDevices::terrain.colors
+				}else if(colormap == "topo"){
+					palette.name <- grDevices::topo.colors
+				}else if(colormap == "cm"){
+					palette.name <- grDevices::cm.colors
+				}
 			}
 		}
-    }
-
+	}
+	
     invisible(palette.name)
 }

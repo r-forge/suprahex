@@ -142,7 +142,6 @@ matrix(rnorm(1000*3,mean=0.5,sd=1), nrow=1000, ncol=3),
 matrix(rnorm(1000*3,mean=-0.5,sd=1), nrow=1000, ncol=3))
 colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 
-\dontrun{
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 
@@ -153,7 +152,6 @@ visHexAnimate(sMap, filename="visHexAnimate", filetype="pdf")
 visHexAnimate(sMap, filename="visHexAnimate", filetype="mp4")
 # output as a <a href="visHexAnimate.gif">gif</a> file
 visHexAnimate(sMap, filename="visHexAnimate", filetype="gif")
-}
 }
 \seealso{
 \code{\link{visHexMulComp}}
