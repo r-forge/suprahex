@@ -138,7 +138,7 @@ hexagons/rectangles.</p>
     <h3>Usage</h3>
     <pre>sTopology(data = NULL, xdim = NULL, ydim = NULL, nHex = NULL, lattice = c("hexa", 
   "rect"), shape = c("suprahex", "sheet", "triangle", "diamond", "hourglass", "trefoil", 
-      "ladder", "butterfly", "ring", "bridge"))</pre>
+      "ladder", "butterfly", "ring", "bridge"), scale = 5)</pre>
     
     <h3>Arguments</h3>
     <dl>
@@ -162,6 +162,11 @@ hourglass-shaped variant, "trefoil" for the trefoil-shaped variant,
 "ladder" for the ladder-shaped variant, "butterfly" for the
 butterfly-shaped variant, "ring" for the ring-shaped variant, and
 "bridge" for the bridge-shaped variant)</dd>
+      <dt>scale</dt>
+      <dd>the scaling factor. Only used when automatically
+estimating the grid dimension from input data matrix. By default, it is
+5 (big map). Other suggested values: 1 for small map, and 3 for median
+map</dd>
     </dl>
     <!-- 
     -->
@@ -210,8 +215,9 @@ priority in the following order: "xdim & ydim" > "nHex" > "data"
 <li>If both of xdim and ydim are given, <code class = 'eq'>nHex=xdim*ydim</code> for the
 "sheet" shape, <code class = 'eq'>r=(min(xdim,ydim)+1)/2</code> for the "suprahex" shape
 </li>
-<li>If only data is input, <code class = 'eq'>nHex=5*sqrt(dlen)</code>, where dlen is the
-number of rows of the input data
+<li>If only data is input, <code class = 'eq'>nHex=scale*sqrt(dlen)</code>, where dlen is
+the number of rows of the input data, and scale can be 5 (big map), 3
+(median map) and 1 (normal map)
 </li>
 <li>With nHex in hand, it depends on the grid shape:
 <ul>

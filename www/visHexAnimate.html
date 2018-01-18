@@ -303,32 +303,32 @@ colnames(data) <- c("S1","S1","S1","S2","S2","S2","S3","S3","S3")
 # 2) sMap resulted from using by default setup
 sMap <- sPipeline(data=data)
 </div>
-<strong class='message'>Start at 2017-03-27 18:55:12</strong>
+<strong class='message'>Start at 2018-01-18 16:56:21</strong>
 <strong class='message'></strong>
-<strong class='message'>First, define topology of a map grid (2017-03-27 18:55:12)...</strong>
-<strong class='message'>Second, initialise the codebook matrix (169 X 9) using 'linear' initialisation, given a topology and input data (2017-03-27 18:55:12)...</strong>
-<strong class='message'>Third, get training at the rough stage (2017-03-27 18:55:12)...</strong>
-<strong class='message'>	1 out of 2 (2017-03-27 18:55:12)</strong>
-<strong class='message'>	updated (2017-03-27 18:55:12)</strong>
-<strong class='message'>	2 out of 2 (2017-03-27 18:55:12)</strong>
-<strong class='message'>	updated (2017-03-27 18:55:12)</strong>
-<strong class='message'>Fourth, get training at the finetune stage (2017-03-27 18:55:12)...</strong>
-<strong class='message'>	1 out of 7 (2017-03-27 18:55:12)</strong>
-<strong class='message'>	updated (2017-03-27 18:55:12)</strong>
-<strong class='message'>	2 out of 7 (2017-03-27 18:55:12)</strong>
-<strong class='message'>	updated (2017-03-27 18:55:12)</strong>
-<strong class='message'>	3 out of 7 (2017-03-27 18:55:12)</strong>
-<strong class='message'>	updated (2017-03-27 18:55:12)</strong>
-<strong class='message'>	4 out of 7 (2017-03-27 18:55:12)</strong>
-<strong class='message'>	updated (2017-03-27 18:55:12)</strong>
-<strong class='message'>	5 out of 7 (2017-03-27 18:55:12)</strong>
-<strong class='message'>	updated (2017-03-27 18:55:12)</strong>
-<strong class='message'>	6 out of 7 (2017-03-27 18:55:12)</strong>
-<strong class='message'>	updated (2017-03-27 18:55:12)</strong>
-<strong class='message'>	7 out of 7 (2017-03-27 18:55:12)</strong>
-<strong class='message'>	updated (2017-03-27 18:55:12)</strong>
-<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2017-03-27 18:55:12)...</strong>
-<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2017-03-27 18:55:12)...</strong>
+<strong class='message'>First, define topology of a map grid (2018-01-18 16:56:21)...</strong>
+<strong class='message'>Second, initialise the codebook matrix (169 X 9) using 'linear' initialisation, given a topology and input data (2018-01-18 16:56:21)...</strong>
+<strong class='message'>Third, get training at the rough stage (2018-01-18 16:56:21)...</strong>
+<strong class='message'>	1 out of 2 (2018-01-18 16:56:21)</strong>
+<strong class='message'>	updated (2018-01-18 16:56:21)</strong>
+<strong class='message'>	2 out of 2 (2018-01-18 16:56:21)</strong>
+<strong class='message'>	updated (2018-01-18 16:56:21)</strong>
+<strong class='message'>Fourth, get training at the finetune stage (2018-01-18 16:56:21)...</strong>
+<strong class='message'>	1 out of 7 (2018-01-18 16:56:21)</strong>
+<strong class='message'>	updated (2018-01-18 16:56:21)</strong>
+<strong class='message'>	2 out of 7 (2018-01-18 16:56:21)</strong>
+<strong class='message'>	updated (2018-01-18 16:56:21)</strong>
+<strong class='message'>	3 out of 7 (2018-01-18 16:56:21)</strong>
+<strong class='message'>	updated (2018-01-18 16:56:21)</strong>
+<strong class='message'>	4 out of 7 (2018-01-18 16:56:21)</strong>
+<strong class='message'>	updated (2018-01-18 16:56:22)</strong>
+<strong class='message'>	5 out of 7 (2018-01-18 16:56:22)</strong>
+<strong class='message'>	updated (2018-01-18 16:56:22)</strong>
+<strong class='message'>	6 out of 7 (2018-01-18 16:56:22)</strong>
+<strong class='message'>	updated (2018-01-18 16:56:22)</strong>
+<strong class='message'>	7 out of 7 (2018-01-18 16:56:22)</strong>
+<strong class='message'>	updated (2018-01-18 16:56:22)</strong>
+<strong class='message'>Next, identify the best-matching hexagon/rectangle for the input data (2018-01-18 16:56:22)...</strong>
+<strong class='message'>Finally, append the response data (hits and mqe) into the sMap object (2018-01-18 16:56:22)...</strong>
 <strong class='message'></strong>
 <strong class='message'>Below are the summaries of the training results:</strong>
 <strong class='message'>   dimension of input data: 1000x9
@@ -348,8 +348,8 @@ sMap <- sPipeline(data=data)
    radius (at rough stage): from 4 to 1
    radius (at finetune stage): from 1 to 1
 </strong>
-<strong class='message'>End at 2017-03-27 18:55:12</strong>
-<strong class='message'>Runtime in total is: 0 secs
+<strong class='message'>End at 2018-01-18 16:56:22</strong>
+<strong class='message'>Runtime in total is: 1 secs
 </strong>
 <div class='input'>
 # 3) animate sMap
@@ -360,13 +360,13 @@ visHexAnimate(sMap, filename="visHexAnimate", filetype="pdf")
 <div class='input'># output as a <a href="visHexAnimate.mp4">mp4</a> file
 visHexAnimate(sMap, filename="visHexAnimate", filetype="mp4")
 </div>
-<strong class='message'>Executing this command: 'ffmpeg -y -v quiet -r 1 -i /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpdLPovz/Rplot%06d.jpg -q:v 1 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpdLPovz/visHexAnimate.mp4'
+<strong class='message'>Executing this command: 'ffmpeg -y -v quiet -r 1 -i /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpHESjyI/Rplot%06d.jpg -q:v 1 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpHESjyI/visHexAnimate.mp4'
 </strong>
 <strong class='message'>Congratulations! A file 'visHexAnimate.mp4' (in the directory /Users/hfang/Sites/SUPERFAMILY/supraHex) has been created!</strong>
 <div class='input'># output as a <a href="visHexAnimate.gif">gif</a> file
 visHexAnimate(sMap, filename="visHexAnimate", filetype="gif")
 </div>
-<strong class='message'>Executing this command: 'convert -delay 100 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpdLPovz/Rplot*.jpg /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpdLPovz/visHexAnimate.gif'
+<strong class='message'>Executing this command: 'convert -delay 100 /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpHESjyI/Rplot*.jpg /var/folders/wq/4cmk3m511571471lj67cpmbh0000gn/T//RtmpHESjyI/visHexAnimate.gif'
 </strong>
 <strong class='message'>Congratulations! A file 'visHexAnimate.gif' (in the directory /Users/hfang/Sites/SUPERFAMILY/supraHex) has been created!</strong></pre>
   </div>
