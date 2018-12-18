@@ -17,6 +17,7 @@
 #' \item{"manhattan": Cityblock distance. The distance between two vectors is the sum of absolute value of their differences along any coordinate dimension}
 #' \item{"cos": Cosine similarity. As an uncentered version of pearson correlation, it is a measure of similarity between two vectors of an inner product space, i.e., measuring the cosine of the angle between them (using a dot product and magnitude)}
 #' \item{"mi": Mutual information (MI). \eqn{MI} provides a general measure of dependencies between variables, in particular, positive, negative and nonlinear correlations. The caclulation of \eqn{MI} is implemented via applying adaptive partitioning method for deriving equal-probability bins (i.e., each bin contains approximately the same number of data points). The number of bins is heuristically determined (the lower bound): \eqn{1+log2(n)}, where n is the length of the vector. Because \eqn{MI} increases with entropy, we normalize it to allow comparison of different pairwise clone similarities: \eqn{2*MI/[H(x)+H(y)]}, where \eqn{H(x)} and \eqn{H(y)} stand for the entropy for the vector \eqn{x} and \eqn{y}, respectively}
+#' \item{"binary": asymmetric binary (Jaccard distance index). the proportion of bits in which the only one divided by the at least one}
 #' }
 #' @export
 #' @seealso \code{\link{sDmatCluster}}
@@ -41,8 +42,10 @@
 #' # dist <- sDistance(data=data, metric="manhattan")
 #' # 2g) using "mi" metric
 #' # dist <- sDistance(data=data, metric="mi")
+#' # 2h) using "binary" metric
+#' # dist <- sDistance(data=data, metric="binary")
 
-sDistance <- function(data, metric=c("pearson","spearman","kendall","euclidean","manhattan","cos","mi"))
+sDistance <- function(data, metric=c("pearson","spearman","kendall","euclidean","manhattan","cos","mi","binary"))
 {   
     metric <- match.arg(metric)
     
@@ -52,7 +55,7 @@ sDistance <- function(data, metric=c("pearson","spearman","kendall","euclidean",
         data <- as.matrix(data)
     }
     
-    if(metric == "euclidean" | metric == "manhattan"){
+    if(metric == "euclidean" | metric == "manhattan" | metric == "binary"){
         res <- dist(x=data, method=metric, diag=FALSE, upper=TRUE)
     }else if(metric == "pearson" | metric == "kendall" | metric == "spearman"){
         res <- cor(x=t(data), method=metric) ## column-wise

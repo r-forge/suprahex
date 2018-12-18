@@ -5,8 +5,7 @@
 \title{Function to define a colormap}
 \usage{
 visColormap(colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr",
-"rainbow",
-"wb", "heat", "terrain", "topo", "cm"))
+"rainbow", "wb", "heat", "terrain", "topo", "cm"))
 }
 \arguments{
 \item{colormap}{short name for the colormap. It can also be a function

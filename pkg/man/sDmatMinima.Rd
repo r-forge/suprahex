@@ -5,8 +5,7 @@
 \title{Function to identify local minima (in 2D output space) of distance matrix (in high-dimensional input space)}
 \usage{
 sDmatMinima(sMap, which_neigh = 1, distMeasure = c("median", "mean",
-"min",
-"max"))
+"min", "max"))
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}

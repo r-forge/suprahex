@@ -6,7 +6,7 @@
 \usage{
 sDistance(data, metric = c("pearson", "spearman", "kendall",
 "euclidean",
-"manhattan", "cos", "mi"))
+"manhattan", "cos", "mi", "binary"))
 }
 \arguments{
 \item{data}{a data frame or matrix of input data}
@@ -63,6 +63,8 @@ vector. Because \eqn{MI} increases with entropy, we normalize it to
 allow comparison of different pairwise clone similarities:
 \eqn{2*MI/[H(x)+H(y)]}, where \eqn{H(x)} and \eqn{H(y)} stand for the
 entropy for the vector \eqn{x} and \eqn{y}, respectively}
+\item{"binary": asymmetric binary (Jaccard distance index). the
+proportion of bits in which the only one divided by the at least one}
 }
 }
 \examples{
@@ -85,6 +87,8 @@ dist <- sDistance(data=data, metric="pearson")
 # dist <- sDistance(data=data, metric="manhattan")
 # 2g) using "mi" metric
 # dist <- sDistance(data=data, metric="mi")
+# 2h) using "binary" metric
+# dist <- sDistance(data=data, metric="binary")
 }
 \seealso{
 \code{\link{sDmatCluster}}

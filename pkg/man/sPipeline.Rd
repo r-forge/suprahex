@@ -5,13 +5,13 @@
 \title{Function to setup the pipeline for completing ab initio training given the input data}
 \usage{
 sPipeline(data = NULL, xdim = NULL, ydim = NULL, nHex = NULL,
-lattice = c("hexa", "rect"), shape = c("suprahex", "sheet", "triangle",
-"diamond", "hourglass", "trefoil", "ladder", "butterfly", "ring",
-"bridge"),
-scale = 5, init = c("linear", "uniform", "sample"),
-algorithm = c("batch", "sequential"), alphaType = c("invert", "linear",
-"power"), neighKernel = c("gaussian", "bubble", "cutgaussian", "ep",
-"gamma"), finetuneSustain = FALSE, verbose = TRUE)
+lattice = c("hexa", "rect"), shape = c("suprahex", "sheet",
+"triangle", "diamond", "hourglass", "trefoil", "ladder", "butterfly",
+"ring", "bridge"), scale = 5, init = c("linear", "uniform",
+"sample"), algorithm = c("batch", "sequential"),
+alphaType = c("invert", "linear", "power"),
+neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma"),
+finetuneSustain = FALSE, verbose = TRUE)
 }
 \arguments{
 \item{data}{a data frame or matrix of input data}
@@ -110,33 +110,6 @@ error does get worse;}
 hexagons/rectangles (BMH) for the input data, and these response data
 are appended to the resulting object of "sMap" class.}
 }
-}
-\examples{
-# 1) generate an iid normal random matrix of 100x10 
-data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
-colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
-
-# 2) get trained using by default setup but with different neighborhood kernels
-# 2a) with "gaussian" kernel
-sMap <- sPipeline(data=data, neighKernel="gaussian")
-# 2b) with "bubble" kernel
-# sMap <- sPipeline(data=data, neighKernel="bubble")
-# 2c) with "cutgaussian" kernel
-# sMap <- sPipeline(data=data, neighKernel="cutgaussian")
-# 2d) with "ep" kernel
-# sMap <- sPipeline(data=data, neighKernel="ep")
-# 2e) with "gamma" kernel
-# sMap <- sPipeline(data=data, neighKernel="gamma")
-
-# 3) visualise multiple component planes of a supra-hexagonal grid
-visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1),
-gp=grid::gpar(cex=0.8))
-
-# 4) get trained using by default setup but using the shape "butterfly"
-sMap <- sPipeline(data=data, shape="trefoil",
-algorithm=c("batch","sequential")[2])
-visHexMulComp(sMap, colormap="jet", ncolors=20, zlim=c(-1,1),
-gp=grid::gpar(cex=0.8))
 }
 \references{
 Hai Fang and Julian Gough. (2014) supraHex: an R/Bioconductor package

@@ -6,7 +6,7 @@
 \usage{
 visTreeBootstrap(data, algorithm = c("nj", "fastme.ols", "fastme.bal"),
 metric = c("euclidean", "pearson", "spearman", "cos", "manhattan",
-"kendall", "mi"), num.bootstrap = 100, consensus = FALSE,
+"kendall", "mi", "binary"), num.bootstrap = 100, consensus = FALSE,
 consensus.majority = 0.5, reroot = "min.bootstrap",
 plot.phylo.arg = NULL, nodelabels.arg = NULL, visTree = TRUE,
 verbose = TRUE, ...)

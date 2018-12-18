@@ -5,10 +5,9 @@
 \title{Function to define the topology of a map grid}
 \usage{
 sTopology(data = NULL, xdim = NULL, ydim = NULL, nHex = NULL,
-lattice = c("hexa", "rect"), shape = c("suprahex", "sheet", "triangle",
-"diamond", "hourglass", "trefoil", "ladder", "butterfly", "ring",
-"bridge"),
-scale = 5)
+lattice = c("hexa", "rect"), shape = c("suprahex", "sheet",
+"triangle", "diamond", "hourglass", "trefoil", "ladder", "butterfly",
+"ring", "bridge"), scale = 5)
 }
 \arguments{
 \item{data}{a data frame or matrix of input data}

@@ -6,11 +6,10 @@
 \usage{
 visDmatCluster(sMap, sBase, height = 7, margin = rep(0.1, 4),
 area.size = 1, gp = grid::gpar(cex = 0.8, font = 2, col = "black"),
-border.color = "transparent", fill.color = NULL, lty = 1, lwd = 1,
-lineend = "round", linejoin = "round", colormap = c("rainbow", "jet",
-"bwr", "gbr", "wyr", "br", "yr", "wb"), clip = c("on", "inherit",
-"off"),
-newpage = TRUE)
+border.color = "transparent", fill.color = NULL, lty = 1,
+lwd = 1, lineend = "round", linejoin = "round",
+colormap = c("rainbow", "jet", "bwr", "gbr", "wyr", "br", "yr", "wb"),
+clip = c("on", "inherit", "off"), newpage = TRUE)
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}

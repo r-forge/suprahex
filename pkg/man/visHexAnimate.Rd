@@ -4,13 +4,13 @@
 \alias{visHexAnimate}
 \title{Function to animate multiple component planes of a supra-hexagonal grid}
 \usage{
-visHexAnimate(sMap, which.components = NULL, filename =
-"visHexAnimate",
-filetype = c("pdf", "mp4", "gif"), image.type = c("jpg", "png"),
-sec_per_frame = 1, margin = rep(0.1, 4), height = 7, title.rotate = 0,
-title.xy = c(0.45, 1), colormap = c("bwr", "jet", "gbr", "wyr", "br",
-"yr", "rainbow", "wb"), ncolors = 40, zlim = NULL,
-border.color = "transparent", gp = grid::gpar())
+visHexAnimate(sMap, which.components = NULL,
+filename = "visHexAnimate", filetype = c("pdf", "mp4", "gif"),
+image.type = c("jpg", "png"), sec_per_frame = 1, margin = rep(0.1,
+4), height = 7, title.rotate = 0, title.xy = c(0.45, 1),
+colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"),
+ncolors = 40, zlim = NULL, border.color = "transparent",
+gp = grid::gpar())
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}
