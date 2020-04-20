@@ -4,9 +4,13 @@
 \alias{sDmatCluster}
 \title{Function to partition a grid map into clusters}
 \usage{
-sDmatCluster(sMap, which_neigh = 1, distMeasure = c("median", "mean",
-"min", "max"), clusterLinkage = c("average", "complete", "single",
-"bmh"), reindexSeed = c("hclust", "svd", "none"))
+sDmatCluster(
+sMap,
+which_neigh = 1,
+distMeasure = c("median", "mean", "min", "max"),
+clusterLinkage = c("average", "complete", "single", "bmh"),
+reindexSeed = c("hclust", "svd", "none")
+)
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}

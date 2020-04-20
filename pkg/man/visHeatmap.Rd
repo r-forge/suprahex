@@ -4,17 +4,30 @@
 \alias{visHeatmap}
 \title{Function to visualise input data matrix using heatmap}
 \usage{
-visHeatmap(data, scale = c("none", "row", "column"),
+visHeatmap(
+data,
+scale = c("none", "row", "column"),
 row.metric = c("none", "pearson", "spearman", "kendall", "euclidean",
-"manhattan", "cos", "mi"), row.method = c("ward", "single", "complete",
-"average", "mcquitty", "median", "centroid"), column.metric = c("none",
-"pearson", "spearman", "kendall", "euclidean", "manhattan", "cos",
-"mi"),
+"manhattan",
+"cos", "mi"),
+row.method = c("ward", "single", "complete", "average", "mcquitty",
+"median",
+"centroid"),
+column.metric = c("none", "pearson", "spearman", "kendall",
+"euclidean", "manhattan",
+"cos", "mi"),
 column.method = c("ward", "single", "complete", "average", "mcquitty",
-"median", "centroid"), colormap = c("bwr", "jet", "gbr", "wyr", "br",
-"yr", "rainbow", "wb"), ncolors = 64, zlim = NULL,
-row.cutree = NULL, row.colormap = c("rainbow"),
-column.cutree = NULL, column.colormap = c("rainbow"), ...)
+"median",
+"centroid"),
+colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"),
+ncolors = 64,
+zlim = NULL,
+row.cutree = NULL,
+row.colormap = c("rainbow"),
+column.cutree = NULL,
+column.colormap = c("rainbow"),
+...
+)
 }
 \arguments{
 \item{data}{an input gene-sample data matrix used for heatmap}

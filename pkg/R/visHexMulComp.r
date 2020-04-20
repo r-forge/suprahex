@@ -43,7 +43,7 @@ visHexMulComp <-function(sMap, which.components=NULL, rect.grid=NULL, margin=rep
     
     #colormap <- match.arg(colormap)
     
-    if (class(sMap) != "sMap"){
+    if (!is(sMap,"sMap")){
         stop("The funciton must apply to 'sMap' object.\n")
     }
     codebook <- sMap$codebook

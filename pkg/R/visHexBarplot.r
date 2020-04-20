@@ -43,7 +43,7 @@ visHexBarplot <- function (sObj, which.hexagon=NULL, which.hexagon.highlight=NUL
         colormap <- colormap[1]
     }
     
-    if (class(sObj) != "sTopol" & class(sObj) != "sInit" & class(sObj) != "sMap"){
+    if (!is(sObj,"sTopol") & !is(sObj,"sInit") & !is(sObj,"sMap")){
         stop("The funciton must apply to either 'sTopol' or 'sInit' or 'sMap' object.\n")
     }
     nHex <- sObj$nHex

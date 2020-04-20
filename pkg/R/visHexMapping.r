@@ -56,7 +56,7 @@ visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist
     
     mappingType <- match.arg(mappingType)
     
-    if (class(sObj) != "sTopol" & class(sObj) != "sInit" & class(sObj) != "sMap"){
+    if (!is(sObj,"sTopol") & !is(sObj,"sInit") & !is(sObj,"sMap")){
         stop("The funciton must apply to either 'sTopol' or 'sInit' or 'sMap' object.\n")
     }
     
@@ -111,7 +111,7 @@ visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist
         }
         
     }else if(mappingType == "hits"){
-        if (class(sObj) != "sMap"){
+        if (!is(sObj,"sMap")){
             stop("The funciton with type 'hits' must apply to 'sMap' object.\n")
         }
         labels <- sObj$hits
@@ -127,7 +127,7 @@ visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist
         }
         
     }else if(mappingType == "dist" | mappingType == "antidist"){
-        if (class(sObj) != "sMap"){
+        if (!is(sObj,"sMap")){
             stop("The funciton with type 'dist' or 'antidist' must apply to 'sMap' object.\n")
         }
         ## calculate "median" distances in INPUT space to no more than 2-topological neighbors in 2D OUTPUT space
@@ -146,7 +146,7 @@ visHexMapping <- function (sObj, mappingType=c("indexes","hits","dist","antidist
         
     }else if(mappingType == "bases"){
     
-        if (class(sObj) != "sMap"){
+        if (!is(sObj,"sMap")){
             stop("The funciton with type 'bases' must apply to 'sMap' object.\n")
         }
         ## partition the grid map into clusters using region-growing algorithm with linkage "average"

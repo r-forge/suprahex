@@ -4,12 +4,19 @@
 \alias{sCompReorder}
 \title{Function to reorder component planes}
 \usage{
-sCompReorder(sMap, xdim = NULL, ydim = NULL, amplifier = NULL,
+sCompReorder(
+sMap,
+xdim = NULL,
+ydim = NULL,
+amplifier = NULL,
 metric = c("none", "pearson", "spearman", "kendall", "euclidean",
-"manhattan", "cos", "mi"), init = c("linear", "uniform", "sample"),
-algorithm = c("sequential", "batch"), alphaType = c("invert",
-"linear", "power"), neighKernel = c("gaussian", "bubble",
-"cutgaussian", "ep", "gamma"))
+"manhattan", "cos",
+"mi"),
+init = c("linear", "uniform", "sample"),
+algorithm = c("sequential", "batch"),
+alphaType = c("invert", "linear", "power"),
+neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma")
+)
 }
 \arguments{
 \item{sMap}{an object of class "sMap" or input data frame/matrix}

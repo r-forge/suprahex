@@ -4,11 +4,20 @@
 \alias{visCompReorder}
 \title{Function to visualise multiple component planes reorded within a sheet-shape rectangle grid}
 \usage{
-visCompReorder(sMap, sReorder, margin = rep(0.1, 4), height = 7,
-title.rotate = 0, title.xy = c(0.45, 1), colormap = c("bwr", "jet",
-"gbr", "wyr", "br", "yr", "rainbow", "wb"), ncolors = 40,
-zlim = NULL, border.color = "transparent", gp = grid::gpar(),
-newpage = TRUE)
+visCompReorder(
+sMap,
+sReorder,
+margin = rep(0.1, 4),
+height = 7,
+title.rotate = 0,
+title.xy = c(0.45, 1),
+colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"),
+ncolors = 40,
+zlim = NULL,
+border.color = "transparent",
+gp = grid::gpar(),
+newpage = TRUE
+)
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}

@@ -4,10 +4,17 @@
 \alias{visHexComp}
 \title{Function to visualise a component plane of a supra-hexagonal grid}
 \usage{
-visHexComp(sMap, comp, margin = rep(0.6, 4), area.size = 1,
+visHexComp(
+sMap,
+comp,
+margin = rep(0.6, 4),
+area.size = 1,
 colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"),
-ncolors = 40, zlim = c(0, 1), border.color = "transparent",
-newpage = TRUE)
+ncolors = 40,
+zlim = c(0, 1),
+border.color = "transparent",
+newpage = TRUE
+)
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}

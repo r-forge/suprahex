@@ -4,12 +4,22 @@
 \alias{visTreeBootstrap}
 \title{Function to build and visualise the bootstrapped tree}
 \usage{
-visTreeBootstrap(data, algorithm = c("nj", "fastme.ols", "fastme.bal"),
+visTreeBootstrap(
+data,
+algorithm = c("nj", "fastme.ols", "fastme.bal"),
 metric = c("euclidean", "pearson", "spearman", "cos", "manhattan",
-"kendall", "mi", "binary"), num.bootstrap = 100, consensus = FALSE,
-consensus.majority = 0.5, reroot = "min.bootstrap",
-plot.phylo.arg = NULL, nodelabels.arg = NULL, visTree = TRUE,
-verbose = TRUE, ...)
+"kendall", "mi",
+"binary"),
+num.bootstrap = 100,
+consensus = FALSE,
+consensus.majority = 0.5,
+reroot = "min.bootstrap",
+plot.phylo.arg = NULL,
+nodelabels.arg = NULL,
+visTree = TRUE,
+verbose = TRUE,
+...
+)
 }
 \arguments{
 \item{data}{an input data matrix used to build the tree. The built tree

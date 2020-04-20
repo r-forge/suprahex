@@ -17,7 +17,7 @@
 sHexPolygon <- function (sObj, area.size=1)
 {
     
-    if (class(sObj) != "sHex" & class(sObj) != "sTopol" & class(sObj) != "sInit" & class(sObj) != "sMap"){
+    if (!is(sObj,"sHex") & !is(sObj,"sTopol") & !is(sObj,"sInit") & !is(sObj,"sMap")){
         stop("The funciton must apply to either 'sHex' or 'sTopol' or 'sInit' or 'sMap' object.\n")
     }
     
@@ -33,7 +33,7 @@ sHexPolygon <- function (sObj, area.size=1)
     angleCentroid <- ''
     sHex <- ''
     
-    if(class(sObj) == "sHex"){
+    if(is(sObj, "sHex")){
     	sHex <- sObj
     }else{
     	shape <- sObj$shape
@@ -42,7 +42,7 @@ sHexPolygon <- function (sObj, area.size=1)
     	}
     }
     
-    if(class(sHex) == 'sHex'){
+    if(is(sHex, 'sHex')){
     	stepCentroid <- sHex$stepCentroid
     	angleCentroid <- sHex$angleCentroid
     }

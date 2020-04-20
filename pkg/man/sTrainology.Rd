@@ -4,10 +4,14 @@
 \alias{sTrainology}
 \title{Function to define trainology (training environment)}
 \usage{
-sTrainology(sMap, data, algorithm = c("batch", "sequential"),
-stage = c("rough", "finetune", "complete"), alphaType = c("invert",
-"linear", "power"), neighKernel = c("gaussian", "bubble",
-"cutgaussian", "ep", "gamma"))
+sTrainology(
+sMap,
+data,
+algorithm = c("batch", "sequential"),
+stage = c("rough", "finetune", "complete"),
+alphaType = c("invert", "linear", "power"),
+neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma")
+)
 }
 \arguments{
 \item{sMap}{an object of class "sMap" or "sInit"}

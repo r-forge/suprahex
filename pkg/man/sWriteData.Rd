@@ -4,8 +4,8 @@
 \alias{sWriteData}
 \title{Function to write out the best-matching hexagons and/or cluster bases in terms of data}
 \usage{
-sWriteData(sMap, data, sBase = NULL, filename = NULL,
-keep.data = FALSE)
+sWriteData(sMap, data, sBase = NULL, filename = NULL, keep.data =
+FALSE)
 }
 \arguments{
 \item{sMap}{an object of class "sMap" or a codebook matrix}

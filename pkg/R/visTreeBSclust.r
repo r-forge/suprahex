@@ -66,7 +66,7 @@
 visTreeBSclust <- function(tree_bs, bootstrap.cutoff=80, max.fraction=1, min.size=3, visTree=TRUE, plot.phylo.arg=NULL, nodelabels.arg=NULL, verbose=TRUE, ...)
 {
 
-    if (class(tree_bs) != "phylo"){
+    if (!is(tree_bs,"phylo")){
         stop("The function must apply to a 'phylo' object.\n")
     }
 

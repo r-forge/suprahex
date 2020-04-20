@@ -48,6 +48,7 @@
 #' @importFrom graphics abline axis box hist image layout legend lines mtext par plot.new points rect stars strheight strwidth symbols text title
 #' @importFrom stats as.dendrogram as.dist cor cutree density dist hclust heatmap median order.dendrogram quantile reorder runif sd
 #' @importFrom utils write.table
+#' @importFrom methods is
 #' @seealso \code{\link{sTopology}}, \code{\link{sInitial}}, \code{\link{sTrainology}}, \code{\link{sTrainSeq}}, \code{\link{sTrainBatch}}, \code{\link{sBMH}}, \code{\link{visHexMulComp}}
 #' @include sPipeline.r
 #' @references

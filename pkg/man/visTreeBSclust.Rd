@@ -4,9 +4,17 @@
 \alias{visTreeBSclust}
 \title{Function to obtain clusters from a bootstrapped tree}
 \usage{
-visTreeBSclust(tree_bs, bootstrap.cutoff = 80, max.fraction = 1,
-min.size = 3, visTree = TRUE, plot.phylo.arg = NULL,
-nodelabels.arg = NULL, verbose = TRUE, ...)
+visTreeBSclust(
+tree_bs,
+bootstrap.cutoff = 80,
+max.fraction = 1,
+min.size = 3,
+visTree = TRUE,
+plot.phylo.arg = NULL,
+nodelabels.arg = NULL,
+verbose = TRUE,
+...
+)
 }
 \arguments{
 \item{tree_bs}{an "phylo" object storing a bootstrapped tree}

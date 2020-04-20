@@ -56,7 +56,7 @@ sInitial <- function(data, sTopol, init=c("linear","uniform","sample"))
         stop("The input data must be not NULL.\n")
     }
     
-    if (class(sTopol) != "sTopol" ){
+    if (!is(sTopol, "sTopol")){
         stop("The funciton must apply to a 'sTopol' object.\n")
     }
 

@@ -55,11 +55,11 @@ visDmatCluster <- function (sMap, sBase, height=7, margin=rep(0.1,4), area.size=
     #colormap <- match.arg(colormap)
     palette.name <- visColormap(colormap=colormap)
     
-    if (class(sMap) != "sMap"){
+    if (!is(sMap,"sMap")){
         stop("The funciton must apply to 'sMap' object.\n")
     }
     
-    if (class(sBase) != "sBase"){
+    if (!is(sBase,"sBase")){
         stop("The funciton must apply to 'sBase' object.\n")
     }
     

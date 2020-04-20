@@ -46,7 +46,7 @@ sMapOverlay <- function(sMap, data, additional)
 {
     
     ## checking sMap
-    if (class(sMap) != "sMap"){
+    if (!is(sMap,"sMap")){
         stop("The funciton must apply to 'sMap' object.\n")
     }
     neighKernel <- sMap$neighKernel

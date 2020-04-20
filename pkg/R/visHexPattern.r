@@ -69,12 +69,12 @@ visHexPattern <- function (sObj, plotType=c("lines","bars","radars"), pattern=NU
     }
     #colormap <- match.arg(colormap)
     
-    if (class(sObj) != "sTopol" & class(sObj) != "sInit" & class(sObj) != "sMap"){
+    if (!is(sObj,"sTopol") & !is(sObj,"sInit") & !is(sObj,"sMap")){
         stop("The funciton must apply to either 'sTopol' or 'sInit' or 'sMap' object.\n")
     }
     nHex <- sObj$nHex
     
-    if(is.null(pattern) & class(sObj) == "sMap"){
+    if(is.null(pattern) & is(sObj,"sMap")){
         pattern<-sObj$codebook
     }else{
         if(is.data.frame(pattern) | is.matrix(pattern)){

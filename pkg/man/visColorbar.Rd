@@ -4,8 +4,12 @@
 \alias{visColorbar}
 \title{Function to define a colorbar}
 \usage{
-visColorbar(colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr",
-"rainbow", "wb"), ncolors = 40, zlim = c(0, 1), gp = grid::gpar())
+visColorbar(
+colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"),
+ncolors = 40,
+zlim = c(0, 1),
+gp = grid::gpar()
+)
 }
 \arguments{
 \item{colormap}{short name for the colormap. It can be one of "jet"

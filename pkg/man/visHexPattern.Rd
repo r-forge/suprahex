@@ -4,13 +4,22 @@
 \alias{visHexPattern}
 \title{Function to visualise codebook matrix or input patterns within a supra-hexagonal grid}
 \usage{
-visHexPattern(sObj, plotType = c("lines", "bars", "radars"),
-pattern = NULL, height = 7, margin = rep(0.1, 4),
+visHexPattern(
+sObj,
+plotType = c("lines", "bars", "radars"),
+pattern = NULL,
+height = 7,
+margin = rep(0.1, 4),
 colormap = c("customized", "bwr", "jet", "gbr", "wyr", "br", "yr",
-"rainbow", "wb"), customized.color = "red",
+"rainbow", "wb"),
+customized.color = "red",
 alterntive.color = c("transparent", "gray"),
-zeropattern.color = "gray", legend = TRUE, legend.cex = 0.8,
-legend.label = NULL, newpage = TRUE)
+zeropattern.color = "gray",
+legend = TRUE,
+legend.cex = 0.8,
+legend.label = NULL,
+newpage = TRUE
+)
 }
 \arguments{
 \item{sObj}{an object of class "sMap" or "sTopol" or "sInit"}

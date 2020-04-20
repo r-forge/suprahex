@@ -4,14 +4,23 @@
 \alias{sPipeline}
 \title{Function to setup the pipeline for completing ab initio training given the input data}
 \usage{
-sPipeline(data = NULL, xdim = NULL, ydim = NULL, nHex = NULL,
-lattice = c("hexa", "rect"), shape = c("suprahex", "sheet",
-"triangle", "diamond", "hourglass", "trefoil", "ladder", "butterfly",
-"ring", "bridge"), scale = 5, init = c("linear", "uniform",
-"sample"), algorithm = c("batch", "sequential"),
+sPipeline(
+data = NULL,
+xdim = NULL,
+ydim = NULL,
+nHex = NULL,
+lattice = c("hexa", "rect"),
+shape = c("suprahex", "sheet", "triangle", "diamond", "hourglass",
+"trefoil",
+"ladder", "butterfly", "ring", "bridge"),
+scale = 5,
+init = c("linear", "uniform", "sample"),
+algorithm = c("batch", "sequential"),
 alphaType = c("invert", "linear", "power"),
 neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma"),
-finetuneSustain = FALSE, verbose = TRUE)
+finetuneSustain = FALSE,
+verbose = TRUE
+)
 }
 \arguments{
 \item{data}{a data frame or matrix of input data}

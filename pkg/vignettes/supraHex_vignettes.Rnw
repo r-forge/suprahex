@@ -127,8 +127,9 @@ As a result of training, similar input data are mapped onto neighboring regions 
 
 Using the release version\footnote{\url{http://bioconductor.org/packages/release/bioc/html/supraHex.html}} (officially released on 15-10-2013):
 <<eval=FALSE, echo=TRUE>>=
-source("http://bioconductor.org/biocLite.R")
-biocLite("supraHex")
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("supraHex")
 library(supraHex) # load the package
 @
 

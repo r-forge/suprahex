@@ -42,7 +42,7 @@ sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min
     clusterLinkage <- match.arg(clusterLinkage)
     reindexSeed <- match.arg(reindexSeed)
     
-    if (class(sMap) != "sMap"){
+    if (!is(sMap, "sMap")){
         stop("The funciton must apply to 'sMap' object.\n")
     }
     nHex <- sMap$nHex

@@ -32,7 +32,7 @@
 visColormap <- function(colormap=c("bwr","jet","gbr","wyr","br","yr","rainbow","wb","heat","terrain","topo","cm"))
 {
 
-	if(class(colormap)=='function'){
+	if(is(colormap, 'function')){
 		palette.name <- colormap
 	}else{
 	

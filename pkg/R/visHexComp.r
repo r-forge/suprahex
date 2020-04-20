@@ -34,7 +34,7 @@ visHexComp <-function (sMap, comp, margin=rep(0.6, 4), area.size=1, colormap=c("
     #colormap <- match.arg(colormap)
     palette.name <- visColormap(colormap=colormap)
     
-    if (class(sMap) != "sMap"){
+    if (!is(sMap,"sMap")){
         stop("The funciton must apply to 'sMap' object.\n")
     }
     M <- sMap$codebook

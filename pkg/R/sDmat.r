@@ -32,7 +32,7 @@ sDmat <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min","max"
     
     distMeasure <- match.arg(distMeasure)
     
-    if (class(sMap) != "sMap"){
+    if (!is(sMap, "sMap")){
         stop("The funciton must apply to 'sMap' object.\n")
     }
     nHex <- sMap$nHex

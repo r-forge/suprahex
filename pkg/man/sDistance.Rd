@@ -4,9 +4,12 @@
 \alias{sDistance}
 \title{Function to compute the pairwise distance for a given data matrix}
 \usage{
-sDistance(data, metric = c("pearson", "spearman", "kendall",
-"euclidean",
-"manhattan", "cos", "mi", "binary"))
+sDistance(
+data,
+metric = c("pearson", "spearman", "kendall", "euclidean", "manhattan",
+"cos", "mi",
+"binary")
+)
 }
 \arguments{
 \item{data}{a data frame or matrix of input data}

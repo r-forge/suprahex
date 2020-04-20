@@ -4,12 +4,21 @@
 \alias{visHexBarplot}
 \title{Function to visualise codebook matrix using barplot for all hexagons or a specific one}
 \usage{
-visHexBarplot(sObj, which.hexagon = NULL,
-which.hexagon.highlight = NULL, height = 7, margin = rep(0.1, 4),
+visHexBarplot(
+sObj,
+which.hexagon = NULL,
+which.hexagon.highlight = NULL,
+height = 7,
+margin = rep(0.1, 4),
 colormap = c("customized", "bwr", "jet", "gbr", "wyr", "br", "yr",
-"rainbow", "wb"), customized.color = "red",
-zeropattern.color = "gray", gp = grid::gpar(cex = 0.7, font = 1, col
-= "black"), bar.text.cex = 0.8, bar.text.srt = 90, newpage = TRUE)
+"rainbow", "wb"),
+customized.color = "red",
+zeropattern.color = "gray",
+gp = grid::gpar(cex = 0.7, font = 1, col = "black"),
+bar.text.cex = 0.8,
+bar.text.srt = 90,
+newpage = TRUE
+)
 }
 \arguments{
 \item{sObj}{an object of class "sMap" or "sTopol" or "sInit"}

@@ -43,7 +43,7 @@ visCompReorder <-function (sMap, sReorder, margin=rep(0.1,4), height=7, title.ro
     
     #colormap <- match.arg(colormap)
     
-    if (class(sMap) != "sMap"){
+    if (!is(sMap,"sMap")){
         stop("The funciton must apply to 'sMap' object.\n")
     }
     codebook <- sMap$codebook
@@ -71,7 +71,7 @@ visCompReorder <-function (sMap, sReorder, margin=rep(0.1,4), height=7, title.ro
     ydim <- sMap$ydim
     aspect <- ceiling(ydim/xdim)
     
-    if (class(sReorder) != "sReorder"){
+    if (!is(sReorder,"sReorder")){
         stop("The funciton must apply to 'sReorder' object.\n")
     }
     coord <- sReorder$coord

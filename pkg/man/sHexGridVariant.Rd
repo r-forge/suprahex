@@ -4,9 +4,13 @@
 \alias{sHexGridVariant}
 \title{Function to define a variant of a supra-hexagonal grid}
 \usage{
-sHexGridVariant(r = NULL, nHex = NULL, shape = c("suprahex",
-"triangle", "diamond", "hourglass", "trefoil", "ladder", "butterfly",
-"ring", "bridge"))
+sHexGridVariant(
+r = NULL,
+nHex = NULL,
+shape = c("suprahex", "triangle", "diamond", "hourglass", "trefoil",
+"ladder",
+"butterfly", "ring", "bridge")
+)
 }
 \arguments{
 \item{r}{an integer specifying the radius in a supra-hexagonal grid}

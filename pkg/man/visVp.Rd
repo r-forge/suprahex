@@ -4,8 +4,15 @@
 \alias{visVp}
 \title{Function to create viewports for multiple supra-hexagonal grids}
 \usage{
-visVp(height = 7, xdim = 1, ydim = 1, colNum = 1, rowNum = 1,
-gp = grid::gpar(), newpage = TRUE)
+visVp(
+height = 7,
+xdim = 1,
+ydim = 1,
+colNum = 1,
+rowNum = 1,
+gp = grid::gpar(),
+newpage = TRUE
+)
 }
 \arguments{
 \item{height}{a numeric value specifying the height of device}

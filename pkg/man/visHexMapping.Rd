@@ -4,13 +4,24 @@
 \alias{visHexMapping}
 \title{Function to visualise various mapping items within a supra-hexagonal grid}
 \usage{
-visHexMapping(sObj, mappingType = c("indexes", "hits", "dist",
-"antidist", "bases", "customized"), labels = NULL, height = 7,
-margin = rep(0.1, 4), area.size = 1, gp = grid::gpar(cex = 0.7,
-font = 1, col = "black"), border.color = NULL,
-fill.color = "transparent", lty = 1, lwd = 1, lineend = "round",
-linejoin = "round", clip = c("on", "inherit", "off"),
-newpage = TRUE)
+visHexMapping(
+sObj,
+mappingType = c("indexes", "hits", "dist", "antidist", "bases",
+"customized"),
+labels = NULL,
+height = 7,
+margin = rep(0.1, 4),
+area.size = 1,
+gp = grid::gpar(cex = 0.7, font = 1, col = "black"),
+border.color = NULL,
+fill.color = "transparent",
+lty = 1,
+lwd = 1,
+lineend = "round",
+linejoin = "round",
+clip = c("on", "inherit", "off"),
+newpage = TRUE
+)
 }
 \arguments{
 \item{sObj}{an object of class "sMap" or "sInit" or "sTopol"}

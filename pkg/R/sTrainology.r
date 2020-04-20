@@ -70,8 +70,8 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
     stage <- match.arg(stage)
     alphaType <- match.arg(alphaType)
     neighKernel <- match.arg(neighKernel)
-        
-    if (class(sMap) != "sMap" & class(sMap) != "sInit"){
+
+    if (!is(sMap,"sMap") & !is(sMap,"sInit")){
         stop("The funciton must apply to either 'sMap' or 'sInit' object.\n")
     }
     

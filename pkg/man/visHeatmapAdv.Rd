@@ -4,15 +4,29 @@
 \alias{visHeatmapAdv}
 \title{Function to visualise input data matrix using advanced heatmap}
 \usage{
-visHeatmapAdv(data, scale = c("none", "row", "column"), Rowv = TRUE,
-Colv = TRUE, dendrogram = c("both", "row", "column", "none"),
+visHeatmapAdv(
+data,
+scale = c("none", "row", "column"),
+Rowv = TRUE,
+Colv = TRUE,
+dendrogram = c("both", "row", "column", "none"),
 dist.metric = c("euclidean", "pearson", "spearman", "kendall",
-"manhattan", "cos", "mi"), linkage.method = c("complete", "ward",
-"single", "average", "mcquitty", "median", "centroid"),
+"manhattan", "cos",
+"mi"),
+linkage.method = c("complete", "ward", "single", "average", "mcquitty",
+"median",
+"centroid"),
 colormap = c("bwr", "jet", "gbr", "wyr", "br", "yr", "rainbow", "wb"),
-ncolors = 64, zlim = NULL, RowSideColors = NULL,
-row.cutree = NULL, row.colormap = c("jet"), ColSideColors = NULL,
-column.cutree = NULL, column.colormap = c("jet"), ...)
+ncolors = 64,
+zlim = NULL,
+RowSideColors = NULL,
+row.cutree = NULL,
+row.colormap = c("jet"),
+ColSideColors = NULL,
+column.cutree = NULL,
+column.colormap = c("jet"),
+...
+)
 }
 \arguments{
 \item{data}{an input gene-sample data matrix used for heatmap}

@@ -63,7 +63,7 @@ sWriteData <- function(sMap, data, sBase=NULL, filename=NULL, keep.data=FALSE)
     
     ## The column for "Cluster_base" (if sBase is given)
     if(!is.null(sBase)){
-        if(class(sBase) == "sBase"){
+        if(is(sBase,"sBase")){
             if(sMap$nHex == length(sBase$bases)){
                 bases <- as.matrix(sBase$bases[bmh])
                 colnames(bases) <- "Cluster_base"

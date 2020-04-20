@@ -192,7 +192,7 @@ visTreeBootstrap <- function(data, algorithm=c("nj","fastme.ols","fastme.bal"), 
             min_bs <- min(tmp_bs[!is.na(tmp_bs)])
             min_bs_index <- which(tmp_bs==min_bs)[1]
             reroot_index_mrca <- min_bs_index+length(tr$tip.label)
-            tree_bs <- ape::root(tr, node=reroot_index_mrca, resolve.root=FALSE, interactive=FALSE)
+            tree_bs <- ape::root(tr, node=reroot_index_mrca, resolve.root=TRUE, interactive=FALSE)
         }else{
             tree_bs <- tr
         }

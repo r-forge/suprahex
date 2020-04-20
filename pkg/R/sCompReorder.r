@@ -63,7 +63,7 @@ sCompReorder <- function(sMap, xdim=NULL, ydim=NULL, amplifier=NULL, metric=c("n
     alphaType <- match.arg(alphaType)
     neighKernel <- match.arg(neighKernel)
     
-    if (class(sMap) == "sMap"){
+    if (is(sMap, "sMap")){
         M <- sMap$codebook
     }else if(is.data.frame(sMap) | is.matrix(sMap)){
         M <- as.matrix(sMap)
