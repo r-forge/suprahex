@@ -12,6 +12,7 @@
 #' \itemize{
 #'  \item{\code{ID}: ID for data. It inherits the rownames of data (if exists). Otherwise, it is sequential integer values starting with 1 and ending with dlen, the total number of rows of the input data}
 #'  \item{\code{Hexagon_index}: the index for best-matching hexagons}
+#'  \item{\code{Qerr_distance}: the quantification error (distance) for best-matching hexagons}
 #'  \item{\code{Cluster_base}: optional, it is only appended when sBase is given. It stores the cluster memberships/bases}
 #'  \item{\code{data}: optional, it is only appended when keep.data is true}
 #' }
@@ -40,6 +41,7 @@ sWriteData <- function(sMap, data, sBase=NULL, filename=NULL, keep.data=FALSE)
 {
     
     response <- sBMH(sMap=sMap, data=data, which_bmh="best")    
+    bmh <- as.vector(response$bmh)
     
     if(is.null(rownames(data))){
         rownames(data) <- seq(1,nrow(data))
@@ -49,34 +51,25 @@ sWriteData <- function(sMap, data, sBase=NULL, filename=NULL, keep.data=FALSE)
     }
         
     ## Prepare output data
-    data_output<- list()
-    
     ## 1st column for "ID"
-    data_output$ID <- rownames(data)
-    
-    ## The column for "Hexagon_index"
-    bmh <- response$bmh
-    colnames(bmh) <- "Hexagon_index"
-    data_output$bmh <- bmh
-    
-    output <- as.data.frame(data_output, stringsAsFactors=FALSE)
+    ## 2nd column for "Hexagon_index"
+    ## 3rd column for "Qerr_distance"
+    data_output <- tibble::tibble(ID=rownames(data), Hexagon_index=bmh, Qerr_distance=as.vector(response$qerr))
     
     ## The column for "Cluster_base" (if sBase is given)
     if(!is.null(sBase)){
         if(is(sBase,"sBase")){
             if(sMap$nHex == length(sBase$bases)){
-                bases <- as.matrix(sBase$bases[bmh])
-                colnames(bases) <- "Cluster_base"
-                data_output$bases <- bases
-                output <- cbind(output, bases)
+            	data_output <- data_output %>% dplyr::mutate(Cluster_base=sBase$bases[bmh])
             }
         }
     }
     
     ## The next columns for data itself (if keep.data is true)
     if(keep.data){
-        data_output$data <- data
-        output <- cbind(output, data)
+        output <- dplyr::bind_cols(data_output, tibble::as_tibble(data))
+    }else{
+    	output <- data_output
     }
     
     ## convert into a data frame called 'output'
@@ -84,7 +77,7 @@ sWriteData <- function(sMap, data, sBase=NULL, filename=NULL, keep.data=FALSE)
     
     ## If the filename is given, output data is written into a tab-delimited text file
     if(!is.null(filename)){
-        write.table(output, file=filename, quote=FALSE, row.names=FALSE, sep="\t")
+    	readr::write_delim(output, path=filename, delim="'t")
     }
 
     invisible(output)

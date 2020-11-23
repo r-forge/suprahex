@@ -192,6 +192,6 @@ sHexGrid <- function(r=NULL, nHex=NULL)
                 
     class(sHex) <- "sHex"
     
-    invisible(sHex)
+    sHex
     
 }

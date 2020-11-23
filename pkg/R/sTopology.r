@@ -8,7 +8,7 @@
 #' @param nHex the number of hexagons/rectangles in the grid
 #' @param lattice the grid lattice, either "hexa" for a hexagon or "rect" for a rectangle
 #' @param shape the grid shape, either "suprahex" for a supra-hexagonal grid or "sheet" for a hexagonal/rectangle sheet. Also supported are suprahex's variants (including "triangle" for the triangle-shaped variant, "diamond" for the diamond-shaped variant, "hourglass" for the hourglass-shaped variant, "trefoil" for the trefoil-shaped variant, "ladder" for the ladder-shaped variant, "butterfly" for the butterfly-shaped variant, "ring" for the ring-shaped variant, and "bridge" for the bridge-shaped variant)
-#' @param scale the scaling factor. Only used when automatically estimating the grid dimension from input data matrix. By default, it is 5 (big map). Other suggested values: 1 for small map, and 3 for median map 
+#' @param scaling the scaling factor. Only used when automatically estimating the grid dimension from input data matrix. By default, it is 5 (big map). Other suggested values: 1 for small map, and 3 for median map 
 #' @return 
 #' an object of class "sTopol", a list with following components:
 #' \itemize{
@@ -19,13 +19,14 @@
 #'  \item{\code{lattice}: the grid lattice}
 #'  \item{\code{shape}: the grid shape}
 #'  \item{\code{coord}: a matrix of nHex x 2, with each row corresponding to the coordinates of a hexagon/rectangle in the 2D map grid}
+#'  \item{\code{ig}: the igraph object}
 #'  \item{\code{call}: the call that produced this result}
 #' }
 #' @note The output of nHex depends on the input arguments and grid shape: 
 #' \itemize{
 #' \item{How the input parameters are used to determine nHex is taken priority in the following order: "xdim & ydim" > "nHex" > "data"}
 #' \item{If both of xdim and ydim are given, \eqn{nHex=xdim*ydim} for the "sheet" shape, \eqn{r=(min(xdim,ydim)+1)/2} for the "suprahex" shape}
-#' \item{If only data is input, \eqn{nHex=scale*sqrt(dlen)}, where dlen is the number of rows of the input data, and scale can be 5 (big map), 3 (median map) and 1 (normal map)}
+#' \item{If only data is input, \eqn{nHex=scaling*sqrt(dlen)}, where dlen is the number of rows of the input data, and scaling can be 5 (big map), 3 (median map) and 1 (normal map)}
 #' \item{With nHex in hand, it depends on the grid shape:}
 #' \itemize{
 #' \item{For "sheet" shape, xy-dimensions of sheet grid is determined according to the square root of the two biggest eigenvalues of the input data}
@@ -71,9 +72,12 @@
 #' df_polygon <- sHexPolygon(sTopol)
 #' df_coord <- data.frame(sTopol$coord, index=1:nrow(sTopol$coord))
 #' gp <- ggplot(data=df_polygon, aes(x,y,group=index)) + geom_polygon(aes(fill=factor(stepCentroid%%2))) + coord_fixed(ratio=1) + theme_void() + theme(legend.position="none") + geom_text(data=df_coord, aes(x,y,label=index), color="white")
+#' 
+#' library(ggraph)
+#' ggraph(sTopol$ig, layout=sTopol$coord) + geom_edge_link() + geom_node_circle(aes(r=0.4),fill='white') + coord_fixed(ratio=1) + geom_node_text(aes(label=name), size=2)
 #' }
 
-sTopology <- function (data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("hexa","rect"), shape=c("suprahex", "sheet", "triangle", "diamond", "hourglass", "trefoil", "ladder", "butterfly", "ring", "bridge"), scale=5)
+sTopology <- function (data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("hexa","rect"), shape=c("suprahex", "sheet", "triangle", "diamond", "hourglass", "trefoil", "ladder", "butterfly", "ring", "bridge"), scaling=5)
 {
     lattice <- match.arg(lattice)
     shape <- match.arg(shape)
@@ -94,9 +98,9 @@ sTopology <- function (data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("he
         if(!is.null(data) & is.null(nHex)){
             if(ncol(data) >= 2){
                 ## A heuristic formula of "nHex = 5*sqrt(dlen)" is used to calculate the number of hexagons/rectangles, where dlen is the number of rows in the given data
-                ## scale <- 5
+                ## scaling <- 5
                 dlen <- nrow(data)
-                nHex <- ceiling(scale*sqrt(dlen))          
+                nHex <- ceiling(scaling*sqrt(dlen))          
             }
         }
         
@@ -112,7 +116,7 @@ sTopology <- function (data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("he
                 ## initialize xdim/ydim ratio using principal components of the input space; the ratio is the square root of ratio of two largest eigenvalues
                 
                 ## calculate two largest eigenvalues and their corresponding eigenvectors
-                data.center <- scale(data, center=TRUE, scale=FALSE)
+                data.center <- base::scale(data, center=TRUE, scale=FALSE)
                 s <- svd(data.center)
                 # d: a vector containing the singular values, i.e., the square roots of the non-zero eigenvalues of data %*% t(data)
                 # u: a matrix whose columns contain the left singular vectors, i.e., eigenvectors of data %*% t(data)
@@ -171,6 +175,9 @@ sTopology <- function (data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("he
             coord[, 1L] <- coord[, 1L] + 0.5 * (coord[, 2L] %% 2)
             coord[, 2L] <- sqrt(0.75) * coord[, 2L]        
         }
+        
+        a <- as.data.frame(coord)
+        coord <- as.matrix(a[with(a,order(y,x)),])
     
     }else{
         
@@ -236,6 +243,38 @@ sTopology <- function (data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("he
         
     }
 
+	###################################################
+	# ig
+	dist <- as.matrix(stats::dist(coord[,1:2]))
+	nHex <- nrow(coord)
+	dNeigh <- matrix(0, nrow=nHex, ncol=nHex)
+	rownames(dNeigh) <- colnames(dNeigh) <- str_c('u',seq(nrow(dNeigh)))
+	for(i in 1:nHex){
+		inds <- which(dist[i,] < 1.001 & dist[i,] > 0) ## allow for rounding error
+		dNeigh[i,inds] <- 1
+	}
+	
+	## convert to "igraph"
+	### adjacency matrix
+	adjM <- dNeigh
+	### nodes
+	nodes <- tibble::tibble(name=rownames(adjM), xcoord=coord[,1], ycoord=coord[,2]) %>% as.data.frame()
+	## d
+	nodenames <- rownames(adjM)
+	tmp <- which(as.matrix(adjM!=0), arr.ind=TRUE)
+	ind <- which(tmp[,1]<tmp[,2])
+	ttmp <- matrix(0, nrow=length(ind), ncol=2)
+	ttmp[1:length(ind),] <- tmp[ind,]
+	tmp <- ttmp
+	d <- data.frame(from=nodenames[tmp[,1]], to=nodenames[tmp[,2]])
+	## convert to ig
+	d$from <- stringr::str_replace_all(d$from, 'u', '')
+	d$to <- stringr::str_replace_all(d$to, 'u', '')
+	nodes$name <- stringr::str_replace_all(nodes$name, 'u', '')
+	ig <- igraph::graph_from_data_frame(d=d, directed=FALSE, vertices=nodes)
+	#V(ig)$name <- stringr::str_replace_all(V(ig)$name, 'u', '')
+	###################################################
+	
     sTopol <- list(nHex = nHex, 
                    xdim = xdim, 
                    ydim = ydim,
@@ -243,11 +282,12 @@ sTopology <- function (data=NULL, xdim=NULL, ydim=NULL, nHex=NULL, lattice=c("he
                    lattice = lattice,
                    shape = shape,
                    coord = coord,
+                   ig = ig,
                    call = match.call(),
                    method = "suprahex")
     
     class(sTopol) <- "sTopol"
     
-    invisible(sTopol)
+    sTopol
 
 }

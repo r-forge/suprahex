@@ -41,12 +41,17 @@ sNeighAny <- function(sObj)
     ## calculate direct neighbors
     dNeigh <- sNeighDirect(sObj)
     
+    ######################################
+    ### very important: add back self-self
+    diag(dNeigh) <- 1
+    ######################################    
+    
     aNeigh <- dNeigh
     tNeigh <- dNeigh
     k <- 2
     while(sum(aNeigh == 0) > 0){
-        tmp <- (tNeigh %*% dNeigh) > 0 
-        aNeigh[which(tmp-tNeigh != 0)] <- k
+    	tmp <- tNeigh %*% dNeigh > 0 
+        aNeigh[(tmp-tNeigh) > 0] <- k
         tNeigh <- tmp
         k <- k+1
     }

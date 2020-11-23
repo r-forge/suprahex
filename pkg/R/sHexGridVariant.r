@@ -349,6 +349,6 @@ sHexGridVariant <- function (r=NULL, nHex=NULL, shape=c("suprahex", "triangle", 
 		
     }
     
-    invisible(sHex)
+    sHex
 
 }

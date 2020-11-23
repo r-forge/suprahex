@@ -9,13 +9,16 @@ sHexPolygon(sObj, area.size = 1)
 \arguments{
 \item{sObj}{an object of class "sMap" or "sInit" or "sTopol" or "sHex"}
 
-\item{area.size}{an inteter or a vector specifying the area size of
+\item{area.size}{an integer or a vector specifying the area size of
 each hexagon}
 }
 \value{
-a data frame of five columns
-('x','y','index','stepCentroid','angleCentroid') storing polygon
-location per hexagon.
+a tibble of 7 columns
+('index','x','y','node','edge','stepCentroid','angleCentroid') storing
+polygon location per hexagon. 'node' for nodes (including
+n1,n2,n3,n4,n5,n6), and 'edge' for a list-column where each is a tibble
+with a single column 'edge' containing two rows (such as edges 'e12'
+and 'e16' for the node 'n1').
 }
 \description{
 \code{sHexPolygon} is supposed to extract polygon location per hexagon

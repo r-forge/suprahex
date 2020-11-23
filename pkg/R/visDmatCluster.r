@@ -27,6 +27,7 @@
 #' # 1) generate an iid normal random matrix of 100x10 
 #' data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10) 
 #'
+#' \dontrun{
 #' # 2) get trained using by default setup
 #' sMap <- sPipeline(data=data)
 #'
@@ -48,6 +49,7 @@
 #' visDmatCluster(sMap,sBase, fill.color=my_color, lty=my_lty, border.color="black", lwd=2, area.size=0.9)
 #' # also, the area size is inversely proportional to the map distance
 #' visDmatCluster(sMap,sBase, fill.color=my_color, lty=my_lty, border.color="black", lwd=2, area.size=-1*log2(dMat))
+#' }
 
 visDmatCluster <- function (sMap, sBase, height=7, margin=rep(0.1,4), area.size=1, gp=grid::gpar(cex=0.8, font=2, col="black"),  border.color="transparent", fill.color=NULL, lty=1, lwd=1, lineend="round", linejoin="round", colormap=c("rainbow","jet","bwr","gbr","wyr","br","yr","wb"), clip=c("on","inherit","off"), newpage=TRUE)
 {
@@ -88,7 +90,6 @@ visDmatCluster <- function (sMap, sBase, height=7, margin=rep(0.1,4), area.size=
     xy <- list()
     xy$x <- dat$x
     xy$y <- dat$y
-        
 
     labels <- rep("", length(sBase$bases))
     labels[sBase$seeds] <- as.character(seq(1,length(sBase$seeds)))

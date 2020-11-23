@@ -7,7 +7,8 @@
 sDmatCluster(
 sMap,
 which_neigh = 1,
-distMeasure = c("median", "mean", "min", "max"),
+distMeasure = c("mean", "median", "min", "max"),
+constraint = TRUE,
 clusterLinkage = c("average", "complete", "single", "bmh"),
 reindexSeed = c("hclust", "svd", "none")
 )
@@ -22,6 +23,11 @@ for neighbors within neighbors no more than 2, and so on}
 \item{distMeasure}{distance measure used to calculate distances in
 high-dimensional input space. It can be one of "median", "mean", "min"
 and "max" measures}
+
+\item{constraint}{logic whether further constraint applied. If TRUE,
+only consider those hexagons 1) with 2 or more neighbors; and 2)
+neighbors are not within minima already found (due to the same
+distance)}
 
 \item{clusterLinkage}{cluster linkage used to derive clusters. It can
 be "bmh", which accumulates a cluster just based on best-matching
@@ -45,6 +51,11 @@ They are represented by the indexes of hexagons/rectangles}
 \item{\code{bases}: the vector with the length of nHex to store the
 cluster memberships/bases, where nHex is the total number of
 hexagons/rectanges in the grid}
+\item{\code{ig}: an igraph object storing neighbor relations between
+bases, with node attributes 'name' (base), 'index', 'xcoord' and
+'ycoord' (based on seeds)}
+\item{\code{hclust}: a hclust object storing tree-like relations
+between bases (based on seed model vectors)}
 \item{\code{call}: the call that produced this result}
 }
 }

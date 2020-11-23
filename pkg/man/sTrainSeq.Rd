@@ -4,7 +4,7 @@
 \alias{sTrainSeq}
 \title{Function to implement training via sequential algorithm}
 \usage{
-sTrainSeq(sMap, data, sTrain, verbose = TRUE)
+sTrainSeq(sMap, data, sTrain, seed = 825, verbose = TRUE)
 }
 \arguments{
 \item{sMap}{an object of class "sMap" or "sInit"}
@@ -12,6 +12,8 @@ sTrainSeq(sMap, data, sTrain, verbose = TRUE)
 \item{data}{a data frame or matrix of input data}
 
 \item{sTrain}{an object of class "sTrain"}
+
+\item{seed}{an integer specifying the seed}
 
 \item{verbose}{logical to indicate whether the messages will be
 displayed in the screen. By default, it sets to TRUE for display}
@@ -27,6 +29,7 @@ an object of class "sMap", a list with following components:
 \item{\code{shape}: the grid shape}
 \item{\code{coord}: a matrix of nHex x 2, with each row corresponding
 to the coordinates of a hexagon/rectangle in the 2D map grid}
+\item{\code{ig}: the igraph object}
 \item{\code{init}: an initialisation method}
 \item{\code{neighKernel}: the training neighborhood kernel}
 \item{\code{codebook}: a codebook matrix of nHex x ncol(data), with

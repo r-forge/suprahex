@@ -5,6 +5,7 @@
 #' @param sMap an object of class "sMap"
 #' @param which_neigh which neighbors in 2D output space are used for the calculation. By default, it sets to "1" for direct neighbors, and "2" for neighbors within neighbors no more than 2, and so on
 #' @param distMeasure distance measure used to calculate distances in high-dimensional input space. It can be one of "median", "mean", "min" and "max" measures
+#' @param constraint logic whether further constraint applied. If TRUE, only consider those hexagons 1) with 2 or more neighbors; and 2) neighbors are not within minima already found (due to the same distance)
 #' 
 #' @return 
 #' \itemize{
@@ -24,7 +25,7 @@
 #' # 3) identify local minima of distance matrix based on "median" distances and direct neighbors
 #' minima <- sDmatMinima(sMap=sMap, which_neigh=1, distMeasure="median")
 
-sDmatMinima <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min","max"))
+sDmatMinima <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min","max"), constraint=TRUE)
 {
     
     distMeasure <- match.arg(distMeasure)
@@ -40,21 +41,34 @@ sDmatMinima <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min"
     dMat <- sDmat(sMap=sMap, which_neigh=which_neigh, distMeasure=distMeasure)
 
     ## calculate connections matrix between any pair of hexagons/rectangles in a grid
-    aNeigh <- sNeighAny(sObj=sMap)
+    if(which_neigh==1){
+    	aNeigh <- sNeighDirect(sObj=sMap)
+    }else{
+    	aNeigh <- sNeighAny(sObj=sMap)
+    }
     
     ## find local minima (always 1-neighborhood)
     minima <- vector()
     k <- 0
     for(i in 1:nHex){
         
-        ne <- which(aNeigh[i,] == 1) ## should be only 1-neighborhood
-        #ne <- which(aNeigh[i,] <= which_neigh & Ne[i,] > 0)
-        
-        tmpSum <- sum(dMat[ne] >= dMat[i])
-        if(tmpSum == length(ne)){
-            k <- k+1
-            minima[k] <- i
-        }
+		ne <- which(aNeigh[i,] == 1) ## should be only 1-neighborhood
+		#ne <- which(aNeigh[i,] <= which_neigh & Ne[i,] > 0)
+		
+		if(constraint){
+			# only those with 2 or more neighbors
+			# neighbors are not within minima already found (due to the same distance)
+			if(length(ne)<=1 | any(ne %in% minima)){
+				next
+			}
+		}
+
+		tmpSum <- sum(dMat[ne] >= dMat[i])
+		if(tmpSum == length(ne)){
+			k <- k+1
+			minima[k] <- i
+		}
+
     }
     minima <- unique(minima)
     

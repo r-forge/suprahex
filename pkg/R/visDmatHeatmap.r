@@ -33,6 +33,7 @@
 #' # 1) generate an iid normal random matrix of 100x10 
 #' data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10) 
 #'
+#' \dontrun{
 #' # 2) get trained using by default setup
 #' sMap <- sPipeline(data=data)
 #'
@@ -42,6 +43,7 @@
 #' 
 #' # 4) heatmap visualisation
 #' output <- visDmatHeatmap(sMap, data, sBase, base.legend.location="bottomleft", labRow=NA)
+#' }
 
 visDmatHeatmap <- function (sMap, data, sBase, base.color="rainbow", base.separated.arg=NULL, base.legend.location=c("none","bottomleft","bottomright","bottom","left","topleft","top","topright","right","center"), reorderRow=c("none","hclust","svd"), keep.data=FALSE, ...)
 {

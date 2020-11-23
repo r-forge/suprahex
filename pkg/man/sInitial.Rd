@@ -4,7 +4,8 @@
 \alias{sInitial}
 \title{Function to initialise a sInit object given a topology and input data}
 \usage{
-sInitial(data, sTopol, init = c("linear", "uniform", "sample"))
+sInitial(data, sTopol, init = c("linear", "uniform", "sample"), seed =
+825)
 }
 \arguments{
 \item{data}{a data frame or matrix of input data}
@@ -13,6 +14,8 @@ sInitial(data, sTopol, init = c("linear", "uniform", "sample"))
 
 \item{init}{an initialisation method. It can be one of "uniform",
 "sample" and "linear" initialisation methods}
+
+\item{seed}{an integer specifying the seed}
 }
 \value{
 an object of class "sInit", a list with following components:

@@ -27,6 +27,8 @@ a data frame with following components:
 exists). Otherwise, it is sequential integer values starting with 1 and
 ending with dlen, the total number of rows of the input data}
 \item{\code{Hexagon_index}: the index for best-matching hexagons}
+\item{\code{Qerr_distance}: the quantification error (distance) for
+best-matching hexagons}
 \item{\code{Cluster_base}: optional, it is only appended when sBase is
 given. It stores the cluster memberships/bases}
 \item{\code{data}: optional, it is only appended when keep.data is

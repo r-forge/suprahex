@@ -42,7 +42,11 @@ sDmat <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min","max"
     }
     
     ## calculate connections matrix between any pair of hexagons/rectangles in a grid
-    aNeigh <- sNeighAny(sObj=sMap)
+    if(which_neigh==1){
+    	aNeigh <- sNeighDirect(sObj=sMap)
+    }else{
+    	aNeigh <- sNeighAny(sObj=sMap)
+    }
     
     ## only those within which_neigh but not self-self
     Ne <- (aNeigh <= which_neigh & aNeigh != 0)
@@ -69,7 +73,7 @@ sDmat <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min","max"
             }
             }
         }else{
-            dMat[i] <- NA
+            dMat[i,] <- res$qerr
         }
     }
     

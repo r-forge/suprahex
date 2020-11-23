@@ -13,9 +13,11 @@ metric = c("none", "pearson", "spearman", "kendall", "euclidean",
 "manhattan", "cos",
 "mi"),
 init = c("linear", "uniform", "sample"),
+seed = 825,
 algorithm = c("sequential", "batch"),
 alphaType = c("invert", "linear", "power"),
-neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma")
+neighKernel = c("gaussian", "bubble", "cutgaussian", "ep", "gamma"),
+finetuneSustain = TRUE
 )
 }
 \arguments{
@@ -43,6 +45,8 @@ spearman rank correlation, "kendall" for kendall tau rank correlation,
 \item{init}{an initialisation method. It can be one of "uniform",
 "sample" and "linear" initialisation methods}
 
+\item{seed}{an integer specifying the seed}
+
 \item{algorithm}{the training algorithm. It can be one of "sequential"
 and "batch" algorithm. By default, it uses 'sequential' algorithm. If
 the input data contains a large number of samples but not a great
@@ -55,6 +59,11 @@ and "power" alpha types}
 
 \item{neighKernel}{the training neighbor kernel. It can be one of
 "gaussian", "bubble", "cutgaussian", "ep" and "gamma" kernels}
+
+\item{finetuneSustain}{logical to indicate whether sustain the
+"finetune" training. If true, it will repeat the "finetune" stage until
+the mean quantization error does get worse. By default, it sets to
+TRUE}
 }
 \value{
 an object of class "sReorder", a list with following components:

@@ -8,9 +8,11 @@
 #' @param amplifier an integer specifying the amplifier (3 by default) of the number of component planes. The product of the component number and the amplifier constitutes the number of rectangles in the sheet grid
 #' @param metric distance metric used to define the similarity between component planes. It can be "none", which means directly using column-wise vectors of codebook/data matrix. Otherwise, first calculate the covariance matrix from the codebook/data matrix. The distance metric used for calculating the covariance matrix between component planes can be: "pearson" for pearson correlation, "spearman" for spearman rank correlation, "kendall" for kendall tau rank correlation, "euclidean" for euclidean distance, "manhattan" for cityblock distance, "cos" for cosine similarity, "mi" for mutual information. See \code{\link{sDistance}} for details
 #' @param init an initialisation method. It can be one of "uniform", "sample" and "linear" initialisation methods
+#' @param seed an integer specifying the seed
 #' @param algorithm the training algorithm. It can be one of "sequential" and "batch" algorithm. By default, it uses 'sequential' algorithm. If the input data contains a large number of samples but not a great amount of zero entries, then it is reasonable to use 'batch' algorithm for its fast computations (probably also without the compromise of accuracy)
 #' @param alphaType the alpha type. It can be one of "invert", "linear" and "power" alpha types
 #' @param neighKernel the training neighbor kernel. It can be one of "gaussian", "bubble", "cutgaussian", "ep" and "gamma" kernels
+#' @param finetuneSustain logical to indicate whether sustain the "finetune" training. If true, it will repeat the "finetune" stage until the mean quantization error does get worse. By default, it sets to TRUE
 #' @return 
 #' an object of class "sReorder", a list with following components:
 #' \itemize{
@@ -53,7 +55,7 @@
 #' # 3c) according to covariance matrix of pearson correlation of input matrix
 #' sReorder <- sCompReorder(sMap=data, amplifier=2, metric="pearson")
 
-sCompReorder <- function(sMap, xdim=NULL, ydim=NULL, amplifier=NULL, metric=c("none","pearson","spearman","kendall","euclidean","manhattan","cos","mi"), init=c("linear","uniform","sample"), algorithm=c("sequential","batch"), alphaType=c("invert","linear","power"), neighKernel=c("gaussian","bubble","cutgaussian","ep","gamma"))
+sCompReorder <- function(sMap, xdim=NULL, ydim=NULL, amplifier=NULL, metric=c("none","pearson","spearman","kendall","euclidean","manhattan","cos","mi"), init=c("linear","uniform","sample"), seed=825, algorithm=c("sequential","batch"), alphaType=c("invert","linear","power"), neighKernel=c("gaussian","bubble","cutgaussian","ep","gamma"), finetuneSustain=TRUE)
 {
 
     ## match.arg matches arg against a table of candidate values as specified by choices, where NULL means to take the first one
@@ -88,7 +90,7 @@ sCompReorder <- function(sMap, xdim=NULL, ydim=NULL, amplifier=NULL, metric=c("n
     sTopol <- sTopology(data=D, xdim=xdim, ydim=ydim, nHex=nHex, lattice="rect", shape="sheet")
     
     ## setup the pipeline for completing ab initio training given the input data
-    sM <- sPipeline(data=D, xdim=sTopol$ydim, ydim=sTopol$xdim, lattice="rect", shape="sheet", init=init, algorithm=algorithm, alphaType=alphaType, neighKernel=neighKernel, verbose=TRUE)
+    sM <- sPipeline(data=D, xdim=sTopol$ydim, ydim=sTopol$xdim, lattice="rect", shape="sheet", init=init, seed=seed, algorithm=algorithm, alphaType=alphaType, neighKernel=neighKernel, finetuneSustain=finetuneSustain, verbose=TRUE)
     
     ## identify the best-matching hexagon/rectangle for the input data
     res <- sBMH(sMap=sM, data=D, which_bmh="all")
@@ -139,6 +141,6 @@ sCompReorder <- function(sMap, xdim=NULL, ydim=NULL, amplifier=NULL, metric=c("n
     
     class(sReorder) <- "sReorder"
     
-    invisible(sReorder)
+    sReorder
     
 }

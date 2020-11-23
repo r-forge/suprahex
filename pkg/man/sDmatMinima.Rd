@@ -7,7 +7,8 @@
 sDmatMinima(
 sMap,
 which_neigh = 1,
-distMeasure = c("median", "mean", "min", "max")
+distMeasure = c("median", "mean", "min", "max"),
+constraint = TRUE
 )
 }
 \arguments{
@@ -20,6 +21,11 @@ for neighbors within neighbors no more than 2, and so on}
 \item{distMeasure}{distance measure used to calculate distances in
 high-dimensional input space. It can be one of "median", "mean", "min"
 and "max" measures}
+
+\item{constraint}{logic whether further constraint applied. If TRUE,
+only consider those hexagons 1) with 2 or more neighbors; and 2)
+neighbors are not within minima already found (due to the same
+distance)}
 }
 \value{
 \itemize{

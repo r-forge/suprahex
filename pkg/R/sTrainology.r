@@ -105,8 +105,11 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             alphaInitial <- 0.5
             
             if(shape == "sheet"){
-                #radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
-                radiusInitial <- max(1,ceiling(r/4))
+            	if(is.null(r)){
+            		radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
+            	}else{
+            		radiusInitial <- max(1,ceiling(r/4))
+            	}
                 radiusFinal <- max(1,radiusInitial/4)
             }else if(shape != "sheet"){
                 radiusInitial <- max(1,ceiling(r/2))
@@ -120,8 +123,11 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             alphaInitial <- 0.05
             
             if(shape == "sheet"){
-                #radiusInitial <- max(1,ceiling(max(xdim,ydim)/32)) # i.e., radiusFinal at rough stage
-                radiusInitial <- max(1,ceiling(r/16)) # i.e., radiusFinal at rough stage
+            	if(is.null(r)){
+                	radiusInitial <- max(1,ceiling(max(xdim,ydim)/32)) # i.e., radiusFinal at rough stage
+                }else{
+                	radiusInitial <- max(1,ceiling(r/16)) # i.e., radiusFinal at rough stage
+                }
                 radiusFinal <- 1
             }else if(shape != "sheet"){
                 radiusInitial <- max(1,ceiling(r/8)) # i.e., radiusFinal at rough stage 
@@ -135,8 +141,11 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             alphaInitial <- 0.5
             
             if(shape == "sheet"){
-                #radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
-                radiusInitial <- max(1,ceiling(r/4))
+            	if(is.null(r)){
+                	radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
+                }else{
+                	radiusInitial <- max(1,ceiling(r/4))
+                }
                 radiusFinal <- 1
             }else if(shape != "sheet"){
                 radiusInitial <- max(1,ceiling(r/2))
@@ -152,8 +161,11 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             alphaInitial <- NA
             
             if(shape == "sheet"){
-                #radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
-                radiusInitial <- max(1,ceiling(r/4))
+            	if(is.null(r)){
+                	radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
+                }else{
+                	radiusInitial <- max(1,ceiling(r/4))
+                }
                 radiusFinal <- max(1,radiusInitial/4)
             }else if(shape != "sheet"){
                 radiusInitial <- max(1,ceiling(r/2))
@@ -167,8 +179,11 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             alphaInitial <- NA
             
             if(shape == "sheet"){
-                #radiusInitial <- max(1,ceiling(max(xdim,ydim)/32)) # i.e., radiusFinal at rough stage
-                radiusInitial <- max(1,ceiling(r/16)) # i.e., radiusFinal at rough stage
+            	if(is.null(r)){
+                	radiusInitial <- max(1,ceiling(max(xdim,ydim)/32)) # i.e., radiusFinal at rough stage
+                }else{
+                	radiusInitial <- max(1,ceiling(r/16)) # i.e., radiusFinal at rough stage
+                }
                 radiusFinal <- 1
             }else if(shape != "sheet"){
                 radiusInitial <- max(1,ceiling(r/8)) # i.e., radiusFinal at rough stage 
@@ -182,8 +197,11 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
             alphaInitial <- NA
             
             if(shape == "sheet"){
-                #radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
-                radiusInitial <- max(1,ceiling(r/4))
+                if(is.null(r)){
+                	radiusInitial <- max(1,ceiling(max(xdim,ydim)/8))
+                }else{
+                	radiusInitial <- max(1,ceiling(r/4))
+                }
                 radiusFinal <- 1
             }else if(shape != "sheet"){
                 radiusInitial <- max(1,ceiling(r/2))
@@ -216,5 +234,5 @@ sTrainology <- function(sMap, data, algorithm=c("batch","sequential"), stage=c("
     
     class(sTrain) <- "sTrain"
     
-    invisible(sTrain)
+    sTrain
 }

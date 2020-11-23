@@ -5,6 +5,7 @@
 #' @param data a data frame or matrix of input data
 #' @param sTopol an object of class "sTopol" (see \code{sTopology})
 #' @param init an initialisation method. It can be one of "uniform", "sample" and "linear" initialisation methods
+#' @param seed an integer specifying the seed
 #' @return 
 #' an object of class "sInit", a list with following components:
 #' \itemize{
@@ -44,7 +45,7 @@
 #' # 3c) using "linear" method
 #' # sI_linear <- sInitial(data=data, sTopol=sTopol, init="linear") 
 
-sInitial <- function(data, sTopol, init=c("linear","uniform","sample")) 
+sInitial <- function(data, sTopol, init=c("linear","uniform","sample"), seed=825) 
 {
     init <- match.arg(init)
     
@@ -64,8 +65,8 @@ sInitial <- function(data, sTopol, init=c("linear","uniform","sample"))
     nHex <- sTopol$nHex
     xdim <- sTopol$xdim
     ydim <- sTopol$ydim
-        
-    set.seed(1234)
+    
+    set.seed(seed)
     if(init == "uniform"){
         codebook <- matrix(NA, nrow=nHex, ncol=ncol(data))
         ## column-wise
@@ -132,6 +133,7 @@ sInitial <- function(data, sTopol, init=c("linear","uniform","sample"))
                    lattice = sTopol$lattice,
                    shape = sTopol$shape,
                    coord = sTopol$coord,
+                   ig =  sTopol$ig,
                    init = init,
                    codebook = codebook,
                    call = match.call(),

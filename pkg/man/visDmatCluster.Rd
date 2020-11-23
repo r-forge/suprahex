@@ -85,6 +85,7 @@ none
 # 1) generate an iid normal random matrix of 100x10 
 data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 
+\dontrun{
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 
@@ -109,6 +110,7 @@ border.color="black", lwd=2, area.size=0.9)
 # also, the area size is inversely proportional to the map distance
 visDmatCluster(sMap,sBase, fill.color=my_color, lty=my_lty,
 border.color="black", lwd=2, area.size=-1*log2(dMat))
+}
 }
 \seealso{
 \code{\link{sDmatCluster}}, \code{\link{sDmat}},

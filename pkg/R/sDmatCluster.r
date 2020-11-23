@@ -5,6 +5,7 @@
 #' @param sMap an object of class "sMap"
 #' @param which_neigh which neighbors in 2D output space are used for the calculation. By default, it sets to "1" for direct neighbors, and "2" for neighbors within neighbors no more than 2, and so on
 #' @param distMeasure distance measure used to calculate distances in high-dimensional input space. It can be one of "median", "mean", "min" and "max" measures
+#' @param constraint logic whether further constraint applied. If TRUE, only consider those hexagons 1) with 2 or more neighbors; and 2) neighbors are not within minima already found (due to the same distance)
 #' @param clusterLinkage cluster linkage used to derive clusters. It can be "bmh", which accumulates a cluster just based on best-matching hexagons/rectanges but can not ensure each cluster is continuous. Instead, each cluster is continuous when using region-growing algorithm with one of "average", "complete" and "single" linkages
 #' @param reindexSeed the way to index seed. It can be "hclust" for reindexing seeds according to hierarchical clustering of patterns seen in seeds, "svd" for reindexing seeds according to svd of patterns seen in seeds, or "none" for seeds being simply increased by the hexagon indexes (i.e. always in an increasing order as hexagons radiate outwards)
 #' 
@@ -13,6 +14,8 @@
 #' \itemize{
 #'  \item{\code{seeds}: the vector to store cluster seeds, i.e., a list of local minima (in 2D output space) of distance matrix (in input space). They are represented by the indexes of hexagons/rectangles}
 #'  \item{\code{bases}: the vector with the length of nHex to store the cluster memberships/bases, where nHex is the total number of hexagons/rectanges in the grid}
+#'  \item{\code{ig}: an igraph object storing neighbor relations between bases, with node attributes 'name' (base), 'index', 'xcoord' and 'ycoord' (based on seeds)}
+#'  \item{\code{hclust}: a hclust object storing tree-like relations between bases (based on seed model vectors)}
 #'  \item{\code{call}: the call that produced this result}
 #' }
 #' @note The first item in the return "seeds" is the first cluster, whose memberships are those in the return "bases" that equals 1. The same relationship is held for the second item, and so on
@@ -35,7 +38,7 @@
 #' # 4) visualise clusters/bases partitioned from the sMap
 #' visDmatCluster(sMap,sBase)
 
-sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min","max"), clusterLinkage=c("average","complete","single","bmh"), reindexSeed=c("hclust","svd","none"))
+sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("mean","median","min","max"), constraint=TRUE, clusterLinkage=c("average","complete","single","bmh"), reindexSeed=c("hclust","svd","none"))
 {
     
     distMeasure <- match.arg(distMeasure)
@@ -48,7 +51,7 @@ sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min
     nHex <- sMap$nHex
     
     ## Find base seed based on local minima of distance matrix
-    seed <- sDmatMinima(sMap=sMap, which_neigh=which_neigh, distMeasure=distMeasure)
+    seed <- sDmatMinima(sMap=sMap, which_neigh=which_neigh, distMeasure=distMeasure, constraint=constraint)
     
     ## Partition the given data by flooding
     base <- matrix(0, nrow=nHex, ncol=1)
@@ -171,16 +174,28 @@ sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min
     ## whether reindexing seed
     if(reindexSeed=="hclust"){
         ## reordering via hierarchical clustering
-        distance <- as.dist(sDistance(M[seed,], metric="euclidean"))
-        cluster <- hclust(distance, method="complete")
+        distance <- stats::as.dist(sDistance(M[seed,], metric="euclidean"))
+        cluster <- stats::hclust(distance, method=c("ward.D","average")[2])
         ordering <- cluster$order
-    
+    	
+    	## ?reorder.dendrogram
+    	if(1){
+    		# reorders the dendrogram by increasing weights, but maintaining the constraints on the dendrogram
+    		# reverse twice to ensure the lower seeds tend to be lower
+    		dd <- stats::as.dendrogram(cluster)
+    		dd.reorder <- stats::reorder(dd, wts=rev(seq(length(seed))))
+    		cluster.reorder <- stats::as.hclust(dd.reorder)
+    		ordering <- cluster.reorder$order %>% rev()
+    	}
+    	
         ## reorder seed
         seed <- seed[ordering]
         ## reorder base
         old_index <- (1:length(seed))
         new_index <- old_index[ordering]
         base <- sapply(base, function(x) which(new_index==x))
+        
+        #tibble(old=base) %>% inner_join(tibble(new=1:length(seed),old=ordering), by='old') %>% pull(new) -> base
         
     }else if(reindexSeed=="svd"){
         ## reordering via SVD
@@ -194,16 +209,60 @@ sDmatCluster <- function(sMap, which_neigh=1, distMeasure=c("median","mean","min
         old_index <- (1:length(seed))
         new_index <- old_index[ordering]
         base <- sapply(base, function(x) which(new_index==x))
+    
+    }else{
+		base <-  as.vector(base)    
     }
     
     ###########################################################
-        
+    # ig_base
+    ig_base <- sMap$ig
+    if(!is.null(ig_base)){
+    
+    	index <- from_base <- to_base <- x <- y <- name <- NULL
+    	
+    	## df_base
+    	vec_seed <- rep(0, length(base))
+		vec_seed[seed] <- seq(length(seed))
+		df_base <- tibble::tibble(index=seq(sMap$nHex), base=base, seed=vec_seed) %>% dplyr::bind_cols(tibble::as_tibble(sMap$coord))
+		
+		## df_edge for sMap$ig
+		df_edge <- sMap$ig %>% igraph::as_data_frame(what='edge') %>% tibble::as_tibble()
+		
+		## df_edge_base
+		df_edge %>% dplyr::inner_join(df_base %>% dplyr::transmute(from=as.character(index), from_base=base), by='from') %>% dplyr::inner_join(df_base %>% dplyr::transmute(to=as.character(index), to_base=base), by='to') %>% dplyr::filter(from_base!=to_base) %>% dplyr::transmute(from_s=ifelse(from_base<to_base, from_base, to_base), to_l=ifelse(from_base<to_base, to_base, from_base)) %>% dplyr::distinct() -> df_edge_base
+		
+		## df_node_base
+		df_base %>% dplyr::filter(seed!=0) %>% dplyr::transmute(name=base, index=index, xcoord=x, ycoord=y) %>% dplyr::arrange(name) -> df_node_base
+		
+		## ig_base
+		ig_base <- igraph::graph_from_data_frame(d=df_edge_base, directed=FALSE, vertices=df_node_base)
+		
+    }
+    
+    ###########################################################
+    # phylo
+	distance <- stats::as.dist(sDistance(M[seed,], metric="euclidean"))
+	cluster <- stats::hclust(distance, method=c("ward.D","average")[2])
+	# reorders the dendrogram by increasing weights, but maintaining the constraints on the dendrogram
+	# reverse twice to ensure the lower seeds tend to be lower
+	dd <- stats::as.dendrogram(cluster)
+	dd.reorder <- stats::reorder(dd, wts=rev(seq(length(seed))))
+	cluster.reorder <- stats::as.hclust(dd.reorder)
+	#ordering <- cluster.reorder$order %>% rev()
+	#phylo <- ape::as.phylo(cluster.reorder)
+	#xGT(phylo,layout=c("rectangular","fan")[1])
+    
+	###########################################################
+    
     sBase <- list(seeds = seed, 
-                bases = base, 
-                call = match.call(),
-                method = "suprahex")
+                  bases = base, 
+                  ig = ig_base,
+                  hclust = cluster.reorder,
+                  call = match.call(),
+                  method = "suprahex")
                 
     class(sBase) <- "sBase"
     
-    invisible(sBase)
+    sBase
 }

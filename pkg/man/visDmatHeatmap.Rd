@@ -91,6 +91,7 @@ integer (0=blank, 1=solid (default), 2=dashed, 3=dotted, 4=dotdash,
 # 1) generate an iid normal random matrix of 100x10 
 data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 
+\dontrun{
 # 2) get trained using by default setup
 sMap <- sPipeline(data=data)
 
@@ -101,6 +102,7 @@ distMeasure="median", clusterLinkage="average")
 # 4) heatmap visualisation
 output <- visDmatHeatmap(sMap, data, sBase,
 base.legend.location="bottomleft", labRow=NA)
+}
 }
 \seealso{
 \code{\link{sDmatCluster}}, \code{\link{visHeatmapAdv}}

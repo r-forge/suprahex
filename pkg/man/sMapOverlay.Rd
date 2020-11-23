@@ -4,12 +4,12 @@
 \alias{sMapOverlay}
 \title{Function to overlay additional data onto the trained map for viewing the distribution of that additional data}
 \usage{
-sMapOverlay(sMap, data, additional)
+sMapOverlay(sMap, data = NULL, additional)
 }
 \arguments{
 \item{sMap}{an object of class "sMap"}
 
-\item{data}{a data frame or matrix of input data}
+\item{data}{a data frame or matrix of input data or NULL}
 
 \item{additional}{a numeric vector or numeric matrix used to overlay
 onto the trained map. It must have the length (if being vector) or row
@@ -26,6 +26,10 @@ an object of class "sMap", a list with following components:
 \item{\code{shape}: the grid shape}
 \item{\code{coord}: a matrix of nHex x 2, with rows corresponding to
 the coordinates of all hexagons/rectangles in the 2D map grid}
+\item{\code{ig}: the igraph object}
+\item{\code{polygon}: a tibble of 7 columns
+('x','y','index','node','edge','stepCentroid','angleCentroid') storing
+polygon location per hexagon}
 \item{\code{init}: an initialisation method}
 \item{\code{neighKernel}: the training neighborhood kernel}
 \item{\code{codebook}: a codebook matrix of nHex x ncol(additional),
@@ -34,6 +38,10 @@ with rows corresponding to overlaid vectors}
 hexagon/rectangle contains the number of input data vectors being hit
 wherein}
 \item{\code{mqe}: the mean quantization error for the "best" BMH}
+\item{\code{data}: an input data matrix}
+\item{\code{response}: a tibble of 3 columns ('did' for rownames of
+input data matrix, 'index', and 'qerr' (quantization error; the
+distance to the "best" BMH))}
 \item{\code{call}: the call that produced this result}
 }
 }

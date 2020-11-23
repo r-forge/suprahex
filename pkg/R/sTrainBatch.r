@@ -16,6 +16,7 @@
 #'  \item{\code{lattice}: the grid lattice}
 #'  \item{\code{shape}: the grid shape}
 #'  \item{\code{coord}: a matrix of nHex x 2, with each row corresponding to the coordinates of a hexagon/rectangle in the 2D map grid}
+#'  \item{\code{ig}: the igraph object}
 #'  \item{\code{init}: an initialisation method}
 #'  \item{\code{neighKernel}: the training neighborhood kernel}
 #'  \item{\code{codebook}: a codebook matrix of nHex x ncol(data), with each row corresponding to a prototype vector in input high-dimensional space}
@@ -104,7 +105,7 @@ sTrainBatch <- function(sMap, data, sTrain, verbose=TRUE)
         radius <- radiusFinal + ((tlen-1):0)/((tlen-1)) * (radiusInitial - radiusFinal)
     }
 
-    radius <- radius^2;
+    radius <- radius^2
     ## avoid div-by-zero error
     eps <- 1e-16
     radius[radius==0] <- eps
@@ -185,6 +186,7 @@ sTrainBatch <- function(sMap, data, sTrain, verbose=TRUE)
                    lattice = sMap$lattice,
                    shape = sMap$shape,
                    coord = sMap$coord,
+                   ig = sMap$ig,
                    init = sMap$init,
                    neighKernel = sTrain$neighKernel,
                    codebook = M,
@@ -193,5 +195,5 @@ sTrainBatch <- function(sMap, data, sTrain, verbose=TRUE)
     
     class(sMap) <- "sMap"
     
-    invisible(sMap)
+    sMap
 }
