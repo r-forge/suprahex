@@ -202,6 +202,7 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 data <- t(data)
 
+\dontrun{
 # 2) build neighbor-joining tree with bootstrap values and visualise it by default
 visTreeBootstrap(data)
 
@@ -216,13 +217,15 @@ tree_bs$tip.label
 # 3c) determine internal nodes that should be displayed
 Ntip <- length(tree_bs$tip.label) # number of tip nodes
 Nnode <- length(tree_bs$node.label) # number of internal nodes
-flag <- as.numeric(tree_bs$node.label) > 30
+flag <- which(as.numeric(tree_bs$node.label) > 30 |
+!is.na(tree_bs$node.label))
 text <- tree_bs$node.label[flag]
 node <- Ntip + (1:Nnode)[flag]
 visTreeBootstrap(data, nodelabels.arg=list(text=text,node=node))
 
 # 4) obtain the consensus tree
 tree_cons <- visTreeBootstrap(data, consensus=TRUE, num.bootstrap=10)
+}
 }
 \seealso{
 \code{\link{visTreeBootstrap}}

@@ -55,6 +55,8 @@
 #' colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 #' data <- t(data)
 #'
+#'
+#' \dontrun{
 #' # 2) build neighbor-joining tree with bootstrap values and visualise it by default
 #' tree_bs <- visTreeBootstrap(data)
 #'
@@ -62,6 +64,7 @@
 #' res <- visTreeBSclust(tree_bs, bootstrap.cutoff=80)
 #' ## hide tip labels and modify the font of internal node labels
 #' res <- visTreeBSclust(tree_bs, bootstrap.cutoff=80, nodelabels.arg=list(cex=0.4), show.tip.label=FALSE)
+#' }
 
 visTreeBSclust <- function(tree_bs, bootstrap.cutoff=80, max.fraction=1, min.size=3, visTree=TRUE, plot.phylo.arg=NULL, nodelabels.arg=NULL, verbose=TRUE, ...)
 {

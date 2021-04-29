@@ -146,6 +146,8 @@ data <- matrix( rnorm(100*10,mean=0,sd=1), nrow=100, ncol=10)
 colnames(data) <- paste(rep('S',10), seq(1:10), sep="")
 data <- t(data)
 
+
+\dontrun{
 # 2) build neighbor-joining tree with bootstrap values and visualise it by default
 tree_bs <- visTreeBootstrap(data)
 
@@ -154,6 +156,7 @@ res <- visTreeBSclust(tree_bs, bootstrap.cutoff=80)
 ## hide tip labels and modify the font of internal node labels
 res <- visTreeBSclust(tree_bs, bootstrap.cutoff=80,
 nodelabels.arg=list(cex=0.4), show.tip.label=FALSE)
+}
 }
 \seealso{
 \code{\link{visTreeBootstrap}}
